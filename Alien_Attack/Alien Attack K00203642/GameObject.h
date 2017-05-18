@@ -20,21 +20,21 @@ class GameObject {
 public:
 	virtual ~GameObject() {}	// base class needs virtual destructor
 
-								// load from file - int x, int y, int width, int height, std::string textureID, int numFrames, int callbackID = 0, int animSpeed = 0
+	// load from file - int x, int y, int width, int height, std::string textureID, int numFrames, int callbackID = 0, int animSpeed = 0
 	virtual void load(std::unique_ptr<LoaderParams> const &pParams) = 0;
 
 	virtual void draw() = 0;				// draw the object
 
-	virtual void update() = 0;				// do update stuff
+	virtual void update() = 0;			// do update stuff
 
-	virtual void clean() = 0;				// remove anything that needs to be deleted
+	virtual void clean() = 0;				 // remove anything that needs to be deleted
 
-	virtual void collision() = 0;			// object has collided, handle accordingly
+	virtual void collision() = 0;		 // object has collided, handle accordingly
 
 
-	virtual std::string type() = 0;			// get the type of the object
+	virtual std::string type() = 0;    // get the type of the object
 
-	// getters for common variables
+									   // getters for common variables
 	Vector2D& getPosition() { return m_position; }
 	Vector2D& getVelocity() { return m_velocity; }
 
@@ -70,7 +70,8 @@ protected:
 		m_bDead(false),
 		m_bDying(false),
 		m_angle(0),
-		m_alpha(255)
+		m_alpha(255),
+		m_time(0)
 	{
 	}
 
@@ -99,6 +100,8 @@ protected:
 	double m_angle;	// rotation
 
 	int m_alpha;	// blending
+
+	unsigned int m_time;
 };
 
 #endif

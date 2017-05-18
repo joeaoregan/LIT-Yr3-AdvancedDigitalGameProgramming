@@ -18,8 +18,7 @@ struct Tileset;
 class Layer;
 class TileLayer;
 
-class LevelParser
-{
+class LevelParser {
 public:
 
 	Level* parseLevel(const char* stateFile);

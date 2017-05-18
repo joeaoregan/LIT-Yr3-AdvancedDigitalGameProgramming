@@ -16,7 +16,6 @@
 
 class Player : public ShooterObject {
 public:
-
 	Player();
 	virtual ~Player() {}
 

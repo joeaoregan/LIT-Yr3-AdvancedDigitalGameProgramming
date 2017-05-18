@@ -22,6 +22,8 @@ class PlayState : public GameState {
 public:
     
     virtual ~PlayState() { delete pLevel; }
+
+	void gameTimer(); // 16/02/2017
     
     virtual void update();
     virtual void render();

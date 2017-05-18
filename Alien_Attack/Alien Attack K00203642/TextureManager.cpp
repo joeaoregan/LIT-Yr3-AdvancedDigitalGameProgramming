@@ -1,15 +1,77 @@
-//
+/*
 //  TextureManager.cpp
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 31/12/2012.
 //  Copyright (c) 2012 shaun mitchell. All rights reserved.
-//
+
+	Modified by Joe O'Regan
+		2017/02/16 Added loadFromRenderedText function to render text
+*/
+
 #include "TextureManager.h"
 #include "SDL_image.h"
 #include "SDL.h"
+//#include <SDL_ttf.h>	// 16/02/2017 Add font
 
 TextureManager* TextureManager::s_pInstance = 0;
+
+SDL_Surface* textSurface;
+
+#ifdef _SDL_TTF_H
+bool TextureManager::loadFromRenderedText(std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, SDL_Renderer* pRenderer, bool textWrapped) {
+	free();	//Get rid of preexisting texture
+
+	if (!textWrapped) textSurface = TTF_RenderText_Solid(font, textureText.c_str(), textColor);	//Render text surface
+	else textSurface = TTF_RenderText_Blended_Wrapped(font, textureText.c_str(), textColor, 1000);
+
+	if (textSurface != NULL) {
+		//Create texture from surface pixels
+		mTexture = SDL_CreateTextureFromSurface(pRenderer, textSurface);
+
+		if (mTexture == NULL) {
+			printf("Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError());
+		}
+		else {
+			//Get image dimensions
+			mWidth = textSurface->w;
+			mHeight = textSurface->h;
+		}
+
+		SDL_FreeSurface(textSurface);	//Get rid of old surface
+										/*
+										if (mTexture != 0) {
+										m_textureMap[id] = mTexture;
+										return true;
+										}
+										//return false;
+										*/
+	}
+	else {
+		printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
+	}
+
+	//return mTexture != NULL;	// Return success
+
+	if (mTexture != 0) {
+		m_textureMap[id] = mTexture;
+		return true;
+	}
+
+	std::cout << "NOT WORKING" << std::endl;
+	return false;
+}
+#endif
+
+void TextureManager::free() {
+	// Free texture if it exists
+	if (mTexture != NULL) {
+		SDL_DestroyTexture(mTexture);
+		mTexture = NULL;
+		mWidth = 0;
+		mHeight = 0;
+	}
+}
 
 bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer* pRenderer) {
 	SDL_Surface* pTempSurface = IMG_Load(fileName.c_str());

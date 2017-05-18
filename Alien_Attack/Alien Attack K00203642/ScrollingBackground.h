@@ -1,10 +1,10 @@
-//
+/*
 //  ScrollingBackground.h
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 26/03/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #ifndef __SDL_Game_Programming_Book__ScrollingBackground__
 #define __SDL_Game_Programming_Book__ScrollingBackground__
@@ -26,7 +26,6 @@ public:
 	virtual void load(std::unique_ptr<LoaderParams> const &pParams);
 
 private:
-
 	int m_scrollSpeed;
 
 	int count;

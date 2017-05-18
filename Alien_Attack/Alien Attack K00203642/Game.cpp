@@ -4,6 +4,8 @@
 //
 */
 #include "Game.h"
+#include <SDL_image.h>	// 2017/02/16 Added
+#include <SDL_ttf.h>	// 2017/02/16 Add font
 #include "TextureManager.h"
 #include "InputHandler.h"
 #include "MainMenuState.h"
@@ -46,7 +48,6 @@ Game::~Game() {
 	m_pWindow = 0;
 }
 
-
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {
 	int flags = 0;
 
@@ -73,6 +74,18 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 			{
 				cout << "renderer creation success\n";
 				SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
+
+				int imgFlags = IMG_INIT_PNG;																	// Initialize PNG loading
+				if (!(IMG_Init(imgFlags) & imgFlags)) {
+					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+					//success = false;
+				}
+				//Initialize SDL_ttf
+				if (TTF_Init() == -1) {
+					printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+					return false;
+				}
+
 			}
 			else {
 				cout << "renderer init fail\n";
@@ -88,6 +101,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		cout << "SDL init fail\n";
 		return false; // SDL init fail
 	}
+
 
 	// add some sound effects - TODO move to better place
 	TheSoundManager::Instance()->load("assets/DST_ElectroRock.ogg", "music1", SOUND_MUSIC);

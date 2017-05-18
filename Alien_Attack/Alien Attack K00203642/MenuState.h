@@ -12,8 +12,7 @@
 #include "GameState.h"
 
 class MenuState : public GameState {
-public:
-    
+public:    
     virtual ~MenuState() {}
     
 protected:
