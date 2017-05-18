@@ -66,11 +66,11 @@ public:
 	std::vector<std::string> getLevelFiles() { return m_levelFiles; }
 
 	// Player Name
-	std::string getName() { return m_name; } 	// 2017/02/25
-	void setName(std::string n) { m_name = n; }	// 2017/02/25
-												// Player Score
-	int getScore() { return m_score; }			// 2017/02/25
-	void setScore(int s) { m_score = s; }		// 2017/02/25
+	std::string getName() { return m_name; }
+	void setName(std::string n) { m_name = n; }
+	// Player Score
+	int getScore() { return m_score; }
+	void setScore(int s) { m_score = s; }
 
 private:
 	bool m_bChangingState;
@@ -103,7 +103,7 @@ private:
 	Game& operator=(const Game&);
 
 	std::string m_name;	// 2017/02/25 Name for player
-	int m_score;		// 2017/02/25 Score for Player
+	int m_score;
 };
 
 typedef Game TheGame;

@@ -12,9 +12,9 @@
 
   <MENU>
         <TEXTURES>
-          <texture filename="assets/button.png" ID="playbutton"/>
-          <texture filename="assetsNew/score.png" ID="scorebutton"/>
-          <texture filename="assets/exit.png" ID="exitbutton"/>
+          <texture filename="assetsNew/menuButtonPlay.png" ID="playbutton"/>
+          <texture filename="assetsNew/menuButtonScore.png" ID="scorebutton"/>
+          <texture filename="assetsNew/menuButtonExit.png" ID="exitbutton"/>
         </TEXTURES>
         
         <OBJECTS>

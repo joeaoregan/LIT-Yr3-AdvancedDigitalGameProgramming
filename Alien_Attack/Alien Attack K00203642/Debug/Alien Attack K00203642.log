@@ -1,8 +1,44 @@
-﻿  HighScoreState.cpp
+﻿  ScrollingBackground.cpp
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(30): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(75): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\highscorestate.cpp(30): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\highscorestate.cpp(38): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\highscorestate.cpp(83): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(27): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(64): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(66): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(72): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(74): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Game.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(30): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(75): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\turret.h(62): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\turret.h(63): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\turret.h(64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\roofturret.h(30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\roofturret.h(31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\roofturret.h(32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\glider.h(33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\glider.h(34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\glider.h(36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\glider.h(37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\glider.h(60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\glider.h(63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\shotglider.h(27): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\shotglider.h(33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\angryglider.h(23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\angryglider.h(29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\eskeletor.h(45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\eskeletor.h(48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\eskeletor.h(49): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\level1boss.h(32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\level1boss.h(67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\level1boss.h(70): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\level1boss.h(74): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\level1boss.h(75): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\level1boss.h(77): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\level1boss.h(78): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\game.cpp(38): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Generating Code...
   Alien Attack K00203642.vcxproj -> D:\GitHub\Yr3_Advanced_Game_Prog\Alien_Attack\Debug\Alien Attack K00203642.exe
   Alien Attack K00203642.vcxproj -> D:\GitHub\Yr3_Advanced_Game_Prog\Alien_Attack\Debug\Alien Attack K00203642.pdb (Partial PDB)

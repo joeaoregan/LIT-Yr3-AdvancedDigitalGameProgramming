@@ -140,6 +140,9 @@
     <ClInclude Include="HighScoreState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AngryGlider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFactory.cpp">
@@ -232,5 +235,15 @@
     <ClCompile Include="HighScoreState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="assets\attack.xml">
+      <Filter>Header Files</Filter>
+    </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\map1.tmx">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

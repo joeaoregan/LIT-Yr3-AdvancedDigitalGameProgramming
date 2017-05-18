@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AngryGlider.h" />
     <ClInclude Include="AnimatedGraphic.h" />
     <ClInclude Include="base64.h" />
     <ClInclude Include="Bullet.h" />
@@ -94,6 +95,12 @@
     <ClCompile Include="tinyxml.cpp" />
     <ClCompile Include="tinyxmlerror.cpp" />
     <ClCompile Include="tinyxmlparser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="assets\attack.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\map1.tmx" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{d746ea27-6936-4c69-89c6-a04a7876e3ae}</ProjectGuid>

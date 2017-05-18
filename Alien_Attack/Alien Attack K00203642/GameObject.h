@@ -41,8 +41,8 @@ public:
 
 	int getWidth() { return m_width; }
 	int getHeight() { return m_height; }
-	//std::string getName() { return m_name; }		// 2017/02/25
-	//void setName(std::string n) { m_name = n; }	// 2017/02/25
+	//std::string getName() { return m_name; }
+	//void setName(std::string n) { m_name = n; }
 
 	// scroll along with tile map
 	void scroll(float scrollSpeed) {
@@ -106,7 +106,7 @@ protected:
 
 	unsigned int m_time;
 
-	std::string m_name;			// 2017/02/25 Name for Game Object
+	std::string m_name;
 };
 
 #endif

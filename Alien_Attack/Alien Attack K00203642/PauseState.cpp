@@ -34,6 +34,7 @@ void PauseState::update() {
 }
 
 void PauseState::render() {
+
 	if (m_loadingComplete && !m_gameObjects.empty()) {
 		for (int i = 0; i < m_gameObjects.size(); i++) {
 			m_gameObjects[i]->draw();

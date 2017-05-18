@@ -28,8 +28,8 @@ public:
 private:
 	int m_scrollSpeed;
 
-	int count;
-	int maxcount;
+	int count;		// 2017/03/15
+	int maxcount;	// 2017/03/15
 
 	SDL_Rect m_srcRect1;
 	SDL_Rect m_srcRect2;

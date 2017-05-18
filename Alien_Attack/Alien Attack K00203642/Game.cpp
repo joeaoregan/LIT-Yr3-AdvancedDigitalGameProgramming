@@ -17,6 +17,7 @@
 #include "SoundManager.h"
 #include "RoofTurret.h"
 #include "ShotGlider.h"
+#include "AngryGlider.h"		// 2017/03/14
 #include "Eskeletor.h"
 #include "Level1Boss.h"
 #include "GameOverState.h"
@@ -47,6 +48,7 @@ Game::~Game() {
 	m_pRenderer = 0;
 	m_pWindow = 0;
 }
+
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {
 	int flags = 0;
@@ -117,6 +119,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	TheGameObjectFactory::Instance()->registerType("Turret", new TurretCreator());
 	TheGameObjectFactory::Instance()->registerType("Glider", new GliderCreator());
 	TheGameObjectFactory::Instance()->registerType("ShotGlider", new ShotGliderCreator());
+	TheGameObjectFactory::Instance()->registerType("AngryGlider", new AngryGliderCreator());		// 2017/03/14
 	TheGameObjectFactory::Instance()->registerType("RoofTurret", new RoofTurretCreator());
 	TheGameObjectFactory::Instance()->registerType("Eskeletor", new EskeletorCreator());
 	TheGameObjectFactory::Instance()->registerType("Level1Boss", new Level1BossCreator());

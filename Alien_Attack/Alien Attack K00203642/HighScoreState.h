@@ -37,5 +37,4 @@ private:
 	std::vector<GameObject*> m_gameObjects;
 };
 
-
 #endif
