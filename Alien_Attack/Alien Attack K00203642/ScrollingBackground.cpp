@@ -44,7 +44,6 @@ void ScrollingBackground::draw() {
 
 	// draw second rect
 	SDL_RenderCopyEx(TheGame::Instance()->getRenderer(), TheTextureManager::Instance()->getTextureMap()[m_textureID], &m_srcRect2, &m_destRect2, 0, 0, SDL_FLIP_NONE);
-
 }
 
 void ScrollingBackground::update() {

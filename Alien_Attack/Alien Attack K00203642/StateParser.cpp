@@ -43,9 +43,7 @@ bool StateParser::parseState(const char *stateFile, string stateID, vector<GameO
 		}
 	}
 
-
 	parseTextures(pTextureRoot, pTextureIDs);	// now parse the textures
-
 
 	TiXmlElement* pObjectRoot = 0;				// pre declare the object root node
 

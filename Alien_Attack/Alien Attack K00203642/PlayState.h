@@ -4,6 +4,9 @@
 //
 //  Created by shaun mitchell on 09/02/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
+
+	Modified by Joe O'Regan
+		Added function to set high score, based on game time
 */
 
 #ifndef SDL_Game_Programming_Book_PlayState_h
@@ -24,6 +27,7 @@ public:
     virtual ~PlayState() { delete pLevel; }
 
 	void gameTimer(); // 16/02/2017
+	void highScoreUpdate(std::string name, int score); // 2017/02/25
     
     virtual void update();
     virtual void render();

@@ -55,9 +55,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	m_gameWidth = width;
 	m_gameHeight = height;
 
-	if (fullscreen) {
-		flags = SDL_WINDOW_FULLSCREEN;
-	}
+	if (fullscreen) { flags = SDL_WINDOW_FULLSCREEN; }
+	//flags = SDL_WINDOW_FULLSCREEN;
 
 	// attempt to initialise SDL
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -65,13 +64,11 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		// init the window
 		m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
 
-		if (m_pWindow != 0) // window init success
-		{
+		if (m_pWindow != 0) { // window init success
 			cout << "window creation success\n";
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED);
 
-			if (m_pRenderer != 0) // renderer init success
-			{
+			if (m_pRenderer != 0) { // renderer init success
 				cout << "renderer creation success\n";
 				SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
 
@@ -169,4 +166,5 @@ void Game::clean() {
 	SDL_DestroyWindow(m_pWindow);
 	SDL_DestroyRenderer(m_pRenderer);
 	SDL_Quit();
+	IMG_Quit();
 }

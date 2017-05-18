@@ -14,12 +14,10 @@
 #include "tinyxml.h"
 
 class MapLoader {
-public:
-    
+public:    
     //Map* loadMap(const char* mapFile);
     
-private:
-    
+private:    
     //void parseTextures(TiXmlElement* pTilesetRoot, Map::Tilesets *pTextureIDs);
     //void parseLayer(std::vector<int> layerData, Map::GridIDs *pLayers);
     

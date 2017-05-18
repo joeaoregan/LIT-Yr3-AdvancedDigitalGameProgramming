@@ -2,6 +2,9 @@
 //  Game.h
 //  SDL Game Programming Book
 //
+
+	Modified by Joe O'Regan	
+		2017/02/25 Added name and score variables for Player
 */
 
 #ifndef __SDL_Game_Programming_Book__Game__
@@ -62,6 +65,13 @@ public:
 
 	std::vector<std::string> getLevelFiles() { return m_levelFiles; }
 
+	// Player Name
+	std::string getName() { return m_name; } 	// 2017/02/25
+	void setName(std::string n) { m_name = n; }	// 2017/02/25
+												// Player Score
+	int getScore() { return m_score; }			// 2017/02/25
+	void setScore(int s) { m_score = s; }		// 2017/02/25
+
 private:
 	bool m_bChangingState;
 
@@ -91,6 +101,9 @@ private:
 
 	Game(const Game&);
 	Game& operator=(const Game&);
+
+	std::string m_name;	// 2017/02/25 Name for player
+	int m_score;		// 2017/02/25 Score for Player
 };
 
 typedef Game TheGame;

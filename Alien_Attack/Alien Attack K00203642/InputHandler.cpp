@@ -181,6 +181,9 @@ void InputHandler::update() {
 			onKeyUp();
 			break;
 
+		case SDLK_BACKSPACE:
+			break;
+
 		default:
 			break;
 		}

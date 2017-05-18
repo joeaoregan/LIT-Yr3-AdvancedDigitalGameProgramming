@@ -212,7 +212,6 @@ void Player::handleInput() {
 		}
 		}
 		//*/
-
-
+		
 	}
 }

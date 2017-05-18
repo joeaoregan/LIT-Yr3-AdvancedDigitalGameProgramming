@@ -1,12 +1,13 @@
-//
+/*
 //  GameObject.h
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 06/01/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
 
-//	Modified by Joe O'Regan
-//
+Modified by Joe O'Regan
+2017/02/25	Added name for GameObject
+*/
 
 #ifndef SDL_Game_Programming_Book_GameObject_h
 #define SDL_Game_Programming_Book_GameObject_h
@@ -20,7 +21,7 @@ class GameObject {
 public:
 	virtual ~GameObject() {}	// base class needs virtual destructor
 
-	// load from file - int x, int y, int width, int height, std::string textureID, int numFrames, int callbackID = 0, int animSpeed = 0
+								// load from file - int x, int y, int width, int height, std::string textureID, int numFrames, int callbackID = 0, int animSpeed = 0
 	virtual void load(std::unique_ptr<LoaderParams> const &pParams) = 0;
 
 	virtual void draw() = 0;				// draw the object
@@ -40,6 +41,8 @@ public:
 
 	int getWidth() { return m_width; }
 	int getHeight() { return m_height; }
+	//std::string getName() { return m_name; }		// 2017/02/25
+	//void setName(std::string n) { m_name = n; }	// 2017/02/25
 
 	// scroll along with tile map
 	void scroll(float scrollSpeed) {
@@ -102,6 +105,8 @@ protected:
 	int m_alpha;	// blending
 
 	unsigned int m_time;
+
+	std::string m_name;			// 2017/02/25 Name for Game Object
 };
 
 #endif

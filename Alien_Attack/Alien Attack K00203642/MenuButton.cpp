@@ -47,6 +47,5 @@ void MenuButton::update() {
 }
 
 void MenuButton::clean() {
-
 	ShooterObject::clean();
 }

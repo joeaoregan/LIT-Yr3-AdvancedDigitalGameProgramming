@@ -15,8 +15,7 @@ class MenuState : public GameState {
 public:    
     virtual ~MenuState() {}
     
-protected:
-    
+protected:    
     typedef void(*Callback)();
     virtual void setCallbacks(const std::vector<Callback>& callbacks) = 0;
     

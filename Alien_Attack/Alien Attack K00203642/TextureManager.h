@@ -4,6 +4,9 @@
 //
 //  Created by shaun mitchell on 31/12/2012.
 //  Copyright (c) 2012 shaun mitchell. All rights reserved.
+
+	Modified by Joe O'Regan
+		2017/02/25	Added functions to display text
 */
 
 #ifndef __TextureManager__
@@ -13,9 +16,8 @@
 #include <string>
 #include <map>
 #include "SDL.h"
-#include <SDL_image.h>	// 2017/02/16
-#include <SDL_ttf.h>	// 2017/02/16 Add font
-
+#include <SDL_image.h>
+#include <SDL_ttf.h>	// 16/02/2017 Add font
 
 class TextureManager {
 public:
@@ -30,7 +32,13 @@ public:
 
 #ifdef _SDL_TTF_H
 	//Creates image from font string
-	bool loadFromRenderedText(std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, SDL_Renderer* rend, bool textWrapped = false);
+	void loadReadyText(std::string input, SDL_Renderer* rend);
+	void loadInputText(std::string input, SDL_Renderer* rend);
+	void loadEnterNameText(std::string enterName, SDL_Renderer* rend);
+	void loadLevelText(std::string currentLevel, SDL_Renderer* rend);
+	void loadScoreText(std::string currentScore, SDL_Renderer* rend);
+	void loadHighScoresText(SDL_Renderer* rend);
+	bool loadFromRenderedText(SDL_Texture* text, std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, SDL_Renderer* rend, bool textWrapped = false);
 #endif
 
 	void free();												// Deallocates texture
@@ -40,11 +48,16 @@ public:
 	void clearTextureMap();
 	void clearFromTextureMap(std::string id);
 
+	void drawText(std::string id, int x, int y, SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);	// 25/02/2017 render function for text
+
 	void draw(std::string id, int x, int y, int width, int height, SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	void drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer* pRenderer, double angle, int alpha, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	void drawTile(std::string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer *pRenderer);
 
 	std::map<std::string, SDL_Texture*> getTextureMap() { return m_textureMap; }
+
+	int getWidth() { return mWidth; }
+	int getHeight() { return mHeight; }
 
 private:
 
@@ -61,8 +74,8 @@ private:
 	// 16/02/2017
 	SDL_Texture* mTexture;	// The actual hardware texture
 
-	int mWidth;
-	int mHeight;
+	int mWidth;		// Texture width
+	int mHeight;	// Texture height
 };
 
 typedef TextureManager TheTextureManager;
