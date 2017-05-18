@@ -10,14 +10,12 @@
 #include "TextureManager.h"
 #include "Game.h"
 
-ScrollingBackground::ScrollingBackground() : ShooterObject()
-{
+ScrollingBackground::ScrollingBackground() : ShooterObject() {
 	count = 0;
 	maxcount = 10;
 }
 
-void ScrollingBackground::load(std::unique_ptr<LoaderParams> const &pParams)
-{
+void ScrollingBackground::load(std::unique_ptr<LoaderParams> const &pParams) {
 	ShooterObject::load(std::move(pParams));
 	m_scrollSpeed = pParams->getAnimSpeed();
 
@@ -40,8 +38,7 @@ void ScrollingBackground::load(std::unique_ptr<LoaderParams> const &pParams)
 	m_srcRect2.h = m_destRect2.h = m_height;
 }
 
-void ScrollingBackground::draw()
-{
+void ScrollingBackground::draw() {
 	// draw first rect
 	SDL_RenderCopyEx(TheGame::Instance()->getRenderer(), TheTextureManager::Instance()->getTextureMap()[m_textureID], &m_srcRect1, &m_destRect1, 0, 0, SDL_FLIP_NONE);
 
@@ -50,10 +47,8 @@ void ScrollingBackground::draw()
 
 }
 
-void ScrollingBackground::update()
-{
-	if (count == maxcount)
-	{
+void ScrollingBackground::update() {
+	if (count == maxcount) {
 		// make first rectangle smaller
 		m_srcRect1.x += m_scrollSpeed;
 		m_srcRect1.w -= m_scrollSpeed;
@@ -65,8 +60,7 @@ void ScrollingBackground::update()
 		m_destRect2.x -= m_scrollSpeed;
 
 		// reset and start again
-		if (m_destRect2.w >= m_width)
-		{
+		if (m_destRect2.w >= m_width) {
 			m_srcRect1.x = 0;
 			m_destRect1.x = m_position.getX();
 			m_srcRect1.y = 0;
@@ -89,7 +83,6 @@ void ScrollingBackground::update()
 	count++;
 }
 
-void ScrollingBackground::clean()
-{
+void ScrollingBackground::clean() {
 	ShooterObject::clean();
 }

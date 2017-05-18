@@ -1,22 +1,20 @@
-//
+/*
 //  InputHandler.h
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 24/01/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #ifndef __SDL_Game_Programming_Book__InputHandler__
 #define __SDL_Game_Programming_Book__InputHandler__
 
 #include <iostream>
 #include <vector>
-
 #include "SDL.h"
 #include "Vector2D.h"
 
-enum mouse_buttons
-{
+enum mouse_buttons {
 	LEFT = 0,
 	MIDDLE = 1,
 	RIGHT = 2
@@ -56,7 +54,6 @@ public:
 	Vector2D* getMousePosition() const;
 
 private:
-
 	InputHandler();
 	~InputHandler();
 
@@ -79,12 +76,11 @@ private:
 	void onJoystickButtonDown(SDL_Event& event);
 	void onJoystickButtonUp(SDL_Event& event);
 
-	// member variables
+	// member variables    
 
-	// keyboard specific
-	const Uint8* m_keystates;
+	const Uint8* m_keystates;	// keyboard specific
 
-	// joystick specific
+								// joystick specific
 	std::vector<std::pair<Vector2D*, Vector2D*>> m_joystickValues;
 	std::vector<SDL_Joystick*> m_joysticks;
 	std::vector<std::vector<bool>> m_buttonStates;
@@ -95,8 +91,7 @@ private:
 	std::vector<bool> m_mouseButtonStates;
 	Vector2D* m_mousePosition;
 
-	// singleton
-	static InputHandler* s_pInstance;
+	static InputHandler* s_pInstance;	// singleton
 };
 typedef InputHandler TheInputHandler;
 

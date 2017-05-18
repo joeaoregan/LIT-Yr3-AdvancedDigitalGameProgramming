@@ -11,8 +11,7 @@
 
 class Level;
 
-class Layer
-{
+class Layer {
 public:
 
     virtual ~Layer() {}

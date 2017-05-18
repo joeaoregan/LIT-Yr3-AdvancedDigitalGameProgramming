@@ -13,8 +13,7 @@
 //#include "Map.h"
 #include "tinyxml.h"
 
-class MapLoader
-{
+class MapLoader {
 public:
     
     //Map* loadMap(const char* mapFile);

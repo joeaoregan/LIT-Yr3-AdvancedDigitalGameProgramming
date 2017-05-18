@@ -47,9 +47,7 @@ private:
 
 class ScrollingBackgroundCreator : public BaseCreator {
 public:
-
-	virtual GameObject* createGameObject() const
-	{
+	virtual GameObject* createGameObject() const {
 		return new ScrollingBackground();
 	}
 };

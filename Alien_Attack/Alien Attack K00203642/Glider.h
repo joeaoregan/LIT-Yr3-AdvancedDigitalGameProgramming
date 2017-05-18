@@ -1,10 +1,10 @@
-//
+/*
 //  Glider.h
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 30/03/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #ifndef __SDL_Game_Programming_Book__Glider__
 #define __SDL_Game_Programming_Book__Glider__
@@ -18,7 +18,6 @@
 
 class Glider : public Enemy {
 public:
-
 	Glider() : Enemy() {
 		m_dyingTime = 25;
 		m_health = 1;
@@ -41,10 +40,8 @@ public:
 	virtual void collision() {
 		m_health -= 1;
 
-		if (m_health == 0)
-		{
-			if (!m_bPlayedDeathSound)
-			{
+		if (m_health == 0) {
+			if (!m_bPlayedDeathSound) {
 				TheSoundManager::Instance()->playSound("explode", 0);
 
 				m_textureID = "explosion";
@@ -77,7 +74,6 @@ public:
 	}
 
 private:
-
 	int m_maxHeight;
 	int m_minHeight;
 	int m_gap;

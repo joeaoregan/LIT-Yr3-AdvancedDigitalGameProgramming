@@ -18,7 +18,6 @@
 
 class GameObject {
 public:
-
 	virtual ~GameObject() {}	// base class needs virtual destructor
 
 								// load from file - int x, int y, int width, int height, std::string textureID, int numFrames, int callbackID = 0, int animSpeed = 0
@@ -26,16 +25,16 @@ public:
 
 	virtual void draw() = 0;				// draw the object
 
-	virtual void update() = 0;			// do update stuff
+	virtual void update() = 0;				// do update stuff
 
-	virtual void clean() = 0;				 // remove anything that needs to be deleted
+	virtual void clean() = 0;				// remove anything that needs to be deleted
 
-	virtual void collision() = 0;		 // object has collided, handle accordingly
+	virtual void collision() = 0;			// object has collided, handle accordingly
 
 
-	virtual std::string type() = 0;    // get the type of the object
+	virtual std::string type() = 0;			// get the type of the object
 
-									   // getters for common variables
+	// getters for common variables
 	Vector2D& getPosition() { return m_position; }
 	Vector2D& getVelocity() { return m_velocity; }
 
@@ -59,7 +58,6 @@ public:
 	void setUpdating(bool updating) { m_bUpdating = updating; }	// set whether to update the object or not
 
 protected:
-
 	// constructor with default initialisation list
 	GameObject() : m_position(0, 0),
 		m_velocity(0, 0),

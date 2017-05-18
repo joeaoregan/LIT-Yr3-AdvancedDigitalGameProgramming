@@ -14,7 +14,6 @@
 
 class Level1Boss : public Enemy {
 public:
-
 	virtual ~Level1Boss() {}
 
 	Level1Boss() : Enemy() {
