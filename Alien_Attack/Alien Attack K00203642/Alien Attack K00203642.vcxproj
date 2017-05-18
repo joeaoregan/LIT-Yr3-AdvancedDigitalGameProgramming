@@ -53,6 +53,7 @@
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="RoofTurret.h" />
     <ClInclude Include="ScrollingBackground.h" />
+    <ClInclude Include="Settings.h" />
     <ClInclude Include="ShooterObject.h" />
     <ClInclude Include="ShotGlider.h" />
     <ClInclude Include="SoundManager.h" />
@@ -86,6 +87,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="ScrollingBackground.cpp" />
+    <ClCompile Include="Settings.cpp" />
     <ClCompile Include="ShooterObject.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="StateParser.cpp" />
