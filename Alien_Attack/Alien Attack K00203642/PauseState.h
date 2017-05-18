@@ -15,8 +15,7 @@
 
 class GameObject;
 
-class PauseState : public MenuState
-{
+class PauseState : public MenuState {
 public:
     
     virtual ~PauseState() {}
@@ -40,6 +39,5 @@ private:
     
     std::vector<GameObject*> m_gameObjects;
 };
-
 
 #endif /* defined(__SDL_Game_Programming_Book__PauseState__) */

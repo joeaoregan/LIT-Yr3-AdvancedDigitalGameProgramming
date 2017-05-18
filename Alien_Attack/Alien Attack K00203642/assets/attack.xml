@@ -1,14 +1,26 @@
 <?xml version="1.0" ?>
 <States>
-    <MENU>
+  <HIGHSCORES>
+    <TEXTURES>
+      <texture filename="assets/main.png" ID="mainbutton"/>
+    </TEXTURES>
+
+    <OBJECTS>
+      <object type="MenuButton" x="220" y="400" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
+    </OBJECTS>
+  </HIGHSCORES>
+
+  <MENU>
         <TEXTURES>
-            <texture filename="assets/button.png" ID="playbutton"/>
-            <texture filename="assets/exit.png" ID="exitbutton"/>
+          <texture filename="assets/button.png" ID="playbutton"/>
+          <texture filename="assetsNew/score.png" ID="scorebutton"/>
+          <texture filename="assets/exit.png" ID="exitbutton"/>
         </TEXTURES>
         
         <OBJECTS>
-            <object type="MenuButton" x="100" y="100" width="400" height="100" textureID="playbutton" numFrames="0" callbackID="1"/>
-            <object type="MenuButton" x="100" y="300" width="400" height="100" textureID="exitbutton" numFrames="0" callbackID="2"/>
+          <object type="MenuButton" x="100" y="40" width="400" height="100" textureID="playbutton" numFrames="0" callbackID="1"/>
+          <object type="MenuButton" x="100" y="200" width="400" height="100" textureID="scorebutton" numFrames="0" callbackID="2"/>
+          <object type="MenuButton" x="100" y="350" width="400" height="100" textureID="exitbutton" numFrames="0" callbackID="3"/>
         </OBJECTS>
     </MENU>
     

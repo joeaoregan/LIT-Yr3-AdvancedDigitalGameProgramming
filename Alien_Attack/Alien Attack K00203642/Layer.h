@@ -21,5 +21,4 @@ public:
     virtual void update(Level* pLevel) = 0;
 };
 
-
 #endif

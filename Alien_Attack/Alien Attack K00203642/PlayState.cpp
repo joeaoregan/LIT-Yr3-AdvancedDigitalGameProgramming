@@ -18,12 +18,9 @@
 
 const std::string PlayState::s_playID = "PLAY";
 
-void PlayState::update()
-{
-    if(m_loadingComplete && !m_exiting)
-    {
-        if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
-        {
+void PlayState::update() {
+    if(m_loadingComplete && !m_exiting) {
+        if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE)) {
             TheGame::Instance()->getStateMachine()->pushState(new PauseState());
         }
         
@@ -34,29 +31,23 @@ void PlayState::update()
         
         TheBulletHandler::Instance()->updateBullets();
         
-        if(TheGame::Instance()->getPlayerLives() == 0)
-        {
+        if(TheGame::Instance()->getPlayerLives() == 0) {
             TheGame::Instance()->getStateMachine()->changeState(new GameOverState());
         }
         
-        if(pLevel != 0)
-        {
+        if(pLevel != 0) {
             pLevel->update();
         }
     }
 }
 
-void PlayState::render()
-{
-    if(m_loadingComplete)
-    {
-        if(pLevel != 0)
-        {
+void PlayState::render() {
+    if(m_loadingComplete) {
+        if(pLevel != 0) {
             pLevel->render();
         }
         
-        for(int i = 0; i < TheGame::Instance()->getPlayerLives(); i++)
-        {
+        for(int i = 0; i < TheGame::Instance()->getPlayerLives(); i++) {
             TheTextureManager::Instance()->drawFrame("lives", i * 30, 0, 32, 30, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
         }
         
@@ -64,8 +55,7 @@ void PlayState::render()
     }
 }
 
-bool PlayState::onEnter()
-{
+bool PlayState::onEnter() {
     TheGame::Instance()->setPlayerLives(3);
     
     LevelParser levelParser;
@@ -76,8 +66,7 @@ bool PlayState::onEnter()
     TheTextureManager::Instance()->load("assets/bullet3.png", "bullet3", TheGame::Instance()->getRenderer());
     TheTextureManager::Instance()->load("assets/lives.png", "lives", TheGame::Instance()->getRenderer());
     
-    if(pLevel != 0)
-    {
+    if(pLevel != 0) {
         m_loadingComplete = true;
     }
     
@@ -85,8 +74,7 @@ bool PlayState::onEnter()
     return true;
 }
 
-bool PlayState::onExit()
-{
+bool PlayState::onExit() {
     m_exiting = true;
     
     TheInputHandler::Instance()->reset();

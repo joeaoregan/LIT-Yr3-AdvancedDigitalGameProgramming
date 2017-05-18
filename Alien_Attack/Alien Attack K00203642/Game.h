@@ -2,10 +2,13 @@
 //  Game.h
 //  SDL Game Programming Book
 //
+//	Modified by Joe O'Regan
 //
 
 #ifndef __SDL_Game_Programming_Book__Game__
 #define __SDL_Game_Programming_Book__Game__
+#define SCREEN_WIDTH 640			// Added Game width
+#define SCREEN_HEIGHT 480			// Added Game Height
 
 #include "SDL.h"
 #include "GameStateMachine.h"

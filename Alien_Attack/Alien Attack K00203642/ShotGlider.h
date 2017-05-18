@@ -11,27 +11,23 @@
 
 #include "Glider.h"
 
-class ShotGlider : public Glider
-{
+class ShotGlider : public Glider {
 public:
     
     virtual ~ShotGlider() {}
     
-    ShotGlider() : Glider()
-    {
+    ShotGlider() : Glider()  {
         m_bulletFiringSpeed = 25;
         m_moveSpeed = 3;
     }
     
-    virtual void load(std::unique_ptr<LoaderParams> const &pParams)
-    {
+    virtual void load(std::unique_ptr<LoaderParams> const &pParams) {
         ShooterObject::load(std::move(pParams));
 
         m_velocity.setX(-m_moveSpeed);
     }
 
-    virtual void update()
-    {
+    virtual void update() {
         if(!m_bDying)
         {
             if(m_bulletCounter == m_bulletFiringSpeed)
@@ -42,8 +38,7 @@ public:
             
             m_bulletCounter++;
         }
-        else
-        {
+        else {
             m_velocity.setX(0);
             doDyingAnimation();
         }
@@ -52,13 +47,10 @@ public:
     }
 };
 
-class ShotGliderCreator : public BaseCreator
-{
-    GameObject* createGameObject() const
-    {
+class ShotGliderCreator : public BaseCreator {
+    GameObject* createGameObject() const {
         return new ShotGlider();
     }
 };
-
 
 #endif

@@ -11,8 +11,7 @@
 
 #include "GameState.h"
 
-class MenuState : public GameState
-{
+class MenuState : public GameState {
 public:
     
     virtual ~MenuState() {}
@@ -24,6 +23,5 @@ protected:
     
     std::vector<Callback> m_callbacks;
 };
-
 
 #endif
