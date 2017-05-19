@@ -1,20 +1,22 @@
 /*
-//  TextureManager.cpp
-//  SDL Game Programming Book
-//
-//  Created by shaun mitchell on 31/12/2012.
-//  Copyright (c) 2012 shaun mitchell. All rights reserved.
+	TextureManager.cpp
+	SDL Game Programming Book
 
-	Modified by Joe O'Regan
-		2017/02/16 Added loadFromRenderedText function to render text
+	Created by shaun mitchell on 31/12/2012.
+	Copyright (c) 2012 shaun mitchell. All rights reserved.
+
+	Modified by:	Joe O'Regan 
+	Student Number:	K00203642
+
+	Done:
+		2017/02/25 fstream added to read in high scores from file to render to screen using loadFromRenderedText() in TextureManager class
 */
-
 #include "TextureManager.h"
 #include "SDL_image.h"
 #include "SDL.h"
 #include <iomanip>
-#include <sstream>					// For timer
-#include <fstream>	// 2017/02/25 Read high scores from file
+#include <sstream>		// For timer
+#include <fstream>		// 2017/02/25 Read high scores from file
 
 //#include <SDL_ttf.h>	// 16/02/2017 Add font
 
@@ -64,7 +66,7 @@ void TextureManager::loadHighScoresText(SDL_Renderer* rend) {
 	infile.open("scores.txt");
 
 	std::cout << "Reading high scores from file" << std::endl;
-
+	
 	struct PlayerScores {
 		std::string name;
 		int score;
@@ -80,13 +82,13 @@ void TextureManager::loadHighScoresText(SDL_Renderer* rend) {
 
 	if (infile.is_open()) {
 		//for (int i = 0; i < 10; i++){
-		while (getline(infile, scoreTable[eachScore].name) && getline(infile, player) && eachScore <= numScores) {
+		while(getline(infile, scoreTable[eachScore].name) && getline(infile, player) && eachScore <= numScores){
 			//getline(infile, player);
 
 			scoreTable[eachScore].score = stoi(player);
 			++eachScore;
 		}
-
+		
 		infile.close();
 	}
 
@@ -95,7 +97,7 @@ void TextureManager::loadHighScoresText(SDL_Renderer* rend) {
 	for (int i = 1; i < eachScore; i++) {
 		for (int j = 0; j < eachScore - i; j++) {
 			//if (strcmp(scoreTable[j].plname, scoreTable[j + 1].plname) > 0)
-			if (scoreTable[j].score < scoreTable[j + 1].score) { // Sort Largest Score To Smallest in the struct
+			if(scoreTable[j].score < scoreTable[j+1].score) { // Sort Largest Score To Smallest in the struct
 				temp = scoreTable[j];
 				scoreTable[j] = scoreTable[j + 1];
 				scoreTable[j + 1] = temp;
@@ -187,51 +189,52 @@ void TextureManager::free() {
 
 
 void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer* pRenderer, SDL_RendererFlip flip) {
-	SDL_Rect srcRect;
-	SDL_Rect destRect;
-
-	srcRect.x = 0;
-	srcRect.y = 0;
-	srcRect.w = destRect.w = width;
-	srcRect.h = destRect.h = height;
-	destRect.x = x;
-	destRect.y = y;
-
-	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
+    SDL_Rect srcRect;
+    SDL_Rect destRect;
+    
+    srcRect.x = 0;
+    srcRect.y = 0;
+    srcRect.w = destRect.w = width;
+    srcRect.h = destRect.h = height;
+    destRect.x = x;
+    destRect.y = y;
+    
+    SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
 
 void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer *pRenderer, double angle, int alpha, SDL_RendererFlip flip) {
-	SDL_Rect srcRect;
-	SDL_Rect destRect;
-	srcRect.x = width * currentFrame;
-	srcRect.y = height * currentRow;
-	srcRect.w = destRect.w = width;
-	srcRect.h = destRect.h = height;
-	destRect.x = x;
-	destRect.y = y;
-
-	SDL_SetTextureAlphaMod(m_textureMap[id], alpha);
-	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, angle, 0, flip);
+    SDL_Rect srcRect;
+    SDL_Rect destRect;
+    srcRect.x = width * currentFrame;
+    srcRect.y = height * currentRow;
+    srcRect.w = destRect.w = width;
+    srcRect.h = destRect.h = height;
+    destRect.x = x;
+    destRect.y = y;
+    
+    SDL_SetTextureAlphaMod(m_textureMap[id], alpha);
+    SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, angle, 0, flip);
 }
 
 void TextureManager::drawTile(std::string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer *pRenderer) {
-	SDL_Rect srcRect;
-	SDL_Rect destRect;
-	srcRect.x = margin + (spacing + width) * currentFrame;
-	srcRect.y = margin + (spacing + height) * currentRow;
-	srcRect.w = destRect.w = width;
-	srcRect.h = destRect.h = height;
-	destRect.x = x;
-	destRect.y = y;
-
-	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, SDL_FLIP_NONE);
+    SDL_Rect srcRect;
+    SDL_Rect destRect;
+    srcRect.x = margin + (spacing + width) * currentFrame;
+    srcRect.y = margin + (spacing + height) * currentRow;
+    srcRect.w = destRect.w = width;
+    srcRect.h = destRect.h = height;
+    destRect.x = x;
+    destRect.y = y;
+    
+    SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, SDL_FLIP_NONE);
 }
 
 
 void TextureManager::clearTextureMap() {
-	m_textureMap.clear();
+    m_textureMap.clear();
 }
 
 void TextureManager::clearFromTextureMap(std::string id) {
-	m_textureMap.erase(id);
+    m_textureMap.erase(id);
 }
+

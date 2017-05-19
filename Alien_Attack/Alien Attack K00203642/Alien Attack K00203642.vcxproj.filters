@@ -9,6 +9,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="Resouce Files">
+      <UniqueIdentifier>{005e0fe6-ef5b-40af-a0ee-6c08a5c88dec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ShotGlider.h">
@@ -143,7 +146,7 @@
     <ClInclude Include="AngryGlider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Settings.h">
+    <ClInclude Include="SettingsState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -238,18 +241,26 @@
     <ClCompile Include="HighScoreState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Settings.cpp">
+    <ClCompile Include="SettingsState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="assets\attack.xml">
-      <Filter>Header Files</Filter>
-    </Xml>
+    <Text Include="scores.txt">
+      <Filter>Resouce Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\map1.tmx">
-      <Filter>Header Files</Filter>
+      <Filter>Resouce Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="assets\attack.xml">
+      <Filter>Resouce Files</Filter>
+    </Xml>
+    <Xml Include="assets\objecttypes.xml">
+      <Filter>Resouce Files</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

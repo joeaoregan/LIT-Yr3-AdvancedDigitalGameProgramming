@@ -53,7 +53,7 @@
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="RoofTurret.h" />
     <ClInclude Include="ScrollingBackground.h" />
-    <ClInclude Include="Settings.h" />
+    <ClInclude Include="SettingsState.h" />
     <ClInclude Include="ShooterObject.h" />
     <ClInclude Include="ShotGlider.h" />
     <ClInclude Include="SoundManager.h" />
@@ -87,7 +87,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="ScrollingBackground.cpp" />
-    <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="SettingsState.cpp" />
     <ClCompile Include="ShooterObject.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="StateParser.cpp" />
@@ -100,9 +100,13 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="assets\attack.xml" />
+    <Xml Include="assets\objecttypes.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\map1.tmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="scores.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{d746ea27-6936-4c69-89c6-a04a7876e3ae}</ProjectGuid>

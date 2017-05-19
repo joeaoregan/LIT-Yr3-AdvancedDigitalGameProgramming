@@ -1,5 +1,11 @@
 /*
-//  AngryGlider.h
+	AngryGlider.h
+
+	Created by:		Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/03/14	Added Angry Glider enemy based on the Glider enemy
 */
 
 #ifndef ANGRY_GLIDER_H

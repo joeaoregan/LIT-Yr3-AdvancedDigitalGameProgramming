@@ -1,28 +1,57 @@
 <?xml version="1.0" ?>
+<!-- 
+    attack xml
+
+    Modified by: Joe O'Regan
+    Student Number: K00203642
+    
+    Done:
+      2017/03/16  Added media for Settings menu including images and button positions
+      2017/02/03  Added media for High Scores menu including images and button positions
+-->
+
 <States>
+  <!-- 2017/03/16 Added assets for Settings menu screen -->
+  <SETTINGS>
+    <TEXTURES>
+      <texture filename="assets/main.png" ID="mainbutton"/>                   <!-- Return to main menu button image -->
+      <texture filename="assetsNew/buttonMusic.png" ID="musicButton"/>           <!-- 2017/03/16 Turn Music On / Off image -->
+      <texture filename="assetsNew/buttonFullScreen.png" ID="fullscreenButton"/> <!-- 2017/03/16 Full Screen On / Off image -->
+    </TEXTURES>
+
+    <OBJECTS>
+      <object type="MenuButton" x="200" y="400" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>       <!--Return to Main Menu button-->
+      <object type="MenuButton" x="200" y="100" width="199" height="43" textureID="musicButton" numFrames="0" callbackID="2"/>      <!-- Turn the Music On / Off button -->
+      <object type="MenuButton" x="218" y="150" width="163" height="43" textureID="fullscreenButton" numFrames="0" callbackID="3"/> <!-- Make the game Full Screen or Windowed button -->
+    </OBJECTS>
+  </SETTINGS>
+
+  <!-- 2017/02/03 Added assets for High Scores menu screen -->
   <HIGHSCORES>
     <TEXTURES>
       <texture filename="assets/main.png" ID="mainbutton"/>
     </TEXTURES>
 
     <OBJECTS>
-      <object type="MenuButton" x="220" y="400" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
+      <object type="MenuButton" x="200" y="400" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
     </OBJECTS>
   </HIGHSCORES>
-
+  
   <MENU>
-        <TEXTURES>
-          <texture filename="assetsNew/menuButtonPlay.png" ID="playbutton"/>
-          <texture filename="assetsNew/menuButtonScore.png" ID="scorebutton"/>
-          <texture filename="assetsNew/menuButtonExit.png" ID="exitbutton"/>
-        </TEXTURES>
-        
-        <OBJECTS>
-          <object type="MenuButton" x="100" y="40" width="400" height="100" textureID="playbutton" numFrames="0" callbackID="1"/>
-          <object type="MenuButton" x="100" y="200" width="400" height="100" textureID="scorebutton" numFrames="0" callbackID="2"/>
-          <object type="MenuButton" x="100" y="350" width="400" height="100" textureID="exitbutton" numFrames="0" callbackID="3"/>
-        </OBJECTS>
-    </MENU>
+    <TEXTURES>
+      <texture filename="assetsNew/menuButtonPlay.png" ID="playbutton"/>
+      <texture filename="assetsNew/menuButtonScore.png" ID="scorebutton"/>
+      <texture filename="assetsNew/menuButtonSettings.png" ID="settingsbutton"/>
+      <texture filename="assetsNew/menuButtonExit.png" ID="exitbutton"/>
+    </TEXTURES>
+
+    <OBJECTS>
+      <object type="MenuButton" x="100" y="10" width="400" height="100" textureID="playbutton" numFrames="0" callbackID="1"/>
+      <object type="MenuButton" x="100" y="115" width="400" height="100" textureID="scorebutton" numFrames="0" callbackID="2"/>
+      <object type="MenuButton" x="100" y="220" width="400" height="100" textureID="settingsbutton" numFrames="0" callbackID="3"/>
+      <object type="MenuButton" x="100" y="325" width="400" height="100" textureID="exitbutton" numFrames="0" callbackID="4"/>
+    </OBJECTS>
+  </MENU>
     
     <PLAY>
         <TEXTURES>

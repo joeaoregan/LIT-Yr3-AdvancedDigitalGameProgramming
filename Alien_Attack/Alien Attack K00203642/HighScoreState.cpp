@@ -1,7 +1,11 @@
 /*
-	Joe O'Regan
-	2017/02/03
 	HighScoreState.cpp
+
+	Created by:		Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/02/03	Created High Scores Table that reads to and writes from a text file
 */
 
 #include <iostream>
@@ -22,6 +26,14 @@ void HighScoreState::s_highscoresToMain() {
 }
 
 void HighScoreState::update() {
+	/*
+		If button F11 is pressed change the game between Full Screen and Windowed
+		This option can also be selected from the settings menu of the game
+	
+		if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_F11)) {
+		Game::Instance()->fullScreenOrWindowed();
+	}
+	*/
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE)) {				// Press escape to return to main menu
 		TheGame::Instance()->getStateMachine()->pushState(new MainMenuState());
 	}
@@ -40,8 +52,8 @@ void HighScoreState::render() {
 		}
 	}
 
-	TheTextureManager::Instance()->drawFrame("scoreTitle", (SCREEN_WIDTH - 354) / 2, 20, 354, 64, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
-
+	TheTextureManager::Instance()->drawFrame("scoreTitle", (SCREEN_WIDTH - 410 ) / 2, 20, 410, 64, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
+	
 	TheTextureManager::Instance()->drawText("highScoresID", 65, 100, TheGame::Instance()->getRenderer());
 
 	// Put high score screen output in here
@@ -49,11 +61,11 @@ void HighScoreState::render() {
 }
 
 bool HighScoreState::onEnter() {
-	TheTextureManager::Instance()->load("assets/HighScoresLogo.png", "scoreTitle", TheGame::Instance()->getRenderer());
-
+	TheTextureManager::Instance()->load("assetsNew/TitleHighScores.png", "scoreTitle", TheGame::Instance()->getRenderer()); 
+	
 	TheTextureManager::Instance()->loadHighScoresText(TheGame::Instance()->getRenderer());
 	//TheTextureManager::Instance()->drawText("highScoresID", 150, 100, TheGame::Instance()->getRenderer());
-
+	
 	StateParser stateParser;
 	stateParser.parseState("assets/attack.xml", s_HighScoreID, &m_gameObjects, &m_textureIDList);
 
@@ -89,3 +101,4 @@ void HighScoreState::setCallbacks(const std::vector<Callback>& callbacks) {
 		}
 	}
 }
+

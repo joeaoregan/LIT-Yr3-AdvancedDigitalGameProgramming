@@ -1,7 +1,13 @@
 /*
-	Joe O'Regan
-	2017/02/03 High Score state
+	HighScoreState.h
+
+	Created by:		Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/02/03	Created High Scores Table that reads to and writes from a text file
 */
+
 
 #ifndef HIGH_SCORE_STATE_H
 #define HIGH_SCORE_STATE_H
@@ -36,5 +42,6 @@ private:
 
 	std::vector<GameObject*> m_gameObjects;
 };
+
 
 #endif
