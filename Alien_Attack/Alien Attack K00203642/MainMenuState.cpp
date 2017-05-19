@@ -1,13 +1,15 @@
 /*
-//  MenuState.cpp
-//  SDL Game Programming Book
-//
-//  Created by shaun mitchell on 09/02/2013.
-//  Copyright (c) 2013 shaun mitchell. All rights reserved.
+	MenuState.cpp
+	SDL Game Programming Book
 
-	Modified by Joe O'Regan
-	Added High Scores State
-	2017-02-16 Added Settings State
+	Created by shaun mitchell on 09/02/2013.
+	Copyright (c) 2013 shaun mitchell. All rights reserved.
+	
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/03/16	Added Settings menu
 */
 #include <iostream>
 #include "MainMenuState.h"
@@ -25,10 +27,10 @@ const std::string MainMenuState::s_menuID = "MENU";
 
 // Callbacks
 void MainMenuState::s_menuToPlay() {
-	TheGame::Instance()->getStateMachine()->changeState(new PlayState());			// Start the game
+    TheGame::Instance()->getStateMachine()->changeState(new PlayState());			// Start the game
 }
 
-void MainMenuState::s_highScores() {
+void MainMenuState::s_highScores() {	
 	TheGame::Instance()->getStateMachine()->changeState(new HighScoreState());		// Go to high scores table
 }
 
@@ -37,84 +39,85 @@ void MainMenuState::s_settings() {													// 2017-03-16 Added settings menu
 }
 
 void MainMenuState::s_exitFromMenu() {
-	TheGame::Instance()->quit();
+    TheGame::Instance()->quit();
 }
 
 
 // end callbacks
 
 void MainMenuState::update() {
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) {	// If spacebar is pressed - start playing game
+	if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) {	// If spacebar is pressed - start playing game
 		s_menuToPlay();
 	}
-	if (!m_gameObjects.empty()) {										// If the game object list isn't empty
-		for (int i = 0; i < m_gameObjects.size(); i++) {
-			if (m_gameObjects[i] != 0) {
+    if(!m_gameObjects.empty()) {										// If the game object list isn't empty
+		for(int i = 0; i < m_gameObjects.size(); i++) {
+			if(m_gameObjects[i] != 0) {
 				m_gameObjects[i]->update();								// Run update function for each object in m_gameObjects list
 			}
 		}
-	}
+    }
 }
 
-void MainMenuState::render() {
-	if (m_loadingComplete && !m_gameObjects.empty()) {
-		for (int i = 0; i < m_gameObjects.size(); i++) {
-			m_gameObjects[i]->draw();									// Call draw function for each object in m_gameObjects list
-		}
-	}
+void MainMenuState::render() {										
+    if(m_loadingComplete && !m_gameObjects.empty()) {
+        for(int i = 0; i < m_gameObjects.size(); i++) {
+            m_gameObjects[i]->draw();									// Call draw function for each object in m_gameObjects list
+        }
+    }
 }
 
 /* Add a new callback for each new button */
 bool MainMenuState::onEnter() {
-	// parse the state
-	StateParser stateParser;																	// Create a new StateParser
-	stateParser.parseState("assets/attack.xml", s_menuID, &m_gameObjects, &m_textureIDList);	// Load assets for "MENU" state from XML
-
-	m_callbacks.push_back(0);
+    // parse the state
+    StateParser stateParser;																	// Create a new StateParser
+    stateParser.parseState("assets/attack.xml", s_menuID, &m_gameObjects, &m_textureIDList);	// Load assets for "MENU" state from XML
+    
+    m_callbacks.push_back(0);
 	m_callbacks.push_back(s_menuToPlay);														// Play the game
 	m_callbacks.push_back(s_highScores);														// Go to high scores	
 	m_callbacks.push_back(s_settings);															// Go to settings	
-	m_callbacks.push_back(s_exitFromMenu);														// Exit the game
-
-	setCallbacks(m_callbacks);																	// set the callbacks for menu items
-
-	m_loadingComplete = true;
-	std::cout << "entering MenuState\n";
-	return true;
+    m_callbacks.push_back(s_exitFromMenu);														// Exit the game
+        
+    setCallbacks(m_callbacks);																	// set the callbacks for menu items
+    
+    m_loadingComplete = true;
+    std::cout << "entering MenuState\n";
+    return true;
 }
 
 bool MainMenuState::onExit() {
-	m_exiting = true;											// Set exiting the menu to true
-
-																// clean the game objects
-	if (m_loadingComplete && !m_gameObjects.empty()) {
+    m_exiting = true;											// Set exiting the menu to true
+    
+    // clean the game objects
+    if(m_loadingComplete && !m_gameObjects.empty()) {
 		m_gameObjects.back()->clean();							// Call clean function
 		m_gameObjects.pop_back();
-	}
+    }
 
 	m_gameObjects.clear();										// Clear the m_gameObjects list
-
-	/* clear the texture manager
-	for(int i = 0; i < m_textureIDList.size(); i++)
-	{
-	TheTextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
-	}
+	    
+    /* clear the texture manager
+    for(int i = 0; i < m_textureIDList.size(); i++)
+    {
+        TheTextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
+    }
 	*/
+        
+    TheInputHandler::Instance()->reset();						// reset the input handler
+    
+    std::cout << "exiting MenuState\n";
 
-	TheInputHandler::Instance()->reset();						// reset the input handler
-
-	std::cout << "exiting MenuState\n";
-
-	return true;
+    return true;
 }
 
 void MainMenuState::setCallbacks(const std::vector<Callback>& callbacks) {
-	if (!m_gameObjects.empty()) {													// If its not empty
-		for (int i = 0; i < m_gameObjects.size(); i++) {								// Go through the game objects list
-			if (dynamic_cast<MenuButton*>(m_gameObjects[i])) {						// if they are of type MenuButton then assign a callback based on the id passed in from the file
-				MenuButton* pButton = dynamic_cast<MenuButton*>(m_gameObjects[i]);
-				pButton->setCallback(callbacks[pButton->getCallbackID()]);
-			}
-		}
-	}
+    if(!m_gameObjects.empty()) {													// If its not empty
+        for(int i = 0; i < m_gameObjects.size(); i++) {								// Go through the game objects list
+            if(dynamic_cast<MenuButton*>(m_gameObjects[i])) {						// if they are of type MenuButton then assign a callback based on the id passed in from the file
+                MenuButton* pButton = dynamic_cast<MenuButton*>(m_gameObjects[i]);
+                pButton->setCallback(callbacks[pButton->getCallbackID()]);
+            }
+        }
+    }
 }
+

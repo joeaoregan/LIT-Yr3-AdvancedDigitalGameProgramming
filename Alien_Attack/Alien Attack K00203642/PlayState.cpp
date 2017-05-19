@@ -25,12 +25,15 @@
 #include "LevelParser.h"
 #include "Level.h"
 #include "BulletHandler.h"
+#include "Timer.h"			// 2017/04/16 Timer class for creating a game clock
+
+GameObject* clock1 = new Timer();
 
 const std::string PlayState::s_playID = "PLAY";
 std::stringstream timeText;
 bool nameEntered = false;
 
-unsigned int lastTime = 0, currentTime, countdownTimer = 0;
+//unsigned int lastTime = 0, currentTime, gameTimer = 0;
 
 void PlayState::update() {
     if(m_loadingComplete && !m_exiting)     {
@@ -47,7 +50,7 @@ void PlayState::update() {
         
         if(TheGame::Instance()->getPlayerLives() == 0) {
 			nameEntered = false;
-			highScoreUpdate(TheGame::Instance()->getName(), Game::Instance()->getScore());
+			highScoreUpdate(TheGame::Instance()->getPlayerName(), Game::Instance()->getScore());
             TheGame::Instance()->getStateMachine()->changeState(new GameOverState());
         }
         
@@ -221,7 +224,7 @@ void PlayState::render() {
 					renderText = true;		// Set the text update flag
 				}
 				else if (e.key.keysym.sym == SDLK_RETURN) {
-					TheGame::Instance()->setName(inputText);
+					TheGame::Instance()->setPlayerName(inputText);						// Set the Players name for high scores
 					nameEntered = true;
 				}
 			}
@@ -266,7 +269,8 @@ void PlayState::render() {
 				TheTextureManager::Instance()->drawText("readyID", 210, 190, TheGame::Instance()->getRenderer());
 			}
 
-			gameTimer();	// Calculate and display the game timer
+			//gameTimer();	// Calculate and display the game timer
+			clock1->update();	// 2017/04/16 Timer update function
 
 			//TheTextureManager::Instance()->loadFromRenderedText("Level 1", "testxxx", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), TheGame::Instance()->getRenderer());		// Lives in top left corner
 
@@ -321,7 +325,7 @@ bool PlayState::onExit() {
     TheInputHandler::Instance()->reset();
     TheBulletHandler::Instance()->clearBullets();
 
-	countdownTimer = 0;
+	//gameTimer = 0;
     
     std::cout << "exiting PlayState\n";
     return true;
@@ -332,7 +336,7 @@ bool PlayState::onExit() {
 
 	This function calculates and renders to texture the time in seconds using SDL_GetTicks() to get time
 	and loadFromRenderedtext in TextureManager to render text to texture
-*/
+
 void PlayState::gameTimer() {
 	timeText.str("");						// Clear the timer
 
@@ -341,15 +345,16 @@ void PlayState::gameTimer() {
 	if (currentTime > lastTime + 1000) {	// Every 1 second (1000ms)
 		lastTime = currentTime;				// Set last time to existing time
 
-		countdownTimer++;					// Increment countdown timer
+		gameTimer++;					// Increment countdown timer
 
-		std::cout << "Timer: " << countdownTimer << std::endl;
+		std::cout << "Timer: " << gameTimer << std::endl;
 	}
 
-	TheGame::Instance()->setScore(countdownTimer);
+	Game::Instance()->setScore(gameTimer);
 
-	timeText << "Time: " << countdownTimer;	// Set the game timer
+	timeText << "Time: " << gameTimer;	// Set the game timer
 
 	TheTextureManager::Instance()->loadScoreText(timeText.str().c_str(), TheGame::Instance()->getRenderer());	// Player Score
 	//TheTextureManager::Instance()->loadFromRenderedText(timeText.str().c_str(), "timer", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), TheGame::Instance()->getRenderer());		// Lives in top left corner
 }
+*/

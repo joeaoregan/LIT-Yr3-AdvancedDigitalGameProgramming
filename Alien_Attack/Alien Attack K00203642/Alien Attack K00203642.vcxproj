@@ -60,6 +60,7 @@
     <ClInclude Include="StateParser.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TileLayer.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
     <ClInclude Include="Turret.h" />

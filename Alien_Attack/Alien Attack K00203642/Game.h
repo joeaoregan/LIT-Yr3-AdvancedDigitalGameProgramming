@@ -74,8 +74,9 @@ public:
     std::vector<std::string> getLevelFiles() { return m_levelFiles; }
 
 	// Player Name
-	std::string getName() { return m_name; }
-	void setName(std::string n) { m_name = n; }
+	std::string getPlayerName() { return m_plName; }			// 2017/04/16 Moved to GameObject
+	void setPlayerName(std::string n) { m_plName = n; }		// 2017/04/16 Moved to GameObject
+
 	// Player Score
 	int getScore() { return m_score; }
 	void setScore(int s) { m_score = s; }
@@ -110,7 +111,7 @@ private:
     Game(const Game&);
 	Game& operator=(const Game&);
 
-	std::string m_name;	// 2017/02/25 Name for player
+	std::string m_plName;	// 2017/02/25 Name for player // 2017/04/16 Moved to GameObject
 	int m_score;
 };
 
