@@ -58,6 +58,7 @@
     <ClInclude Include="ShotGlider.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="StateParser.h" />
+    <ClInclude Include="StatusBar.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TileLayer.h" />
     <ClInclude Include="Timer.h" />

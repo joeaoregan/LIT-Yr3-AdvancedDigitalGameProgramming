@@ -1,5 +1,5 @@
 /*
-    MainMenuState.h
+    MenuState.h
     SDL Game Programming Book
   
     Created by shaun mitchell on 09/02/2013.

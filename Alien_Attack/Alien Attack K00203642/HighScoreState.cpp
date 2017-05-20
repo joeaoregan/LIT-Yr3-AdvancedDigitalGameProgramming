@@ -61,7 +61,7 @@ void HighScoreState::render() {
 }
 
 bool HighScoreState::onEnter() {
-	TheTextureManager::Instance()->load("assetsNew/TitleHighScores.png", "scoreTitle", TheGame::Instance()->getRenderer()); 
+	TheTextureManager::Instance()->load("assets/TitleHighScores.png", "scoreTitle", TheGame::Instance()->getRenderer()); 
 	
 	TheTextureManager::Instance()->loadHighScoresText(TheGame::Instance()->getRenderer());
 	//TheTextureManager::Instance()->drawText("highScoresID", 150, 100, TheGame::Instance()->getRenderer());

@@ -14,15 +14,15 @@
 
 // Enemy base class
 class Enemy : public ShooterObject {
-public:
-	virtual std::string type() { return "Enemy"; }
-
+public:    
+    virtual std::string type() { return "Enemy"; }
+    
 protected:
-
-	int m_health;
-
-	Enemy() : ShooterObject() {}
-	virtual ~Enemy() {}
+    
+    int m_health;
+    
+    Enemy() : ShooterObject() {}
+    virtual ~Enemy() {}
 };
 
 #endif /* defined(__SDL_Game_Programming_Book__Enemy__) */

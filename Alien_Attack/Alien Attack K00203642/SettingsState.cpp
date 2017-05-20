@@ -75,7 +75,7 @@ void SettingsState::render() {
 }
 
 bool SettingsState::onEnter() {
-	TheTextureManager::Instance()->load("assetsNew/TitleSettings.png", "settingsTitle", TheGame::Instance()->getRenderer());	// Load title at top of settings menu
+	TheTextureManager::Instance()->load("assets/TitleSettings.png", "settingsTitle", TheGame::Instance()->getRenderer());	// Load title at top of settings menu
 	//TheTextureManager::Instance()->load("assets/buttonMusic.png", "musicButton", TheGame::Instance()->getRenderer());
 	//TheTextureManager::Instance()->load("assets/buttonFullScreen.png", "fullscreenButton", TheGame::Instance()->getRenderer());
 

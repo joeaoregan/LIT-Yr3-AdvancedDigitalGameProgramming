@@ -29,7 +29,7 @@ public:
     
     virtual ~PlayState() { delete pLevel; }
 
-	void gameTimer();												// 16/02/2017 Added game timer function
+	//void gameTimer();												// 16/02/2017 Added game timer function // Replaced with Timer class
 	void highScoreUpdate(std::string name, int score);				// function to update high scores
     
     virtual void update();

@@ -9,7 +9,11 @@
 	Student Number:	K00203642
 
 	Done:
+		2017/04/22	Added most recent object collided with variable to adjust collision functionality for health, and health bar
 		2017/03/16	Pressing the M button in game turns Music On / Off
+		2017/04/21	Pressing CTRL (right) fires secondary weapon, with own graphic, and sound effect
+		2017/04/21	Added secondary weapon for player, requires separate counter for bullets
+		2017/04/21	Uncommented and tested Gamepad support for player, requires separate bullet counters or creates multiples
 */
 
 #include "Player.h"
@@ -21,6 +25,7 @@
 
 using namespace std;
 
+
 Player::Player() :  ShooterObject(),
 m_invulnerable(false),
 m_invulnerableTime(200),
@@ -31,12 +36,18 @@ m_invulnerableCounter(0)
 void Player::collision() {
     // if the player is not invulnerable then set to dying and change values for death animation tile sheet
     if(!m_invulnerable && !TheGame::Instance()->getLevelComplete()) {
-        m_textureID = "largeexplosion";
-        m_currentFrame = 0;
-        m_numFrames = 9;
-        m_width = 60;
-        m_height = 60;
-        m_bDying = true;
+		if (getRecentCollision() == BULLET && m_health > 10) {	// if the player recently collided with a bullet and its health is greater than 10
+		//if (getRecentCollision() == BULLET) {
+			m_health -= 10;											// deduct 10 from health
+		}
+		else {
+			m_textureID = "largeexplosion";
+			m_currentFrame = 0;
+			m_numFrames = 9;
+			m_width = 60;
+			m_height = 60;
+			m_bDying = true;
+		}
     }
 }
 
@@ -55,7 +66,9 @@ void Player::load(std::unique_ptr<LoaderParams> const &pParams) {
 }
 
 void Player::draw() {    
-    ShooterObject::draw();	// player has no special drawing requirements
+    ShooterObject::draw();					// player has no special drawing requirements
+
+	if (!m_bDying) barPl.playerHealthBar(m_position.getX(), m_position.getY() + 60, 100, m_health); // 2017/04/22 If the player is not dying draw the health bar
 }
 
 void Player::handleAnimation() {
@@ -183,42 +196,89 @@ void Player::handleInput() {
         }
         
         if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) {
+			fireBullet(1, m_bulletCounter);							// 2017/04/22 Fire bullet function cuts duplicate code
+			/*
             if(m_bulletCounter == m_bulletFiringSpeed) {
                 TheSoundManager::Instance()->playSound("shoot", 0);
                 TheBulletHandler::Instance()->addPlayerBullet(m_position.getX() + 90, m_position.getY() + 12, 11, 11, "bullet1", 1, Vector2D(10,0));
                 m_bulletCounter = 0;
             }
             
-            m_bulletCounter++;
+            m_bulletCounter++;	
+			*/
         }
         else {
             m_bulletCounter = m_bulletFiringSpeed;
-        }
+		}
+
+		/*
+			New Weapon
+			2017-04-21	Pressing CTRL fires a different weapon
+						m_bullet2Counter is needed otherwise the bullet fires repeatedly for both CTRL and Space presses
+		*/
+		if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RCTRL)) {
+			fireBullet(2, m_bullet2Counter);							// 2017/04/22 Fire bullet function cuts duplicate code
+			/*
+			if (m_bullet2Counter == m_bulletFiringSpeed) {
+				SoundManager::Instance()->playSound("fire", 0);																						// Separate sound effect
+				BulletHandler::Instance()->addPlayerBullet(m_position.getX() + 90, m_position.getY() + 12, 11, 11, "bullet4", 1, Vector2D(10, 0));	// Blue bullet
+				m_bullet2Counter = 0;
+			}
+
+			m_bullet2Counter++;																														// 2017/04/22 Separate bullet counters are needed
+			*/
+		}
+		else {
+			m_bullet2Counter = m_bulletFiringSpeed;
+		}		
 
 		/* 2017/03/16 need to change so only happens when not enter name state */
-		if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_M)) {
-			TheSoundManager::Instance()->pausePlayMusic();
+		if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_M)) {
+			SoundManager::Instance()->pausePlayMusic();
 		}
         // */
         
-        /* handle joysticks /
-        if(TheInputHandler::Instance()->joysticksInitialised())
-        {
-            if(TheInputHandler::Instance()->getButtonState(0, 2))
-            {
-                if(m_bulletCounter == m_bulletFiringSpeed)
-                {
+        /* 
+			handle joysticks 
+			2017/04/22	Uncommented - Fires more than 1 bullet at a time
+						Added separate bullet counter m_bullet3Counter to allow single bullet to fire at a time
+		*/
+        if(TheInputHandler::Instance()->joysticksInitialised()) {
+			// Fire the first bullet type
+			//if (TheInputHandler::Instance()->getButtonState(0, 2)) {
+			if (TheInputHandler::Instance()->getButtonState(0, 0)) {		// 2017/04/22 Changed main fire button to X button of gamepad
+				fireBullet(1, m_bullet3Counter);							// 2017/04/22 Fire bullet function cuts duplicate code
+				/*
+                if(m_bullet3Counter == m_bulletFiringSpeed) {
                     TheSoundManager::Instance()->playSound("shoot", 0);
                     TheBulletHandler::Instance()->addPlayerBullet(m_position.getX() + 90, m_position.getY() + 12, 11, 11, "bullet1", 1, Vector2D(10,0));
-                    m_bulletCounter = 0;
+                    m_bullet3Counter = 0;
                 }
                 
-                m_bulletCounter++;
+                m_bullet3Counter++;
+				*/
             }
-            else
-            {
-                m_bulletCounter = m_bulletFiringSpeed;
+            else {
+                m_bullet3Counter = m_bulletFiringSpeed;
             }
+
+			// Fire the first bullet type
+			if (TheInputHandler::Instance()->getButtonState(0, 1)) {		// 2017/04/22 Added secondary weapon to Y button of gamepad
+				fireBullet(2, m_bullet4Counter);							// 2017/04/22 Fire bullet function cuts duplicate code
+				/*
+				if (m_bullet4Counter == m_bulletFiringSpeed) {
+					TheSoundManager::Instance()->playSound("fire", 0);
+					TheBulletHandler::Instance()->addPlayerBullet(m_position.getX() + 90, m_position.getY() + 12, 11, 11, "bullet4", 1, Vector2D(10, 0));
+					m_bullet4Counter = 0;
+				}
+
+				m_bullet4Counter++;
+				*/
+			}
+			else {
+				m_bullet4Counter = m_bulletFiringSpeed;
+			}
+			
             
             if((TheInputHandler::Instance()->getAxisX(0, 1) > 0 && (m_position.getX() + m_width) < TheGame::Instance()->getGameWidth()) || (TheInputHandler::Instance()->getAxisX(0, 1) < 0 && m_position.getX() > 0))
             {
@@ -230,7 +290,32 @@ void Player::handleInput() {
                 m_velocity.setY(m_moveSpeed * TheInputHandler::Instance()->getAxisY(0, 1));
             }
         }
-        //*/
         
     }
+}
+
+/*
+	2017/04/22	Added bullet firing function to remove repeat code
+				Function takes the type of bullet to fire, and a reference to the counter
+*/
+void Player::fireBullet(int type, int &counter) {
+	std::string bulletFXID = "";
+	std::string bulletGraphicID = "";
+
+	if (type == 1) {
+		bulletFXID = "shoot";
+		bulletGraphicID = "bullet1";
+	}
+	else if (type == 2) {
+		bulletFXID = "fire";
+		bulletGraphicID = "bullet4";
+	}
+
+	if (counter == m_bulletFiringSpeed) {
+		TheSoundManager::Instance()->playSound(bulletFXID, 0);
+		TheBulletHandler::Instance()->addPlayerBullet(m_position.getX() + 90, m_position.getY() + 12, 11, 11, bulletGraphicID, 1, Vector2D(10, 0));
+		counter = 0;
+	}
+
+	counter++;
 }
