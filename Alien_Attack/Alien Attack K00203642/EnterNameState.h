@@ -37,6 +37,7 @@ public:
 private:
 	static void s_enterNameToMain();
 	static void s_enterNameToGame();
+	static void s_enterNameToObjective();	// 2017/04/25 Game will proceed to objective after entering name, display custom message with name
 
 	static const std::string s_EnterNameID;
 

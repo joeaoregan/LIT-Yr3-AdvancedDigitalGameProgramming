@@ -4,6 +4,13 @@
 //
 //  Created by shaun mitchell on 17/02/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
+
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/04/24	Added gamepad/keyboard menu support
+		2017/04/22	Added function to handle B button on gamepad returning to Game 
 */
 
 #include "GameOverState.h"

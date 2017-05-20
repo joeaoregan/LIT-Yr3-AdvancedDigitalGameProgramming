@@ -11,10 +11,10 @@
 //#include <iostream>
 #include "EnterNameState.h"
 
-#include "HighScoreState.h" // test
 
+#include "LevelObjectiveState.h"	// 2017/04/25 Change Enter Name State to move to Level Objective, and then Play State
 #include "MainMenuState.h"
-#include "PlayState.h"
+#include "PlayState.h"				// 2017/04/25 Enter Name first progressed to Play State
 #include "TextureManager.h"
 #include "Game.h"
 #include "MenuButton.h"
@@ -30,6 +30,10 @@ const std::string EnterNameState::s_EnterNameID = "ENTERNAME";					// Enter Name
 
 void EnterNameState::s_enterNameToGame() {
 	Game::Instance()->getStateMachine()->changeState(new PlayState());			// Add the Play State and start the game
+}
+
+void EnterNameState::s_enterNameToObjective() {
+	Game::Instance()->getStateMachine()->changeState(new LevelObjectiveState());// Switch to the Level Objective instead of Play State
 }
 
 void EnterNameState::s_enterNameToMain() {
@@ -59,7 +63,8 @@ void EnterNameState::update() {
 		if (event1.type == SDL_JOYBUTTONDOWN) {
 			if (event1.jbutton.button == 0) {
 				Game::Instance()->setPlayerName(inputText1);							// 2017/04/22	Set The Players name
-				s_enterNameToGame();													// 2017/04/22	Advance to Game when A is pressed on controller
+				//s_enterNameToGame();													// 2017/04/22	Advance to Game when A is pressed on controller
+				s_enterNameToObjective();												// 2017/04/25	Advance to Level Objective State instead of Play State
 				std::cout << "A Pressed - Play Game" << std::endl;
 			}
 			else if (event1.jbutton.button == 1) {
@@ -91,7 +96,8 @@ void EnterNameState::update() {
 			// Handle Enter
 			else if (event1.key.keysym.sym == SDLK_RETURN) {
 				Game::Instance()->setPlayerName(inputText1);							// 2017/04/22 Set the Players name for high scores
-				s_enterNameToGame();													// 2017/04/22 Start the game
+				//s_enterNameToGame();													// 2017/04/22 Start the game
+				s_enterNameToObjective();												// 2017/04/25	Advance to Level Objective State instead of Play State
 			}
 		}
 		//Special text input event
@@ -158,16 +164,18 @@ bool EnterNameState::onEnter() {
 	Texture::Instance()->loadEnterNameText("Please Enter Your Name:");					// Message for Player to enter their name
 	
 	StateParser stateParser;
-	
+	/*
 	//stateParser.parseState("assets/attack.xml", s_EnterNameID, &m_gameObjects, &m_textureIDList);	// Not working
 	//stateParser.parseState("assets/attack.xml", "ENTERNAME", &m_gameObjects, &m_textureIDList);
 
 	//Texture::Instance()->load("assets/return.png", "return", Game::Instance()->getRenderer());
+	*/
 	Texture::Instance()->loadReturnToMenuText("To Return To Main Menu\nPress Esc or Backspace\nOn the gamepad press B\nPress Enter to proceed");	// *** NOT DISPLAYING ADDITIONAL LINES resize draw height parameter
 	
 	m_callbacks.push_back(0);
 	m_callbacks.push_back(s_enterNameToMain);			// 1. Return to the menu 
-	m_callbacks.push_back(s_enterNameToGame);			// 2. Play the game
+	//m_callbacks.push_back(s_enterNameToGame);			// 2. Play the game
+	m_callbacks.push_back(s_enterNameToObjective);		// 2. Proceed to the Level Objective instead of Game state
 	
 	setCallbacks(m_callbacks);
 	
@@ -201,7 +209,7 @@ bool EnterNameState::onExit() {
 
 	m_textureIDList.clear();
 
-	InputHandler::Instance()->reset();
+	InputHandler::Instance()->reset();	// Doesn't reset keyboard input
 	
 	std::cout << "Exiting Enter Name State\n";
 	

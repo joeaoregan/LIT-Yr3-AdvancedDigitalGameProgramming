@@ -43,6 +43,7 @@
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Level1Boss.h" />
+    <ClInclude Include="LevelObjectiveState.h" />
     <ClInclude Include="LevelParser.h" />
     <ClInclude Include="LoaderParams.h" />
     <ClInclude Include="MainMenuState.h" />
@@ -50,10 +51,12 @@
     <ClInclude Include="MenuButton.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="Message.h" />
+    <ClInclude Include="MiniMap.h" />
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayState.h" />
+    <ClInclude Include="Pounder.h" />
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="RoofTurret.h" />
     <ClInclude Include="ScrollingBackground.h" />
@@ -61,6 +64,7 @@
     <ClInclude Include="ShooterObject.h" />
     <ClInclude Include="ShotGlider.h" />
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="Squasher.h" />
     <ClInclude Include="StateParser.h" />
     <ClInclude Include="StatusBar.h" />
     <ClInclude Include="TextureManager.h" />
@@ -86,6 +90,7 @@
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="InstructionsState.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelObjectiveState.cpp" />
     <ClCompile Include="LevelParser.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
@@ -119,9 +124,11 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="assets\map2.tmx" />
+    <None Include="assets\map3.tmx" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="scores.txt" />
+    <Text Include="scoresCLEARED.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{d746ea27-6936-4c69-89c6-a04a7876e3ae}</ProjectGuid>

@@ -6,6 +6,9 @@
 	Student Number:	K00203642
 
 	Done:
+		2017/04/24	Added a check to see if the background is scrolling so the Player doesn't keep moving on the map when fighting the boss
+					Set the screen resolution to 800 x 640, should have used 800 x 600, I went in multiples of the tile size
+		2017/04/23	Added variables to track the players position for the Mini Map
 		2017/04/22	Adjusted screen size to 800 x 510
 		2017/03/23	Moved window flag to Game.h to keep track of window Full Screen/Windowed mode
 		2017/02/25	Added a name variable for Player for use with High Scores table
@@ -95,6 +98,7 @@ public:
 	//int getMapY() { return playerMapY; };
 	int playerX, playerY, playerMapX;							// Keep track of player position for Mini Map and Enemy Tracking
 	float totalScrolledDistance;								// Total scrolling distance needs to be added to the players x coordinate, to give distance on map
+	bool stillScrolling;										// MiniMap: is the game still scrolling. Stop when it gets to Boss
 
 	int turretKills;											// Number of turrets killed by the player
 	

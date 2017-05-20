@@ -170,6 +170,18 @@
     <ClInclude Include="TitleScreenState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Pounder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Squasher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelObjectiveState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFactory.cpp">
@@ -274,9 +286,15 @@
     <ClCompile Include="TitleScreenState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LevelObjectiveState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="scores.txt">
+      <Filter>Resouce Files</Filter>
+    </Text>
+    <Text Include="scoresCLEARED.txt">
       <Filter>Resouce Files</Filter>
     </Text>
   </ItemGroup>
@@ -285,6 +303,9 @@
       <Filter>Resouce Files</Filter>
     </None>
     <None Include="assets\map2.tmx">
+      <Filter>Resouce Files</Filter>
+    </None>
+    <None Include="assets\map3.tmx">
       <Filter>Resouce Files</Filter>
     </None>
   </ItemGroup>
