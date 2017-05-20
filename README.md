@@ -2,7 +2,7 @@
 
 
 Continuous Assessment game for Advanced Digital Game Programming Module of Year 3.
-Modified Alien Attack game from [SDL Game Development by Shaun Mitchell(https://www.packtpub.com/game-development/sdl-game-development)
+Modified Alien Attack game from [SDL Game Development by Shaun Mitchell](https://www.packtpub.com/game-development/sdl-game-development)
 
 ## Advanced Digital Game Programming
 ### Assignment 3
