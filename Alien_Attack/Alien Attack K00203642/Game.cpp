@@ -66,7 +66,8 @@ m_scrollSpeed(0.8),				// 2017/04/23 Scroll speed for Player on mini map
 m_bLevelComplete(false),
 m_bChangingState(false) {
     // add some level files to an array
-    m_levelFiles.push_back("assets/map1.tmx");
+	//m_levelFiles.push_back("assets/map1.tmx");
+	m_levelFiles.push_back("assets/map3.tmx");
     m_levelFiles.push_back("assets/map2.tmx");
         
     m_currentLevel = 1;	// start at this level
@@ -132,11 +133,13 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     
     // Music - add some sound effects - TODO move to better place
 	TheSoundManager::Instance()->load("assets/DST_ElectroRock.ogg", "music1", SOUND_MUSIC);
-	TheSoundManager::Instance()->load("OriginalMusic/song1.mp3", "music2", SOUND_MUSIC);			// 2017/03/16 Added song
-	TheSoundManager::Instance()->load("OriginalMusic/song2.mp3", "music3", SOUND_MUSIC);			// 2017/03/16 Added song
+
+	SoundManager::Instance()->load("OriginalMusic/song1.mp3", "music2", SOUND_MUSIC);				// 2017/03/16 Added song
+	SoundManager::Instance()->load("OriginalMusic/song2.mp3", "music3", SOUND_MUSIC);				// 2017/03/16 Added song
 	// Sound effects
     TheSoundManager::Instance()->load("assets/boom.wav", "explode", SOUND_SFX);
 	TheSoundManager::Instance()->load("assets/phaser.wav", "shoot", SOUND_SFX);
+
 	SoundManager::Instance()->load("SoundFX/laser2.wav", "fire", SOUND_SFX);						// 2017/04/21 Added Fire effect for Player weapon
 	SoundManager::Instance()->load("SoundFX/powerup.wav", "puFX", SOUND_SFX);						// 2017/04/21 Added Fire effect for Player weapon
 	SoundManager::Instance()->load("SoundFX/blast.wav", "blastFX", SOUND_SFX);						// 2017/04/23 Added Blast effet for Squasher Enemy

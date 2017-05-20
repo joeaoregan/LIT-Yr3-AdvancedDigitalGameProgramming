@@ -34,6 +34,8 @@ public:
 
 	virtual void setCallbacks(const std::vector<Callback>& callbacks);
 
+	void selectCurrentButton();											// Select the current button for gamepad/keyboard selection
+
 private:
 	static void s_settingsToMain();
 	static void s_musicOnOff();

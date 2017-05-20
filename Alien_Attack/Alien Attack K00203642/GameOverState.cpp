@@ -27,6 +27,40 @@ void GameOverState::s_restartPlay() {
 }
 
 void GameOverState::update() {
+	// Handle button presses
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0, 0)) {
+		if (currentBtn == 1) s_gameOverToMain();							// 1. Return to Main Menu
+		else if (currentBtn == 2) s_restartPlay();							// 2. Restart The Game
+	}
+	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||	// Press Esc key to
+		InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||		// 2017/04/23 or backspace
+		InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
+		s_gameOverToMain();													// Return to Main Menu
+	}
+
+	// If up key, or gamepad up pressed
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) || InputHandler::Instance()->getAxisY(0, 1) < 0) {
+		if (!pressed) setCurrentBtn(BUTTON_UP);
+		pressed = true;
+		std::cout << "currentButton " << currentBtn << std::endl;
+	}
+	//else pressed = false;
+
+	// If down key, or gamepad down pressed
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN) || InputHandler::Instance()->getAxisY(0, 1) > 0) {
+		if (!pressed) setCurrentBtn(BUTTON_DOWN);
+		pressed = true;
+		std::cout << "currentButton " << currentBtn << std::endl;
+	}
+
+	selectCurrentButton();
+
+	// 2017/04/22 Leave 1/4 of a second before the button selector moves again
+	if (SDL_GetTicks() > btnTimer + 250) {
+		btnTimer = SDL_GetTicks();			// Reset time between button presses
+		pressed = false;					// Reset ability to press button
+	}
+
     if(m_loadingComplete && !m_gameObjects.empty()) {
         for(int i = 0; i < m_gameObjects.size(); i++) {
             m_gameObjects[i]->update();
@@ -46,6 +80,9 @@ void GameOverState::render(){
 }
 
 bool GameOverState::onEnter() {
+	numButtons = 2;								// 2017/04/24 There are 2 buttons in the state
+	currentBtn = 1;								// Set the current button
+
     // parse the state
     StateParser stateParser;
     stateParser.parseState("assets/attack.xml", s_gameOverID, &m_gameObjects, &m_textureIDList);
@@ -95,5 +132,18 @@ void GameOverState::setCallbacks(const std::vector<Callback>& callbacks) {
             pButton->setCallback(callbacks[pButton->getCallbackID()]);
         }
     }
+}
+
+void GameOverState::selectCurrentButton() {
+	if (!m_gameObjects.empty()) {													// If its not empty
+		for (int i = 0; i < m_gameObjects.size(); i++) {							// Go through the game objects list
+			if (dynamic_cast<MenuButton*>(m_gameObjects[i])) {						// if they are of type MenuButton then assign a callback based on the id passed in from the file
+				MenuButton* pButton = dynamic_cast<MenuButton*>(m_gameObjects[i]);
+
+				if (pButton->getCallbackID() == currentBtn) pButton->selected = true;
+				else pButton->selected = false;
+			}
+		}
+	}
 }
 

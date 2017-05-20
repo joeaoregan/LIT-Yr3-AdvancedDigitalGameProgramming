@@ -29,8 +29,8 @@ public:
 
 	void testcase();
 
-	bool selected;
-	bool m_bReleased;
+	bool selected;		// The button has been selected by keyboard / gamepad
+	bool m_bReleased;	// Mouse over selected or not
 
 private:    
     enum button_state { MOUSE_OUT, MOUSE_OVER, CLICKED };

@@ -27,7 +27,9 @@ public:
     
     virtual std::string getStateID() const { return s_gameOverID; }
     
-    virtual void setCallbacks(const std::vector<Callback>& callbacks);
+    virtual void setCallbacks(const std::vector<Callback>& callbacks); 
+	
+	void selectCurrentButton();	// Select button with keyboard/gamepad
     
 private:    
     static void s_gameOverToMain();
