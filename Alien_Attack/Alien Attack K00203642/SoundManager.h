@@ -46,9 +46,13 @@ public:
 	void playMusic(int song = 0);
 	void pausePlayMusic();						// 2017/03/16 Function to stop the music playing
 
-	int currentSong;							// Keep track of current song
-    
+	void trackForwards();						// 2017/04/23	Skip the track forwards
+	void trackBackwards();						// 2017/04/23	Skip the track backwards
+	    	
 private:    
+
+	int currentSong;							// Keep track of current song
+
     static SoundManager* s_pInstance;
     
     std::map<std::string, Mix_Chunk*> m_sfxs;
@@ -59,6 +63,8 @@ private:
     
     SoundManager(const SoundManager&);
 	SoundManager& operator=(const SoundManager&);
+
+
 };
 
 typedef SoundManager TheSoundManager;

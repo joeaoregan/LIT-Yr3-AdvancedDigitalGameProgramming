@@ -151,22 +151,22 @@ void InputHandler::update() {
     while(SDL_PollEvent(&event)) {
         switch (event.type) {
             case SDL_QUIT:
-                TheGame::Instance()->quit();
+                TheGame::Instance()->quit(); // Note: make universal control
                 break;
                 
             case SDL_JOYAXISMOTION:
                 onJoystickAxisMove(event);
-				std::cout << "Axis move " << getAxisY(0, 1) << std::endl;		// 2017/04/22
+				std::cout << "Axis move " << getAxisY(0, 1) << std::endl;	// 2017/04/22
                 break;
                 
             case SDL_JOYBUTTONDOWN:
                 onJoystickButtonDown(event);
-				std::cout << "Button down" << std::endl;	// 2017/04/22
+				//std::cout << "Button down" << std::endl;					// 2017/04/22
                 break;
                 
             case SDL_JOYBUTTONUP:
                 onJoystickButtonUp(event);
-				std::cout << "Button up" << std::endl;		// 2017/04/22
+				//std::cout << "Button up" << std::endl;					// 2017/04/22
                 break;
                 
             case SDL_MOUSEMOTION:		onMouseMove(event); break;
@@ -177,17 +177,21 @@ void InputHandler::update() {
                 
             case SDL_KEYDOWN:
                 onKeyDown();
-				std::cout << "Key down" << std::endl;	// 2017/04/22
+				//std::cout << "Key down" << std::endl;	// 2017/04/22
                 break;
                 
             case SDL_KEYUP:
                 onKeyUp();
-				std::cout << "Key Up" << std::endl;		// 2017/04/22
+				//std::cout << "Key Up" << std::endl;		// 2017/04/22
                 break;
 
-			case SDLK_BACKSPACE:
-				std::cout << "Backspace" << std::endl;	// 2017/04/22
-				break;
+			//case SDLK_BACKSPACE:
+			//	std::cout << "Backspace" << std::endl;	// 2017/04/22
+			//	break;
+
+			//case SDLK_F11:
+			//	std::cout << "F11 pressed" << std::endl;	// 2017/04/22
+			//	Game::Instance()->fullScreenOrWindowed(); break;
                 
             default: break;
         }
@@ -196,11 +200,12 @@ void InputHandler::update() {
 
 void InputHandler::onKeyDown() {
     m_keystates = SDL_GetKeyboardState(0);
-	std::cout << "Key down" << std::endl;	// 2017/04/22
+	//std::cout << "Key down" << std::endl;	// 2017/04/22
 }
 
 void InputHandler::onKeyUp() {
     m_keystates = SDL_GetKeyboardState(0);
+	//std::cout << "Key up" << std::endl;	// 2017/04/22
 }
 
 void InputHandler::onMouseMove(SDL_Event &event) {
@@ -243,11 +248,11 @@ void InputHandler::onJoystickAxisMove(SDL_Event &event) {
     if(event.jaxis.axis == 0) {
         if (event.jaxis.value > m_joystickDeadZone) {
             m_joystickValues[whichOne].first->setX(1);
-			std::cout << "Gamepad move right" << std::endl;
+			//std::cout << "Gamepad move right" << std::endl; // 2017/04/22
         }
         else if(event.jaxis.value < -m_joystickDeadZone) {
             m_joystickValues[whichOne].first->setX(-1);
-			std::cout << "Gamepad move left" << std::endl;
+			//std::cout << "Gamepad move left" << std::endl; // 2017/04/22
         }
         else {
             m_joystickValues[whichOne].first->setX(0);
@@ -258,11 +263,11 @@ void InputHandler::onJoystickAxisMove(SDL_Event &event) {
     if(event.jaxis.axis == 1) {
         if (event.jaxis.value > m_joystickDeadZone) {
             m_joystickValues[whichOne].first->setY(1);
-			std::cout << "Gamepad move down" << std::endl;
+			//std::cout << "Gamepad move down" << std::endl; // 2017/04/22
         }
         else if(event.jaxis.value < -m_joystickDeadZone) {
             m_joystickValues[whichOne].first->setY(-1);
-			std::cout << "Gamepad move up" << std::endl;
+			//std::cout << "Gamepad move up" << std::endl; // 2017/04/22
         }
         else {
             m_joystickValues[whichOne].first->setY(0);

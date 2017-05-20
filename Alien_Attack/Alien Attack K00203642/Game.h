@@ -16,7 +16,7 @@
 #define __SDL_Game_Programming_Book__Game__
 
 #define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 510
+#define SCREEN_HEIGHT 640	// 2017/04/23 Changed from 510 to 640 after changing number of tiles to 150x20
 
 #include "SDL.h"
 #include "GameStateMachine.h"
@@ -86,6 +86,14 @@ public:
 
 	bool getEnterTextState() { return enterTextState; };		// 2017/04/22 Indicates if in enter text state or not
 	void setEnterTextState(bool ts) { enterTextState = ts; };	// 2017/04/22 Set the game as in or out of enter text state
+
+	// 2017/04/23 Set the players position on mini map
+	//int getMapX() { return playerMapX; };
+	//int getMapY() { return playerMapY; };
+	int playerX, playerY, playerMapX;							// Keep track of player position for Mini Map and Enemy Tracking
+	float totalScrolledDistance;								// Total scrolling distance needs to be added to the players x coordinate, to give distance on map
+
+	int turretKills;											// Number of turrets killed by the player
 	
 private:
 		
@@ -106,7 +114,7 @@ private:
     
     int m_gameWidth;
     int m_gameHeight;
-    float m_scrollSpeed;
+    float m_scrollSpeed;						// Scroll speed used for minimap (0.8)
     
     int m_playerLives;
     

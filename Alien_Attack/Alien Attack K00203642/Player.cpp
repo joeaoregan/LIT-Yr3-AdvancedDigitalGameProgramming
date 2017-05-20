@@ -155,6 +155,11 @@ void Player::update() {
             m_dyingCounter++;
         }
     }
+
+	// 2017/04/23 Set coords for map
+	Game::Instance()->playerY = m_position.getX();														// Set player X for Mini, Map and Enemy tracking
+	Game::Instance()->playerY = m_position.getY();														// Set player Y for Mini, Map and Enemy tracking
+	Game::Instance()->playerMapX = (m_position.getX() + Game::Instance()->totalScrolledDistance);		// The players positions plus the scrolling speed of the background / 8 (map is 1/8 scale)
 }
 
 void Player::ressurect() {
@@ -175,6 +180,9 @@ void Player::ressurect() {
     m_invulnerable = true;
 
 	m_health = 100;	// 2017/04/22 Reset the Players health
+
+	//Game::Instance()->playerMapX = (bgOffset++ + 10) / 8;									// 2017/04/23 Need to take ressurect() into account for player map position
+	Game::Instance()->playerMapX = (Game::Instance()->totalScrolledDistance + 10);			// 2017/04/23 Need to take ressurect() into account for player map position (scroll speed actually 0.8)
 }
 
 void Player::clean() {

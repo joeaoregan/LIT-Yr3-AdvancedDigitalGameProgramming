@@ -5,7 +5,8 @@
 	Student Number:	K00203642
 
 	Done:
-		
+		2017/04/23	Pressing Backspace also returns to Main Menu
+		2017/04/22	Pressing Esc or B button on gamepad, returns to Main Menu
 		2017/03/23	Pressing F11 or the Full Screen button in the settings menu Toggles between Full Screen and Windowed view of the game
 		2017/03/16	The music button in the Settings Menu turns the music On / Off
 					Added Settings menu with buttons for altering game settings
@@ -45,6 +46,7 @@ void SettingsState::s_fullScreen() {
 
 void SettingsState::update() {
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||			// Press Esc key to
+		InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||		// 2017/04/23 or backspace
 		InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
 		Game::Instance()->getStateMachine()->pushState(new MainMenuState());
 	}

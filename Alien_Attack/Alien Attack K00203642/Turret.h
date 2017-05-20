@@ -49,6 +49,8 @@ public:
                 m_width = 60;
                 m_height = 60;
                 m_bDying = true;
+
+				Game::Instance()->turretKills++;	// 2017/04/23 Increment the number of turrets destroyed by the player
             }            
         }
     }

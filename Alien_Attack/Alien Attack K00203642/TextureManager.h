@@ -36,6 +36,7 @@ public:
 
 #ifdef _SDL_TTF_H
 	//Creates image from font string
+	void turretsKilledText(std::string input);		// 2017/04/23 Number of turrets destroyed by the player
 	void loadReturnToMenuText(std::string input);	// 2017/04/22 Message Player return to menu
 	void loadReadyText(std::string input);			// Message Player ready to start
 	void loadInputText(std::string input);			// Text input by player
@@ -49,6 +50,7 @@ public:
 #endif
 
 	void free();												// Deallocates texture
+	void free(SDL_Texture *texture);							// Deallocates texture
 
     bool load(std::string fileName, std::string id, SDL_Renderer* pRenderer);
     
