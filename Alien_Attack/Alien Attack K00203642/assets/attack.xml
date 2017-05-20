@@ -17,6 +17,15 @@
   <!-- 2017/03/16 Added assets for Settings menu screen -->
   <SETTINGS>
     <TEXTURES>
+      <texture filename="assets/lblLiam.png" ID="easy"/>                      <!-- 2017/04/25 Easy Difficulty -->
+      <texture filename="assets/lblNormal.png" ID="medium"/>                  <!-- 2017/04/25 Medium Difficulty -->
+      <texture filename="assets/lblNotLiam.png" ID="hard"/>                   <!-- 2017/04/25 Hard Difficulty -->
+      <texture filename="assets/lblDifficulty.png" ID="difficulty"/>          <!-- 2017/04/25 Difficulty -->
+      <texture filename="assets/lblVolMusic.png" ID="volMusic"/>              <!-- 2017/04/25 Music Volume Status Bar Label -->
+      <texture filename="assets/lblVolEffects.png" ID="volEffects"/>          <!-- 2017/04/25 EFfects Volume Status Bar Label -->
+      <texture filename="assets/lblAudio.png" ID="audio"/>                    <!-- 2017/04/25 Audio Label -->
+      <texture filename="assets/btnPlus.png" ID="plus"/>                      <!-- 2017/04/25 Added plus button -->
+      <texture filename="assets/btnMinus.png" ID="minus"/>                    <!-- 2017/04/25 Added minus button -->
       <texture filename="assets/TitleSettings.png" ID="settingsTitle"/>       <!-- 2017/04/24 Main Title Image for Settings State -->
       <texture filename="assets/main.png" ID="mainbutton"/>                   <!-- Return to main menu button image -->
       <texture filename="assets/buttonMusic.png" ID="musicButton"/>           <!-- 2017/03/16 Turn Music On / Off image -->
@@ -25,9 +34,25 @@
 
     <OBJECTS>
       <object type="AnimatedGraphic" x="260" y="20" width="280" height="64" textureID="settingsTitle" numFrames="1" animSpeed="2"/> <!-- 2017/04/24 Added title from SettingsState.cpp -->
-      <object type="MenuButton" x="300" y="100" width="199" height="43" textureID="musicButton" numFrames="0" callbackID="1"/>      <!-- Turn the Music On / Off button -->
-      <object type="MenuButton" x="318" y="150" width="163" height="43" textureID="fullscreenButton" numFrames="0" callbackID="2"/> <!-- Make the game Full Screen or Windowed button -->
-      <object type="MenuButton" x="300" y="400" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="3"/>      <!-- Return to Main Menu button -->
+      <object type="MenuButton" x="318" y="100" width="163" height="43" textureID="fullscreenButton" numFrames="0" callbackID="1"/> <!-- Make the game Full Screen or Windowed button -->
+
+      <object type="AnimatedGraphic" x="300" y="150" width="200" height="50" textureID="audio" numFrames="1" animSpeed="2"/>        <!-- 2017/04/25 Audio Settings Heading -->
+      
+      <object type="MenuButton" x="300" y="200" width="199" height="43" textureID="musicButton" numFrames="0" callbackID="2"/>      <!-- Turn the Music On / Off button -->
+
+      <object type="AnimatedGraphic" x="300" y="250" width="200" height="50" textureID="volMusic" numFrames="1" animSpeed="2"/>     <!-- 2017/04/25 Music Volume Status Bar Label -->
+      <object type="MenuButton" x="250" y="250" width="50" height="50" textureID="minus" numFrames="3" callbackID="3"/>             <!-- Music Volume Down -->
+      <object type="MenuButton" x="500" y="250" width="50" height="50" textureID="plus" numFrames="3" callbackID="4"/>              <!-- Music Volume Up -->
+
+      <object type="AnimatedGraphic" x="300" y="300" width="200" height="50" textureID="volEffects" numFrames="1" animSpeed="2"/>   <!-- 2017/04/25 Effects Volume Status Bar Label -->
+      <object type="MenuButton" x="250" y="300" width="50" height="50" textureID="minus" numFrames="3" callbackID="5"/>             <!-- Effects Volume Down -->
+      <object type="MenuButton" x="500" y="300" width="50" height="50" textureID="plus" numFrames="3" callbackID="6"/>              <!-- EFfects Volume Up -->
+
+      <object type="AnimatedGraphic" x="300" y="350" width="200" height="50" textureID="difficulty" numFrames="1" animSpeed="2"/>   <!-- 2017/04/25 Difficulty Setting -->
+      <object type="MenuButton" x="250" y="400" width="50" height="50" textureID="minus" numFrames="3" callbackID="7"/>             <!-- Difficulty down -->
+      <object type="MenuButton" x="500" y="400" width="50" height="50" textureID="plus" numFrames="3" callbackID="8"/>              <!-- Difficutly Up -->
+      
+      <object type="MenuButton" x="300" y="500" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="9"/>       <!-- Return to Main Menu button -->
     </OBJECTS>
   </SETTINGS>
   
@@ -35,12 +60,14 @@
   <OBJECTIVE>
     <TEXTURES>
       <texture filename="assets/main.png" ID="mainbutton"/>
-      <texture filename="assets/L1Objective.png" ID="l1objective"/>
+      <texture filename="assets/L1ObjMed.png" ID="l1objmed"/>
+      <texture filename="assets/L1ObjEasy.png" ID="l1objeasy"/>
+      <texture filename="assets/L1ObjHard.png" ID="l1objhard"/>
     </TEXTURES>
 
     <OBJECTS>
-      <object type="AnimatedGraphic" x="0" y="0" width="800" height="640" textureID="l1objective" numFrames="1" animSpeed="2"/>
-      <object type="MenuButton" x="300" y="500" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
+      <!--object type="AnimatedGraphic" x="0" y="0" width="800" height="640" textureID="l1objeasy" numFrames="1" animSpeed="2"/--> <!-- Displays different message depending on level from render() function in LevelObjective state -->
+      <!--object type="MenuButton" x="300" y="500" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/-->
     </OBJECTS>
   </OBJECTIVE>
 
@@ -126,13 +153,16 @@
   
     <PLAY>
         <TEXTURES>
-            <texture filename="assets/helicopter.png" ID="helicopter"/>
-            <texture filename="assets/helicopter2.png" ID="helicopter2"/>
+          <texture filename="assets/grass.png" ID="grass"/>
+          <texture filename="assets/helicopter.png" ID="helicopter"/>
+          <texture filename="assets/helicopter2.png" ID="helicopter2"/>
         </TEXTURES>
         
         <OBJECTS>
-            <object type="Player" x="500" y="100" width="128" height="55" textureID="helicopter" numFrames="4"/>
-            <object type="Enemy" x="100" y="100" width="128" height="55" textureID="helicopter2" numFrames="4"/>
+          <!--object type="Player" x="500" y="100" width="128" height="55" textureID="helicopter" numFrames="4"/-->
+          <!--object 
+          ="Enemy" x="100" y="100" width="128" height="55" textureID="helicopter2" numFrames="4"/-->
+          <!-- Unused -->
         </OBJECTS>
     </PLAY>
     

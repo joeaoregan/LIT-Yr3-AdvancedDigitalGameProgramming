@@ -38,7 +38,7 @@ protected:
     std::vector<Callback> m_callbacks;
 
 	unsigned int btnTimer = 0;	// 2017/04/24 Delay between buttons. Moved from MainMenuState to be used by all menus
-	bool pressed = false;
+	bool pressed = true;
 
 	int currentBtn;			// Current selected menu button for keyboard / gamepad // 2017/04/24 Moved from Main Menu State
 	int numButtons;			// The number of buttons in the menu/state

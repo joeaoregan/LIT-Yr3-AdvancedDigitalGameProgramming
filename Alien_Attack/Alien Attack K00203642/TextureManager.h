@@ -44,6 +44,7 @@ public:
 	void loadLevelText(std::string currentLevel);	// Display the current level
 	void loadTimerText(std::string currentTime);	// Display the game timer
 	void loadScoreText(std::string currentScore);	// Display the score
+	void displayDifficulty(int level);	// Display the score
 
 	void loadHighScoresText();
 	bool createText(SDL_Texture* text, std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, bool textWrapped = false);
@@ -54,7 +55,7 @@ public:
 	void free();												// Deallocates texture
 	void free(SDL_Texture *texture);							// Deallocates texture
 
-    bool load(std::string fileName, std::string id, SDL_Renderer* pRenderer);
+    bool load(std::string fileName, std::string id);
     
     void clearTextureMap();
     void clearFromTextureMap(std::string id);

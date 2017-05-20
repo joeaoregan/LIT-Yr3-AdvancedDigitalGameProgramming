@@ -65,19 +65,21 @@ void MainMenuState::s_exitFromMenu() {
 // end callbacks
 
 void MainMenuState::update() {
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) {			// If spacebar is pressed - start playing game
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE) && pressed == false) {			// If spacebar is pressed - start playing game
 		s_menuToPlay();
+		pressed = true;
 	}
 	// 2017/04/22 If Return key is pressed OR gamepad button A - select current highlighted option
-	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0,0)) {
+	else if ((InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0,0)) && pressed == false) {
 		if (currentBtn == 1) s_menuToPlay();									// 1. Play Game
 		else if (currentBtn == 2) s_highScores();								// 2. High Scores
 		else if (currentBtn == 3) s_settings();									// 3. Settings
 		else if (currentBtn == 4) s_instructions();								// 4. Instructions
 		else if (currentBtn == 5) s_exitFromMenu();								// 5. Exit Game
+		pressed = true;
 	}
 	// If up key, or gamepad up pressed
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) || InputHandler::Instance()->getAxisY(0, 1) < 0) {
+	else if ((InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) || InputHandler::Instance()->getAxisY(0, 1) < 0) && pressed == false) {
 		if (!pressed) setCurrentBtn(BUTTON_UP);
 		pressed = true;
 		std::cout << "currentButton " << currentBtn << std::endl;
@@ -85,7 +87,7 @@ void MainMenuState::update() {
 	//else pressed = false;
 
 	// If down key, or gamepad down pressed
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN) || InputHandler::Instance()->getAxisY(0, 1) > 0) {
+	else if ((InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN) || InputHandler::Instance()->getAxisY(0, 1) > 0) && pressed == false) {
 		if (!pressed) setCurrentBtn(BUTTON_DOWN);
 		pressed = true;
 		std::cout << "currentButton " << currentBtn << std::endl;
@@ -119,6 +121,9 @@ void MainMenuState::render() {
 
 /* Add a new callback for each new button */
 bool MainMenuState::onEnter() {
+	pressed = true;
+	btnTimer = 0;
+
 	numButtons = 5;																				// 2017/04/24 There are 5 buttons in the state
 	currentBtn = 1;																				// 2017/04/24 Moved currentBtn to MenuState.h
     // parse the state

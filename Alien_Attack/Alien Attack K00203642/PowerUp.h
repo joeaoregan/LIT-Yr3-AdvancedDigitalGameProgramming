@@ -19,9 +19,10 @@ public:
 	PowerUp() {
 		setName("Power Up");
 		setTextureID("powerUpID");
-		m_bDead = false;	//2017/04/16 Set object alive
+		m_bDead = false;													//2017/04/16 Set object alive
 		m_moveSpeed = 1; 
 		m_bDying = false;
+		m_score = 25;														// 2017/04/27 Added score value
 	}
 
 	virtual ~PowerUp() {}
@@ -36,17 +37,19 @@ public:
 
 	virtual void update() {
 		if (!m_bDying) {
-			scroll(TheGame::Instance()->getScrollSpeed());		// 2017/04/22 Scroll moves with background
+			scroll(TheGame::Instance()->getScrollSpeed());					// 2017/04/22 Scroll moves with background
 		}		
 	}
 
 	//virtual void clean() {};
 	virtual void collision() {
-		kill();													// Kill the Power Up
-		SoundManager::Instance()->playSound("puFX", 0);			// Player Sound FX for Power Up
+		Game::Instance()->setScore(Game::Instance()->getScore() + m_score);	// 2017/04/27 Update Score
+
+		kill();																// Kill the Power Up
+		SoundManager::Instance()->playSound("puFX", 0);						// Player Sound FX for Power Up
 	};
 
-	virtual std::string type() { return "PowerUp"; }			// Set the type
+	virtual std::string type() { return "PowerUp"; }						// Set the type
 };
 
 class PowerUpCreator : public BaseCreator {

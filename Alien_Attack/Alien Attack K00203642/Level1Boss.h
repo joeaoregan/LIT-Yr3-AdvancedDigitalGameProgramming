@@ -30,6 +30,8 @@ public:
         m_moveSpeed = 2;
         
         m_entered = false;
+
+		m_score = 50;
     }
     
     virtual void load(std::unique_ptr<LoaderParams> const &pParams) {
@@ -91,6 +93,8 @@ public:
                 ShooterObject::update();
             }
             else {
+				Game::Instance()->setScore(Game::Instance()->getScore() + m_score);	//2017/04/27 Update Score
+
                 scroll(TheGame::Instance()->getScrollSpeed());
                 m_currentFrame = int(((SDL_GetTicks() / (1000 / 3)) % m_numFrames));
                 

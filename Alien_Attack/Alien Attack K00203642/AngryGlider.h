@@ -53,6 +53,7 @@ public:
 			//else if (Game::Instance()->playerY == m_position.getY()) m_velocity.setY(0);
 		}
 		else {
+			Game::Instance()->setScore(Game::Instance()->getScore() + m_score);
 			m_velocity.setX(0);
 			doDyingAnimation();
 		}

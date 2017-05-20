@@ -23,33 +23,78 @@
 #include "InputHandler.h"
 #include "StateParser.h"
 #include "SoundManager.h"	// 2017/03/16 Include Sound Manager so music can be turned on / off
+#include "StatusBar.h"
+
+StatusBar volBar;			// 2017/04/25 Statusbar for volume
+int difficulty;
 
 const std::string SettingsState::s_SettingsID = "SETTINGS";
 
 // Callbacks
-/* Return to main menu from settings */
 void SettingsState::s_settingsToMain() {
-	Game::Instance()->getStateMachine()->changeState(new MainMenuState());
+	Game::Instance()->getStateMachine()->changeState(new MainMenuState()); /* Return to main menu from settings */
 }
-/* 2017/03/16 Turn the music on / off */
+
 void SettingsState::s_musicOnOff() {
-	SoundManager::Instance()->pausePlayMusic();
+	SoundManager::Instance()->pausePlayMusic();			/* 2017/03/16 Turn the music on / off */
 }
-/* 2017/03/16 Turn full screen on / off */
+
+void SettingsState::s_volumeUpMusic() {
+	SoundManager::Instance()->volumeUpMusic();
+	std::cout << "volume up" << std::endl;				/* 2017/04/25 Turn the music audio volume up */
+}
+
+void SettingsState::s_volumeDownMusic() {
+	SoundManager::Instance()->volumeDownMusic();
+	std::cout << "volume down" << std::endl;			/* 2017/04/25 Turn the music audio volume down */
+}
+void SettingsState::s_volumeUpEffects() {
+	SoundManager::Instance()->playSound("fire", 0);
+	SoundManager::Instance()->volumeUpEffects();
+}
+
+void SettingsState::s_volumeDownEffects() {
+	SoundManager::Instance()->playSound("fire", 0);
+	SoundManager::Instance()->volumeDownEffects();
+}
+void SettingsState::s_increaseDifficulty() {
+	difficulty = Game::Instance()->getDifficulty();
+	//difficulty++;
+	if (++difficulty > NOT_LIAM) difficulty = NOT_LIAM;
+	Game::Instance()->setDifficulty(difficulty);
+
+	std::cout << "Difficulty increased: " << difficulty << std::endl;
+}
+
+void SettingsState::s_decreaseDifficulty() {
+	difficulty = Game::Instance()->getDifficulty();
+	//difficulty--;
+	if (--difficulty < LIAM) difficulty = LIAM;
+	Game::Instance()->setDifficulty(difficulty);
+
+	std::cout << "Difficulty decreased: " << difficulty << std::endl;
+}
+
 void SettingsState::s_fullScreen() {
 	/*
 		If button F11 is pressed change the game between Full Screen and Windowed
 		This option can also be selected from the settings menu of the game
 	*/
-		Game::Instance()->fullScreenOrWindowed();
+		Game::Instance()->fullScreenOrWindowed();		/* 2017/03/16 Turn full screen on / off */
 }
 
 void SettingsState::update() {
 	// Handle button presses
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0, 0)) {
-		if (currentBtn == 1) s_musicOnOff();								// 1. Turn Music on or off
-		else if (currentBtn == 2) s_fullScreen();							// 2. Make the game full screen
-		else if (currentBtn == 3) s_settingsToMain();						// 3. Return to main menu
+		if (currentBtn == 1) s_fullScreen();								// 1. Make the game full screen
+		else if (currentBtn == 2) s_musicOnOff();							// 2. Turn Music on or off
+		else if (currentBtn == 3) s_volumeDownMusic();						// 3. Music Volume down
+		else if (currentBtn == 4) s_volumeUpMusic();						// 4. Music Volume up
+		else if (currentBtn == 5) s_volumeDownEffects();					// 5. Effects Volume down
+		else if (currentBtn == 6) s_volumeUpEffects();						// 6. Effects Volume up
+		else if (currentBtn == 7) s_decreaseDifficulty();					// 7. Decrease the game difficulty
+		else if (currentBtn == 8) s_increaseDifficulty();					// 8. Increase the game difficulty (Range is Liam to Hard for difficulty)
+		else if (currentBtn == 9) s_settingsToMain();						// 9. Return to main menu
 	}
 	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||	// Press Esc key to
 		InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||		// 2017/04/23 or backspace
@@ -95,37 +140,35 @@ void SettingsState::render() {
 		}
 	}
 
-	/*
-	Texture::Instance()->drawFrame("settingsTitle", (SCREEN_WIDTH - 280) / 2, 20, 280, 64, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);	// Display title at top of settings menu // 2017/04/24 Moved to Attack.xml
-
-	// 2017/03/16 Added buttons for settings
-	Texture::Instance()->drawFrame("musicButton", (SCREEN_WIDTH - 199) / 2, 100, 199, 43, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
-	Texture::Instance()->drawFrame("fullscreenButton", (SCREEN_WIDTH - 163) / 2, 150, 163, 43, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
-
-	Texture::Instance()->drawText("highScoresID", 65, 100, TheGame::Instance()->getRenderer());
-
-	Put high score screen output in here
-	*/
+	// Volume status bars
+	volBar.musicVolumeBar(SoundManager::Instance()->getVolumeMusic());							// 2017/04/25 Draw a status bar for music volume
+	Texture::Instance()->draw("volMusic", 300, 250, 200, 50, Game::Instance()->getRenderer());	// Label it
+	volBar.effectsVolumeBar(SoundManager::Instance()->getVolumeEffects());						// 2017/04/25 Draw a status bar for effects volume
+	Texture::Instance()->draw("volEffects", 300, 300, 200, 50, Game::Instance()->getRenderer());// Label it
+	volBar.difficultyBar(Game::Instance()->getDifficulty());									// 2017/04/25 Draw a status bar for the game difficulty
+	
+	if (Game::Instance()->getDifficulty() == 0) Texture::Instance()->draw("easy", 300, 400, 200, 50, Game::Instance()->getRenderer());			// Label Easy
+	else if (Game::Instance()->getDifficulty() == 1) Texture::Instance()->draw("medium", 300, 400, 200, 50, Game::Instance()->getRenderer());	// Label Normal
+	else if (Game::Instance()->getDifficulty() == 2) Texture::Instance()->draw("hard", 300, 400, 200, 50, Game::Instance()->getRenderer());		// Label Hard
 }
 
-bool SettingsState::onEnter() {
-	/*
-	// 2017/04/24 Moved to Attack.xml
-	Texture::Instance()->load("assets/TitleSettings.png", "settingsTitle", TheGame::Instance()->getRenderer());	// Load title at top of settings menu
-	Texture::Instance()->load("assets/buttonMusic.png", "musicButton", TheGame::Instance()->getRenderer());
-	Texture::Instance()->load("assets/buttonFullScreen.png", "fullscreenButton", TheGame::Instance()->getRenderer());
-	*/
-
-	numButtons = 3;								// 2017/04/24 There are 2 buttons in the state
-	currentBtn = 1;								// Set the current button
-
+bool SettingsState::onEnter() {	
+	numButtons = 9;									// 2017/04/24 There are 2 buttons in the state
+	currentBtn = 1;									// Set the current button
+	
 	StateParser stateParser;
 	stateParser.parseState("assets/attack.xml", s_SettingsID, &m_gameObjects, &m_textureIDList);
 
 	m_callbacks.push_back(0);
-	m_callbacks.push_back(s_musicOnOff);		// CallbackID = 1	Turn the music on or off
-	m_callbacks.push_back(s_fullScreen);		// CallbackID = 2	Make the game Full Screen or windowed
-	m_callbacks.push_back(s_settingsToMain);	// CallbackID = 3	Return to main menu
+	m_callbacks.push_back(s_fullScreen);			// CallbackID = 1	Make the game Full Screen or windowed
+	m_callbacks.push_back(s_musicOnOff);			// CallbackID = 2	Turn the music on or off
+	m_callbacks.push_back(s_volumeDownMusic);		// CallbackID = 3	Music Volume Down
+	m_callbacks.push_back(s_volumeUpMusic);			// CallbackID = 4	Music Volume Up
+	m_callbacks.push_back(s_volumeDownEffects);		// CallbackID = 5	Effects Volume Down
+	m_callbacks.push_back(s_volumeUpEffects);		// CallbackID = 6	Effects Volume Up
+	m_callbacks.push_back(s_decreaseDifficulty);	// CallbackID = 7	Decrease the game difficulty
+	m_callbacks.push_back(s_increaseDifficulty);	// CallbackID = 8	Increase the game difficulty (Range is Liam to Hard for difficulty)
+	m_callbacks.push_back(s_settingsToMain);		// CallbackID = 9	Return to main menu
 
 	setCallbacks(m_callbacks);
 
@@ -142,6 +185,9 @@ bool SettingsState::onExit() {
 	TheInputHandler::Instance()->reset();
 
 	std::cout << "Exiting Settings State\n";
+
+	pressed = true;
+	btnTimer = 0;
 
 	return true;
 }
@@ -171,4 +217,3 @@ void SettingsState::selectCurrentButton() {
 		}
 	}
 }
-

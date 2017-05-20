@@ -40,14 +40,31 @@ public:
 	SDL_Texture* tx2 = 0;
 	std::stringstream turretsText;
 	std::stringstream scoreText;
+	//std::string difficultyLevel;
 
 	virtual void update() {
 		turretsText.str("");
 		scoreText.str("");
-
+		/*
 		// Mark as objective achieved
 		if(Game::Instance()->turretKills < 7)
 			turretsText << "Turrets: " << std::to_string(Game::Instance()->turretKills) << "/7";
+		else turretsText << "Achieved";
+		*/
+
+		// 2017/04/27 Objective different each level
+		if (Game::Instance()->getDifficulty() == 0 && (Game::Instance()->turretKills < 3)) {
+			turretsText << "Turrets: " << std::to_string(Game::Instance()->turretKills) << "/3";
+			//difficultyLevel = "Easy";
+		}
+		else if (Game::Instance()->getDifficulty() == 1 && (Game::Instance()->turretKills < 5)) {
+			turretsText << "Turrets: " << std::to_string(Game::Instance()->turretKills) << "/5";
+			//difficultyLevel = "Medium";
+		}
+		else if (Game::Instance()->getDifficulty() == 2 && (Game::Instance()->turretKills < 7)) {
+			turretsText << "Turrets: " << std::to_string(Game::Instance()->turretKills) << "/7";
+			//difficultyLevel = "Hard";
+		}
 		else turretsText << "Achieved";
 
 		scoreText << "Score: " << std::to_string(Game::Instance()->getScore());
@@ -73,9 +90,10 @@ public:
 		}
 
 		Texture::Instance()->drawText("levelID", 120, 0, Game::Instance()->getRenderer());
+		Texture::Instance()->drawText("difficultyID", 120, 20, Game::Instance()->getRenderer());
 
 		// Display number of turrets destroyed
-//		Texture::Instance()->turretsKilledText("");														// Render the number of turrets destroyed
+//		Texture::Instance()->turretsKilledText("");															// Render the number of turrets destroyed
 
 		//Texture::Instance()->drawText("turretsKilledID", 120, 50, Game::Instance()->getRenderer());
 		//Texture::Instance()->drawText("scoreTextID", 600, 0, Game::Instance()->getRenderer());

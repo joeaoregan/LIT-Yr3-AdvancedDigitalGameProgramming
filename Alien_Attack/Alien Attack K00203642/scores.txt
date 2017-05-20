@@ -8,6 +8,8 @@ Alien
 70
 Attack
 60
+Player
+60
 Overlord
 50
 Bow
@@ -16,5 +18,3 @@ To
 30
 His
 20
-Greatness
-10

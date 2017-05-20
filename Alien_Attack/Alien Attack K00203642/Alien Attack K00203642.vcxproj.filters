@@ -182,6 +182,18 @@
     <ClInclude Include="MiniMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BoundaryStuff.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelCompleteState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFactory.cpp">
@@ -287,6 +299,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LevelObjectiveState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelCompleteState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

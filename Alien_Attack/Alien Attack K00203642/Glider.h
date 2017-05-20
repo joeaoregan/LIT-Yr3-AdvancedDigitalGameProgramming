@@ -23,6 +23,7 @@ public:
         m_health = 1;
         m_moveSpeed = 3;
         m_gap = 60;
+		m_score = 5;
     }
     
     virtual ~Glider() {}
@@ -50,6 +51,8 @@ public:
                 m_width = 40;
                 m_height = 40;
                 m_bDying = true;
+
+				Game::Instance()->setScore(Game::Instance()->getScore() + m_score);	// 2017/04/27 Update Score
             }
         }
     }
@@ -64,6 +67,11 @@ public:
             }
         }
         else  {
+			//if (!m_scoreSet) {
+			//	Game::Instance()->setScore(Game::Instance()->getScore() + m_score);	// 2017/04/27 Update Score
+			//	m_scoreSet = true;
+			//}
+
             m_velocity.setX(0);
             m_velocity.setY(0);
             doDyingAnimation();

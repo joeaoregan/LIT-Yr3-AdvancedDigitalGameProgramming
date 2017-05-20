@@ -8,5 +8,6 @@
   <objecttype name="PowerUp" color="#ff8000"/><!--2017/04/22-->
  <objecttype name="RoofTurret" color="#0000ff"/>
  <objecttype name="Eskeletor" color="#800080"/>
- <objecttype name="Level1Boss" color="#000000"/>
+  <objecttype name="Level1Boss" color="#000000"/>
+  <objecttype name="message" color="#000000"/>
 </objecttypes>

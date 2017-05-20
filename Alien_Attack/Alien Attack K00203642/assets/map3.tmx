@@ -8,7 +8,7 @@
   <property name="bullet2" value="assets/bullet2.png"/>
   <property name="bullet3" value="assets/bullet3.png"/>
   <property name="bullet4" value="assets/bullet4.png"/>
-  <property name="clouds" value="assets/clouds.png"/>
+  <property name="clouds3" value="assets/clouds3.png"/>
   <property name="enemy1" value="assets/enemy1.png"/>
   <property name="enemy2" value="assets/enemy2.png"/>
   <property name="enemy3" value="assets/enemy3.png"/>
@@ -32,16 +32,27 @@
  <tileset firstgid="199" name="blocks2" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18">
   <image source="blocks2.png" width="614" height="376"/>
  </tileset>
+ <tileset firstgid="397" name="blocks3" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18">
+  <image source="blocks3.png" width="614" height="376"/>
+ </tileset>
  <objectgroup name="Object Layer 2">
   <object id="1" name="Background" type="ScrollingBackground" x="0" y="0" width="32" height="32">
    <properties>
     <property name="animSpeed" value="0.2"/>
     <property name="numFrames" value="1"/>
     <property name="textureHeight" value="480"/>
-    <property name="textureID" value="clouds"/>
+    <property name="textureID" value="clouds3"/>
     <property name="textureWidth" value="800"/>
    </properties>
   </object>
+   <object id="100" name="Message" type="message" x="50" y="480" width="32" height="32">
+     <properties>
+       <property name="numFrames" value="1"/>
+       <property name="textureHeight" value="50"/>
+       <property name="textureID" value="grass"/>
+       <property name="textureWidth" value="420"/>
+     </properties>
+   </object>
   <object id="52" name="RoofTurret2" type="RoofTurret" x="542" y="0" width="32" height="32">
    <properties>
     <property name="numFrames" value="1"/>
@@ -96,7 +107,7 @@
    <property name="collidable" value=""/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztmU1OwkAUx2eO4BKRDYknMQbCDYrcAOLehZaPdGFcsCB6AfkwbDmKd/ASbvxP+l7yQhCnWDpMeL/kl8kU2nl9/acpxRg/+taYgfX8ckBC17mASxqr4hW+wZnYtoHPpNueoCddeAd78Jpsblk1oa+XL7HUWTUJ9YXzxITKExPL9Yqlzqo51VwpiqIoiqIo50kLz6BtfQ5VSobf0yhKmeh7BuUYPCJTT5qraIjlPhCizhh6w+9FxyRzYXNDEct9IESdMfRmV64ebO6p5SqFQ2HmcZx3oRFj0f3+qrMjav3yXEPyXWDdY+bK97z3cWvz38kD6gtnS+aq7GwNPeXebW+/h1P4QvMRORGjVP7fz/NU7OeyuYKf8IPMaJ85je7761/kOp1j8z8zWpNNRU3SPq3H51CWGfWHdetfwjq8grUCc+6Ly1ZNfN6GNwccb9+8AX8A5ZtxSA==
+   eJztmU9Kw0AUh2dyA5dqV4K30GVRvEHVG7S4d6G1QhYi4qLqBewfcetCvYJbtx7G35D38Flinch0poPvg4+QMJl5efkR0tQYP7rWmJ71HJyQ1HWO4YS2sbiFd3Aojj3BC9Id76An+/AAHsJNcmPG2KS+X77kUmdsOtQXzhOTKk9MLvcrlzpjs6y5UhRFURRFUf4nO3gH3dX3UCUw/J1GUUKi3xmURXCCTJ165GqMMRM41QwmJZfngG+dzxjzAl8DXFMOveHvoucks2IrU+H7HEhNkzrfAl1PDr2py9WxrVy2XPXhmbD0mOdeaMS26XmSrcKY7eJ7nXui1nZRP+fHnH7yOfPWZRaZK5/1f6Ntq9/JPeoLZ0vmKnS2rqyf3LvZ40eY4xpees4l/+/nfZfPAemyOYXv8IEs6ZwRbd34xx/kOutq/Ysj82Vf1CTt0noDE9aS+sS69dfgOmzB1Qb73BeXrZsIfgIjioPe
   </data>
  </layer>
  <objectgroup color="#00ff00" name="Object Layer 1">
@@ -404,7 +415,7 @@
     <property name="textureWidth" value="38"/>
    </properties>
   </object>
-  <object id="56" name="MiniMap1" type="MiniMap" x="100" y="580" width="32" height="32">
+  <object id="56" name="MiniMap" type="MiniMap" x="100" y="580" width="32" height="32">
    <properties>
     <property name="numFrames" value="1"/>
     <property name="textureHeight" value="80"/>
@@ -439,7 +450,7 @@
  </objectgroup>
  <layer name="Tile Layer 2" width="150" height="15">
   <data encoding="base64" compression="zlib">
-   eJzt0ssJgDAQQMFYobZjAdqAWoFoAzboHnIQ8eYPdAYegUDYHDYlrjRFcz6f0kdD1O3ul4MAAAAAAACAfymLlKqoLt7+yXXGTU+8O+utuXfOb2Kf2rxTX9otvm8FBVwRcg==
+   eJzt2UEKgzAQheFJbmG3PVDF23iAeoG2e0H0Aq4teLOOEGgoSW2bkG7+Dx4BwcyMzE6Rp8qKHKwgwaiZ3FnKVXPTXF6ez4H8S5Nxr9hTAAAAAAAAAAAA4HMnI1JrWlO27pKh3j1yx+DlG7++966XTWjW1Ugfq3v0/nfm+E57UuaOOWvfneu99G4BKR6SsRdz
   </data>
  </layer>
  <objectgroup name="Object Layer 3" offsetx="1" offsety="-1">

@@ -45,8 +45,8 @@ void PauseState::update() {
 		if (currentBtn == 1) s_pauseToMain();								// 1. Return to Main Menu
 		else if (currentBtn == 2) s_resumePlay();							// 2. Resume Playing
 	}
-	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||	// Press Esc key to
-		InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||		// 2017/04/23 or backspace
+	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||	// Press Backspace key to 
+		//InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||		// 2017/04/23 or Esc CAUSING PROBLEMS
 		InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
 		s_resumePlay();														// Return to Game
 	}

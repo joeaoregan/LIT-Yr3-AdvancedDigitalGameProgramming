@@ -67,7 +67,7 @@ void Texture::loadLevelText(std::string currentLevel) {
 }
 void Texture::loadReadyText(std::string input) {
 	SDL_Texture* readyTexture = 0;																							// The actual hardware texture
-	createText(readyTexture, input, "readyID", { 255, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), true);				// Get ready to start message
+	createText(readyTexture, input, "readyID", { 255, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 24), true);				// Get ready to start message
 }
 
 /* 
@@ -96,7 +96,22 @@ void Texture::loadScoreText(std::string currentScore) {
 	createText(score, currentScore, "timerID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), Game::Instance()->getRenderer());						// 2017/04/22 Score
 }
 */
+void Texture::displayDifficulty(int level) {
+	std::string difficultyLevel;
 
+	if (level == 0) {
+		difficultyLevel = "Easy";
+	}
+	else if (level == 1) {
+		difficultyLevel = "Medium";
+	}
+	else if (level == 2) {
+		difficultyLevel = "Hard";
+	}
+
+	SDL_Texture* score = 0;	// The actual hardware texture
+	createText(score, difficultyLevel, "difficultyID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), Game::Instance()->getRenderer());						// 2017/04/22 Score
+}
 /*
 	High Scores State text rendering function
 */
@@ -236,7 +251,7 @@ bool TextureManager::createText(SDL_Texture* text, std::string textureText, std:
 	return false;
 }
 
-bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer* pRenderer) {
+bool TextureManager::load(std::string fileName, std::string id) {
 	SDL_Surface* pTempSurface = IMG_Load(fileName.c_str());
 
 	if (pTempSurface == 0) {
@@ -244,7 +259,7 @@ bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer* pR
 		return false;
 	}
 
-	SDL_Texture* pTexture = SDL_CreateTextureFromSurface(pRenderer, pTempSurface);
+	SDL_Texture* pTexture = SDL_CreateTextureFromSurface(Game::Instance()->getRenderer(), pTempSurface);
 
 	SDL_FreeSurface(pTempSurface);
 

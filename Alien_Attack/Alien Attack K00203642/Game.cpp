@@ -66,9 +66,9 @@ m_scrollSpeed(0.8),				// 2017/04/23 Scroll speed for Player on mini map
 m_bLevelComplete(false),
 m_bChangingState(false) {
     // add some level files to an array
-	//m_levelFiles.push_back("assets/map1.tmx");
-	m_levelFiles.push_back("assets/map3.tmx");
-    m_levelFiles.push_back("assets/map2.tmx");
+		m_levelFiles.push_back("assets/map1.tmx");
+		m_levelFiles.push_back("assets/map2.tmx");
+		m_levelFiles.push_back("assets/map3.tmx");
         
     m_currentLevel = 1;	// start at this level
 }
@@ -169,6 +169,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	GameObjectFactory::Instance()->registerType("MiniMap", new MiniMapCreator());				// 2017/04/23
 	GameObjectFactory::Instance()->registerType("Timer", new TimerCreator());					// 2017/04/23
 	GameObjectFactory::Instance()->registerType("HUD", new HUDCreator());						// 2017/04/23
+	GameObjectFactory::Instance()->registerType("message", new MessageCreator());						// 2017/04/23
     
     // start the menu state
     m_pGameStateMachine = new GameStateMachine();
@@ -176,12 +177,20 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	m_pGameStateMachine->changeState(new TitleScreenState());									// 2017/04/24 Game starts in Title Screen
 
     m_bRunning = true; // everything inited successfully, start the main loop
+
+	SoundManager::Instance()->setVolumeMusic(MIX_MAX_VOLUME / 2);								// 2017/04/25 Set game music to half volume
+	SoundManager::Instance()->setVolumeEffects(MIX_MAX_VOLUME / 2);								// 2017/04/25 Set game effects to half volume
+	Mix_VolumeMusic(SoundManager::Instance()->getVolumeMusic());								// 2017/04/25 Set music volume to half (update volume in SoundManager.h for Settings volume bar)
+	SoundManager::Instance()->setFXvolumes(SoundManager::Instance()->getVolumeEffects());		// 2017/04/25 Set effects volume to half (each set individually in this function)
+	
+	setDifficulty(NORMAL);
+
     return true;
 }
 
 void Game::setCurrentLevel(int currentLevel) {
     m_currentLevel = currentLevel;
-    m_pGameStateMachine->changeState(new GameOverState());
+    m_pGameStateMachine->changeState(new GameOverState());	// Progress
     m_bLevelComplete = false;
 }
 
