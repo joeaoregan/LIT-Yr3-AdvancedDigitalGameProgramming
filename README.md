@@ -3,8 +3,8 @@
 
 Continuous Assessment game for Advanced Digital Game Programming Module of Year 3
 
-# Advanced Digital Game Programming
-# Assignment 3
+## Advanced Digital Game Programming
+### Assignment 3
 
 You are required to modify the exisiting Alien Attack Game which can be downloaded from the Moodle page
 
