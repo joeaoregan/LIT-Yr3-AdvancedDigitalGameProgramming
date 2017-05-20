@@ -10,8 +10,8 @@ You are required to modify the exisiting Alien Attack Game which can be download
 
 Requirements for the game are as follows
 
-1-	The game be modified/enhanced using a variety of programming and data driven approaches. 
-2-	Each submission must include a document explaining the changes made and the OO concepts and patterns introduced. (minimum of 1000 words)
-3-	You will be required to demo the game to your lecturer
-4-	The project and asset files as well as the binary release must be uploaded to moodle or burned to a DVD (if too large for moodle)
-5-	Provide a 30 to 60 second video trailer showing actual game footage for your game. The game footage should include both visuals and audio. The trailer will be uploaded using a separate link.
+1. The game be modified/enhanced using a variety of programming and data driven approaches. 
+2. Each submission must include a document explaining the changes made and the OO concepts and patterns introduced. (minimum of 1000 words)
+3. You will be required to demo the game to your lecturer
+4. The project and asset files as well as the binary release must be uploaded to moodle or burned to a DVD (if too large for moodle)
+5. Provide a 30 to 60 second video trailer showing actual game footage for your game. The game footage should include both visuals and audio. The trailer will be uploaded using a separate link.
