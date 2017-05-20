@@ -57,8 +57,8 @@ void SoundManager::playMusic(std::string id, int loop) {
 }
 
 void SoundManager::playMusic(int song) {
-	//if (song == 0) song = rand() % NUMBER_OF_SONGS + 1;		// random number between 1 and 3
-	if (song == 0) currentSong = rand() % 3 + 1; // random number between 1 and 3
+	//if (song == 0) song = rand() % NUMBER_OF_SONGS + 1;	// random number between 1 and 3
+	if (song == 0) currentSong = rand() % 3 + 1;			// random number between 1 and 3
 	else currentSong = song;
 
 	//currentSong = 1;
@@ -78,7 +78,7 @@ void SoundManager::playMusic(int song) {
 		//currentSong = 3;
 	}
 
-	Mix_PlayMusic(m_music[id], -1);
+	///Mix_PlayMusic(m_music[id], -1); ////////////////////////////COMMENT OUT MUSIC PLAYING
 	//Mix_PlayMusic(m_music["music3"], -1);
 }
 /* 2017/03/16 Function to stop the music playing */

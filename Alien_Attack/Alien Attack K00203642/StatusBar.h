@@ -17,7 +17,8 @@
 #include <SDL_image.h>
 #include "Game.h"
 
-#define MAX_HEALTH 100.0		// The max health for a player
+#define MAX_HEALTH 100.0		// The max health for a Player, and Enemy Boss
+#define TURRET_HEALTH 15		// The max health for a Turret
 #define START_LEFT 0			// Move status bar left to right
 #define START_RIGHT 1			// Move status bar right to left
 
@@ -25,19 +26,21 @@ enum healthBarOrientation { VERTICAL, HORIZONTAL };
 
 class StatusBar {
 public:
-	StatusBar() {};													// Constructor
-	~StatusBar() {};												// Destructor
+	StatusBar() {};								// Constructor
+	~StatusBar() {};							// Destructor
 
 	/* VARIABLES */
 
-	//float startTime = 3.0;										// Start time for countdown timer bars
-	//float endTime = 0.0;											// End time for countdwown timer bars
+	//float startTime = 3.0;					// Start time for countdown timer bars
+	//float endTime = 0.0;						// End time for countdwown timer bars
 
-	SDL_Color fgColour = { 0, 255, 0, 255 };						// Set bar foreground colour as green
-	//SDL_Color fgColourBlue = { 0, 200, 255, 255 };				// Set bar foreground colour as Blue
-	SDL_Color bgColour = { 255, 0, 0, 255 };						// Set bar background colour as red
-	//SDL_Color bgColourOrange = { 255, 150, 0, 255 };				// Set bar background colour as Orange
-	//SDL_Color bgColourBlue = { 0, 0, 255, 255 };					// Set bar background colour as Blue
+	SDL_Color barGreen = { 0, 255, 0, 255 };	// Set bar foreground colour as green for Player
+	SDL_Color bossFG = { 170, 189, 159, 255 };	// Set bar foreground colour as grey for Boss
+	SDL_Color bossBG = { 153, 55, 41, 255 };	// Set bar background colour as grey for Boss
+	SDL_Color barBlue = { 0, 200, 255, 255 };	// Set bar foreground colour as Blue for Turret
+	SDL_Color barRed = { 255, 0, 0, 255 };		// Set bar background colour as red for Player
+	SDL_Color barOrange = { 255, 150, 0, 255 };	// Set bar foreground colour as Orange for Roof Turret
+	SDL_Color barGrey = { 81, 82, 81, 255 };	// Set bar foreground colour as Dark Grey for eskeletor
 
 	/* FUNCTIONS */
 
@@ -70,9 +73,20 @@ public:
 	
 	// Custom functions for various status bars
 	void playerHealthBar(int x, int y, int w, float Percent) {
-		createStatusBar(x + (w / 4), y - 10, w / 2, 5, Percent / MAX_HEALTH, fgColour, bgColour, HORIZONTAL);	// -10 Places 10 pixels above Player Ship
+		createStatusBar(x + (w / 4), y - 10, w / 2, 5, Percent / MAX_HEALTH, barGreen, barRed, HORIZONTAL);		// 2017/04/22 Player Health Bar function
 	}
-	//void enemyBossBar(float health);								// 2017/03/18 Added Bar for Enemy Boss
+	void turretHealthBar(int x, int y, int w, float Percent) {
+		createStatusBar(x + (w / 4), y - 10, w / 2, 5, Percent / TURRET_HEALTH, barBlue, barRed, HORIZONTAL);	// 2017/04/22 Turret Health Bar function
+	}
+	void rTurretHealthBar(int x, int y, int w, float Percent) {
+		createStatusBar(x + (w / 4), y - 10, w / 2, 5, Percent / TURRET_HEALTH, barOrange, barRed, HORIZONTAL);	// 2017/04/22 RoofTurret Health Bar function
+	}
+	void bossBar(int x, int y, float Percent) {
+		createStatusBar(x + 180, y + 65, 5, 100, Percent / MAX_HEALTH, bossFG, bossBG, VERTICAL);				// 2017/04/22 Enemy Boss Health Bar function with coordinate offsets
+	}
+	void eHeManBar(int x, int y, float Percent) {
+		createStatusBar(x, y - 10, 34, 5, Percent / 3, barGrey, bossBG, HORIZONTAL);							// 2017/04/22 Eskeletor Health Bar function with coordinate offsets
+	}
 };
 
 #endif

@@ -8,7 +8,6 @@
 		2017/02/03	Created High Scores Table that reads to and writes from a text file
 */
 
-
 #ifndef HIGH_SCORE_STATE_H
 #define HIGH_SCORE_STATE_H
 

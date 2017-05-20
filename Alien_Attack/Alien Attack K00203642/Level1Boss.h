@@ -4,6 +4,12 @@
 //
 //  Created by shaun mitchell on 31/03/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
+
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/04/22	Added health bar for boss, blending with sprite colours
 */
 
 #ifndef SDL_Game_Programming_Book_Level1Boss_h
@@ -98,6 +104,13 @@ public:
 
         }
     }
+
+	// 2017/04/22 Added draw function
+	virtual void draw() {
+		ShooterObject::draw();
+
+		if (!m_bDying) bar.bossBar(m_position.getX(), m_position.getY(), m_health); // 2017/04/22 If the Boss is not dying draw the health bar
+	}
     
 private:
     

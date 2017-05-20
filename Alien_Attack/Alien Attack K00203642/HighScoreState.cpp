@@ -12,7 +12,6 @@
 #include "HighScoreState.h"
 #include "MainMenuState.h"
 #include "PlayState.h"
-#include "PauseState.h"
 #include "TextureManager.h"
 #include "Game.h"
 #include "MenuButton.h"
@@ -34,8 +33,9 @@ void HighScoreState::update() {
 		Game::Instance()->fullScreenOrWindowed();
 	}
 	*/
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE)) {				// Press escape to return to main menu
-		TheGame::Instance()->getStateMachine()->pushState(new MainMenuState());
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||			// Press Esc key to
+		InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
+		Game::Instance()->getStateMachine()->pushState(new MainMenuState());// Return to main menu
 	}
 
 	if (m_loadingComplete && !m_gameObjects.empty()) {
@@ -62,8 +62,9 @@ void HighScoreState::render() {
 
 bool HighScoreState::onEnter() {
 	TheTextureManager::Instance()->load("assetsNew/TitleHighScores.png", "scoreTitle", TheGame::Instance()->getRenderer()); 
-	
-	TheTextureManager::Instance()->loadHighScoresText(TheGame::Instance()->getRenderer());
+
+	Texture::Instance()->loadHighScoresText();
+	//TheTextureManager::Instance()->loadHighScoresText(TheGame::Instance()->getRenderer());
 	//TheTextureManager::Instance()->drawText("highScoresID", 150, 100, TheGame::Instance()->getRenderer());
 	
 	StateParser stateParser;

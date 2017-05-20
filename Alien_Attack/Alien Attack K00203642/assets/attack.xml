@@ -38,6 +38,18 @@
       <object type="MenuButton" x="200" y="400" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
     </OBJECTS>
   </HIGHSCORES>
+
+  <!-- 2017/04/22 Added assets for Enter Name menu screen -->
+  <ENTERNAME>
+    <TEXTURE>
+      <texture filename="assets/main.png" ID="mainbutton"/>
+      <texture filename="assetsNew/return.png" ID="return"/><!--2017/04/22 Added message to indicate pressing B returns to Game from Pause menu-->
+    </TEXTURE>
+
+    <OBJECTS>
+      <object type="MenuButton" x="200" y="100" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
+    </OBJECTS>
+  </ENTERNAME>
   
   <MENU>
     <TEXTURES>
@@ -54,17 +66,6 @@
       <object type="MenuButton" x="100" y="325" width="400" height="100" textureID="exitbutton" numFrames="0" callbackID="4"/>
     </OBJECTS>
   </MENU>
-
-  <!-- 2017/04/22 Added assets for Enter Name menu screen -->
-  <ENTERNAME>
-    <TEXTURE>
-      <texture filename="assets/main.png" ID="mainbutton"/>
-    </TEXTURE>
-    
-    <OBJECTS>
-      <object type="MenuButton" x="200" y="100" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
-    </OBJECTS>
-  </ENTERNAME>
   
     <PLAY>
         <TEXTURES>

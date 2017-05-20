@@ -16,6 +16,7 @@ void MenuButton::load(std::unique_ptr<LoaderParams> const &pParams) {
     ShooterObject::load(std::move(pParams));
     m_callbackID = pParams->getCallbackID();
     m_currentFrame = MOUSE_OUT;
+	selected = false;
 }
 
 void MenuButton::draw() {
@@ -25,10 +26,10 @@ void MenuButton::draw() {
 void MenuButton::update() {
     Vector2D* pMousePos = TheInputHandler::Instance()->getMousePosition();
     
-    if(pMousePos->getX() < (m_position.getX() + m_width) && pMousePos->getX() > m_position.getX()
+    if(pMousePos->getX() < (m_position.getX() + m_width) && pMousePos->getX() > m_position.getX()			// If the cursor is outside the button
        && pMousePos->getY() < (m_position.getY() + m_height) && pMousePos->getY() > m_position.getY()) {
-        if(TheInputHandler::Instance()->getMouseButtonState(LEFT) && m_bReleased) {
-            m_currentFrame = CLICKED;
+        if(TheInputHandler::Instance()->getMouseButtonState(LEFT) && m_bReleased) {							// mouse button pressed
+            m_currentFrame = CLICKED;																		// Set frame to clicked
             
             if(m_callback != 0)  {
                 m_callback();
@@ -36,6 +37,7 @@ void MenuButton::update() {
             
             m_bReleased = false;
         }
+		//else if (!m_bReleased) m_currentFrame = MOUSE_OVER;
         else if(!TheInputHandler::Instance()->getMouseButtonState(LEFT))  {
             m_bReleased = true;
             m_currentFrame = MOUSE_OVER;
@@ -44,8 +46,14 @@ void MenuButton::update() {
     else {
         m_currentFrame = MOUSE_OUT;
     }
+
+	if (selected) m_currentFrame = CLICKED;
 }
 
 void MenuButton::clean() {
     ShooterObject::clean();
+}
+
+void MenuButton::testcase() {
+	m_currentFrame = MOUSE_OVER;
 }

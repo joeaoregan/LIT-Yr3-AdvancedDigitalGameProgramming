@@ -156,7 +156,7 @@ void InputHandler::update() {
                 
             case SDL_JOYAXISMOTION:
                 onJoystickAxisMove(event);
-				std::cout << "Axis move" << std::endl;		// 2017/04/22
+				std::cout << "Axis move " << getAxisY(0, 1) << std::endl;		// 2017/04/22
                 break;
                 
             case SDL_JOYBUTTONDOWN:
@@ -169,17 +169,11 @@ void InputHandler::update() {
 				std::cout << "Button up" << std::endl;		// 2017/04/22
                 break;
                 
-            case SDL_MOUSEMOTION:
-                onMouseMove(event);
-                break;
+            case SDL_MOUSEMOTION: onMouseMove(event); break;
                 
-            case SDL_MOUSEBUTTONDOWN:
-                onMouseButtonDown(event);
-                break;
+            case SDL_MOUSEBUTTONDOWN: onMouseButtonDown(event); break;
                 
-            case SDL_MOUSEBUTTONUP:
-                onMouseButtonUp(event);
-                break;
+            case SDL_MOUSEBUTTONUP: onMouseButtonUp(event); break;
                 
             case SDL_KEYDOWN:
                 onKeyDown();
@@ -195,8 +189,7 @@ void InputHandler::update() {
 				std::cout << "Backspace" << std::endl;	// 2017/04/22
 				break;
                 
-            default:
-                break;
+            default: break;
         }
     }
 }

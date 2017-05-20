@@ -17,6 +17,7 @@
 
 #include <SDL.h>
 #include "GameObject.h"
+#include "StatusBar.h"	// 2017/04/22 Add Health Bar for all Shooter objects
 
 class ShooterObject : public GameObject {
 public:    
@@ -50,6 +51,8 @@ protected:
     
     // has the explosion sound played?
     bool m_bPlayedDeathSound;
+
+	StatusBar bar;			// 2017/04/22 Health Bar for all shooter objects
 };
 
 #endif /* defined(__SDL_Game_Programming_Book__SDLGameObject__) */

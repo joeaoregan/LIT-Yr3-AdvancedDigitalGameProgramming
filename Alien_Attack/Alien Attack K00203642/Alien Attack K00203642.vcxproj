@@ -28,6 +28,7 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnterNameState.h" />
     <ClInclude Include="Eskeletor.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
@@ -47,6 +48,7 @@
     <ClInclude Include="MapLoader.h" />
     <ClInclude Include="MenuButton.h" />
     <ClInclude Include="MenuState.h" />
+    <ClInclude Include="Message.h" />
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="Player.h" />
@@ -72,6 +74,7 @@
     <ClCompile Include="base64.cpp" />
     <ClCompile Include="BulletHandler.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="EnterNameState.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="GameOverState.cpp" />

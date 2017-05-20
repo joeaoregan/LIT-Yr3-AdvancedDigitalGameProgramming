@@ -40,6 +40,9 @@ void GameOverState::render(){
             m_gameObjects[i]->draw();
         }
     }
+
+	Texture::Instance()->loadReadyText(Game::Instance()->getPlayerName() + " scored " + std::to_string(Game::Instance()->getScore()));	// 2017/04/22
+	Texture::Instance()->draw("readyID", 230, 450, 340, 20, Game::Instance()->getRenderer());											// 2017/04/22 Indicate to player that B button returns to game play	
 }
 
 bool GameOverState::onEnter() {

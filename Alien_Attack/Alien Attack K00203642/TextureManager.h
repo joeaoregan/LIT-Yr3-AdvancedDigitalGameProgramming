@@ -10,6 +10,7 @@
 
 	Done:
 		2017/03/16	Added SDL_ttf to render text to textures
+					Added custom functions for rendering text for timer and level
 */
 
 #ifndef __TextureManager__
@@ -35,13 +36,16 @@ public:
 
 #ifdef _SDL_TTF_H
 	//Creates image from font string
-	void loadReadyText(std::string input, SDL_Renderer* rend);
-	void loadInputText(std::string input, SDL_Renderer* rend);
-	void loadEnterNameText(std::string enterName, SDL_Renderer* rend);
-	void loadLevelText(std::string currentLevel, SDL_Renderer* rend);
-	void loadScoreText(std::string currentScore, SDL_Renderer* rend);
-	void loadHighScoresText(SDL_Renderer* rend);
-	bool loadFromRenderedText(SDL_Texture* text, std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, SDL_Renderer* rend, bool textWrapped = false);
+	void loadReturnToMenuText(std::string input);	// 2017/04/22 Message Player return to menu
+	void loadReadyText(std::string input);			// Message Player ready to start
+	void loadInputText(std::string input);			// Text input by player
+	void loadEnterNameText(std::string enterName);	// Message to enter name
+	void loadLevelText(std::string currentLevel);	// Display the current level
+	void loadTimerText(std::string currentTime);	// Display the game timer
+	void loadScoreText(std::string currentScore);	// Display the score
+
+	void loadHighScoresText();
+	bool createText(SDL_Texture* text, std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, SDL_Renderer* rend, bool textWrapped = false);
 #endif
 
 	void free();												// Deallocates texture

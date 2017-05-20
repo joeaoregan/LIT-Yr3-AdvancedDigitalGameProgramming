@@ -10,6 +10,7 @@
 
 	Done:
 		2017/04/22	Added most recent object collided with variable to adjust collision functionality for health, and health bar
+					Added health bar, health resets when life is lost, and player is resurrected
 		2017/03/16	Pressing the M button in game turns Music On / Off
 		2017/04/21	Pressing CTRL (right) fires secondary weapon, with own graphic, and sound effect
 		2017/04/21	Added secondary weapon for player, requires separate counter for bullets
@@ -68,7 +69,8 @@ void Player::load(std::unique_ptr<LoaderParams> const &pParams) {
 void Player::draw() {    
     ShooterObject::draw();					// player has no special drawing requirements
 
-	if (!m_bDying) barPl.playerHealthBar(m_position.getX(), m_position.getY() + 60, 100, m_health); // 2017/04/22 If the player is not dying draw the health bar
+	// Health Bar
+	if (!m_bDying) bar.playerHealthBar(m_position.getX(), m_position.getY() + 60, 100, m_health); // 2017/04/22 If the player is not dying draw the health bar
 }
 
 void Player::handleAnimation() {
@@ -164,6 +166,8 @@ void Player::ressurect() {
     
     m_dyingCounter = 0;
     m_invulnerable = true;
+
+	m_health = 100;	// 2017/04/22 Reset the Players health
 }
 
 void Player::clean() {

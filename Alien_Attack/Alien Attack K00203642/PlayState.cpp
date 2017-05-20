@@ -10,6 +10,7 @@
 
 	Done:
 		2017/04/22	Pressing the Pause button on gamepad (button 7 on NVidia controller) pauses the game
+					Increased screen size, and created viewport at bottom of screen to render lives, level, timer, and score
 		2017/04/16	Added Timer class to handle the countdown clock, replacing the game timer function
 		2017/		Added High Scores update function to store the name and score at the end of the game to an
 					external file holding a list of 10 names and scores scores.txt
@@ -27,15 +28,18 @@
 #include "LevelParser.h"
 #include "Level.h"
 #include "BulletHandler.h"
-#include "Timer.h"			// 2017/04/16 Timer class for creating a game clock
+#include "Timer.h"					// 2017/04/16 Timer class for creating a game clock
 
-GameObject* clock1 = new Timer();
+GameObject* clock1 = new Timer();	// 2017/04/16 Timer for game
 
 const std::string PlayState::s_playID = "PLAY";
 std::stringstream timeText;
-bool nameEntered = false;
+bool nameEntered = true;			// 2017/04/22 Test --> set false for entering name
 
 //unsigned int lastTime = 0, currentTime, gameTimer = 0;
+
+SDL_Rect gameViewport;				// 2017/04/22 Main game screen view port, this is the section of the window where the game is rendered
+SDL_Rect statusViewport;
 
 void PlayState::update() {
     if(m_loadingComplete && !m_exiting)     {
@@ -138,20 +142,22 @@ void PlayState::highScoreUpdate(std::string name, int score) {
 	}
 }
 
-std::string inputText = "Name";
-bool quit = false;
+//std::string inputText = "Name";	// 2017/04/22 Name entered now stored in Game.h
+//bool quit = false;
 unsigned int readyTextTimer;
-bool renderText;
-SDL_Event event;
+//bool renderText;
+//SDL_Event event;
 
 void PlayState::render() {
-	if (!nameEntered) {
+	SDL_RenderSetViewport(Game::Instance()->getRenderer(), &gameViewport);									// 2017/04/22 Set the viewport to Game Screen
+	/*
+	if (!nameEntered) {																						// If a name hasn't already been entered
 		SDL_SetRenderDrawColor(Game::Instance()->getRenderer(), 0x00, 0x00, 0x00, 0xFF);					// Clear background
 		Texture::Instance()->draw("enterNameID", 50, 100, 400, 20, Game::Instance()->getRenderer());		// Display enter name message
-		Texture::Instance()->loadInputText(inputText, Game::Instance()->getRenderer());
-		Texture::Instance()->drawText("inputTextID", 50, 150, Game::Instance()->getRenderer());
+		Texture::Instance()->loadInputText(inputText);														// Render the input text to a texture
+		Texture::Instance()->drawText("inputTextID", 50, 150, Game::Instance()->getRenderer());				// Display the input text on screen
 
-		renderText = false;		// flag that keeps track of whether we need to update the texture
+		renderText = false;																					// flag that keeps track of whether we need to update the texture
 		
 		/*
 		//while (SDL_PollEvent(&e) != 0) {
@@ -200,7 +206,7 @@ void PlayState::render() {
 			
 		//}
 		*/
-		
+		/*		
 		while (SDL_PollEvent(&event) != 0) {
 			//User requests quit
 			if (event.type == SDL_QUIT) {
@@ -227,7 +233,7 @@ void PlayState::render() {
 					renderText = true;		// Set the text update flag
 				}
 				else if (event.key.keysym.sym == SDLK_RETURN) {
-					TheGame::Instance()->setPlayerName(inputText);						// Set the Players name for high scores
+					TheGame::Instance()->setPlayerName(inputText);							// Set the Players name for high scores
 					nameEntered = true;
 				}
 			}
@@ -242,25 +248,22 @@ void PlayState::render() {
 				}
 			}
 		}
-		
-
-		//Rerender text if needed
-		if (renderText) {
-			//Text is not empty
-			if (inputText != "") {
-				//Render new text
+				
+		if (renderText) {																	// Rerender text if needed			
+			if (inputText != "") {															// If the input text is not empty				
 				//gInputTextTexture.loadFromRenderedText(inputText.c_str(), textColor);
-				TheTextureManager::Instance()->loadInputText(inputText, TheGame::Instance()->getRenderer());
+				Texture::Instance()->loadInputText(inputText);								// Render new text
 			}
 			//Text is empty
 			else {
 				//Render space texture
-				//gInputTextTexture.loadFromRenderedText(" ", textColor);	// Can't render an empty string, so has to be space
-				TheTextureManager::Instance()->loadInputText(" ", TheGame::Instance()->getRenderer());
+				//gInputTextTexture.loadFromRenderedText(" ", textColor);					// Can't render an empty string, so has to be space
+				Texture::Instance()->loadInputText(" ");									// Has to be something in the string to render it
 			}
 		}
 	}
 	else if(nameEntered){
+		*/
 		if (m_loadingComplete) {
 			if (pLevel != 0) {
 				pLevel->render();
@@ -268,42 +271,59 @@ void PlayState::render() {
 
 			// Display ready message for 2.5 seconds
 			if (SDL_GetTicks() < readyTextTimer + 2500) {
-				TheTextureManager::Instance()->loadReadyText("Get Ready " + inputText, TheGame::Instance()->getRenderer());
-				TheTextureManager::Instance()->drawText("readyID", 210, 190, TheGame::Instance()->getRenderer());
+				Texture::Instance()->loadReadyText("Get Ready " + Game::Instance()->getPlayerName());
+				Texture::Instance()->drawText("readyID", 210, 190, Game::Instance()->getRenderer());
 			}
 
 			//gameTimer();	// Calculate and display the game timer
 			clock1->update();	// 2017/04/16 Timer update function
 
 			//TheTextureManager::Instance()->loadFromRenderedText("Level 1", "testxxx", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), TheGame::Instance()->getRenderer());		// Lives in top left corner
+			
+			TheBulletHandler::Instance()->drawBullets();
 
-			TheTextureManager::Instance()->loadLevelText("Level 1", TheGame::Instance()->getRenderer());
-			TheTextureManager::Instance()->drawText("levelID", 150, 0, TheGame::Instance()->getRenderer());
+			// 2017/04/22 Game info viewport
+			SDL_RenderSetViewport(Game::Instance()->getRenderer(), &statusViewport);				// 2017/04/22 Set the viewport to Game Screen
 
+			// Draw Lives
 			for (int i = 0; i < TheGame::Instance()->getPlayerLives(); i++) {
 				TheTextureManager::Instance()->drawFrame("lives", i * 30, 0, 32, 30, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
 			}
+			
+			// Display Level Number
+			//Texture::Instance()->loadLevelText("Level 1", TheGame::Instance()->getRenderer());
+			Texture::Instance()->loadLevelText("Level " + std::to_string(Game::Instance()->getCurrentLevel()));	// 2017/04/22 Changed to show current level number
+			Texture::Instance()->drawText("levelID", 120, 0, TheGame::Instance()->getRenderer());
 
+			// Display Timer
 			// id, x, y, width, height, currentRow, currentFrame, pRenderer, angle, alpha, flip
-			TheTextureManager::Instance()->drawFrame("timerID", 400, 0, 150, 30, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
+			Texture::Instance()->drawFrame("timerID", 300, 0, 150, 30, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
 			//TheTextureManager::Instance()->drawText("testxxx", 100, 100, TheGame::Instance()->getRenderer());
 
-			TheBulletHandler::Instance()->drawBullets();
+			SDL_RenderSetViewport(Game::Instance()->getRenderer(), NULL);				// 2017/04/22 Set the viewport to Game Screen
 		}
-    }
+    //}
+
+	SDL_RenderSetViewport(Game::Instance()->getRenderer(), NULL);					// Clear View Port
 }
 
 bool PlayState::onEnter() {
+	Game::Instance()->setEnterTextState(false);	// 2017/04/22 
+
+	gameViewport = { 0, 0, 800, 480 };		// 2017/04/22 Set view port x, y, w, h
+	statusViewport = { 0, 480, 800, 30 };	// 2017/04/22 Set view port x, y, w, h
+
     TheGame::Instance()->setPlayerLives(3);
 		    
     LevelParser levelParser;
     pLevel = levelParser.parseLevel(TheGame::Instance()->getLevelFiles()[TheGame::Instance()->getCurrentLevel() - 1].c_str());
+
+	// Input Text
 	readyTextTimer = SDL_GetTicks();
-	renderText = true;
+	//renderText = true;
 	nameEntered = false;	// Input a name
 
-	Texture::Instance()->loadEnterNameText("Please Enter Your Name:", Game::Instance()->getRenderer());			// Render message indicating to enter name
-
+	Texture::Instance()->loadEnterNameText("Please Enter Your Name:");			// Render message indicating to enter name
     
     TheTextureManager::Instance()->load("assets/bullet1.png", "bullet1", TheGame::Instance()->getRenderer());
     TheTextureManager::Instance()->load("assets/bullet2.png", "bullet2", TheGame::Instance()->getRenderer());

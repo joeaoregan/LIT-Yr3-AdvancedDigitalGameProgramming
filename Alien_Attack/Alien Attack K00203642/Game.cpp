@@ -33,6 +33,7 @@
 #include "SoundManager.h"
 #include "RoofTurret.h"
 #include "ShotGlider.h"
+
 #include "AngryGlider.h"		// 2017/03/14
 #include "Eskeletor.h"
 #include "Level1Boss.h"
@@ -178,7 +179,9 @@ void Game::handleEvents() {
 		Game::Instance()->fullScreenOrWindowed();
 	}
 	*/
-		TheInputHandler::Instance()->update();
+		//TheInputHandler::Instance()->update();
+		if (!enterTextState) TheInputHandler::Instance()->update();	// 2017/04/22 If not in the state for entering text update
+			//if(m_pGameStateMachine->getGameStates() != 
 }
 
 void Game::clean() {

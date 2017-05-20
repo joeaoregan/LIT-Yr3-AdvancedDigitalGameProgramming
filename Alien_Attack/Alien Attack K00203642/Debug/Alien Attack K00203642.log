@@ -1,2 +1,7 @@
-﻿  Alien Attack K00203642.vcxproj -> D:\GitHub\Yr3_Advanced_Game_Prog\Alien_Attack\Debug\Alien Attack K00203642.exe
+﻿  PlayState.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Alien Attack K00203642.vcxproj -> D:\GitHub\Yr3_Advanced_Game_Prog\Alien_Attack\Debug\Alien Attack K00203642.exe
   Alien Attack K00203642.vcxproj -> D:\GitHub\Yr3_Advanced_Game_Prog\Alien_Attack\Debug\Alien Attack K00203642.pdb (Partial PDB)

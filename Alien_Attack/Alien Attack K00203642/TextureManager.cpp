@@ -9,6 +9,7 @@
 	Student Number:	K00203642
 
 	Done:
+		2017/04/22	Included Game class to use renderer directly in functions instead of passing it in
 		2017/02/25 fstream added to read in high scores from file to render to screen using loadFromRenderedText() in TextureManager class
 */
 #include "TextureManager.h"
@@ -17,6 +18,8 @@
 #include <iomanip>
 #include <sstream>		// For timer
 #include <fstream>		// 2017/02/25 Read high scores from file
+
+#include "Game.h"		// 2017/04/22	Added to include renderer in functions
 
 //#include <SDL_ttf.h>	// 16/02/2017 Add font
 
@@ -38,27 +41,38 @@ void TextureManager::drawText(std::string id, int x, int y, SDL_Renderer* pRende
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
 
-void TextureManager::loadReadyText(std::string input, SDL_Renderer* rend) {
+void Texture::loadReturnToMenuText(std::string input) {
 	SDL_Texture* readyTexture = 0;	// The actual hardware texture
-	TheTextureManager::Instance()->loadFromRenderedText(readyTexture, input, "readyID", { 255, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), rend, true);		// Lives in top left corner
+	Texture::Instance()->createText(readyTexture, input, "returnToMenuID", { 255, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), Game::Instance()->getRenderer(), true);			// Get ready to start message
 }
-void TextureManager::loadInputText(std::string input, SDL_Renderer* rend) {
+void Texture::loadReadyText(std::string input) {
+	SDL_Texture* readyTexture = 0;	// The actual hardware texture
+	Texture::Instance()->createText(readyTexture, input, "readyID", { 255, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), Game::Instance()->getRenderer(), true);				// Get ready to start message
+}
+void Texture::loadInputText(std::string input) {
 	SDL_Texture* inputTextTexture = 0;	// The actual hardware texture
-	TheTextureManager::Instance()->loadFromRenderedText(inputTextTexture, input, "inputTextID", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), rend, true);		// Lives in top left corner
+	Texture::Instance()->createText(inputTextTexture, input, "inputTextID", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), Game::Instance()->getRenderer(), true);	// Input text
 }
-void TextureManager::loadEnterNameText(std::string nameText, SDL_Renderer* rend) {
+void Texture::loadEnterNameText(std::string nameText) {
 	SDL_Texture* enterName = 0;	// The actual hardware texture
-	TheTextureManager::Instance()->loadFromRenderedText(enterName, nameText, "enterNameID", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), rend, true);		// Lives in top left corner
+	Texture::Instance()->createText(enterName, nameText, "enterNameID", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), Game::Instance()->getRenderer(), true);		// Player Enter Name
 }
-void TextureManager::loadLevelText(std::string currentLevel, SDL_Renderer* rend) {
+void Texture::loadLevelText(std::string currentLevel) {
 	SDL_Texture* level = 0;	// The actual hardware texture
-	TheTextureManager::Instance()->loadFromRenderedText(level, currentLevel, "levelID", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), rend);		// Lives in top left corner
+	//Texture::Instance()->loadFromRenderedText(level, currentLevel, "levelID", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), rend);									// Current Level
+	Texture::Instance()->createText(level, currentLevel, "levelID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), Game::Instance()->getRenderer());						// Current Level
 }
-void TextureManager::loadScoreText(std::string currentScore, SDL_Renderer* rend) {
+void Texture::loadTimerText(std::string currentTime) {
+	SDL_Texture* time = 0;	// The actual hardware texture
+	//Texture::Instance()->loadFromRenderedText(score, currentScore, "timerID", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), rend);									// Game Timer
+	Texture::Instance()->createText(time, currentTime, "timerID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), Game::Instance()->getRenderer());							// Game Timer
+}
+void Texture::loadScoreText(std::string currentScore) {
 	SDL_Texture* score = 0;	// The actual hardware texture
-	TheTextureManager::Instance()->loadFromRenderedText(score, currentScore, "timerID", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), rend);
+	Texture::Instance()->createText(score, currentScore, "timerID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), Game::Instance()->getRenderer());						// 2017/04/22 Score
 }
-void TextureManager::loadHighScoresText(SDL_Renderer* rend) {
+
+void TextureManager::loadHighScoresText() {
 	std::string player;
 	std::stringstream highScores;
 
@@ -114,10 +128,10 @@ void TextureManager::loadHighScoresText(SDL_Renderer* rend) {
 
 	//std::string highScores = "Player 1:  10\nPlayer 2:  20\nPlayer 3:  30\nPlayer 4:  40\nPlayer 5:  50\nPlayer 6:  60\nPlayer 7:  70\nPlayer 8:  80\nPlayer 9:  90\nPlayer 10: 100";
 	SDL_Texture* highScore = 0;	// The actual hardware texture
-	TheTextureManager::Instance()->loadFromRenderedText(highScore, highScores.str().c_str(), "highScoresID", { 100, 100, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), rend, true);
+	Texture::Instance()->createText(highScore, highScores.str().c_str(), "highScoresID", { 100, 100, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), Game::Instance()->getRenderer(), true);
 }
 
-bool TextureManager::loadFromRenderedText(SDL_Texture* text, std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, SDL_Renderer* pRenderer, bool textWrapped) {
+bool TextureManager::createText(SDL_Texture* text, std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, SDL_Renderer* pRenderer, bool textWrapped) {
 	free();	//Get rid of preexisting texture
 
 	if (!textWrapped) textSurface = TTF_RenderText_Solid(font, textureText.c_str(), textColor);	//Render text surface
