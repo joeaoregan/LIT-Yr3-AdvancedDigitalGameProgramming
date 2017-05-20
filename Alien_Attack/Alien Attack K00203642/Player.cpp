@@ -9,6 +9,7 @@
 	Student Number:	K00203642
 
 	Done:
+		2017/04/23	Added check for collision between Player and Power Ups
 		2017/04/22	Added most recent object collided with variable to adjust collision functionality for health, and health bar
 					Added health bar, health resets when life is lost, and player is resurrected
 		2017/03/16	Pressing the M button in game turns Music On / Off
@@ -26,7 +27,6 @@
 
 using namespace std;
 
-
 Player::Player() :  ShooterObject(),
 m_invulnerable(false),
 m_invulnerableTime(200),
@@ -37,9 +37,16 @@ m_invulnerableCounter(0)
 void Player::collision() {
     // if the player is not invulnerable then set to dying and change values for death animation tile sheet
     if(!m_invulnerable && !TheGame::Instance()->getLevelComplete()) {
-		if (getRecentCollision() == BULLET && m_health > 10) {	// if the player recently collided with a bullet and its health is greater than 10
+		if (getRecentCollision() == BULLET && m_health > 10) {									// if the player recently collided with a bullet and its health is greater than 10
 		//if (getRecentCollision() == BULLET) {
-			m_health -= 10;											// deduct 10 from health
+			m_health -= 10;																		// deduct 10 from health
+		}
+		else if (getRecentCollision() == POWERUP) {												// If player has collided with a power up
+			if (Game::Instance()->getPlayerLives() < 3)											// and the number of lives is less than 3, 
+				Game::Instance()->setPlayerLives(Game::Instance()->getPlayerLives() + 1);		// Increase the number of lives
+			else if (m_health < 100) {															// Or if health is less than 100
+				m_health = 100;																	// Increase the players health
+			}
 		}
 		else {
 			m_textureID = "largeexplosion";

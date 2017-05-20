@@ -161,6 +161,9 @@
     <ClInclude Include="Message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PowerUp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjectFactory.cpp">
@@ -267,6 +270,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\map1.tmx">
+      <Filter>Resouce Files</Filter>
+    </None>
+    <None Include="assets\map2.tmx">
       <Filter>Resouce Files</Filter>
     </None>
   </ItemGroup>

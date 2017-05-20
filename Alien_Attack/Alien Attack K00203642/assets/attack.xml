@@ -16,9 +16,9 @@
   <!-- 2017/03/16 Added assets for Settings menu screen -->
   <SETTINGS>
     <TEXTURES>
-      <texture filename="assets/main.png" ID="mainbutton"/>                      <!-- Return to main menu button image -->
-      <texture filename="assetsNew/buttonMusic.png" ID="musicButton"/>           <!-- 2017/03/16 Turn Music On / Off image -->
-      <texture filename="assetsNew/buttonFullScreen.png" ID="fullscreenButton"/> <!-- 2017/03/16 Full Screen On / Off image -->
+      <texture filename="assets/main.png" ID="mainbutton"/>                   <!-- Return to main menu button image -->
+      <texture filename="assets/buttonMusic.png" ID="musicButton"/>           <!-- 2017/03/16 Turn Music On / Off image -->
+      <texture filename="assets/buttonFullScreen.png" ID="fullscreenButton"/> <!-- 2017/03/16 Full Screen On / Off image -->
     </TEXTURES>
 
     <OBJECTS>
@@ -42,21 +42,21 @@
   <!-- 2017/04/22 Added assets for Enter Name menu screen -->
   <ENTERNAME>
     <TEXTURE>
-      <texture filename="assets/main.png" ID="mainbutton"/>
-      <texture filename="assetsNew/return.png" ID="return"/><!--2017/04/22 Added message to indicate pressing B returns to Game from Pause menu-->
+      <texture filename="assets/main.png" ID="mainbutton1"/>
+      <texture filename="assets/return.png" ID="return"/><!--2017/04/22 Added message to indicate pressing B returns to Game from Pause menu-->
     </TEXTURE>
 
     <OBJECTS>
-      <object type="MenuButton" x="200" y="100" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
+      <object type="MenuButton" x="200" y="100" width="200" height="80" textureID="mainbutton1" numFrames="0" callbackID="1"/>
     </OBJECTS>
   </ENTERNAME>
   
   <MENU>
     <TEXTURES>
-      <texture filename="assetsNew/menuButtonPlay.png" ID="playbutton"/>
-      <texture filename="assetsNew/menuButtonScore.png" ID="scorebutton"/>
-      <texture filename="assetsNew/menuButtonSettings.png" ID="settingsbutton"/>
-      <texture filename="assetsNew/menuButtonExit.png" ID="exitbutton"/>
+      <texture filename="assets/menuButtonPlay.png" ID="playbutton"/>
+      <texture filename="assets/menuButtonScore.png" ID="scorebutton"/>
+      <texture filename="assets/menuButtonSettings.png" ID="settingsbutton"/>
+      <texture filename="assets/menuButtonExit.png" ID="exitbutton"/>
     </TEXTURES>
 
     <OBJECTS>
@@ -83,7 +83,7 @@
         <TEXTURES>
             <texture filename="assets/resume.png" ID="resumebutton"/>
             <texture filename="assets/main.png" ID="mainbutton"/>
-          <texture filename="assetsNew/return.png" ID="return"/><!--2017/04/22 Added message to indicate pressing B returns to Game from Pause menu-->
+          <texture filename="assets/return.png" ID="return"/><!--2017/04/22 Added message to indicate pressing B returns to Game from Pause menu-->
         </TEXTURES>
         
         <OBJECTS>
@@ -103,7 +103,7 @@
         </TEXTURES>
         
         <OBJECTS>
-            <object type="AnimatedGraphic" x="200" y="100" width="190" height="30" textureID="gameovertext" numFrames="2" animSpeed="2"/>
+            <object type="AnimatedGraphic" x="305" y="50" width="190" height="30" textureID="gameovertext" numFrames="2" animSpeed="2"/>
             <object type="MenuButton" x="200" y="200" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
             <object type="MenuButton" x="200" y="300" width="200" height="80" textureID="restartbutton" numFrames="0" callbackID="2"/>
         </OBJECTS>

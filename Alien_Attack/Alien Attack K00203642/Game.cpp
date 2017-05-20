@@ -33,6 +33,7 @@
 #include "SoundManager.h"
 #include "RoofTurret.h"
 #include "ShotGlider.h"
+#include "PowerUp.h"			// 2017/04/22
 
 #include "AngryGlider.h"		// 2017/03/14
 #include "Eskeletor.h"
@@ -124,10 +125,11 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	TheSoundManager::Instance()->load("OriginalMusic/song2.mp3", "music3", SOUND_MUSIC);			// 2017/03/16 Added song
     TheSoundManager::Instance()->load("assets/boom.wav", "explode", SOUND_SFX);
 	TheSoundManager::Instance()->load("assets/phaser.wav", "shoot", SOUND_SFX);
-	TheSoundManager::Instance()->load("assetsNew/laser2.wav", "fire", SOUND_SFX);						// 2017/04/21 Added Fire effect for Player weapon
+	TheSoundManager::Instance()->load("SoundFX/laser2.wav", "fire", SOUND_SFX);						// 2017/04/21 Added Fire effect for Player weapon
+	TheSoundManager::Instance()->load("SoundFX/powerup.wav", "puFX", SOUND_SFX);					// 2017/04/21 Added Fire effect for Player weapon
 
 	//TheSoundManager::Instance()->playMusic("music1", -1);
-	TheSoundManager::Instance()->playMusic(rand() % 3 + 1);											// 2017/03/16 Play random song
+	SoundManager::Instance()->playMusic(rand() % 3 + 1);											// 2017/03/16 Play random song
     
     TheInputHandler::Instance()->initialiseJoysticks();												// 2017/04/21 Needs to be uncommented for joystick to initialise
     
@@ -139,10 +141,11 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     TheGameObjectFactory::Instance()->registerType("Turret", new TurretCreator());
     TheGameObjectFactory::Instance()->registerType("Glider", new GliderCreator());
 	TheGameObjectFactory::Instance()->registerType("ShotGlider", new ShotGliderCreator());
-	TheGameObjectFactory::Instance()->registerType("AngryGlider", new AngryGliderCreator());		// 2017/03/14
     TheGameObjectFactory::Instance()->registerType("RoofTurret", new RoofTurretCreator());
     TheGameObjectFactory::Instance()->registerType("Eskeletor", new EskeletorCreator());
     TheGameObjectFactory::Instance()->registerType("Level1Boss", new Level1BossCreator());
+	GameObjectFactory::Instance()->registerType("AngryGlider", new AngryGliderCreator());		// 2017/03/14
+	GameObjectFactory::Instance()->registerType("PowerUp", new PowerUpCreator());				// 2017/04/22
     
     // start the menu state
     m_pGameStateMachine = new GameStateMachine();
@@ -179,9 +182,8 @@ void Game::handleEvents() {
 		Game::Instance()->fullScreenOrWindowed();
 	}
 	*/
-		//TheInputHandler::Instance()->update();
-		if (!enterTextState) TheInputHandler::Instance()->update();	// 2017/04/22 If not in the state for entering text update
-			//if(m_pGameStateMachine->getGameStates() != 
+	if (!enterTextState) TheInputHandler::Instance()->update();	// 2017/04/22 If not in the state for entering text update
+		//if(m_pGameStateMachine->getGameStates() != 
 }
 
 void Game::clean() {

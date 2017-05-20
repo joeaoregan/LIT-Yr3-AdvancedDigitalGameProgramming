@@ -56,8 +56,9 @@ public:
     bool updating() { return m_bUpdating; }						// is the object currently being updated?
        
     bool dead() { return m_bDead; }								// is the object dead?
-        
-    bool dying() { return m_bDying; }							// is the object doing a death animation?
+	void kill() { m_bDead = true; }								// 2017/04/22 Kill the object
+
+	bool dying() { return m_bDying; }							// is the object doing a death animation?
         
     void setUpdating(bool updating) { m_bUpdating = updating; }	// set whether to update the object or not
 

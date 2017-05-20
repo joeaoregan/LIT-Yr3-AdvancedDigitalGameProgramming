@@ -15,7 +15,7 @@
 #ifndef __SDL_Game_Programming_Book__Player__
 #define __SDL_Game_Programming_Book__Player__
 
-enum collideTypes { BULLET };
+enum collideTypes { BULLET, POWERUP };
 
 #include <iostream>
 #include <vector>

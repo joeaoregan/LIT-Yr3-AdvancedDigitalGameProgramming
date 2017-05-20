@@ -53,6 +53,7 @@
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayState.h" />
+    <ClInclude Include="PowerUp.h" />
     <ClInclude Include="RoofTurret.h" />
     <ClInclude Include="ScrollingBackground.h" />
     <ClInclude Include="SettingsState.h" />
@@ -104,11 +105,16 @@
     <ClCompile Include="tinyxmlparser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="assets\attack.xml" />
+    <Xml Include="assets\attack.xml">
+      <SubType>Designer</SubType>
+    </Xml>
     <Xml Include="assets\objecttypes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="assets\map1.tmx" />
+    <None Include="assets\map1.tmx">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="assets\map2.tmx" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="scores.txt" />

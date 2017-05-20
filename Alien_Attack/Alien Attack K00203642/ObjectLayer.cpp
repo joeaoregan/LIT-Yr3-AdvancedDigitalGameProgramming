@@ -4,6 +4,12 @@
 //
 //  Created by shaun mitchell on 10/03/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
+
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/04/23	Added check for collision between Player and Power Ups
 */
 
 #include "ObjectLayer.h"
@@ -23,7 +29,8 @@ ObjectLayer::~ObjectLayer() {
 void ObjectLayer::update(Level* pLevel) {
     m_collisionManager.checkPlayerEnemyBulletCollision(pLevel->getPlayer());
     m_collisionManager.checkEnemyPlayerBulletCollision((const std::vector<GameObject*>&)m_gameObjects);
-    m_collisionManager.checkPlayerEnemyCollision(pLevel->getPlayer(), (const std::vector<GameObject*>&)m_gameObjects);
+	m_collisionManager.checkPlayerEnemyCollision(pLevel->getPlayer(), (const std::vector<GameObject*>&)m_gameObjects);
+	m_collisionManager.checkPlayerPowerUpCollision(pLevel->getPlayer(), (const std::vector<GameObject*>&)m_gameObjects); // 2017/04/22 Check Player collisions with Power Ups
 
 	if(pLevel->getPlayer()->getPosition().getX() + pLevel->getPlayer()->getWidth() < TheGame::Instance()->getGameWidth()) {
 		m_collisionManager.checkPlayerTileCollision(pLevel->getPlayer(), pLevel->getCollidableLayers());

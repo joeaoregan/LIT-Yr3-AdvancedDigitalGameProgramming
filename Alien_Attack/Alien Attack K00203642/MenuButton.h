@@ -35,7 +35,7 @@ public:
 private:    
     enum button_state { MOUSE_OUT, MOUSE_OVER, CLICKED };
     
-   // bool m_bReleased;			//2017/04/22 Adding keyboard support to main menu
+    //bool m_bReleased;
     
     int m_callbackID;
     
