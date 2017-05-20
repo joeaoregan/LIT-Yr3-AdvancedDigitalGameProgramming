@@ -154,6 +154,7 @@
     <PLAY>
         <TEXTURES>
           <texture filename="assets/grass.png" ID="grass"/>
+          <texture filename="assets/reverse.png" ID="reverse"/>
           <texture filename="assets/helicopter.png" ID="helicopter"/>
           <texture filename="assets/helicopter2.png" ID="helicopter2"/>
         </TEXTURES>

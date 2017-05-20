@@ -35,44 +35,27 @@ void GameOverState::s_restartPlay() {
 
 void GameOverState::update() {
 	// Handle button presses
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0, 0)) {
-		if (currentBtn == 1) s_gameOverToMain();							// 1. Return to Main Menu
-		else if (currentBtn == 2) s_restartPlay();							// 2. Restart The Game
-	}
-	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||	// Press Esc key to
-		InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||		// 2017/04/23 or backspace
-		InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
-		s_gameOverToMain();													// Return to Main Menu
-	}
+	if (!buttonPressed()) {
+		MenuState::update();													// Handles Up and down buttons
 
-	// If up key, or gamepad up pressed
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) || InputHandler::Instance()->getAxisY(0, 1) < 0) {
-		if (!pressed) setCurrentBtn(BUTTON_UP);
-		pressed = true;
-		std::cout << "currentButton " << currentBtn << std::endl;
-	}
-	//else pressed = false;
-
-	// If down key, or gamepad down pressed
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN) || InputHandler::Instance()->getAxisY(0, 1) > 0) {
-		if (!pressed) setCurrentBtn(BUTTON_DOWN);
-		pressed = true;
-		std::cout << "currentButton " << currentBtn << std::endl;
+		if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0, 0)) {
+			if (currentBtn == 1) s_gameOverToMain();							// 1. Return to Main Menu
+			else if (currentBtn == 2) s_restartPlay();							// 2. Restart The Game
+		}
+		else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||	// Press Esc key to
+			InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||		// 2017/04/23 or backspace
+			InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
+			s_gameOverToMain();													// Return to Main Menu
+		}
 	}
 
-	selectCurrentButton();
+	highlightCurrentButton(&m_gameObjects);										// highlight the current button for keyboard / gamepad
 
-	// 2017/04/22 Leave 1/4 of a second before the button selector moves again
-	if (SDL_GetTicks() > btnTimer + 250) {
-		btnTimer = SDL_GetTicks();			// Reset time between button presses
-		pressed = false;					// Reset ability to press button
+	if (m_loadingComplete && !m_gameObjects.empty()) {
+		for (int i = 0; i < m_gameObjects.size(); i++) {
+			m_gameObjects[i]->update();
+		}
 	}
-
-    if(m_loadingComplete && !m_gameObjects.empty()) {
-        for(int i = 0; i < m_gameObjects.size(); i++) {
-            m_gameObjects[i]->update();
-        }
-    }
 }
 
 void GameOverState::render(){
@@ -82,8 +65,11 @@ void GameOverState::render(){
         }
     }
 
-	Texture::Instance()->loadReadyText(Game::Instance()->getPlayerName() + " scored " + std::to_string(Game::Instance()->getTime()));
-	Texture::Instance()->draw("readyID", 230, 450, 340, 20, Game::Instance()->getRenderer());	// 2017/04/22 Indicate to player that B button returns to game play	
+	Texture::Instance()->loadFinalScoreText(Game::Instance()->getPlayerName() + " scored: " + std::to_string(Game::Instance()->getScore()));
+	Texture::Instance()->draw("scoreID", 230, 450, 340, 20, Game::Instance()->getRenderer());	// 2017/04/22 Indicate to player that B button returns to game play	
+
+	Texture::Instance()->loadLevelTimeText("Time: " + std::to_string(Game::Instance()->getTime()));
+	Texture::Instance()->draw("timeID", 230, 475, 340, 20, Game::Instance()->getRenderer());	// 2017/04/27 Indicate to player that B button returns to game play	
 }
 
 bool GameOverState::onEnter() {
@@ -141,6 +127,9 @@ void GameOverState::setCallbacks(const std::vector<Callback>& callbacks) {
     }
 }
 
+/*
+	Highlight the current button selected by keyboard/gamepad
+
 void GameOverState::selectCurrentButton() {
 	if (!m_gameObjects.empty()) {													// If its not empty
 		for (int i = 0; i < m_gameObjects.size(); i++) {							// Go through the game objects list
@@ -153,4 +142,5 @@ void GameOverState::selectCurrentButton() {
 		}
 	}
 }
+*/
 

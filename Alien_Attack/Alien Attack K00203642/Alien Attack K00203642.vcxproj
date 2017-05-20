@@ -39,6 +39,7 @@
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="Glider.h" />
     <ClInclude Include="HighScoreState.h" />
+    <ClInclude Include="HUD.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="InstructionsState.h" />
     <ClInclude Include="Layer.h" />

@@ -84,46 +84,33 @@ void SettingsState::s_fullScreen() {
 }
 
 void SettingsState::update() {
+	if (!buttonPressed()) {
+		MenuState::update();													// Up and down buttons
+
 	// Handle button presses
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0, 0)) {
-		if (currentBtn == 1) s_fullScreen();								// 1. Make the game full screen
-		else if (currentBtn == 2) s_musicOnOff();							// 2. Turn Music on or off
-		else if (currentBtn == 3) s_volumeDownMusic();						// 3. Music Volume down
-		else if (currentBtn == 4) s_volumeUpMusic();						// 4. Music Volume up
-		else if (currentBtn == 5) s_volumeDownEffects();					// 5. Effects Volume down
-		else if (currentBtn == 6) s_volumeUpEffects();						// 6. Effects Volume up
-		else if (currentBtn == 7) s_decreaseDifficulty();					// 7. Decrease the game difficulty
-		else if (currentBtn == 8) s_increaseDifficulty();					// 8. Increase the game difficulty (Range is Liam to Hard for difficulty)
-		else if (currentBtn == 9) s_settingsToMain();						// 9. Return to main menu
-	}
-	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||	// Press Esc key to
-		InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||		// 2017/04/23 or backspace
-		InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
-		s_settingsToMain();													// Return to Main Menu
-	}
+		if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0, 0)) {
+			if (currentBtn == 1) s_fullScreen();								// 1. Make the game full screen
+			else if (currentBtn == 2) s_musicOnOff();							// 2. Turn Music on or off
+			else if (currentBtn == 3) s_volumeDownMusic();						// 3. Music Volume down
+			else if (currentBtn == 4) s_volumeUpMusic();						// 4. Music Volume up
+			else if (currentBtn == 5) s_volumeDownEffects();					// 5. Effects Volume down
+			else if (currentBtn == 6) s_volumeUpEffects();						// 6. Effects Volume up
+			else if (currentBtn == 7) s_decreaseDifficulty();					// 7. Decrease the game difficulty
+			else if (currentBtn == 8) s_increaseDifficulty();					// 8. Increase the game difficulty (Range is Liam to Hard for difficulty)
+			else if (currentBtn == 9) s_settingsToMain();						// 9. Return to main menu
 
-	// If up key, or gamepad up pressed
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) || InputHandler::Instance()->getAxisY(0, 1) < 0) {
-		if (!pressed) setCurrentBtn(BUTTON_UP);
-		pressed = true;
-		std::cout << "currentButton " << currentBtn << std::endl;
-	}
-	//else pressed = false;
+			setButtonPressed();													// Disable ability to press button, and time before button can be pressed again
+		}
+		else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||	// Press Esc key to
+			InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||		// 2017/04/23 or backspace
+			InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
+			s_settingsToMain();													// Return to Main Menu
 
-	// If down key, or gamepad down pressed
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN) || InputHandler::Instance()->getAxisY(0, 1) > 0) {
-		if (!pressed) setCurrentBtn(BUTTON_DOWN);
-		pressed = true;
-		std::cout << "currentButton " << currentBtn << std::endl;
+			setButtonPressed();													// Disable ability to press button, and time before button can be pressed again
+		}
 	}
 
 	selectCurrentButton();
-
-	// 2017/04/22 Leave 1/4 of a second before the button selector moves again
-	if (SDL_GetTicks() > btnTimer + 250) {
-		btnTimer = SDL_GetTicks();			// Reset time between button presses
-		pressed = false;					// Reset ability to press button
-	}
 
 	//else pressed = false;
 	if (m_loadingComplete && !m_gameObjects.empty()) {
@@ -155,6 +142,8 @@ void SettingsState::render() {
 bool SettingsState::onEnter() {	
 	numButtons = 9;									// 2017/04/24 There are 2 buttons in the state
 	currentBtn = 1;									// Set the current button
+	selectCurrentButton();							// Set current button as highlighted
+	setButtonPressed();								// Disable ability to press button, and time before button can be pressed again
 	
 	StateParser stateParser;
 	stateParser.parseState("assets/attack.xml", s_SettingsID, &m_gameObjects, &m_textureIDList);
@@ -174,7 +163,7 @@ bool SettingsState::onEnter() {
 
 	m_loadingComplete = true;
 
-	selectCurrentButton();
+	//selectCurrentButton();
 	std::cout << "Entering Settings State\n";
 	return true;
 }
@@ -186,8 +175,7 @@ bool SettingsState::onExit() {
 
 	std::cout << "Exiting Settings State\n";
 
-	pressed = true;
-	btnTimer = 0;
+	setButtonPressed();								// Disable ability to press button, and time before button can be pressed again
 
 	return true;
 }

@@ -41,38 +41,31 @@ void PauseState::update() {
     }
 
 	// Handle button presses
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0, 0)) {
-		if (currentBtn == 1) s_pauseToMain();								// 1. Return to Main Menu
-		else if (currentBtn == 2) s_resumePlay();							// 2. Resume Playing
-	}
-	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||	// Press Backspace key to 
-		//InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||		// 2017/04/23 or Esc CAUSING PROBLEMS
-		InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
-		s_resumePlay();														// Return to Game
-	}
+	if (!buttonPressed()) {
+		MenuState::update();													// Handle up and down buttons
 
-	// If up key, or gamepad up pressed
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) || InputHandler::Instance()->getAxisY(0, 1) < 0) {
-		if (!pressed) setCurrentBtn(BUTTON_UP);
-		pressed = true;
-		std::cout << "currentButton " << currentBtn << std::endl;
+		if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0, 0)) {
+			if (currentBtn == 1) s_pauseToMain();								// 1. Return to Main Menu
+			else if (currentBtn == 2) s_resumePlay();							// 2. Resume Playing
+			setButtonPressed();													// Disable ability to press button, and time before button can be pressed again
+		}
+		else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||	// Press Backspace key to 
+			//InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||		// 2017/04/23 or Esc CAUSING PROBLEMS
+			InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
+			s_resumePlay();														// Return to Game
+			setButtonPressed();													// Disable ability to press button, and time before button can be pressed again
+		}
 	}
-	//else pressed = false;
-
-	// If down key, or gamepad down pressed
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN) || InputHandler::Instance()->getAxisY(0, 1) > 0) {
-		if (!pressed) setCurrentBtn(BUTTON_DOWN);
-		pressed = true;
-		std::cout << "currentButton " << currentBtn << std::endl;
-	}
-
-	selectCurrentButton();
-
+	
+	//selectCurrentButton();
+	highlightCurrentButton(&m_gameObjects);										// Highlight the current button
+	/*
 	// 2017/04/22 Leave 1/4 of a second before the button selector moves again
 	if (SDL_GetTicks() > btnTimer + 250) {
 		btnTimer = SDL_GetTicks();			// Reset time between button presses
 		pressed = false;					// Reset ability to press button
 	}
+	*/
 }
 
 void PauseState::render() {
@@ -88,6 +81,7 @@ void PauseState::render() {
 bool PauseState::onEnter() {
 	numButtons = 2;								// 2017/04/24 There are 2 buttons in the state
 	currentBtn = 1;								// Set the current button
+	setButtonPressed();							// Disable ability to press button, and time before button can be pressed again
 
     StateParser stateParser;
     stateParser.parseState("assets/attack.xml", s_pauseID, &m_gameObjects, &m_textureIDList);
@@ -135,6 +129,7 @@ void PauseState::setCallbacks(const std::vector<Callback>& callbacks) {
     }
 }
 
+/*
 void PauseState::selectCurrentButton() {
 	if (!m_gameObjects.empty()) {													// If its not empty
 		for (int i = 0; i < m_gameObjects.size(); i++) {							// Go through the game objects list
@@ -147,4 +142,4 @@ void PauseState::selectCurrentButton() {
 		}
 	}
 }
-
+*/

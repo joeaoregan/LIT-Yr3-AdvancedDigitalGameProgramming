@@ -106,6 +106,8 @@ public:
 
 	int getDifficulty() { return m_difficulty; };				// 2017/04/25 Get the game difficulty
 	void setDifficulty(int d) { m_difficulty = d; };			// 2017/04/25 Set the game difficulty
+
+	bool observerMessage;
 	
 private:
 		

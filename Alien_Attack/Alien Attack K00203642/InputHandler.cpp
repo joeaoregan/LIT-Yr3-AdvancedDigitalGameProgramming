@@ -192,6 +192,7 @@ void InputHandler::update() {
                 
             case SDL_KEYUP:
                 onKeyUp();
+				//m_keystates = 0;
 				//std::cout << "Key Up" << std::endl;		// 2017/04/22
                 break;
 

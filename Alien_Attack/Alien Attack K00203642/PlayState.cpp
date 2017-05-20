@@ -34,6 +34,7 @@
 #include "Subject.h"
 #include "Message.h"				// 2017/04/25 Observer
 
+//Texture test;
 Message message;
 
 const std::string PlayState::s_playID = "PLAY";
@@ -83,6 +84,8 @@ void PlayState::render() {
 			Texture::Instance()->loadReadyText("Get Ready " + Game::Instance()->getPlayerName());
 			Texture::Instance()->drawText("readyID", 250, 190, Game::Instance()->getRenderer());
 		}
+		
+		//test.render(100, 480);
 
 		TheBulletHandler::Instance()->drawBullets();
 			
@@ -90,10 +93,11 @@ void PlayState::render() {
 }
 
 bool PlayState::onEnter() {
+	//test.renderTextToTexture("test", { 0, 255, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20));
 
 	Game::Instance()->turretKills = 0;				// Reset turret kills
 
-	Texture::Instance()->loadLevelText("Level " + std::to_string(Game::Instance()->getCurrentLevel()));	// 2017/04/22 Changed to show current level number
+	//Texture::Instance()->loadLevelText("Level " + std::to_string(Game::Instance()->getCurrentLevel()));	// 2017/04/22 Changed to show current level number
 
 
 	Texture::Instance()->load("assets/grass.png", "grass");

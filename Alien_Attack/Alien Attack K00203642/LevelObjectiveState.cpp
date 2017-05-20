@@ -39,26 +39,24 @@ void LevelObjectiveState::update() {
 		}
 	}
 
-	if (!pressed) {															// If a buttons not pressed
-		/*
-			If the Esc, Backspace or gamepad B button is pressed, return to main menu
-		*/
+	if (!buttonPressed()) {													// If a buttons not pressed
 		if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||		// If Esc key
 			InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE)) {	// Or Backspace
 			s_objectiveToMenu();											// Exit the game
-			pressed = true;
-		}
 
-		// Leave 2 seconds before allowing a button press to proceed to Play State
-		if (SDL_GetTicks() > btnTimer + 2000) {								// Wait 2 seconds before allowing the game to continue, to show my name in all its magnificance
+			setButtonPressed();												// Disable ability to press button, and time before button can be pressed again
+		}
+		//if (SDL_GetTicks() > btnTimer + 2000) {							// Wait 2 seconds before allowing the game to continue, to show my name in all its magnificance
 			if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) ||	// If Enter
 				InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE) ||	// Or Spacebar
 				InputHandler::Instance()->getButtonState(0, 0)) {			// Or gamepad button A
 				s_objectiveToGame();										// Skip objectives and proceed to Game
-				pressed = true;
+
+				setButtonPressed();											// Disable ability to press button, and time before button can be pressed again
 			}			
-		}
+		//}
 	}
+
 	// Leave 10 seconds before proceeding to Game
 	if (SDL_GetTicks() > btnTimer  + 3000) {							// If time is greater than 3 seconds
 		s_objectiveToGame();											// Proceed to the Play State
@@ -82,9 +80,8 @@ void LevelObjectiveState::render() {
 }
 
 bool LevelObjectiveState::onEnter() {
-	pressed = true;
-	btnTimer = 0;
-
+	setButtonPressed();																				// Disable ability to press button, and time before button can be pressed again
+	
 	StateParser stateParser;
 	stateParser.parseState("assets/attack.xml", s_ObjectiveID, &m_gameObjects, &m_textureIDList);	// Load objective assets
 	

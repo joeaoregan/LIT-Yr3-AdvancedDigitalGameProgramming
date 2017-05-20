@@ -162,4 +162,5 @@ void SoundManager::setFXvolumes(int v) {
 	Mix_VolumeChunk(m_sfxs["fire"], v);										// Set effects volume up
 	Mix_VolumeChunk(m_sfxs["puFX"], v);										// Set effects volume up
 	Mix_VolumeChunk(m_sfxs["blastFX"], v);									// Set effects volume up
+	Mix_VolumeChunk(m_sfxs["buttonFX"], v);									// 2017/04/28 Set effects volume up - Menu effects could have separate volume controls
 }

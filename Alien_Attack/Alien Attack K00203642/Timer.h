@@ -39,6 +39,8 @@ public:
 		std::cout << getName() << " destroyed!!!" << std::endl;
 	}
 
+	Texture timerTexture;
+
 	virtual void load(std::unique_ptr<LoaderParams> const &pParams) {};
 
 	// Update the timer
@@ -61,8 +63,9 @@ public:
 		Game::Instance()->setTime(gameTimer);
 
 		timeText << "Time: " << gameTimer;									// Set the game timer
-		
-		Texture::Instance()->loadTimerText(timeText.str().c_str());			// The game time
+
+		timerTexture.renderTextToTexture(timeText.str().c_str(), { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20));
+		//Texture::Instance()->loadTimerText(timeText.str().c_str());			// The game time
 	};
 
 	// Draw the timer
@@ -73,7 +76,9 @@ public:
 
 		SDL_RenderSetViewport(Game::Instance()->getRenderer(), NULL);				// 2017/04/22 Set the viewport to Game Screen
 
-		Texture::Instance()->drawFrame("timerID", 300, 480, 150, 30, 0, 0, Game::Instance()->getRenderer(), 0.0, 255);
+		//Texture::Instance()->drawFrame("timerID", 300, 480, 150, 30, 0, 0, Game::Instance()->getRenderer(), 0.0, 255);
+
+		timerTexture.render(350, 480);
 
 		//gTimeTextTexture.render(SCREEN_WIDTH - gTimeTextTexture.getWidth() - 10, 8);						// Draw on screen
 		// REPLACE WITH DRAW FUNCTION

@@ -143,6 +143,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	SoundManager::Instance()->load("SoundFX/laser2.wav", "fire", SOUND_SFX);						// 2017/04/21 Added Fire effect for Player weapon
 	SoundManager::Instance()->load("SoundFX/powerup.wav", "puFX", SOUND_SFX);						// 2017/04/21 Added Fire effect for Player weapon
 	SoundManager::Instance()->load("SoundFX/blast.wav", "blastFX", SOUND_SFX);						// 2017/04/23 Added Blast effet for Squasher Enemy
+	SoundManager::Instance()->load("SoundFX/button1.wav", "buttonFX", SOUND_SFX);					// 2017/04/27 Sound effect for menu button
 
 
 	//TheSoundManager::Instance()->playMusic("music1", -1);

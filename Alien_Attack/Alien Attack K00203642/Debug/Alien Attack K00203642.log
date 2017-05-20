@@ -1,211 +1,18 @@
-﻿  TitleScreenState.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\titlescreenstate.cpp(49): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\titlescreenstate.cpp(62): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\titlescreenstate.cpp(96): warning C4018: '<': signed/unsigned mismatch
-  tinyxmlparser.cpp
-  tinyxmlerror.cpp
-  tinyxml.cpp
-  tinystr.cpp
-  TileLayer.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\tilelayer.cpp(45): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\tilelayer.cpp(46): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\tilelayer.cpp(69): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\tilelayer.cpp(70): warning C4018: '<=': signed/unsigned mismatch
-  TextureManager.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\texturemanager.cpp(113): warning C4800: 'SDL_Renderer *': forcing value to bool 'true' or 'false' (performance warning)
-  StateParser.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  SoundManager.cpp
-  ShooterObject.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\shooterobject.cpp(25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  SettingsState.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\settingsstate.cpp(130): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\settingsstate.cpp(138): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\settingsstate.cpp(144): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\settingsstate.cpp(146): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\settingsstate.cpp(148): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\settingsstate.cpp(198): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\settingsstate.cpp(210): warning C4018: '<': signed/unsigned mismatch
-  ScrollingBackground.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(27): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(64): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(66): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(72): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(74): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+﻿  TextureManager.cpp
   PlayState.cpp
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\playstate.cpp(141): warning C4018: '<': signed/unsigned mismatch
-  Player.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(87): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(176): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(177): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(178): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(201): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(220): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(223): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(227): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(230): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(322): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(327): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(353): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  PauseState.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\pausestate.cpp(38): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\pausestate.cpp(80): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\pausestate.cpp(109): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\pausestate.cpp(116): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\pausestate.cpp(128): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\pausestate.cpp(140): warning C4018: '<': signed/unsigned mismatch
-  ObjectLayer.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\objectlayer.cpp(71): warning C4018: '<': signed/unsigned mismatch
-  MenuButton.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  MapLoader.cpp
-  MainMenuState.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\mainmenustate.cpp(104): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\mainmenustate.cpp(116): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\mainmenustate.cpp(178): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\mainmenustate.cpp(190): warning C4018: '<': signed/unsigned mismatch
-  main.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\main.cpp(9): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
-  Compiling...
-  LevelParser.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
-  LevelObjectiveState.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\levelobjectivestate.cpp(37): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\levelobjectivestate.cpp(70): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\levelobjectivestate.cpp(118): warning C4018: '<': signed/unsigned mismatch
-  LevelCompleteState.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\levelcompletestate.cpp(37): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\levelcompletestate.cpp(50): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\levelcompletestate.cpp(86): warning C4018: '<': signed/unsigned mismatch
-  Level.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\level.cpp(22): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\level.cpp(30): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\level.cpp(37): warning C4018: '<': signed/unsigned mismatch
-  InstructionsState.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\instructionsstate.cpp(52): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\instructionsstate.cpp(66): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\instructionsstate.cpp(105): warning C4018: '<': signed/unsigned mismatch
-  InputHandler.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\inputhandler.cpp(45): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\inputhandler.cpp(121): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\inputhandler.cpp(124): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\inputhandler.cpp(133): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\inputhandler.cpp(136): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\inputhandler.cpp(222): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\inputhandler.cpp(223): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
-  HighScoreState.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\highscorestate.cpp(40): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\highscorestate.cpp(48): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\highscorestate.cpp(100): warning C4018: '<': signed/unsigned mismatch
-  GameStateMachine.cpp
-  GameOverState.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\gameoverstate.cpp(72): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\gameoverstate.cpp(80): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\gameoverstate.cpp(112): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\gameoverstate.cpp(123): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\gameoverstate.cpp(135): warning C4018: '<': signed/unsigned mismatch
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\gameoverstate.cpp(146): warning C4018: '<': signed/unsigned mismatch
-  GameObjectFactory.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\menustate.h(82): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\playstate.cpp(145): warning C4018: '<': signed/unsigned mismatch
   Game.cpp
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\menustate.h(82): warning C4018: '<': signed/unsigned mismatch
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\turret.h(67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\turret.h(68): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
@@ -247,12 +54,186 @@ d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\powerup.h(3
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\squasher.h(48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\pounder.h(41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\game.cpp(67): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Generating Code...
+  Compiling...
+  TitleScreenState.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\menustate.h(82): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\titlescreenstate.cpp(49): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\titlescreenstate.cpp(62): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\titlescreenstate.cpp(96): warning C4018: '<': signed/unsigned mismatch
+  TileLayer.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\tilelayer.cpp(45): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\tilelayer.cpp(46): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\tilelayer.cpp(69): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\tilelayer.cpp(70): warning C4018: '<=': signed/unsigned mismatch
+  StateParser.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  ShooterObject.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\shooterobject.cpp(25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  SettingsState.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\menustate.h(82): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\settingsstate.cpp(117): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\settingsstate.cpp(125): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\settingsstate.cpp(131): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\settingsstate.cpp(133): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\settingsstate.cpp(135): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\settingsstate.cpp(186): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\settingsstate.cpp(198): warning C4018: '<': signed/unsigned mismatch
+  ScrollingBackground.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(27): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(64): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(66): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(72): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\scrollingbackground.cpp(74): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Player.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(87): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(177): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(178): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(179): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(202): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(221): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(224): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(228): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(231): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(323): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(328): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\player.cpp(354): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  PauseState.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\menustate.h(82): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\pausestate.cpp(38): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\pausestate.cpp(73): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\pausestate.cpp(103): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\pausestate.cpp(110): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\pausestate.cpp(122): warning C4018: '<': signed/unsigned mismatch
+  ObjectLayer.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\objectlayer.cpp(71): warning C4018: '<': signed/unsigned mismatch
+  MainMenuState.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\menustate.h(82): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\mainmenustate.cpp(87): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\mainmenustate.cpp(143): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\mainmenustate.cpp(205): warning C4018: '<': signed/unsigned mismatch
+  LevelParser.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
+  LevelObjectiveState.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\menustate.h(82): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\levelobjectivestate.cpp(37): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\levelobjectivestate.cpp(68): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\levelobjectivestate.cpp(115): warning C4018: '<': signed/unsigned mismatch
+  LevelCompleteState.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\menustate.h(82): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\levelcompletestate.cpp(37): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\levelcompletestate.cpp(50): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\levelcompletestate.cpp(86): warning C4018: '<': signed/unsigned mismatch
+  Level.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\level.cpp(22): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\level.cpp(30): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\level.cpp(37): warning C4018: '<': signed/unsigned mismatch
+  InstructionsState.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\menustate.h(82): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\instructionsstate.cpp(53): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\instructionsstate.cpp(61): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\instructionsstate.cpp(100): warning C4018: '<': signed/unsigned mismatch
+  HighScoreState.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\menustate.h(82): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\highscorestate.cpp(38): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\highscorestate.cpp(46): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\highscorestate.cpp(96): warning C4018: '<': signed/unsigned mismatch
+  GameOverState.cpp
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\menustate.h(82): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\gameoverstate.cpp(55): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\gameoverstate.cpp(63): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\gameoverstate.cpp(98): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\gameoverstate.cpp(109): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\gameoverstate.cpp(121): warning C4018: '<': signed/unsigned mismatch
   EnterNameState.cpp
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\subject.h(28): warning C4018: '<': signed/unsigned mismatch
+d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\menustate.h(82): warning C4018: '<': signed/unsigned mismatch
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\enternamestate.cpp(50): warning C4018: '<': signed/unsigned mismatch
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\enternamestate.cpp(125): warning C4018: '<': signed/unsigned mismatch
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\enternamestate.cpp(198): warning C4018: '<': signed/unsigned mismatch
@@ -297,14 +278,6 @@ d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\bullethandler.cpp(64): warning C4018: '<': signed/unsigned mismatch
 d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\bullethandler.cpp(68): warning C4018: '<': signed/unsigned mismatch
-  base64.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\base64.cpp(94): warning C4267: '=': conversion from 'size_t' to 'unsigned char', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\base64.cpp(111): warning C4267: '=': conversion from 'size_t' to 'unsigned char', possible loss of data
-  AnimatedGraphic.cpp
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\vector2d.h(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\github\yr3_advanced_game_prog\alien_attack\alien attack k00203642\statusbar.h(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   Generating Code...
   Alien Attack K00203642.vcxproj -> D:\GitHub\Yr3_Advanced_Game_Prog\Alien_Attack\Debug\Alien Attack K00203642.exe
   Alien Attack K00203642.vcxproj -> D:\GitHub\Yr3_Advanced_Game_Prog\Alien_Attack\Debug\Alien Attack K00203642.pdb (Partial PDB)

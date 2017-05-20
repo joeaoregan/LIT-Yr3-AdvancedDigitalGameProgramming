@@ -19,6 +19,7 @@
 
 #include "Observer.h"
 
+// Message observes the subject Player
 class Message : public GameObject, public Observer {
 //class Message : public GameObject {
 public:
@@ -38,17 +39,20 @@ public:
 		
 	};
 
-	virtual void update() {};
-
-	int actionToTake = 0;
+	virtual void update() {
+	};
 
 	virtual void draw() {
-		/*
-		if (actionToTake == 1) {
+		//std::cout << actionToTake << std::endl;
+		//if (actionToTake == 0) {
+		//Texture::Instance()->draw("grass", 190, 215, 420, 50, Game::Instance()->getRenderer());
+		//	std::cout << "Test 0" << std::endl;
+		//}
+		//if (actionToTake == 1) {
+		if (Game::Instance()->observerMessage) {
 			Texture::Instance()->draw("grass", 190, 215, 420, 50, Game::Instance()->getRenderer());
-			std::cout << "Test" << std::endl;
+			//std::cout << "Test " << std::endl;
 		}
-		*/
 	};
 
 	virtual void clean() {};
@@ -60,12 +64,14 @@ public:
 	void whenNotified(int action) {
 		if (action == MESSAGE1)
 			//std::cout << "Player is up " << action << std::endl;
-			actionToTake = 2;
+		//	actionToTake = 2;
+			Game::Instance()->observerMessage = false;
 		else if (action == MESSAGE2) {
-			std::cout << "You're gonna crash!!!" << std::endl;
-			actionToTake = 1;
-			Texture::Instance()->draw("grass", 190, 215, 420, 50, Game::Instance()->getRenderer());
+			//actionToTake = 1;
+			//std::cout << "You're gonna crash!!!" << std::endl;
+			//Texture::Instance()->draw("grass", 190, 215, 420, 50, Game::Instance()->getRenderer());
 			//std::cout << "Player is down " << action << std::endl;
+			Game::Instance()->observerMessage = true;
 		}
 	};
 
@@ -73,6 +79,8 @@ public:
 		return "message";
 	};
 
+private:
+	int actionToTake = 0;	// Stays 0 outside whenNotified
 };
 
 class MessageCreator : public BaseCreator {

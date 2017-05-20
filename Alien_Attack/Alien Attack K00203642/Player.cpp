@@ -158,6 +158,7 @@ void Player::update() {
 			}
 			else if (m_position.getY() > 375) {
 				notify(MESSAGE2);	// 2017/04/25 Send notification to observers on observer list
+				//std::cout << "This one" << std::endl;
 			}
         }
         else // if the player is doing the death animation
@@ -327,7 +328,7 @@ void Player::handleInput() {
                 m_velocity.setY(m_moveSpeed * TheInputHandler::Instance()->getAxisY(0, 1));
             }
         }
-        
+
     }
 }
 

@@ -27,6 +27,7 @@ enum collideTypes { BULLET, POWERUP };
 
 //#include "StatusBar.h"		// 2017/04/22 Draw a status bar for the player
 
+// Player is also the subject for the Observer
 class Player : public Subject, public ShooterObject {	// 2017/04/25 Player is also the subject for the BoundaryStuff Observer (Watcher)
 //class Player : public ShooterObject {	// 2017/04/25 Player is also the subject for the BoundaryStuff Observer (Watcher)
 public:    

@@ -27,9 +27,7 @@ void HighScoreState::s_highscoresToMain() {
 }
 
 void HighScoreState::update() {
-	/*
-		If the Esc, Backspace or gamepad B button is pressed, return to main menu
-	*/
+
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||			// If Esc key
 		InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||		// 2017/04/23 or backspace
 		InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
@@ -49,20 +47,18 @@ void HighScoreState::render() {
 			m_gameObjects[i]->draw();
 		}
 	}
-
-	//Texture::Instance()->drawFrame("scoreTitle", (SCREEN_WIDTH - 410 ) / 2, 20, 410, 64, 0, 0, Game::Instance()->getRenderer(), 0.0, 255); // 2017/04/24 Moved to attack.xml
-	
+		
 	Texture::Instance()->drawText("highScoresID", 100, 100, Game::Instance()->getRenderer());
 
+	//Texture::Instance()->drawFrame("scoreTitle", (SCREEN_WIDTH - 410 ) / 2, 20, 410, 64, 0, 0, Game::Instance()->getRenderer(), 0.0, 255); // 2017/04/24 Moved to attack.xml
 	// Put high score screen output in here
 	//std::cout << "Rendering HighScoreState\n";			// will loop over and over
 }
 
-bool HighScoreState::onEnter() {
-	//Texture::Instance()->load("assets/TitleHighScores.png", "scoreTitle", Game::Instance()->getRenderer()); // 2017/04/24 Moved to attack.xml
-	
+bool HighScoreState::onEnter() {	
 	Texture::Instance()->loadHighScoresText();
 	//TheTextureManager::Instance()->drawText("highScoresID", 150, 100, TheGame::Instance()->getRenderer());
+	//Texture::Instance()->load("assets/TitleHighScores.png", "scoreTitle", Game::Instance()->getRenderer()); // 2017/04/24 Moved to attack.xml
 	
 	StateParser stateParser;
 	stateParser.parseState("assets/attack.xml", s_HighScoreID, &m_gameObjects, &m_textureIDList);

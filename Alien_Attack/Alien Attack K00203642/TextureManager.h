@@ -44,18 +44,23 @@ public:
 	void loadLevelText(std::string currentLevel);	// Display the current level
 	void loadTimerText(std::string currentTime);	// Display the game timer
 	void loadScoreText(std::string currentScore);	// Display the score
-	void displayDifficulty(int level);	// Display the score
+	void displayDifficulty(int level);				// Display the difficulty
+	void loadLevelTimeText(std::string input);		// Display the level time
+	void loadFinalScoreText(std::string input);		// Display the final score
 
 	void loadHighScoresText();
 	bool createText(SDL_Texture* text, std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, bool textWrapped = false);
 	bool createText(std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, bool textWrapped = false);
-	//bool renderTextToTexture(std::string textureText, SDL_Color textColor, TTF_Font* font, std::string id = "", bool textWrapped = false);	// Create a texture from text
+	bool renderTextToTexture(std::string textureText, SDL_Color textColor, TTF_Font* font, std::string id = "", bool textWrapped = false);	// Create a texture from text
+
+	void render(int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);	// Texture Render function
 #endif
 
 	void free();												// Deallocates texture
 	void free(SDL_Texture *texture);							// Deallocates texture
 
     bool load(std::string fileName, std::string id);
+	bool loadText(std::string fileName, std::string id);		// Separate text loader
     
     void clearTextureMap();
     void clearFromTextureMap(std::string id);
@@ -68,27 +73,31 @@ public:
     
     std::map<std::string, SDL_Texture*> getTextureMap() { return m_textureMap; }
 
-	int getWidth() { return mWidth; }
-	int getHeight() { return mHeight; }
+	int getWidth() { return m_Width; }
+	int getHeight() { return m_Height; }
+
+	TextureManager() {}
+	~TextureManager() {}
     
 private:
-    
-    TextureManager() {}
-    ~TextureManager() {}
+
     
     TextureManager(const TextureManager&);
 	TextureManager& operator=(const TextureManager&);
     
     std::map<std::string, SDL_Texture*> m_textureMap;
+	//std::map<std::string, Texture*> m_textTextureMap;	// 2017/04/27 Added a separate text texture map as the width and height of text is needed
     
     static TextureManager* s_pInstance;
 
 	// 16/02/2017
-	SDL_Texture* mTexture;			// The actual hardware texture
+	SDL_Texture* m_Texture;			// The actual hardware texture
 	//SDL_Surface* m_TextSurface;	// Surface used to create textures
 
-	int mWidth;						// Texture width
-	int mHeight;					// Texture height
+	// Needed for text
+	int m_Width;						// Texture width
+	int m_Height;					// Texture height
+	SDL_Surface* m_TextSurface;							// Surface used to create textures
 };
 
 typedef TextureManager TheTextureManager;
