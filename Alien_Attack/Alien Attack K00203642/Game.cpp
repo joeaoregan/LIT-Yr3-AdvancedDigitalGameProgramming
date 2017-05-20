@@ -66,7 +66,7 @@ m_scrollSpeed(0.8),				// 2017/04/23 Scroll speed for Player on mini map
 m_bLevelComplete(false),
 m_bChangingState(false) {
     // add some level files to an array
-	m_levelFiles.push_back("assets/map1.tmx");
+	//m_levelFiles.push_back("assets/map1.tmx");
 	m_levelFiles.push_back("assets/map3.tmx");
     m_levelFiles.push_back("assets/map2.tmx");
         

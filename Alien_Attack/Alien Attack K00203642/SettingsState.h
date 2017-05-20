@@ -37,11 +37,9 @@ public:
 	void selectCurrentButton();											// Select the current button for gamepad/keyboard selection
 
 private:
-	static void s_settingsToMain();		// Go To Main Menu state
-	static void s_fullScreen();			// Make the game full screen
-	static void s_musicOnOff();			// Turn music off
-	static void s_volumeUp();			// Turn the volume up
-	static void s_volumeDown();			// Turn the volume down
+	static void s_settingsToMain();
+	static void s_musicOnOff();
+	static void s_fullScreen();
 
 	static const std::string s_SettingsID;
 

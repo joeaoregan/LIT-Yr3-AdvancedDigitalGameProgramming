@@ -16,5 +16,5 @@ To
 30
 His
 20
-Player
-20
+Greatness
+10

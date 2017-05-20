@@ -27,30 +27,21 @@
 const std::string SettingsState::s_SettingsID = "SETTINGS";
 
 // Callbacks
+/* Return to main menu from settings */
 void SettingsState::s_settingsToMain() {
-	Game::Instance()->getStateMachine()->changeState(new MainMenuState()); /* Return to main menu from settings */
+	Game::Instance()->getStateMachine()->changeState(new MainMenuState());
 }
-
+/* 2017/03/16 Turn the music on / off */
 void SettingsState::s_musicOnOff() {
-	SoundManager::Instance()->pausePlayMusic();			/* 2017/03/16 Turn the music on / off */
+	SoundManager::Instance()->pausePlayMusic();
 }
-
-void SettingsState::s_volumeUp() {
-	//SoundManager::Instance()->();
-	std::cout << "volume up" << std::endl;				/* 2017/04/25 Turn the audio volume up */
-}
-
-void SettingsState::s_volumeDown() {
-	//SoundManager::Instance()->();
-	std::cout << "volume down" << std::endl;			/* 2017/04/25 Turn the audio volume down */
-}
-
+/* 2017/03/16 Turn full screen on / off */
 void SettingsState::s_fullScreen() {
 	/*
 		If button F11 is pressed change the game between Full Screen and Windowed
 		This option can also be selected from the settings menu of the game
 	*/
-		Game::Instance()->fullScreenOrWindowed();		/* 2017/03/16 Turn full screen on / off */
+		Game::Instance()->fullScreenOrWindowed();
 }
 
 void SettingsState::update() {
@@ -58,9 +49,7 @@ void SettingsState::update() {
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0, 0)) {
 		if (currentBtn == 1) s_musicOnOff();								// 1. Turn Music on or off
 		else if (currentBtn == 2) s_fullScreen();							// 2. Make the game full screen
-		else if (currentBtn == 3) s_volumeDown();							// 3. Volume down
-		else if (currentBtn == 4) s_volumeUp();								// 4. Volume up
-		else if (currentBtn == 5) s_settingsToMain();						// 5. Return to main menu
+		else if (currentBtn == 3) s_settingsToMain();						// 3. Return to main menu
 	}
 	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||	// Press Esc key to
 		InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||		// 2017/04/23 or backspace
@@ -105,21 +94,38 @@ void SettingsState::render() {
 			m_gameObjects[i]->draw();
 		}
 	}
+
+	/*
+	Texture::Instance()->drawFrame("settingsTitle", (SCREEN_WIDTH - 280) / 2, 20, 280, 64, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);	// Display title at top of settings menu // 2017/04/24 Moved to Attack.xml
+
+	// 2017/03/16 Added buttons for settings
+	Texture::Instance()->drawFrame("musicButton", (SCREEN_WIDTH - 199) / 2, 100, 199, 43, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
+	Texture::Instance()->drawFrame("fullscreenButton", (SCREEN_WIDTH - 163) / 2, 150, 163, 43, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
+
+	Texture::Instance()->drawText("highScoresID", 65, 100, TheGame::Instance()->getRenderer());
+
+	Put high score screen output in here
+	*/
 }
 
 bool SettingsState::onEnter() {
-	numButtons = 5;								// 2017/04/24 There are 2 buttons in the state
+	/*
+	// 2017/04/24 Moved to Attack.xml
+	Texture::Instance()->load("assets/TitleSettings.png", "settingsTitle", TheGame::Instance()->getRenderer());	// Load title at top of settings menu
+	Texture::Instance()->load("assets/buttonMusic.png", "musicButton", TheGame::Instance()->getRenderer());
+	Texture::Instance()->load("assets/buttonFullScreen.png", "fullscreenButton", TheGame::Instance()->getRenderer());
+	*/
+
+	numButtons = 3;								// 2017/04/24 There are 2 buttons in the state
 	currentBtn = 1;								// Set the current button
 
 	StateParser stateParser;
 	stateParser.parseState("assets/attack.xml", s_SettingsID, &m_gameObjects, &m_textureIDList);
 
 	m_callbacks.push_back(0);
-	m_callbacks.push_back(s_fullScreen);		// CallbackID = 1	Make the game Full Screen or windowed
-	m_callbacks.push_back(s_musicOnOff);		// CallbackID = 2	Turn the music on or off
-	m_callbacks.push_back(s_volumeDown);		// CallbackID = 3	Volume Down
-	m_callbacks.push_back(s_volumeUp);			// CallbackID = 4	Volume Up
-	m_callbacks.push_back(s_settingsToMain);	// CallbackID = 5	Return to main menu
+	m_callbacks.push_back(s_musicOnOff);		// CallbackID = 1	Turn the music on or off
+	m_callbacks.push_back(s_fullScreen);		// CallbackID = 2	Make the game Full Screen or windowed
+	m_callbacks.push_back(s_settingsToMain);	// CallbackID = 3	Return to main menu
 
 	setCallbacks(m_callbacks);
 
