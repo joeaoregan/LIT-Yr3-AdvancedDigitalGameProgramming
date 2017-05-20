@@ -6,6 +6,8 @@
     Student Number: K00203642
     
     Done:
+      2017/04/22  Added media for Enter Name menu including images and button positions
+                  Added message to indicate pressing B returns to Game from Pause menu
       2017/03/16  Added media for Settings menu including images and button positions
       2017/02/03  Added media for High Scores menu including images and button positions
 -->
@@ -14,7 +16,7 @@
   <!-- 2017/03/16 Added assets for Settings menu screen -->
   <SETTINGS>
     <TEXTURES>
-      <texture filename="assets/main.png" ID="mainbutton"/>                   <!-- Return to main menu button image -->
+      <texture filename="assets/main.png" ID="mainbutton"/>                      <!-- Return to main menu button image -->
       <texture filename="assetsNew/buttonMusic.png" ID="musicButton"/>           <!-- 2017/03/16 Turn Music On / Off image -->
       <texture filename="assetsNew/buttonFullScreen.png" ID="fullscreenButton"/> <!-- 2017/03/16 Full Screen On / Off image -->
     </TEXTURES>
@@ -52,7 +54,18 @@
       <object type="MenuButton" x="100" y="325" width="400" height="100" textureID="exitbutton" numFrames="0" callbackID="4"/>
     </OBJECTS>
   </MENU>
+
+  <!-- 2017/04/22 Added assets for Enter Name menu screen -->
+  <ENTERNAME>
+    <TEXTURE>
+      <texture filename="assets/main.png" ID="mainbutton"/>
+    </TEXTURE>
     
+    <OBJECTS>
+      <object type="MenuButton" x="200" y="100" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
+    </OBJECTS>
+  </ENTERNAME>
+  
     <PLAY>
         <TEXTURES>
             <texture filename="assets/helicopter.png" ID="helicopter"/>
@@ -69,6 +82,7 @@
         <TEXTURES>
             <texture filename="assets/resume.png" ID="resumebutton"/>
             <texture filename="assets/main.png" ID="mainbutton"/>
+          <texture filename="assetsNew/return.png" ID="return"/><!--2017/04/22 Added message to indicate pressing B returns to Game from Pause menu-->
         </TEXTURES>
         
         <OBJECTS>
@@ -76,6 +90,8 @@
             <object type="MenuButton" x="200" y="300" width="200" height="80" textureID="resumebutton" numFrames="0" callbackID="2"/>
         </OBJECTS>
     </PAUSE>
+  
+  
 
     
     <GAMEOVER>

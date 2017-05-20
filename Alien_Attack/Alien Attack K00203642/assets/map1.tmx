@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="150" height="15" tilewidth="32" tileheight="32" nextobjectid="52">
   <properties>
-    <property name="angryenemy" value="assets/angryenemy.png"/>
+    <property name="angryenemy" value="assetsNew/angryenemy.png"/>
     <property name="boss" value="assets/boss1.png"/>
     <property name="bossexplosion" value="assets/bossexplosion.png"/>
     <property name="clouds" value="assets/clouds.png"/>
     <property name="enemy1" value="assets/enemy1.png"/>
     <property name="enemy2" value="assets/enemy2.png"/>
     <property name="enemy3" value="assets/enemy3.png"/>
-    <property name="enemy4" value="assets/enemy4.png"/>
+    <property name="enemy4" value="assetsNew/enemy4.png"/>
     <property name="explosion" value="assets/explosion.png"/>
     <property name="largeexplosion" value="assets/largeexplosion.png"/>
     <property name="loading" value="assets/loading.png"/>
