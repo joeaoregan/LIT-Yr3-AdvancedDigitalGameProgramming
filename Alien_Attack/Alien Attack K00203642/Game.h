@@ -81,7 +81,10 @@ public:
 	void setPlayerName(std::string n) { m_plName = n; }			// 2017/04/16 Moved to GameObject
 
 	// Player Score
-	int getScore() { return m_score; }							// Get the players score (time played)
+	int getTime() { return m_time; }							// Get the players time (time played)
+	void setTime(int s) { m_time = s; }							// Set the players time
+
+	int getScore() { return m_score; }							// Get the players score
 	void setScore(int s) { m_score = s; }						// Set the players score
 
 	bool getEnterTextState() { return enterTextState; };		// 2017/04/22 Indicates if in enter text state or not
@@ -130,7 +133,8 @@ private:
     Game(const Game&);
 	Game& operator=(const Game&);
 
-	int m_score;
+	int m_time;		// Time the game has been playing
+	int m_score;	// Score for the player
 };
 
 typedef Game TheGame;

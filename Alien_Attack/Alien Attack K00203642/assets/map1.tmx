@@ -21,6 +21,7 @@
   <property name="squasher" value="assets/squasher.png"/>
    <property name="turret" value="assets/turret.png"/>
    
+   <!-- Textures originally loaded in PlayState.cpp -->
    <property name="bullet1" value="assets/bullet1.png"/>
    <property name="bullet2" value="assets/bullet2.png"/>
    <property name="bullet3" value="assets/bullet3.png"/>

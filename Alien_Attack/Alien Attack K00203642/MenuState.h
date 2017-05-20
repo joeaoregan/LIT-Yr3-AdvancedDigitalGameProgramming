@@ -20,6 +20,9 @@ protected:
     virtual void setCallbacks(const std::vector<Callback>& callbacks) = 0;
     
     std::vector<Callback> m_callbacks;
+
+	unsigned int btnTimer = 0;	// 2017/04/24 Delay between buttons. Moved from MainMenuState to be used by all menus
+	bool pressed = false;
 };
 
 

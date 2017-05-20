@@ -65,24 +65,26 @@ void SettingsState::render() {
 		}
 	}
 
-	TheTextureManager::Instance()->drawFrame("settingsTitle", (SCREEN_WIDTH - 280) / 2, 20, 280, 64, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);	// Display title at top of settings menu
+	/*
+	Texture::Instance()->drawFrame("settingsTitle", (SCREEN_WIDTH - 280) / 2, 20, 280, 64, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);	// Display title at top of settings menu // 2017/04/24 Moved to Attack.xml
 
 	// 2017/03/16 Added buttons for settings
-	//Texture::Instance()->drawFrame("musicButton", (SCREEN_WIDTH - 199) / 2, 100, 199, 43, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
-	//Texture::Instance()->drawFrame("fullscreenButton", (SCREEN_WIDTH - 163) / 2, 150, 163, 43, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
+	Texture::Instance()->drawFrame("musicButton", (SCREEN_WIDTH - 199) / 2, 100, 199, 43, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
+	Texture::Instance()->drawFrame("fullscreenButton", (SCREEN_WIDTH - 163) / 2, 150, 163, 43, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
 
-	//TheTextureManager::Instance()->drawText("highScoresID", 65, 100, TheGame::Instance()->getRenderer());
+	Texture::Instance()->drawText("highScoresID", 65, 100, TheGame::Instance()->getRenderer());
 
-	// Put high score screen output in here
-	//std::cout << "Rendering HighScoreState\n";			// will loop over and over
+	Put high score screen output in here
+	*/
 }
 
 bool SettingsState::onEnter() {
-	TheTextureManager::Instance()->load("assets/TitleSettings.png", "settingsTitle", TheGame::Instance()->getRenderer());	// Load title at top of settings menu
-	//TheTextureManager::Instance()->load("assets/buttonMusic.png", "musicButton", TheGame::Instance()->getRenderer());
-	//TheTextureManager::Instance()->load("assets/buttonFullScreen.png", "fullscreenButton", TheGame::Instance()->getRenderer());
-
-
+	/*
+	// 2017/04/24 Moved to Attack.xml
+	Texture::Instance()->load("assets/TitleSettings.png", "settingsTitle", TheGame::Instance()->getRenderer());	// Load title at top of settings menu
+	Texture::Instance()->load("assets/buttonMusic.png", "musicButton", TheGame::Instance()->getRenderer());
+	Texture::Instance()->load("assets/buttonFullScreen.png", "fullscreenButton", TheGame::Instance()->getRenderer());
+	*/
 	StateParser stateParser;
 	stateParser.parseState("assets/attack.xml", s_SettingsID, &m_gameObjects, &m_textureIDList);
 
@@ -95,7 +97,7 @@ bool SettingsState::onEnter() {
 
 	m_loadingComplete = true;
 
-	std::cout << "entering HighScoreState\n";
+	std::cout << "Entering Settings State\n";
 	return true;
 }
 

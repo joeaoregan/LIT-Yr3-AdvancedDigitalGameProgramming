@@ -41,6 +41,7 @@
 #include "Level1Boss.h"
 #include "GameOverState.h"
 #include <iostream>
+#include "TitleScreenState.h"	// 2017/04/24	Game starts with Titles
 
 // Added
 #include "AngryGlider.h"		// 2017/03/14	Glider Variation
@@ -168,7 +169,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     
     // start the menu state
     m_pGameStateMachine = new GameStateMachine();
-    m_pGameStateMachine->changeState(new MainMenuState());
+	m_pGameStateMachine->changeState(new MainMenuState());
+	m_pGameStateMachine->changeState(new TitleScreenState());									// 2017/04/24 Game starts in Title Screen
 
     m_bRunning = true; // everything inited successfully, start the main loop
     return true;

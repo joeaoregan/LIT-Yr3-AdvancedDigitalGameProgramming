@@ -38,6 +38,19 @@ public:
 			}
 
 			m_bulletCounter++;
+
+			if (m_position.getX() > Game::Instance()->playerX) {
+				if (m_position.getY() - Game::Instance()->playerY >= 0) {				// Below player
+					if (m_position.getY() - Game::Instance()->playerY >= m_moveSpeed)
+						m_velocity.setY(-m_moveSpeed);									// Move up. No need to make smaller movements at the moment, as velocity is v.low anyway. Movement is jerky without this check
+				}
+				if (m_position.getY() - Game::Instance()->playerY < getHeight()) {		// Above player
+					m_velocity.setY(m_moveSpeed);										// Move Down
+				}
+			}
+			//if (Game::Instance()->playerY < m_position.getY()) m_velocity.setY(m_moveSpeed);
+			//else if (Game::Instance()->playerY < m_position.getY()) m_velocity.setY(-m_moveSpeed);
+			//else if (Game::Instance()->playerY == m_position.getY()) m_velocity.setY(0);
 		}
 		else {
 			m_velocity.setX(0);

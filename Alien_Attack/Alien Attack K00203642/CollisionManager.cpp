@@ -23,9 +23,11 @@
 void CollisionManager::checkPlayerPowerUpCollision(Player* pPlayer, const std::vector<GameObject*> &objects) {
 		SDL_Rect* pRect1 = new SDL_Rect();
 		pRect1->x = pPlayer->getPosition().getX();	// Player X coord
-		pRect1->y = pPlayer->getPosition().getY();	// Player Y coord
+		pRect1->y = pPlayer->getPosition().getY();	// Player Y coord	2017/04/23 Changed to Y from X
 		pRect1->w = pPlayer->getWidth();			// Player width
 		pRect1->h = pPlayer->getHeight();			// Player height
+		
+		//pRect1 = { pPlayer->getPosition().getX(), pPlayer->getPosition().getX(), pPlayer->getWidth(), pPlayer->getHeight() };
 		
 		//std::cout << "Collisions for Power Ups" << std::endl;
 

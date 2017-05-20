@@ -41,6 +41,7 @@ private:
     static void s_menuToPlay();
 	static void s_highScores();			// 2017/02/03 Added high scores call back
 	static void s_settings();			// 2017/03/16 Added settings call back
+	static void s_instructions();		// 2017/04/24 Added instructions call back
     static void s_exitFromMenu();
     
     static const std::string s_menuID;

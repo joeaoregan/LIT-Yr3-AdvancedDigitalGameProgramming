@@ -6,6 +6,7 @@
     Student Number: K00203642
     
     Done:
+      2017/04/24  Added media for Menu State page titles
       2017/04/22  Added media for Enter Name menu including images and button positions
                   Added message to indicate pressing B returns to Game from Pause menu
       2017/03/16  Added media for Settings menu including images and button positions
@@ -16,15 +17,17 @@
   <!-- 2017/03/16 Added assets for Settings menu screen -->
   <SETTINGS>
     <TEXTURES>
+      <texture filename="assets/TitleSettings.png" ID="settingsTitle"/>       <!-- 2017/04/24 Main Title Image for Settings State -->
       <texture filename="assets/main.png" ID="mainbutton"/>                   <!-- Return to main menu button image -->
       <texture filename="assets/buttonMusic.png" ID="musicButton"/>           <!-- 2017/03/16 Turn Music On / Off image -->
       <texture filename="assets/buttonFullScreen.png" ID="fullscreenButton"/> <!-- 2017/03/16 Full Screen On / Off image -->
     </TEXTURES>
 
     <OBJECTS>
-      <object type="MenuButton" x="200" y="400" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>       <!--Return to Main Menu button-->
-      <object type="MenuButton" x="200" y="100" width="199" height="43" textureID="musicButton" numFrames="0" callbackID="2"/>      <!-- Turn the Music On / Off button -->
-      <object type="MenuButton" x="218" y="150" width="163" height="43" textureID="fullscreenButton" numFrames="0" callbackID="3"/> <!-- Make the game Full Screen or Windowed button -->
+      <object type="AnimatedGraphic" x="260" y="20" width="280" height="64" textureID="settingsTitle" numFrames="1" animSpeed="2"/> <!-- 2017/04/24 Added title from SettingsState.cpp -->
+      <object type="MenuButton" x="300" y="400" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>       <!-- Return to Main Menu button -->
+      <object type="MenuButton" x="300" y="100" width="199" height="43" textureID="musicButton" numFrames="0" callbackID="2"/>      <!-- Turn the Music On / Off button -->
+      <object type="MenuButton" x="318" y="150" width="163" height="43" textureID="fullscreenButton" numFrames="0" callbackID="3"/> <!-- Make the game Full Screen or Windowed button -->
     </OBJECTS>
   </SETTINGS>
 
@@ -32,12 +35,47 @@
   <HIGHSCORES>
     <TEXTURES>
       <texture filename="assets/main.png" ID="mainbutton"/>
+      <texture filename="assets/TitleHighScores.png" ID="scoreTitle"/>
     </TEXTURES>
 
     <OBJECTS>
-      <object type="MenuButton" x="200" y="400" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
+      <object type="AnimatedGraphic" x="195" y="20" width="410" height="64" textureID="scoreTitle" numFrames="1" animSpeed="2"/>
+      <object type="MenuButton" x="300" y="500" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
     </OBJECTS>
   </HIGHSCORES>
+
+  <!-- 2017/04/24 Added assets for Titles screen -->
+  <TITLE>
+    <TEXTURES>
+      <!--texture filename="assets/main.png" ID="mainbutton"/-->
+      <texture filename="assets/titles.png" ID="titlebg"/>
+      <texture filename="assets/anykey.png" ID="anykey"/>
+    </TEXTURES>
+
+    <OBJECTS>
+      <object type="AnimatedGraphic" x="0" y="0" width="800" height="640" textureID="titlebg" numFrames="1" animSpeed="2"/>
+      <object type="AnimatedGraphic" x="130" y="290" width="540" height="50" textureID="anykey" numFrames="3" animSpeed="2"/>
+      <!--object type="MenuButton" x="300" y="500" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/--> <!-- Dont need button Enter, space, or Gamepad Button A will do-->
+    </OBJECTS>
+  </TITLE>
+  
+  <!-- 2017/04/24 Added assets for Instructions menu screen -->
+  <INSTRUCTIONS>
+    <TEXTURES>
+      <texture filename="assets/main.png" ID="mainbutton"/>
+      <texture filename="assets/instructions.png" ID="instuctionTitle"/>
+      <texture filename="assets/ControlLayout.png" ID="controlsG"/>       <!-- Gamepad Layout -->
+      <texture filename="assets/controlsKeyboard.png" ID="controlsK"/>      <!-- Keyboard Layout -->
+      <texture filename="assets/pressY.png" ID="pressY"/>      <!-- press Y -->
+    </TEXTURES>
+
+    <OBJECTS>
+      <object type="AnimatedGraphic" x="195" y="0" width="411" height="71" textureID="instuctionTitle" numFrames="1" animSpeed="2"/>
+      <object type="AnimatedGraphic" x="40" y="605" width="720" height="29" textureID="pressY" numFrames="1" animSpeed="2"/>
+      <!--object type="AnimatedGraphic" x="10" y="100" width="780" height="386" textureID="controlsG" numFrames="1" animSpeed="2"/-->  <!-- 2017/04/24 Image Displaying the control pad layout -->
+      <object type="MenuButton" x="300" y="500" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
+    </OBJECTS>
+  </INSTRUCTIONS>
 
   <!-- 2017/04/22 Added assets for Enter Name menu screen -->
   <ENTERNAME>
@@ -53,17 +91,23 @@
   
   <MENU>
     <TEXTURES>
-      <texture filename="assets/menuButtonPlay.png" ID="playbutton"/>
-      <texture filename="assets/menuButtonScore.png" ID="scorebutton"/>
-      <texture filename="assets/menuButtonSettings.png" ID="settingsbutton"/>
+      <texture filename="assets/AlienAttack.png" ID="attacklogo"/>                    <!-- 2017/04/24 Added Page Title for Main Menu -->
+      <texture filename="assets/credit.png" ID="credit"/>                             <!-- 2017/04/24 Added Name and Student Number for Main Menu -->
+      <texture filename="assets/menuButtonPlay.png" ID="playbutton"/>                 <!-- Play the Game button -->
+      <texture filename="assets/menuButtonScore.png" ID="scorebutton"/>               <!-- Display High Scores button-->
+      <texture filename="assets/menuButtonSettings.png" ID="settingsbutton"/>         <!-- Go to Settings Menu button -->
+      <texture filename="assets/menuButtonInstructions.png" ID="instructionsbutton"/> <!-- 2017/04/24 Added Instructions State -->
       <texture filename="assets/menuButtonExit.png" ID="exitbutton"/>
     </TEXTURES>
 
     <OBJECTS>
-      <object type="MenuButton" x="100" y="10" width="400" height="100" textureID="playbutton" numFrames="0" callbackID="1"/>
-      <object type="MenuButton" x="100" y="115" width="400" height="100" textureID="scorebutton" numFrames="0" callbackID="2"/>
-      <object type="MenuButton" x="100" y="220" width="400" height="100" textureID="settingsbutton" numFrames="0" callbackID="3"/>
-      <object type="MenuButton" x="100" y="325" width="400" height="100" textureID="exitbutton" numFrames="0" callbackID="4"/>
+      <object type="AnimatedGraphic" x="220" y="0" width="360" height="75" textureID="attacklogo" numFrames="1" animSpeed="2"/>
+      <object type="MenuButton" x="200" y="70" width="400" height="100" textureID="playbutton" numFrames="0" callbackID="1"/>
+      <object type="MenuButton" x="200" y="175" width="400" height="100" textureID="scorebutton" numFrames="0" callbackID="2"/>
+      <object type="MenuButton" x="200" y="280" width="400" height="100" textureID="settingsbutton" numFrames="0" callbackID="3"/>
+      <object type="MenuButton" x="200" y="385" width="400" height="100" textureID="instructionsbutton" numFrames="0" callbackID="4"/>
+      <object type="MenuButton" x="200" y="490" width="400" height="100" textureID="exitbutton" numFrames="0" callbackID="5"/>
+      <object type="AnimatedGraphic" x="160" y="585" width="481" height="57" textureID="credit" numFrames="1" animSpeed="2"/>
     </OBJECTS>
   </MENU>
   

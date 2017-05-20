@@ -36,7 +36,7 @@ public:
 
 #ifdef _SDL_TTF_H
 	//Creates image from font string
-	void turretsKilledText(std::string input);		// 2017/04/23 Number of turrets destroyed by the player
+	//void turretsKilledText(std::string input);		// 2017/04/23 Number of turrets destroyed by the player
 	void loadReturnToMenuText(std::string input);	// 2017/04/22 Message Player return to menu
 	void loadReadyText(std::string input);			// Message Player ready to start
 	void loadInputText(std::string input);			// Text input by player
@@ -46,7 +46,9 @@ public:
 	void loadScoreText(std::string currentScore);	// Display the score
 
 	void loadHighScoresText();
-	bool createText(SDL_Texture* text, std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, SDL_Renderer* rend, bool textWrapped = false);
+	bool createText(SDL_Texture* text, std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, bool textWrapped = false);
+	bool createText(std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, bool textWrapped = false);
+	//bool renderTextToTexture(std::string textureText, SDL_Color textColor, TTF_Font* font, std::string id = "", bool textWrapped = false);	// Create a texture from text
 #endif
 
 	void free();												// Deallocates texture
@@ -81,10 +83,11 @@ private:
     static TextureManager* s_pInstance;
 
 	// 16/02/2017
-	SDL_Texture* mTexture;	// The actual hardware texture
+	SDL_Texture* mTexture;			// The actual hardware texture
+	//SDL_Surface* m_TextSurface;	// Surface used to create textures
 
-	int mWidth;		// Texture width
-	int mHeight;	// Texture height
+	int mWidth;						// Texture width
+	int mHeight;					// Texture height
 };
 
 typedef TextureManager TheTextureManager;

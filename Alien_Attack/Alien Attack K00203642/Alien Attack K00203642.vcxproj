@@ -39,6 +39,7 @@
     <ClInclude Include="Glider.h" />
     <ClInclude Include="HighScoreState.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="InstructionsState.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Level1Boss.h" />
@@ -67,6 +68,7 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
+    <ClInclude Include="TitleScreenState.h" />
     <ClInclude Include="Turret.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
@@ -82,6 +84,7 @@
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="HighScoreState.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="InstructionsState.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelParser.cpp" />
     <ClCompile Include="main.cpp" />
@@ -103,6 +106,7 @@
     <ClCompile Include="tinyxml.cpp" />
     <ClCompile Include="tinyxmlerror.cpp" />
     <ClCompile Include="tinyxmlparser.cpp" />
+    <ClCompile Include="TitleScreenState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="assets\attack.xml">

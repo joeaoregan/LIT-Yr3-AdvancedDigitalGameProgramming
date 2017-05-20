@@ -82,7 +82,7 @@ void PlayState::update() {
         
         if(TheGame::Instance()->getPlayerLives() == 0) {
 			//nameEntered = false;
-			highScoreUpdate(TheGame::Instance()->getPlayerName(), Game::Instance()->getScore());
+			highScoreUpdate(TheGame::Instance()->getPlayerName(), Game::Instance()->getTime());
             TheGame::Instance()->getStateMachine()->changeState(new GameOverState());
         }
         
@@ -307,12 +307,13 @@ void PlayState::render() {
 				Texture::Instance()->loadReadyText("Get Ready " + Game::Instance()->getPlayerName());
 				Texture::Instance()->drawText("readyID", 210, 190, Game::Instance()->getRenderer());
 			}
-			else Texture::Instance()->clearFromTextureMap("readyID");
+			//else Texture::Instance()->clearFromTextureMap("readyID");
 
 			TheBulletHandler::Instance()->drawBullets();
 
-			Texture::Instance()->loadLevelText("Level " + std::to_string(Game::Instance()->getCurrentLevel()));	// 2017/04/22 Changed to show current level number
+			//Texture::Instance()->loadLevelText("Level " + std::to_string(Game::Instance()->getCurrentLevel()));	// 2017/04/22 Changed to show current level number
 
+			//Texture::Instance()->drawText("levelID", 50, 0, Game::Instance()->getRenderer());
 			/*
 			//gameTimer();	// Calculate and display the game timer
 			//clock1->update();	// 2017/04/16 Timer update function
@@ -362,8 +363,9 @@ void PlayState::render() {
 }
 
 bool PlayState::onEnter() {
+	Texture::Instance()->loadLevelText("Level " + std::to_string(Game::Instance()->getCurrentLevel()));	// 2017/04/22 Changed to show current level number
 	//Texture::Instance()->loadReadyText("Get Ready " + Game::Instance()->getPlayerName());	// DOESN'T DISPLAY FULL SIZE OF TEXT
-
+	Game::Instance()->setScore(0);
 	Game::Instance()->totalScrolledDistance = 0.0;	// 2017/04/23 reset the scroll distance for the minimap
 	Game::Instance()->setEnterTextState(false);		// 2017/04/22 
 
@@ -385,11 +387,17 @@ bool PlayState::onEnter() {
 	nameEntered = false;	// Input a name
 	
 	//Texture::Instance()->loadEnterNameText("Please Enter Your Name:");			// Render message indicating to enter name -- MOVED TO EnterNameState.cpp
-    
-    TheTextureManager::Instance()->load("assets/bullet1.png", "bullet1", TheGame::Instance()->getRenderer());	// 2017/04/23 Moved to map1.tmx
-    TheTextureManager::Instance()->load("assets/bullet2.png", "bullet2", TheGame::Instance()->getRenderer());	// 2017/04/23 Moved to map1.tmx
+
+	TheTextureManager::Instance()->load("assets/bullet1.png", "bullet1", TheGame::Instance()->getRenderer());	// 2017/04/23 Moved to map1.tmx
+	TheTextureManager::Instance()->load("assets/bullet2.png", "bullet2", TheGame::Instance()->getRenderer());	// 2017/04/23 Moved to map1.tmx
 	TheTextureManager::Instance()->load("assets/bullet3.png", "bullet3", TheGame::Instance()->getRenderer());	// 2017/04/23 Moved to map1.tmx
 	TheTextureManager::Instance()->load("assets/lives.png", "lives", TheGame::Instance()->getRenderer());		// Lives in top left corner	// 2017/04/23 Moved to map1.tmx
+
+	Texture::Instance()->load("assets/bullet1.png", "bullet1", Game::Instance()->getRenderer());	// 2017/04/23 Moved to map1.tmx
+	Texture::Instance()->load("assets/bullet2.png", "bullet2", Game::Instance()->getRenderer());	// 2017/04/23 Moved to map1.tmx
+	Texture::Instance()->load("assets/bullet3.png", "bullet3", Game::Instance()->getRenderer());	// 2017/04/23 Moved to map1.tmx
+	Texture::Instance()->load("assets/lives.png", "lives", Game::Instance()->getRenderer());		// Lives in top left corner	// 2017/04/23 Moved to map1.tmx
+
 	Texture::Instance()->load("assets/bullet4.png", "bullet4", Game::Instance()->getRenderer());				// 2017/03/14 Angry glider bullet	// 2017/04/23 Moved to map1.tmx
 	
 	//Texture::Instance()->load("assets/minimap.png", "mapID", Game::Instance()->getRenderer());					// 2017/04/23 minimap -- MOVED TO map1.tmx
