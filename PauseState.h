@@ -28,7 +28,9 @@ public:
     
     virtual std::string getStateID() const { return s_pauseID; }
     
-    virtual void setCallbacks(const std::vector<Callback>& callbacks);
+    virtual void setCallbacks(const std::vector<Callback>& callbacks); 
+	
+	void selectCurrentButton();		// keyboard/gamepad menu system support
     
 private:
     

@@ -4,6 +4,12 @@
 //
 //  Created by shaun mitchell on 10/03/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
+
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/04/22	Set the scrolling as stopped or moving for mini map
 */
 
 
@@ -22,10 +28,11 @@ void TileLayer::update(Level* pLevel) {
     if(m_position.getX() < ((m_mapWidth * m_tileSize) - TheGame::Instance()->getGameWidth()) - m_tileSize) {
         m_velocity.setX(TheGame::Instance()->getScrollSpeed());
         m_position += m_velocity;
-
+		Game::Instance()->stillScrolling = true;	// 2017/04/22 Set the scrolling as stopped or moving for mini map
     }
     else {
         m_velocity.setX(0);
+		Game::Instance()->stillScrolling = false;	// 2017/04/22 Set the scrolling as stopped or moving for mini map
     }
 }
 

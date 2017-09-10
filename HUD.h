@@ -44,8 +44,12 @@ public:
 	virtual void update() {
 		turretsText.str("");
 		scoreText.str("");
-		
-		turretsText << "Turrets: " << std::to_string(Game::Instance()->turretKills) << "/7";
+
+		// Mark as objective achieved
+		if(Game::Instance()->turretKills < 7)
+			turretsText << "Turrets: " << std::to_string(Game::Instance()->turretKills) << "/7";
+		else turretsText << "Achieved";
+
 		scoreText << "Score: " << std::to_string(Game::Instance()->getScore());
 
 		if (prevTurrets != Game::Instance()->turretKills) {

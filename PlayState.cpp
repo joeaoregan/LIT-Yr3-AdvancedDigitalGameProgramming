@@ -46,11 +46,15 @@ std::stringstream timeText;
 //unsigned int keyDelay = 0;			// 2017/04/23	The time since the last key press
 //bool keyPressed = false;			// 2017/04/23	Has a key been pressed
 
+unsigned int pauseBetweenPresses = 0;
+bool buttonPressed = false;
+
 void PlayState::update() {
-    if(m_loadingComplete && !m_exiting) {												// If media is loaded and the game is not exiting
-		if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE)	||				// If Esc key pressed
-			InputHandler::Instance()->getButtonState(0, 6)) {							// Back button press (on Shield controller)
-			TheGame::Instance()->getStateMachine()->pushState(new PauseState());		// Pause the game, by pushing the pause state onto the list of states
+    if(m_loadingComplete && !m_exiting) {															// If media is loaded and the game is not exiting
+		if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE)	||							// If Esc key pressed
+			InputHandler::Instance()->getButtonState(0, 6)) {										// Back button press (on Shield controller)
+			if (!buttonPressed) TheGame::Instance()->getStateMachine()->pushState(new PauseState());// Pause the game, by pushing the pause state onto the list of states
+			buttonPressed = true;
 		}
 		/*
 		// moved to game::update() -> universal there
@@ -73,17 +77,23 @@ void PlayState::update() {
 			}
 		}
         */
-        if(TheInputHandler::Instance()->getButtonState(0, 7))							// 2017/04/22	Uncommented. Button 7 is pause on NVidia controller
-        {
-            TheGame::Instance()->getStateMachine()->pushState(new PauseState());		// Add pause state to list of states
+        if(InputHandler::Instance()->getButtonState(0, 7)) { 										// 2017/04/22	Uncommented. Button 7 is pause on NVidia controller
+			if (!buttonPressed) Game::Instance()->getStateMachine()->pushState(new PauseState());	// Add pause state to list of states
+			buttonPressed = true;
         }
+
+		// 2017/04/22 Leave 1/4 of a second before the button selector moves again
+		if (SDL_GetTicks() > pauseBetweenPresses + 250) {
+			pauseBetweenPresses = SDL_GetTicks();													// Reset time between button presses
+			buttonPressed = false;																	// Reset ability to press button
+		}
     
         TheBulletHandler::Instance()->updateBullets();
         
         if(TheGame::Instance()->getPlayerLives() == 0) {
 			//nameEntered = false;
-			highScoreUpdate(TheGame::Instance()->getPlayerName(), Game::Instance()->getTime());
-            TheGame::Instance()->getStateMachine()->changeState(new GameOverState());
+			highScoreUpdate(TheGame::Instance()->getPlayerName(), Game::Instance()->getTime());		// Update the High Scores entry
+            TheGame::Instance()->getStateMachine()->changeState(new GameOverState());				// Game Over
         }
         
         if(pLevel != 0) {
@@ -179,11 +189,12 @@ void PlayState::highScoreUpdate(std::string name, int score) {
 //bool quit = false;
 unsigned int readyTextTimer;		// Time to display the Player ready message at start of level
 //bool renderText;
-//SDL_Event event;
+//SDL_Event event;					// Moved text input to its own state
 
 void PlayState::render() {
-	//SDL_RenderSetViewport(Game::Instance()->getRenderer(), &gameViewport);									// 2017/04/22 Set the viewport to Game Screen
 	/*
+	//SDL_RenderSetViewport(Game::Instance()->getRenderer(), &gameViewport);									// 2017/04/22 Set the viewport to Game Screen
+	
 	if (!nameEntered) {																						// If a name hasn't already been entered
 		SDL_SetRenderDrawColor(Game::Instance()->getRenderer(), 0x00, 0x00, 0x00, 0xFF);					// Clear background
 		Texture::Instance()->draw("enterNameID", 50, 100, 400, 20, Game::Instance()->getRenderer());		// Display enter name message
@@ -310,11 +321,11 @@ void PlayState::render() {
 			//else Texture::Instance()->clearFromTextureMap("readyID");
 
 			TheBulletHandler::Instance()->drawBullets();
-
+			/*
 			//Texture::Instance()->loadLevelText("Level " + std::to_string(Game::Instance()->getCurrentLevel()));	// 2017/04/22 Changed to show current level number
 
 			//Texture::Instance()->drawText("levelID", 50, 0, Game::Instance()->getRenderer());
-			/*
+			
 			//gameTimer();	// Calculate and display the game timer
 			//clock1->update();	// 2017/04/16 Timer update function
 
@@ -359,7 +370,7 @@ void PlayState::render() {
 		}
     //}
 
-	//SDL_RenderSetViewport(Game::Instance()->getRenderer(), NULL);					// Clear View Port
+	//SDL_RenderSetViewport(Game::Instance()->getRenderer(), NULL);						// Clear View Port
 }
 
 bool PlayState::onEnter() {
@@ -368,9 +379,8 @@ bool PlayState::onEnter() {
 	Game::Instance()->setScore(0);
 	Game::Instance()->totalScrolledDistance = 0.0;	// 2017/04/23 reset the scroll distance for the minimap
 	Game::Instance()->setEnterTextState(false);		// 2017/04/22 
-
-	//gameViewport = { 0, 0, 800, 480 };			// 2017/04/22 Set game view port x, y, w, h
 	/*
+	//gameViewport = { 0, 0, 800, 480 };			// 2017/04/22 Set game view port x, y, w, h	
 	//statusViewport = { 0, 480, 800, 30 };			// 2017/04/22 Set HUD view port x, y, w, h
 	//statusViewport = { 0, 480, 800, 120 };			// 2017/04/23 Set HUD view port x, y, w, h
 	//mapViewport = { 100, 580, 600, 60 };			// 2017/04/23 Set map view port x, y, w, h
@@ -378,7 +388,7 @@ bool PlayState::onEnter() {
     TheGame::Instance()->setPlayerLives(3);
 		    
     LevelParser levelParser;
-    pLevel = levelParser.parseLevel(TheGame::Instance()->getLevelFiles()[TheGame::Instance()->getCurrentLevel() - 1].c_str());
+    pLevel = levelParser.parseLevel(TheGame::Instance()->getLevelFiles()[TheGame::Instance()->getCurrentLevel() - 1].c_str());	// Parse the level
 
 	// Input Text
 	readyTextTimer = SDL_GetTicks();

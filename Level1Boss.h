@@ -96,7 +96,7 @@ public:
                 
                 if(m_dyingCounter == m_dyingTime) {
                     m_bDead = true;
-                    TheGame::Instance()->setLevelComplete(true);
+                    TheGame::Instance()->setLevelComplete(true);	// Level is finished, ADD NEXT LEVEL HERE
                 }
                 m_dyingCounter++;
 

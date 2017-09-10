@@ -10,7 +10,7 @@
 
 	Done:
 		2017/04/22	Included Game class to use renderer directly in functions instead of passing it in
-		2017/02/25 fstream added to read in high scores from file to render to screen using loadFromRenderedText() in TextureManager class
+		2017/02/25	fstream added to read in high scores from file to render to screen using loadFromRenderedText() in TextureManager class
 */
 #include "TextureManager.h"
 #include "SDL_image.h"

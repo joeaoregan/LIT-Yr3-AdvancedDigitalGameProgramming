@@ -195,7 +195,7 @@ void Game::render() {
 
 void Game::update(){	
 		m_pGameStateMachine->update();
-		totalScrolledDistance += m_scrollSpeed;	// 2017/04/23 Increment the scroll distance
+		if (Game::Instance()->stillScrolling) totalScrolledDistance += m_scrollSpeed;	// 2017/04/23 Increment the scroll distance // 2017/04/24 Add check for background scrolling stopped or not
 }
 
 unsigned int keyDelay = 0;			// 2017/04/23	The time since the last key press
