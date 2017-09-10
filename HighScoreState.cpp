@@ -39,18 +39,18 @@ void HighScoreState::render() {
 		}
 	}
 
-	TheTextureManager::Instance()->drawFrame("scoreTitle", (SCREEN_WIDTH - 410 ) / 2, 20, 410, 64, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
+	Texture::Instance()->draw("scoreTitle", (SCREEN_WIDTH - 354 ) / 2, 20, 354, 64, Game::Instance()->getRenderer());
 	
-	TheTextureManager::Instance()->drawText("highScoresID", 65, 100, TheGame::Instance()->getRenderer());
+	Texture::Instance()->drawText("highScoresID", 65, 100, TheGame::Instance()->getRenderer());
 
 	// Put high score screen output in here
 	//std::cout << "Rendering HighScoreState\n";			// will loop over and over
 }
 
 bool HighScoreState::onEnter() {
-	TheTextureManager::Instance()->load("assets/TitleHighScores.png", "scoreTitle", TheGame::Instance()->getRenderer()); 
+	Texture::Instance()->load("assets/HighScoresLogo.png", "scoreTitle", TheGame::Instance()->getRenderer()); 
 	
-	TheTextureManager::Instance()->loadHighScoresText(TheGame::Instance()->getRenderer());
+	Texture::Instance()->loadHighScoresText(TheGame::Instance()->getRenderer());
 	//TheTextureManager::Instance()->drawText("highScoresID", 150, 100, TheGame::Instance()->getRenderer());
 	
 	StateParser stateParser;
