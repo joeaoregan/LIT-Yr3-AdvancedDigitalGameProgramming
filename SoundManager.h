@@ -9,6 +9,8 @@
 #ifndef __SDL_Game_Programming_Book__SoundManager__
 #define __SDL_Game_Programming_Book__SoundManager__
 
+#define NUMBER_OF_SONGS 3;	// 2017/03/16 Number of songs in game
+
 #include <iostream>
 #include <map>
 #include <string>
@@ -32,7 +34,11 @@ public:
     bool load(std::string fileName, std::string id, sound_type type);
     
     void playSound(std::string id, int loop);
-    void playMusic(std::string id, int loop);
+	void playMusic(std::string id, int loop);
+	void playMusic(int song = 0);
+	void pausePlayMusic();							// 2017/03/16 Function to stop the music playing
+
+	int currentSong;							// Keep track of current song
     
 private:    
     static SoundManager* s_pInstance;

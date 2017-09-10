@@ -180,6 +180,11 @@ void Player::handleInput() {
         else {
             m_bulletCounter = m_bulletFiringSpeed;
         }
+
+		/* 2017/03/16 need to change so only happens when not enter name state */
+		if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_M)) {
+			TheSoundManager::Instance()->pausePlayMusic();
+		}
         // */
         
         /* handle joysticks /

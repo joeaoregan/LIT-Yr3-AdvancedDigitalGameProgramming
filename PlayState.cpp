@@ -129,8 +129,7 @@ void PlayState::render() {
 		TheTextureManager::Instance()->drawText("inputTextID", 50, 150, TheGame::Instance()->getRenderer());
 
 		renderText = false;		// flag that keeps track of whether we need to update the texture
-
-
+		
 		/*
 		//while (SDL_PollEvent(&e) != 0) {
 			//User requests quit
@@ -283,7 +282,8 @@ bool PlayState::onEnter() {
     
     TheTextureManager::Instance()->load("assets/bullet1.png", "bullet1", TheGame::Instance()->getRenderer());
     TheTextureManager::Instance()->load("assets/bullet2.png", "bullet2", TheGame::Instance()->getRenderer());
-    TheTextureManager::Instance()->load("assets/bullet3.png", "bullet3", TheGame::Instance()->getRenderer());
+	TheTextureManager::Instance()->load("assets/bullet3.png", "bullet3", TheGame::Instance()->getRenderer());
+	TheTextureManager::Instance()->load("assets/bullet4.png", "bullet4", TheGame::Instance()->getRenderer());	// 2017/03/14 Angry glider bullet
 	TheTextureManager::Instance()->load("assets/lives.png", "lives", TheGame::Instance()->getRenderer());		// Lives in top left corner
 	//bool loadFromRenderedText(std::string textureText, SDL_Color textColor, TTF_Font* font, SDL_Renderer* rend, bool textWrapped = false);
 	//TheTextureManager::Instance()->load("assets/lives.png", "test", TheGame::Instance()->getRenderer());		// Lives in top left corner
@@ -327,6 +327,6 @@ void PlayState::gameTimer() {
 
 	timeText << "Time: " << countdownTimer;	// Set the game timer
 
-	TheTextureManager::Instance()->loadScoreText(timeText.str().c_str(), TheGame::Instance()->getRenderer());
+	TheTextureManager::Instance()->loadScoreText(timeText.str().c_str(), TheGame::Instance()->getRenderer());	// Player Score
 	//TheTextureManager::Instance()->loadFromRenderedText(timeText.str().c_str(), "timer", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), TheGame::Instance()->getRenderer());		// Lives in top left corner
 }

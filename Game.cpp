@@ -17,6 +17,7 @@
 #include "SoundManager.h"
 #include "RoofTurret.h"
 #include "ShotGlider.h"
+#include "AngryGlider.h"		// 2017/03/14
 #include "Eskeletor.h"
 #include "Level1Boss.h"
 #include "GameOverState.h"
@@ -102,11 +103,14 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
     
     // add some sound effects - TODO move to better place
-    TheSoundManager::Instance()->load("assets/DST_ElectroRock.ogg", "music1", SOUND_MUSIC);
+	TheSoundManager::Instance()->load("assets/DST_ElectroRock.ogg", "music1", SOUND_MUSIC);
+	TheSoundManager::Instance()->load("OriginalMusic/song1.mp3", "music2", SOUND_MUSIC);	// 2017/03/16 Added song
+	TheSoundManager::Instance()->load("OriginalMusic/song2.mp3", "music3", SOUND_MUSIC);	// 2017/03/16 Added song
     TheSoundManager::Instance()->load("assets/boom.wav", "explode", SOUND_SFX);
     TheSoundManager::Instance()->load("assets/phaser.wav", "shoot", SOUND_SFX);
-    
-    TheSoundManager::Instance()->playMusic("music1", -1);
+
+	//TheSoundManager::Instance()->playMusic("music1", -1);
+	TheSoundManager::Instance()->playMusic(rand() % 3 + 1);												// 2017/03/16 Play random song
     
     //TheInputHandler::Instance()->initialiseJoysticks();
     
@@ -117,7 +121,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     TheGameObjectFactory::Instance()->registerType("ScrollingBackground", new ScrollingBackgroundCreator());
     TheGameObjectFactory::Instance()->registerType("Turret", new TurretCreator());
     TheGameObjectFactory::Instance()->registerType("Glider", new GliderCreator());
-    TheGameObjectFactory::Instance()->registerType("ShotGlider", new ShotGliderCreator());
+	TheGameObjectFactory::Instance()->registerType("ShotGlider", new ShotGliderCreator());
+	TheGameObjectFactory::Instance()->registerType("AngryGlider", new AngryGliderCreator());		// 2017/03/14
     TheGameObjectFactory::Instance()->registerType("RoofTurret", new RoofTurretCreator());
     TheGameObjectFactory::Instance()->registerType("Eskeletor", new EskeletorCreator());
     TheGameObjectFactory::Instance()->registerType("Level1Boss", new Level1BossCreator());

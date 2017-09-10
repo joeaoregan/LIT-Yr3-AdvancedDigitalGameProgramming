@@ -22,8 +22,7 @@ public:
 };
 
 class GameObjectFactory {
-public:
-    
+public:    
     static GameObjectFactory* Instance() {
         if(pInstance == 0)  {
             pInstance = new GameObjectFactory();
