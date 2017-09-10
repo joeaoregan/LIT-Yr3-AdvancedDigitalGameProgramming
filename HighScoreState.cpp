@@ -5,6 +5,8 @@
 	Student Number:	K00203642
 
 	Done:
+		2017/04/23	Pressing Backspace also returns to Main Menu
+		2017/04/22	Pressing Esc or B button on gamepad, returns to Main Menu
 		2017/02/03	Created High Scores Table that reads to and writes from a text file
 */
 
@@ -33,7 +35,8 @@ void HighScoreState::update() {
 		Game::Instance()->fullScreenOrWindowed();
 	}
 	*/
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||			// Press Esc key to
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||			// If Esc key
+		InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||		// 2017/04/23 or backspace
 		InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
 		Game::Instance()->getStateMachine()->pushState(new MainMenuState());// Return to main menu
 	}
@@ -84,6 +87,13 @@ bool HighScoreState::onExit() {
 	m_exiting = true;
 
 	InputHandler::Instance()->reset();
+
+	// clear the texture manager
+	//for (int i = 0; i < m_textureIDList.size(); i++) {
+	//	Texture::Instance()->clearFromTextureMap(m_textureIDList[i]);
+	//}
+
+	m_textureIDList.clear();
 
 	std::cout << "exiting HighScoreState\n";
 	return true;

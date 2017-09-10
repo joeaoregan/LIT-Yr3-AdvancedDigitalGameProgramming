@@ -147,6 +147,7 @@ bool MainMenuState::onExit() {
 		m_gameObjects.pop_back();
     }
 
+	m_textureIDList.clear();									// Clear the texture list
 	m_gameObjects.clear();										// Clear the m_gameObjects list
 	    
     /* clear the texture manager

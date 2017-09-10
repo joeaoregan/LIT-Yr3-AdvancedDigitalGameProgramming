@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
     Uint32 frameStart, frameTime;
     
     std::cout << "game init attempt...\n";
-    if(TheGame::Instance()->init("K00203642 - Alien Attack", 100, 100, SCREEN_WIDTH, SCREEN_HEIGHT, false))  { // 2017/04/22 Changed to 800 x 510
+    if(TheGame::Instance()->init("Joe O'Regan - Alien Attack - K00203642", 100, 100, SCREEN_WIDTH, SCREEN_HEIGHT, false))  { // 2017/04/22 Changed to 800 x 510 // 2017/04/23 Changed to 800 x 640
         std::cout << "game init success!\n";
         while(TheGame::Instance()->running()) {				// Game loop
             frameStart = SDL_GetTicks();

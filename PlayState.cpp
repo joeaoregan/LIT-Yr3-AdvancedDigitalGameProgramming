@@ -29,33 +29,59 @@
 #include "Level.h"
 #include "BulletHandler.h"
 #include "Timer.h"					// 2017/04/16 Timer class for creating a game clock
+#include "SoundManager.h"			// 2017/04/23 Skip music backwards and forwards
 
-GameObject* clock1 = new Timer();	// 2017/04/16 Timer for game
+///GameObject* clock1 = new Timer();	// 2017/04/16 Timer for game xxxc
 
 const std::string PlayState::s_playID = "PLAY";
 std::stringstream timeText;
-bool nameEntered = true;			// 2017/04/22 Test --> set false for entering name
+//bool nameEntered = true;			// 2017/04/22 Test --> set false for entering name
 
 //unsigned int lastTime = 0, currentTime, gameTimer = 0;
 
-SDL_Rect gameViewport;				// 2017/04/22 Main game screen view port, this is the section of the window where the game is rendered
-SDL_Rect statusViewport;
+//SDL_Rect gameViewport;				// 2017/04/22	Main game screen view port, this is the section of the window where the game is rendered
+//SDL_Rect statusViewport;			// 2017/04/22	Heads Up Display viewport
+//SDL_Rect mapViewport;				// 2017/04/23	Mini Map Display viewport//xxxm
+
+//unsigned int keyDelay = 0;			// 2017/04/23	The time since the last key press
+//bool keyPressed = false;			// 2017/04/23	Has a key been pressed
 
 void PlayState::update() {
-    if(m_loadingComplete && !m_exiting)     {
-        if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))         {
-            TheGame::Instance()->getStateMachine()->pushState(new PauseState());
-        }
-        
+    if(m_loadingComplete && !m_exiting) {												// If media is loaded and the game is not exiting
+		if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE)	||				// If Esc key pressed
+			InputHandler::Instance()->getButtonState(0, 6)) {							// Back button press (on Shield controller)
+			TheGame::Instance()->getStateMachine()->pushState(new PauseState());		// Pause the game, by pushing the pause state onto the list of states
+		}
+		/*
+		// moved to game::update() -> universal there
+		if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_COMMA) ||					// 2017/04/23	If "," is pressed
+			InputHandler::Instance()->getButtonState(0, 4)) {							// OR Left Shoulder button is pressed on the Gamepad
+			if (!keyPressed) {															// and no key press already registerd for 1/4 of a second
+				std::cout << "Music Back" << std::endl;
+				SoundManager::Instance()->trackForwards();								// Skip the current track forwards
+				keyDelay = SDL_GetTicks();												// Reset the time since last key press
+				keyPressed = true;														// Register a key has been pressed
+			}
+		}
+		if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_PERIOD) ||					// 2017/04/23	If "." is pressed
+			InputHandler::Instance()->getButtonState(0, 5)) {							// OR Right Shoulder button is pressed on the Gamepad
+			if (!keyPressed) {
+				std::cout << "Music Forwards" << std::endl;
+				SoundManager::Instance()->trackBackwards();								// Skip the current track backwards
+				keyDelay = SDL_GetTicks();
+				keyPressed = true;
+			}
+		}
+        */
         if(TheInputHandler::Instance()->getButtonState(0, 7))							// 2017/04/22	Uncommented. Button 7 is pause on NVidia controller
         {
-            TheGame::Instance()->getStateMachine()->pushState(new PauseState());
+            TheGame::Instance()->getStateMachine()->pushState(new PauseState());		// Add pause state to list of states
         }
     
         TheBulletHandler::Instance()->updateBullets();
         
         if(TheGame::Instance()->getPlayerLives() == 0) {
-			nameEntered = false;
+			//nameEntered = false;
 			highScoreUpdate(TheGame::Instance()->getPlayerName(), Game::Instance()->getScore());
             TheGame::Instance()->getStateMachine()->changeState(new GameOverState());
         }
@@ -63,6 +89,13 @@ void PlayState::update() {
         if(pLevel != 0) {
             pLevel->update();
         }
+		/*
+		// 2017/04/23	Set a delay on key presses
+		if (SDL_GetTicks() > keyDelay + 500) {		// If a key han't been pressed in 1/4 of a second
+			keyDelay = SDL_GetTicks();				// Reset time since last key press
+			keyPressed = false;						// Set no key pressed
+		}
+		*/
     }
 }
 
@@ -144,12 +177,12 @@ void PlayState::highScoreUpdate(std::string name, int score) {
 
 //std::string inputText = "Name";	// 2017/04/22 Name entered now stored in Game.h
 //bool quit = false;
-unsigned int readyTextTimer;
+unsigned int readyTextTimer;		// Time to display the Player ready message at start of level
 //bool renderText;
 //SDL_Event event;
 
 void PlayState::render() {
-	SDL_RenderSetViewport(Game::Instance()->getRenderer(), &gameViewport);									// 2017/04/22 Set the viewport to Game Screen
+	//SDL_RenderSetViewport(Game::Instance()->getRenderer(), &gameViewport);									// 2017/04/22 Set the viewport to Game Screen
 	/*
 	if (!nameEntered) {																						// If a name hasn't already been entered
 		SDL_SetRenderDrawColor(Game::Instance()->getRenderer(), 0x00, 0x00, 0x00, 0xFF);					// Clear background
@@ -274,45 +307,72 @@ void PlayState::render() {
 				Texture::Instance()->loadReadyText("Get Ready " + Game::Instance()->getPlayerName());
 				Texture::Instance()->drawText("readyID", 210, 190, Game::Instance()->getRenderer());
 			}
+			else Texture::Instance()->clearFromTextureMap("readyID");
 
+			TheBulletHandler::Instance()->drawBullets();
+
+			Texture::Instance()->loadLevelText("Level " + std::to_string(Game::Instance()->getCurrentLevel()));	// 2017/04/22 Changed to show current level number
+
+			/*
 			//gameTimer();	// Calculate and display the game timer
-			clock1->update();	// 2017/04/16 Timer update function
+			//clock1->update();	// 2017/04/16 Timer update function
 
 			//TheTextureManager::Instance()->loadFromRenderedText("Level 1", "testxxx", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), TheGame::Instance()->getRenderer());		// Lives in top left corner
 			
-			TheBulletHandler::Instance()->drawBullets();
-
 			// 2017/04/22 Game info viewport
-			SDL_RenderSetViewport(Game::Instance()->getRenderer(), &statusViewport);				// 2017/04/22 Set the viewport to Game Screen
+			//SDL_RenderSetViewport(Game::Instance()->getRenderer(), &statusViewport);									// 2017/04/22 Set the viewport to Game Screen
 
 			// Draw Lives
-			for (int i = 0; i < TheGame::Instance()->getPlayerLives(); i++) {
-				TheTextureManager::Instance()->drawFrame("lives", i * 30, 0, 32, 30, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
-			}
+			//for (int i = 0; i < TheGame::Instance()->getPlayerLives(); i++) {
+			//	TheTextureManager::Instance()->drawFrame("lives", i * 30, 0, 32, 30, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
+			//}
 			
 			// Display Level Number
 			//Texture::Instance()->loadLevelText("Level 1", TheGame::Instance()->getRenderer());
-			Texture::Instance()->loadLevelText("Level " + std::to_string(Game::Instance()->getCurrentLevel()));	// 2017/04/22 Changed to show current level number
-			Texture::Instance()->drawText("levelID", 120, 0, TheGame::Instance()->getRenderer());
+			//Texture::Instance()->loadLevelText("Level " + std::to_string(Game::Instance()->getCurrentLevel()));			// 2017/04/22 Changed to show current level number
+			//Texture::Instance()->drawText("levelID", 120, 0, Game::Instance()->getRenderer());
+
+			// Display number of turrets destroyed
+			//Texture::Instance()->turretsKilledText("asdfsadfasdfasdfasdfasdf");	// Render the number of turrets destroyed
+			//Texture::Instance()->drawText("turretsKilledID", 120, 50, Game::Instance()->getRenderer());
+			
+			
+			//Texture::Instance()->drawText("turretsKilledID", 120, 25, Game::Instance()->getRenderer());
+			//Texture::Instance()->drawText("turretsKilledID", 120, 90, Game::Instance()->getRenderer());
 
 			// Display Timer
 			// id, x, y, width, height, currentRow, currentFrame, pRenderer, angle, alpha, flip
-			Texture::Instance()->drawFrame("timerID", 300, 0, 150, 30, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
-			//TheTextureManager::Instance()->drawText("testxxx", 100, 100, TheGame::Instance()->getRenderer());
+			//Texture::Instance()->drawFrame("timerID", 300, 0, 150, 30, 0, 0, Game::Instance()->getRenderer(), 0.0, 255);
 
-			SDL_RenderSetViewport(Game::Instance()->getRenderer(), NULL);				// 2017/04/22 Set the viewport to Game Screen
+			//SDL_SetRenderDrawColor(Game::Instance()->getRenderer(), 255, 0, 0, 255);									// Set colour for box outlines grey
+			//SDL_RenderDrawRect(Game::Instance()->getRenderer(), &mapViewport);											// Draw squares around the Player 1 viewports//xxxm
+			//SDL_RenderSetViewport(Game::Instance()->getRenderer(), &mapViewport);										// 2017/04/23 Set the viewport to the mini map//xxxm
+						
+			//Texture::Instance()->draw("mapID", 0, 0, 600, 60, Game::Instance()->getRenderer());//xxxm
+			//Texture::Instance()->draw("mapHeliID", Game::Instance()->playerMapX / 8, Game::Instance()->playerY / 8, 13, 5, Game::Instance()->getRenderer());	// Map is 1/8 size	//xxxm
+
+			//TheTextureManager::Instance()->drawText("testxxx", 100, 100, TheGame::Instance()->getRenderer()); 
+			
+			//SDL_RenderSetViewport(Game::Instance()->getRenderer(), NULL);				// 2017/04/22 Set the viewport to Game Screen
+			*/
 		}
     //}
 
-	SDL_RenderSetViewport(Game::Instance()->getRenderer(), NULL);					// Clear View Port
+	//SDL_RenderSetViewport(Game::Instance()->getRenderer(), NULL);					// Clear View Port
 }
 
 bool PlayState::onEnter() {
-	Game::Instance()->setEnterTextState(false);	// 2017/04/22 
+	//Texture::Instance()->loadReadyText("Get Ready " + Game::Instance()->getPlayerName());	// DOESN'T DISPLAY FULL SIZE OF TEXT
 
-	gameViewport = { 0, 0, 800, 480 };		// 2017/04/22 Set view port x, y, w, h
-	statusViewport = { 0, 480, 800, 30 };	// 2017/04/22 Set view port x, y, w, h
+	Game::Instance()->totalScrolledDistance = 0.0;	// 2017/04/23 reset the scroll distance for the minimap
+	Game::Instance()->setEnterTextState(false);		// 2017/04/22 
 
+	//gameViewport = { 0, 0, 800, 480 };			// 2017/04/22 Set game view port x, y, w, h
+	/*
+	//statusViewport = { 0, 480, 800, 30 };			// 2017/04/22 Set HUD view port x, y, w, h
+	//statusViewport = { 0, 480, 800, 120 };			// 2017/04/23 Set HUD view port x, y, w, h
+	//mapViewport = { 100, 580, 600, 60 };			// 2017/04/23 Set map view port x, y, w, h
+	*/
     TheGame::Instance()->setPlayerLives(3);
 		    
     LevelParser levelParser;
@@ -320,20 +380,24 @@ bool PlayState::onEnter() {
 
 	// Input Text
 	readyTextTimer = SDL_GetTicks();
+	/*
 	//renderText = true;
 	nameEntered = false;	// Input a name
-
-	Texture::Instance()->loadEnterNameText("Please Enter Your Name:");			// Render message indicating to enter name
+	
+	//Texture::Instance()->loadEnterNameText("Please Enter Your Name:");			// Render message indicating to enter name -- MOVED TO EnterNameState.cpp
     
-    TheTextureManager::Instance()->load("assets/bullet1.png", "bullet1", TheGame::Instance()->getRenderer());
-    TheTextureManager::Instance()->load("assets/bullet2.png", "bullet2", TheGame::Instance()->getRenderer());
-	TheTextureManager::Instance()->load("assets/bullet3.png", "bullet3", TheGame::Instance()->getRenderer());
-	Texture::Instance()->load("assets/bullet4.png", "bullet4", Game::Instance()->getRenderer());				// 2017/03/14 Angry glider bullet
-	TheTextureManager::Instance()->load("assets/lives.png", "lives", TheGame::Instance()->getRenderer());		// Lives in top left corner
+    TheTextureManager::Instance()->load("assets/bullet1.png", "bullet1", TheGame::Instance()->getRenderer());	// 2017/04/23 Moved to map1.tmx
+    TheTextureManager::Instance()->load("assets/bullet2.png", "bullet2", TheGame::Instance()->getRenderer());	// 2017/04/23 Moved to map1.tmx
+	TheTextureManager::Instance()->load("assets/bullet3.png", "bullet3", TheGame::Instance()->getRenderer());	// 2017/04/23 Moved to map1.tmx
+	TheTextureManager::Instance()->load("assets/lives.png", "lives", TheGame::Instance()->getRenderer());		// Lives in top left corner	// 2017/04/23 Moved to map1.tmx
+	Texture::Instance()->load("assets/bullet4.png", "bullet4", Game::Instance()->getRenderer());				// 2017/03/14 Angry glider bullet	// 2017/04/23 Moved to map1.tmx
+	
+	//Texture::Instance()->load("assets/minimap.png", "mapID", Game::Instance()->getRenderer());					// 2017/04/23 minimap -- MOVED TO map1.tmx
+	//Texture::Instance()->load("assets/mapHeli.png", "mapHeliID", Game::Instance()->getRenderer());				// 2017/04/23 minimap -- MOVED TO map1.tmx
 	//bool loadFromRenderedText(std::string textureText, SDL_Color textColor, TTF_Font* font, SDL_Renderer* rend, bool textWrapped = false);
 	//TheTextureManager::Instance()->load("assets/lives.png", "test", TheGame::Instance()->getRenderer());		// Lives in top left corner
 	//TheTextureManager::Instance()->loadFromRenderedText("Level 1", "testxxx", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), TheGame::Instance()->getRenderer());		// Lives in top left corner
-    
+    */
     if(pLevel != 0) {
         m_loadingComplete = true;
     }
@@ -347,6 +411,11 @@ bool PlayState::onExit() {
     
     TheInputHandler::Instance()->reset();
     TheBulletHandler::Instance()->clearBullets();
+	
+	// clear the texture manager
+	for (int i = 0; i < m_textureIDList.size(); i++) {
+		Texture::Instance()->clearFromTextureMap(m_textureIDList[i]);
+	}
 
 	//gameTimer = 0;
     

@@ -194,9 +194,11 @@ bool EnterNameState::onExit() {
 	}
 
 	// clear the texture manager
-	for (int i = 0; i < m_textureIDList.size(); i++) {
-		Texture::Instance()->clearFromTextureMap(m_textureIDList[i]);
-	}
+	//for (int i = 0; i < m_textureIDList.size(); i++) {
+	//	Texture::Instance()->clearFromTextureMap(m_textureIDList[i]);
+	//}
+
+	m_textureIDList.clear();
 
 	InputHandler::Instance()->reset();
 	

@@ -33,7 +33,7 @@ void CollisionManager::checkPlayerPowerUpCollision(Player* pPlayer, const std::v
 			if (objects[i]->type() != std::string("PowerUp") || !objects[i]->updating()) {	// If the object isn't a power up,
 				continue;																	// skip to the next object on the list
 			}
-			else std::cout << "XXXXXXXXXXXXXXXXXXXXXXXXXXX Power Up Found" << std::endl;
+			//else std::cout << "XXXXXXXXXXXXXXXXXXXXXXXXXXX Power Up Found" << std::endl; // test
 
 			SDL_Rect* pRect2 = new SDL_Rect();
 			pRect2->x = objects[i]->getPosition().getX();	// Power Up X coord

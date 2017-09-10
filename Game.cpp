@@ -6,6 +6,10 @@
 	Student Number:	K00203642
 
 	Done:
+		2017/04/23	Added Power UP 
+					Added Mini Map
+					Added Timer to xml
+					Added Pounder and Squasher moving obstacles
 		2017/03/23	Pressing F11 or the Full Screen button in the settings menu Toggles between Full Screen and Windowed view of the game
 					Added function to change between Full Screen and Windowed view
 		2017/03/16	The music button in the Settings Menu turns the music On / Off
@@ -21,7 +25,7 @@
 */
 #include "Game.h"
 #include <SDL_image.h>
-#include <SDL_ttf.h>	// 16/02/2017 Add font
+#include <SDL_ttf.h>			// 16/02/2017 Add font
 #include "TextureManager.h"
 #include "InputHandler.h"
 #include "MainMenuState.h"
@@ -33,13 +37,19 @@
 #include "SoundManager.h"
 #include "RoofTurret.h"
 #include "ShotGlider.h"
-#include "PowerUp.h"			// 2017/04/22
-
-#include "AngryGlider.h"		// 2017/03/14
 #include "Eskeletor.h"
 #include "Level1Boss.h"
 #include "GameOverState.h"
 #include <iostream>
+
+// Added
+#include "AngryGlider.h"		// 2017/03/14	Glider Variation
+#include "PowerUp.h"			// 2017/04/22	New Life Power Up
+#include "Squasher.h"			// 2017/04/23	Squasher moves down from the top acting as an obstacle
+#include "Pounder.h"			// 2017/04/23	Pounder moves up from the bottom acting as an obstacle
+#include "MiniMap.h"			// 2017/04/23	MiniMap tracks the players position on the map
+#include "Timer.h"				// 2017/04/23	Timer counts the time the player has lasted in the game
+#include "HUD.h"				// 2017/04/23	Heads up display displays the game information mini map etc
 
 using namespace std;
 
@@ -51,7 +61,7 @@ m_pRenderer(0),
 m_bRunning(false),
 m_pGameStateMachine(0),
 m_playerLives(3),
-m_scrollSpeed(0.8),
+m_scrollSpeed(0.8),				// 2017/04/23 Scroll speed for Player on mini map
 m_bLevelComplete(false),
 m_bChangingState(false) {
     // add some level files to an array
@@ -119,14 +129,17 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     }
 
     
-    // add some sound effects - TODO move to better place
+    // Music - add some sound effects - TODO move to better place
 	TheSoundManager::Instance()->load("assets/DST_ElectroRock.ogg", "music1", SOUND_MUSIC);
 	TheSoundManager::Instance()->load("OriginalMusic/song1.mp3", "music2", SOUND_MUSIC);			// 2017/03/16 Added song
 	TheSoundManager::Instance()->load("OriginalMusic/song2.mp3", "music3", SOUND_MUSIC);			// 2017/03/16 Added song
+	// Sound effects
     TheSoundManager::Instance()->load("assets/boom.wav", "explode", SOUND_SFX);
 	TheSoundManager::Instance()->load("assets/phaser.wav", "shoot", SOUND_SFX);
-	TheSoundManager::Instance()->load("SoundFX/laser2.wav", "fire", SOUND_SFX);						// 2017/04/21 Added Fire effect for Player weapon
-	TheSoundManager::Instance()->load("SoundFX/powerup.wav", "puFX", SOUND_SFX);					// 2017/04/21 Added Fire effect for Player weapon
+	SoundManager::Instance()->load("SoundFX/laser2.wav", "fire", SOUND_SFX);						// 2017/04/21 Added Fire effect for Player weapon
+	SoundManager::Instance()->load("SoundFX/powerup.wav", "puFX", SOUND_SFX);						// 2017/04/21 Added Fire effect for Player weapon
+	SoundManager::Instance()->load("SoundFX/blast.wav", "blastFX", SOUND_SFX);						// 2017/04/23 Added Blast effet for Squasher Enemy
+
 
 	//TheSoundManager::Instance()->playMusic("music1", -1);
 	SoundManager::Instance()->playMusic(rand() % 3 + 1);											// 2017/03/16 Play random song
@@ -144,8 +157,14 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     TheGameObjectFactory::Instance()->registerType("RoofTurret", new RoofTurretCreator());
     TheGameObjectFactory::Instance()->registerType("Eskeletor", new EskeletorCreator());
     TheGameObjectFactory::Instance()->registerType("Level1Boss", new Level1BossCreator());
+
 	GameObjectFactory::Instance()->registerType("AngryGlider", new AngryGliderCreator());		// 2017/03/14
 	GameObjectFactory::Instance()->registerType("PowerUp", new PowerUpCreator());				// 2017/04/22
+	GameObjectFactory::Instance()->registerType("Squasher", new SquasherCreator());				// 2017/04/23
+	GameObjectFactory::Instance()->registerType("Pounder", new PounderCreator());				// 2017/04/23
+	GameObjectFactory::Instance()->registerType("MiniMap", new MiniMapCreator());				// 2017/04/23
+	GameObjectFactory::Instance()->registerType("Timer", new TimerCreator());					// 2017/04/23
+	GameObjectFactory::Instance()->registerType("HUD", new HUDCreator());						// 2017/04/23
     
     // start the menu state
     m_pGameStateMachine = new GameStateMachine();
@@ -171,17 +190,49 @@ void Game::render() {
 
 void Game::update(){	
 		m_pGameStateMachine->update();
+		totalScrolledDistance += m_scrollSpeed;	// 2017/04/23 Increment the scroll distance
 }
+
+unsigned int keyDelay = 0;			// 2017/04/23	The time since the last key press
+bool keyPressed = false;			// 2017/04/23	Has a key been pressed
 
 void Game::handleEvents() {
 	/*
 		If button F11 is pressed change the game between Full Screen and Windowed
 		This option can also be selected from the settings menu of the game
-	
+	*/
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_F11)) {
 		Game::Instance()->fullScreenOrWindowed();
 	}
+
+	/*
+		Pressing ",", or "." skips the current music track backwards or forwards
+		Moved from PlayState, as these controls can be universal throughout the game
 	*/
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_COMMA) ||					// 2017/04/23	If "," is pressed
+		InputHandler::Instance()->getButtonState(0, 4)) {							// OR Left Shoulder button is pressed on the Gamepad
+		if (!keyPressed) {															// and no key press already registerd for 1/4 of a second
+			std::cout << "Music Back" << std::endl;
+			SoundManager::Instance()->trackForwards();								// Skip the current track forwards
+			keyDelay = SDL_GetTicks();												// Reset the time since last key press
+			keyPressed = true;														// Register a key has been pressed
+		}
+	}
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_PERIOD) ||					// 2017/04/23	If "." is pressed
+		InputHandler::Instance()->getButtonState(0, 5)) {							// OR Right Shoulder button is pressed on the Gamepad
+		if (!keyPressed) {
+			std::cout << "Music Forwards" << std::endl;
+			SoundManager::Instance()->trackBackwards();								// Skip the current track backwards
+			keyDelay = SDL_GetTicks();
+			keyPressed = true;
+		}
+	}
+	// 2017/04/23	Set a delay on key presses
+	if (SDL_GetTicks() > keyDelay + 500) {		// If a key han't been pressed in 1/4 of a second
+		keyDelay = SDL_GetTicks();				// Reset time since last key press
+		keyPressed = false;						// Set no key pressed
+	}
+
 	if (!enterTextState) TheInputHandler::Instance()->update();	// 2017/04/22 If not in the state for entering text update
 		//if(m_pGameStateMachine->getGameStates() != 
 }

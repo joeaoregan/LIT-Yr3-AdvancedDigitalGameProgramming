@@ -24,6 +24,8 @@ SoundManager::SoundManager() {
 	//currentSong = rand() % NUMBER_OF_SONGS + 1;		// 2017/03/16 choose random song
 }
 
+
+
 SoundManager::~SoundManager() {
     Mix_CloseAudio();
 }
@@ -55,13 +57,17 @@ bool SoundManager::load(std::string fileName, std::string id, sound_type type) {
 void SoundManager::playMusic(std::string id, int loop) {
 	Mix_PlayMusic(m_music[id], loop);
 }
-
 void SoundManager::playMusic(int song) {
 	//if (song == 0) song = rand() % NUMBER_OF_SONGS + 1;	// random number between 1 and 3
 	if (song == 0) currentSong = rand() % 3 + 1;			// random number between 1 and 3
 	else currentSong = song;
 
 	//currentSong = 1;
+
+	// 2017/04/23 Check song 
+	//if (currentSong > NUMBER_OF_SONGS) currentSong = 1;	// giving error
+	if (currentSong > 3) currentSong = 1;
+	else if (currentSong < 1) currentSong = NUMBER_OF_SONGS;
 
 	std::string id;
 	//if (song == 1) {
@@ -78,8 +84,25 @@ void SoundManager::playMusic(int song) {
 		//currentSong = 3;
 	}
 
-	///Mix_PlayMusic(m_music[id], -1); ////////////////////////////COMMENT OUT MUSIC PLAYING
+	Mix_PlayMusic(m_music[id], -1); ////////////////////////////COMMENT OUT MUSIC PLAYING
 	//Mix_PlayMusic(m_music["music3"], -1);
+}
+
+/*
+	2017/04/23	Skip the audion tracks forwards and backwards
+*/
+void SoundManager::trackForwards() {
+	currentSong++;
+	//if (currentSong > NUMBER_OF_SONGS) currentSong = 1;
+	//else if (currentSong < 1) currentSong = NUMBER_OF_SONGS;
+	playMusic(currentSong);
+}
+void SoundManager::trackBackwards() {
+	currentSong--;
+	//if (currentSong > NUMBER_OF_SONGS) currentSong = 1;
+	//else if (currentSong < 1) currentSong = NUMBER_OF_SONGS;
+	playMusic(currentSong);
+
 }
 /* 2017/03/16 Function to stop the music playing */
 void SoundManager::pausePlayMusic() {

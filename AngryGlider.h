@@ -1,6 +1,6 @@
 /*
 	
-	.h
+	AngryGlider.h
 
 	Created by:		Joe O'Regan
 	Student Number:	K00203642
@@ -33,7 +33,7 @@ public:
 	virtual void update() {
 		if (!m_bDying) {
 			if (m_bulletCounter == m_bulletFiringSpeed) {
-				TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY() + 15, 16, 16, "bullet4", 1, Vector2D(-10, 0));
+				BulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY() + 15, 16, 16, "bullet4", 1, Vector2D(-10, 0));
 				m_bulletCounter = 0;
 			}
 

@@ -68,10 +68,14 @@ public:
 
 	// Draw the timer
 	//void render() {
-	virtual void draw() {															// 2017/04/16
+	virtual void draw() {													// 2017/04/16
 		if (currentTime > lastTime + 1000) {								// Decrement countdown timer
 			std::cout << "Test Timer: " << gameTimer << " lastTime: " << lastTime << " currentTime: " << currentTime << std::endl;	// display timer in console window
 		}
+
+		SDL_RenderSetViewport(Game::Instance()->getRenderer(), NULL);				// 2017/04/22 Set the viewport to Game Screen
+
+		Texture::Instance()->drawFrame("timerID", 300, 480, 150, 30, 0, 0, Game::Instance()->getRenderer(), 0.0, 255);
 
 		//gTimeTextTexture.render(SCREEN_WIDTH - gTimeTextTexture.getWidth() - 10, 8);						// Draw on screen
 		// REPLACE WITH DRAW FUNCTION
@@ -84,8 +88,6 @@ public:
 
 		//setCountDownTimer(GAME_TIMER);
 	};
-
-
 
 	virtual void collision() {}							// 2017/04/16 Needed for a Game Object
 
@@ -102,4 +104,9 @@ private:
 	//Texture gTimeTextTexture;
 };
 
+class TimerCreator : public BaseCreator {
+	GameObject* createGameObject() const {
+		return new Timer();
+	}
+};
 #endif
