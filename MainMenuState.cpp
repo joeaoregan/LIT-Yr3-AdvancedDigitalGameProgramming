@@ -17,6 +17,9 @@
 #include "Game.h"
 #include "MenuButton.h"
 #include "PlayState.h"
+
+#include "EnterNameState.h"
+
 #include "HighScoreState.h"		// Include High Scores State header file
 #include "SettingsState.h"		// 2017/03/16 Include Settings State header file
 #include "InputHandler.h"
@@ -25,9 +28,20 @@
 
 const std::string MainMenuState::s_menuID = "MENU";
 
+int currentBtn = 1;							// Current selected menu button for keyboard / gamepad
+
+void setCurrentBtn(int a) {
+	if (a == 0) currentBtn--;
+	else if (a == 1) currentBtn++;
+
+	if (currentBtn > 4) currentBtn = 1;
+	if (currentBtn < 1) currentBtn = 4;
+}
+
 // Callbacks
 void MainMenuState::s_menuToPlay() {
-    TheGame::Instance()->getStateMachine()->changeState(new PlayState());			// Start the game
+	//TheGame::Instance()->getStateMachine()->changeState(new PlayState());			// Start the game
+	Game::Instance()->getStateMachine()->changeState(new EnterNameState());			// Start the game
 }
 
 void MainMenuState::s_highScores() {	
@@ -45,10 +59,43 @@ void MainMenuState::s_exitFromMenu() {
 
 // end callbacks
 
+unsigned int btnTimer = 0;
+
+bool pressed = false;
+
 void MainMenuState::update() {
-	if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) {	// If spacebar is pressed - start playing game
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) {				// If spacebar is pressed - start playing game
 		s_menuToPlay();
 	}
+	// 2017/04/22 If Return key is pressed OR gamepad button A - select current highlighted option
+	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0,0)) {
+		if (currentBtn == 1) s_menuToPlay();										// 1. Play Game
+		else if (currentBtn == 2) s_highScores();									// 2. High Scores
+		else if (currentBtn == 3) s_settings();										// 3. Settings
+		else if (currentBtn == 4) s_exitFromMenu();									// 4. Exit Game
+	}
+	// If up key, or gamepad up pressed
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) || InputHandler::Instance()->getAxisY(0, 1) < 0) {
+		if (!pressed) setCurrentBtn(0);
+		pressed = true;
+		std::cout << "currentButton " << currentBtn << std::endl;
+	}
+	//else pressed = false;
+
+	// If down key, or gamepad down pressed
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN) || InputHandler::Instance()->getAxisY(0, 1) > 0) {
+		if (!pressed) setCurrentBtn(1);
+		pressed = true;
+		std::cout << "currentButton " << currentBtn << std::endl;
+	}
+	//else pressed = false;
+
+	// 2017/04/22 Leave 1/4 of a second before the button selector moves again
+	if (SDL_GetTicks() > btnTimer + 250) {
+		btnTimer = SDL_GetTicks();
+		pressed = false;
+	}	
+
     if(!m_gameObjects.empty()) {										// If the game object list isn't empty
 		for(int i = 0; i < m_gameObjects.size(); i++) {
 			if(m_gameObjects[i] != 0) {
@@ -56,6 +103,8 @@ void MainMenuState::update() {
 			}
 		}
     }
+
+	selectCurrentButton(m_callbacks);
 }
 
 void MainMenuState::render() {										
@@ -82,6 +131,10 @@ bool MainMenuState::onEnter() {
     
     m_loadingComplete = true;
     std::cout << "entering MenuState\n";
+
+	selectCurrentButton(m_callbacks);
+
+
     return true;
 }
 
@@ -121,3 +174,26 @@ void MainMenuState::setCallbacks(const std::vector<Callback>& callbacks) {
     }
 }
 
+
+void MainMenuState::selectCurrentButton(const std::vector<Callback>& callbacks) {
+	if (!m_gameObjects.empty()) {													// If its not empty
+		for (int i = 0; i < m_gameObjects.size(); i++) {							// Go through the game objects list
+			if (dynamic_cast<MenuButton*>(m_gameObjects[i])) {						// if they are of type MenuButton then assign a callback based on the id passed in from the file
+				MenuButton* pButton = dynamic_cast<MenuButton*>(m_gameObjects[i]);
+				//pButton->setCallback(callbacks[pButton->getCallbackID()]);
+				//std::cout << "Button callback " << pButton->getCallbackID() << " frame " << pButton->getCurrentFrame() << std::endl; // print the callbacks
+				//pButton->setCurrentFrame(1); // MOUSE_OUT = 0, MOUSE_OVER = 1, CLICKED = 2
+
+				if (pButton->getCallbackID() == currentBtn) {
+					//pButton->testcase();
+					pButton->selected = true;
+					//pButton->m_bReleased = false;	// not released = selected
+				}
+				else pButton->selected = false;
+
+				//std::cout << "Button callback " << pButton->getCallbackID() << " frame " << pButton->getCurrentFrame() << std::endl; // print the callbacks
+
+			}
+		}
+	}
+}

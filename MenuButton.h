@@ -27,10 +27,15 @@ public:
     void setCallback(void(*callback)()) { m_callback = callback;}
     int getCallbackID() { return m_callbackID; }
 
+	void testcase();
+
+	bool selected;
+	bool m_bReleased;
+
 private:    
     enum button_state { MOUSE_OUT, MOUSE_OVER, CLICKED };
     
-    bool m_bReleased;
+    //bool m_bReleased;
     
     int m_callbackID;
     

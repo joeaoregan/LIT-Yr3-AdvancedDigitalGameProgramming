@@ -44,8 +44,9 @@ void SettingsState::s_fullScreen() {
 }
 
 void SettingsState::update() {
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE)) {				// Press escape to return to main menu
-		TheGame::Instance()->getStateMachine()->pushState(new MainMenuState());
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||			// Press Esc key to
+		InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
+		Game::Instance()->getStateMachine()->pushState(new MainMenuState());
 	}
 
 	if (m_loadingComplete && !m_gameObjects.empty()) {

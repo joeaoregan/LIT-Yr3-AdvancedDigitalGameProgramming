@@ -6,6 +6,7 @@
 	Student Number:	K00203642
 
 	Done:
+		2017/04/22	Adjusted screen size to 800 x 510
 		2017/03/23	Moved window flag to Game.h to keep track of window Full Screen/Windowed mode
 		2017/02/25	Added a name variable for Player for use with High Scores table
 
@@ -14,12 +15,14 @@
 #ifndef __SDL_Game_Programming_Book__Game__
 #define __SDL_Game_Programming_Book__Game__
 
-#define SCREEN_WIDTH 600
-#define SCREEN_HEIGHT 480
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 510
 
 #include "SDL.h"
 #include "GameStateMachine.h"
 //#include "SDL_mixer.h"
+#include <cstdlib>			// 2017/04/22 For Random Numbers
+#include <ctime>			// 2017/04/22 For Random Numbers
 #include <vector>
 
 class Game {
@@ -75,19 +78,27 @@ public:
 
 	// Player Name
 	std::string getPlayerName() { return m_plName; }			// 2017/04/16 Moved to GameObject
-	void setPlayerName(std::string n) { m_plName = n; }		// 2017/04/16 Moved to GameObject
+	void setPlayerName(std::string n) { m_plName = n; }			// 2017/04/16 Moved to GameObject
 
 	// Player Score
-	int getScore() { return m_score; }
-	void setScore(int s) { m_score = s; }
-    
+	int getScore() { return m_score; }							// Get the players score (time played)
+	void setScore(int s) { m_score = s; }						// Set the players score
+
+	bool getEnterTextState() { return enterTextState; };		// 2017/04/22 Indicates if in enter text state or not
+	void setEnterTextState(bool ts) { enterTextState = ts; };	// 2017/04/22 Set the game as in or out of enter text state
+	
 private:
+		
+	bool enterTextState;						// 2017/04/22 If in the enter text state, allow text to be entered
+
+	std::string m_plName;						// 2017/02/25 Name for player // 2017/04/16 Moved to GameObject
+
 	bool m_bChangingState;
     
-    SDL_Window* m_pWindow;
-    SDL_Renderer* m_pRenderer;
+    SDL_Window* m_pWindow;						// Game window
+    SDL_Renderer* m_pRenderer;					// Render graphics
     
-    GameStateMachine* m_pGameStateMachine;
+    GameStateMachine* m_pGameStateMachine;		// State machine
     
     bool m_bRunning;
     
@@ -111,7 +122,6 @@ private:
     Game(const Game&);
 	Game& operator=(const Game&);
 
-	std::string m_plName;	// 2017/02/25 Name for player // 2017/04/16 Moved to GameObject
 	int m_score;
 };
 

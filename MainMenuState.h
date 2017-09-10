@@ -33,6 +33,8 @@ public:
     virtual std::string getStateID() const { return s_menuID; }
     
 private:    
+	void selectCurrentButton(const std::vector<Callback>& callbacks);	// 2017/04/22 test
+
     virtual void setCallbacks(const std::vector<Callback>& callbacks);
     
     // call back functions for menu items

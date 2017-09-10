@@ -69,7 +69,8 @@ public:
 	std::string getTextureID() { return m_textureID; }
 	void setTextureID(std::string id) { m_textureID = id; }
 
-
+	int getCurrentFrame() { return m_currentFrame; };		// 2017/04/22 Get the current frame
+	void setCurrentFrame(int cf) { m_currentFrame = cf; };	// 2017/04/22 Set the current frame
         
 protected:    
     // constructor with default initialisation list
@@ -90,7 +91,7 @@ protected:
     {
     }
 
-	int m_health;		// 2017/04/22 Health value for an object
+	int m_health;		// 2017/04/22 Health value for an object // Already in Enemy
 
 	int m_score;		// Score value for an object
 

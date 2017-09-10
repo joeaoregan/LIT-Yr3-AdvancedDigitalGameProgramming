@@ -4,6 +4,12 @@
 //
 //  Created by shaun mitchell on 30/03/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
+
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/04/22	Added health bar for Eskeletor, blending with sprite colours
 */
 
 #ifndef SDL_Game_Programming_Book_Escalator_h
@@ -59,6 +65,14 @@ public:
         
         ShooterObject::update();
     }
+
+	// 2017/04/22 Added draw function
+	virtual void draw() {
+		ShooterObject::draw();					// 2017/04/22 Draw inherited from shooterObject
+		
+		// Health Bar
+		if (!m_bDying) bar.eHeManBar(m_position.getX(), m_position.getY(), m_health); // 2017/04/22 If the Turret is not dying draw the health bar
+	}
 };
 
 class EskeletorCreator : public BaseCreator {

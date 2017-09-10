@@ -19,7 +19,7 @@ public:
     
 protected:
     
-    int m_health;
+   // int m_health;
     
     Enemy() : ShooterObject() {}
     virtual ~Enemy() {}

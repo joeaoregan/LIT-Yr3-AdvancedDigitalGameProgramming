@@ -6,9 +6,12 @@
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
 */
 
+
 #include "TileLayer.h"
 #include "TextureManager.h"
 #include "Game.h"
+
+SDL_Rect tiledViewport;				// 2017/04/22 Main game screen view port, this is the section of the window where the game is rendered
 
 TileLayer::TileLayer(int tileSize, const std::vector<Tileset>& tilesets) : m_tileSize(tileSize), m_tilesets(tilesets), m_position(0,0), m_velocity(0,0) {
     m_numColumns = (TheGame::Instance()->getGameWidth() / m_tileSize) + 1;
@@ -27,7 +30,10 @@ void TileLayer::update(Level* pLevel) {
 }
 
 void TileLayer::render() {
-    int x, y, x2, y2 = 0;
+	tiledViewport = { 0, 0, 800, 480 };
+	SDL_RenderSetViewport(Game::Instance()->getRenderer(), &tiledViewport);						// Clear the current viewport to render to full window / screen
+   
+	int x, y, x2, y2 = 0;
     
     x = m_position.getX() / m_tileSize;
     y = m_position.getY() / m_tileSize;

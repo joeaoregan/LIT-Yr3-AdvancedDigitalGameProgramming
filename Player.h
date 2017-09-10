@@ -22,7 +22,7 @@ enum collideTypes { BULLET };
 #include "ShooterObject.h"
 #include "GameObjectFactory.h"
 
-#include "StatusBar.h"		// 2017/04/22 Draw a status bar for the player
+//#include "StatusBar.h"		// 2017/04/22 Draw a status bar for the player
 
 class Player : public ShooterObject {
 public:    
@@ -47,7 +47,7 @@ private:
 
 	int recentCollision;						// 2017/04/22 Store the most recent collision
 
-	StatusBar barPl;							// 2017/04/22 Add health bar for player
+	//StatusBar barPl;							// 2017/04/22 Add health bar for player
 
 	void fireBullet(int type, int &counter);	// 2017/04/22 Added fireBullet function to remove repeat code for firing Player weapons
         

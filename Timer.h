@@ -49,12 +49,12 @@ public:
 		currentTime = SDL_GetTicks();										// Get the current game running time
 
 		if (currentTime > lastTime + 1000) {								// Decrement countdown timer
-			//gTimeTextTexture.renderTextToTexture(timeText.str().c_str(), { 0, 255, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20));
+			/*gTimeTextTexture.renderTextToTexture(timeText.str().c_str(), { 0, 255, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20));
 			//gTimeTextTexture.loadFromRenderedText(timeText.str().c_str(), std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, SDL_Renderer* pRenderer, bool textWrapped) {
 			//TheTextureManager::Instance()->loadFromRenderedTex(gTimeTextTexture, timeText.str().c_str(), "TimerID");
 			
 			//Texture::Instance()->loadScoreText(timeText.str().c_str(), Game::Instance()->getRenderer());	// Player Score
-
+			*/
 			lastTime = currentTime;											// Store this time
 			gameTimer++;													// Increment the timer
 		}
@@ -63,7 +63,7 @@ public:
 
 		timeText << "Time: " << gameTimer;									// Set the game timer
 		
-		Texture::Instance()->loadScoreText(timeText.str().c_str(), Game::Instance()->getRenderer());	// Player Score
+		Texture::Instance()->loadTimerText(timeText.str().c_str());			// The game time
 	};
 
 	// Draw the timer

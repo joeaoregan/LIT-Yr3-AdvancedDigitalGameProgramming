@@ -12,7 +12,6 @@
 #include "HighScoreState.h"
 #include "MainMenuState.h"
 #include "PlayState.h"
-#include "PauseState.h"
 #include "TextureManager.h"
 #include "Game.h"
 #include "MenuButton.h"
@@ -22,7 +21,7 @@
 const std::string HighScoreState::s_HighScoreID = "HIGHSCORES";
 
 void HighScoreState::s_highscoresToMain() {
-	TheGame::Instance()->getStateMachine()->changeState(new MainMenuState());
+	Game::Instance()->getStateMachine()->changeState(new MainMenuState());
 }
 
 void HighScoreState::update() {
@@ -34,8 +33,9 @@ void HighScoreState::update() {
 		Game::Instance()->fullScreenOrWindowed();
 	}
 	*/
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE)) {				// Press escape to return to main menu
-		TheGame::Instance()->getStateMachine()->pushState(new MainMenuState());
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||			// Press Esc key to
+		InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
+		Game::Instance()->getStateMachine()->pushState(new MainMenuState());// Return to main menu
 	}
 
 	if (m_loadingComplete && !m_gameObjects.empty()) {
@@ -52,18 +52,18 @@ void HighScoreState::render() {
 		}
 	}
 
-	TheTextureManager::Instance()->drawFrame("scoreTitle", (SCREEN_WIDTH - 410 ) / 2, 20, 410, 64, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
+	Texture::Instance()->drawFrame("scoreTitle", (SCREEN_WIDTH - 410 ) / 2, 20, 410, 64, 0, 0, Game::Instance()->getRenderer(), 0.0, 255);
 	
-	TheTextureManager::Instance()->drawText("highScoresID", 65, 100, TheGame::Instance()->getRenderer());
+	Texture::Instance()->drawText("highScoresID", 65, 100, Game::Instance()->getRenderer());
 
 	// Put high score screen output in here
 	//std::cout << "Rendering HighScoreState\n";			// will loop over and over
 }
 
 bool HighScoreState::onEnter() {
-	TheTextureManager::Instance()->load("assets/TitleHighScores.png", "scoreTitle", TheGame::Instance()->getRenderer()); 
+	Texture::Instance()->load("assets/TitleHighScores.png", "scoreTitle", Game::Instance()->getRenderer()); 
 	
-	TheTextureManager::Instance()->loadHighScoresText(TheGame::Instance()->getRenderer());
+	Texture::Instance()->loadHighScoresText();
 	//TheTextureManager::Instance()->drawText("highScoresID", 150, 100, TheGame::Instance()->getRenderer());
 	
 	StateParser stateParser;
@@ -83,7 +83,7 @@ bool HighScoreState::onEnter() {
 bool HighScoreState::onExit() {
 	m_exiting = true;
 
-	TheInputHandler::Instance()->reset();
+	InputHandler::Instance()->reset();
 
 	std::cout << "exiting HighScoreState\n";
 	return true;
