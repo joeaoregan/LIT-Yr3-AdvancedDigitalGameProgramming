@@ -22,14 +22,11 @@ enum mouse_buttons
     RIGHT = 2
 };
 
-class InputHandler
-{
+class InputHandler {
 public:
     
-    static InputHandler* Instance()
-    {
-        if(s_pInstance == 0)
-        {
+    static InputHandler* Instance() {
+        if(s_pInstance == 0) {
             s_pInstance = new InputHandler();
         }
         

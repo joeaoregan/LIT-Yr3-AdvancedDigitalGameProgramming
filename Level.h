@@ -1,10 +1,10 @@
-//
+/*
 //  Map.h
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 09/03/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #ifndef __SDL_Game_Programming_Book__Map__
 #define __SDL_Game_Programming_Book__Map__
@@ -18,8 +18,7 @@
 
 class TileLayer;
 
-struct Tileset
-{
+struct Tileset {
     int firstGridID;
     int tileWidth;
     int tileHeight;
@@ -31,8 +30,7 @@ struct Tileset
     std::string name;
 };
 
-class Level
-{
+class Level {
 public:
     
     ~Level();

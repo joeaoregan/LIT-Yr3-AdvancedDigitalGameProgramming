@@ -13,8 +13,7 @@
 #include "GameObjectFactory.h"
 #include "ShooterObject.h"
 
-class ScrollingBackground : public ShooterObject
-{
+class ScrollingBackground : public ShooterObject {
 public:
     
     virtual ~ScrollingBackground() {}
@@ -46,8 +45,7 @@ private:
     int m_destRect2Width;
 };
 
-class ScrollingBackgroundCreator : public BaseCreator
-{
+class ScrollingBackgroundCreator : public BaseCreator {
 public:
     
     virtual GameObject* createGameObject() const

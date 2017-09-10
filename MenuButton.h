@@ -12,10 +12,8 @@
 #include "ShooterObject.h"
 #include "GameObjectFactory.h"
 
-class MenuButton : public ShooterObject
-{
-public:
-    
+class MenuButton : public ShooterObject {
+public:    
     MenuButton();
     
     virtual ~MenuButton() {}
@@ -29,14 +27,8 @@ public:
     void setCallback(void(*callback)()) { m_callback = callback;}
     int getCallbackID() { return m_callbackID; }
 
-private:
-    
-    enum button_state
-    {
-        MOUSE_OUT = 0,
-        MOUSE_OVER = 1,
-        CLICKED = 2
-    };
+private:    
+    enum button_state { MOUSE_OUT, MOUSE_OVER, CLICKED };
     
     bool m_bReleased;
     
@@ -45,10 +37,8 @@ private:
     void (*m_callback)();
 };
 
-class MenuButtonCreator : public BaseCreator
-{
-    GameObject* createGameObject() const
-    {
+class MenuButtonCreator : public BaseCreator {
+    GameObject* createGameObject() const {
         return new MenuButton();
     }
 };

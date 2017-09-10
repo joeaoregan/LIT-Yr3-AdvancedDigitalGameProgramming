@@ -1,10 +1,10 @@
-//
+/*
 //  TileLayer.h
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 10/03/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #ifndef __SDL_Game_Programming_Book__TileLayer__
 #define __SDL_Game_Programming_Book__TileLayer__

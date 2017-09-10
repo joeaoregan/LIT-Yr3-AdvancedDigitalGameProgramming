@@ -15,8 +15,7 @@
 
 class GameObject;
 
-class PauseState : public MenuState
-{
+class PauseState : public MenuState {
 public:
     
     virtual ~PauseState() {}

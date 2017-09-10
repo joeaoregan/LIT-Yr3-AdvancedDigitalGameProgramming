@@ -14,8 +14,7 @@
 #include "ShooterObject.h"
 #include "GameObjectFactory.h"
 
-class Player : public ShooterObject
-{
+class Player : public ShooterObject {
 public:
     
     Player();
@@ -32,15 +31,12 @@ public:
     virtual std::string type() { return "Player"; }
     
 private:
+        
+    void ressurect();			// bring the player back if there are lives left    
+
+    void handleInput();			// handle any input from the keyboard, mouse, or joystick
     
-    // bring the player back if there are lives left
-    void ressurect();
-    
-    // handle any input from the keyboard, mouse, or joystick
-    void handleInput();
-    
-    // handle any animation for the player
-    void handleAnimation();
+    void handleAnimation();		// handle any animation for the player
 
     // player can be invulnerable for a time
     int m_invulnerable;
@@ -49,13 +45,10 @@ private:
 };
 
 // for the factory
-class PlayerCreator : public BaseCreator
-{
-    GameObject* createGameObject() const
-    {
+class PlayerCreator : public BaseCreator {
+    GameObject* createGameObject() const     {
         return new Player();
     }
 };
-
 
 #endif /* defined(__SDL_Game_Programming_Book__Player__) */

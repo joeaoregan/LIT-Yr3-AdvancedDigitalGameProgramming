@@ -1,10 +1,10 @@
-//
+/*
 //  Header.h
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 28/03/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #ifndef SDL_Game_Programming_Book_Header_h
 #define SDL_Game_Programming_Book_Header_h
@@ -14,8 +14,7 @@
 
 const static int s_buffer = 4;
 
-static bool RectRect(SDL_Rect* A, SDL_Rect* B)
-{
+static bool RectRect(SDL_Rect* A, SDL_Rect* B) {
     int aHBuf = A->h / s_buffer;
     int aWBuf = A->w / s_buffer;
     

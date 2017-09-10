@@ -1,10 +1,10 @@
-//
+/*
 //  GameStateMachine.h
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 09/02/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #ifndef __SDL_Game_Programming_Book__GameStateMachine__
 #define __SDL_Game_Programming_Book__GameStateMachine__
@@ -12,8 +12,7 @@
 #include <vector>
 #include "GameState.h"
 
-class GameStateMachine
-{
+class GameStateMachine {
 public:
     
     GameStateMachine() {}

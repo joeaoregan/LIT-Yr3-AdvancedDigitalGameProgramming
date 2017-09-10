@@ -11,8 +11,7 @@
 
 #include "Glider.h"
 
-class ShotGlider : public Glider
-{
+class ShotGlider : public Glider {
 public:
     
     virtual ~ShotGlider() {}

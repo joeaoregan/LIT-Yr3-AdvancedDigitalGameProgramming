@@ -1,10 +1,10 @@
-//
+/*
 //  AnimatedGraphic.h
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 17/02/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #ifndef __SDL_Game_Programming_Book__AnimatedGraphic__
 #define __SDL_Game_Programming_Book__AnimatedGraphic__
@@ -13,10 +13,8 @@
 #include "GameObjectFactory.h"
 #include "ShooterObject.h"
 
-class AnimatedGraphic : public ShooterObject
-{
-public:
-    
+class AnimatedGraphic : public ShooterObject {
+public:    
     AnimatedGraphic();
     virtual ~AnimatedGraphic() {}
     
@@ -26,18 +24,15 @@ public:
     virtual void update();
     virtual void clean();
     
-private:
-    
+private:    
     int m_animSpeed;
     int m_frameCount;
 };
 
-class AnimatedGraphicCreator : public BaseCreator
-{
+class AnimatedGraphicCreator : public BaseCreator {
 public:
     
-    virtual GameObject* createGameObject() const
-    {
+    virtual GameObject* createGameObject() const {
         return new AnimatedGraphic();
     }
 };

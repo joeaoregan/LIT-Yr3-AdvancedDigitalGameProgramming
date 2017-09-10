@@ -1,10 +1,10 @@
-//
+/*
 //  IGameState.h
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 09/02/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #ifndef SDL_Game_Programming_Book_IGameState_h
 #define SDL_Game_Programming_Book_IGameState_h
@@ -12,8 +12,7 @@
 #include <string>
 #include <vector>
 
-class GameState
-{
+class GameState {
 public:
     
     virtual ~GameState() {}
@@ -30,8 +29,7 @@ public:
     
 protected:
     
-    GameState() : m_loadingComplete(false), m_exiting(false)
-    {
+    GameState() : m_loadingComplete(false), m_exiting(false) {
         
     }
     

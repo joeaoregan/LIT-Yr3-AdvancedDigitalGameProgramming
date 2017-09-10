@@ -31,8 +31,7 @@ FILE* TiXmlFOpen( const char* filename, const char* mode );
 bool TiXmlBase::condenseWhiteSpace = true;
 
 // Microsoft compiler security
-FILE* TiXmlFOpen( const char* filename, const char* mode )
-{
+FILE* TiXmlFOpen( const char* filename, const char* mode ) {
 	#if defined(_MSC_VER) && (_MSC_VER >= 1400 )
 		FILE* fp = 0;
 		errno_t err = fopen_s( &fp, filename, mode );
@@ -44,12 +43,10 @@ FILE* TiXmlFOpen( const char* filename, const char* mode )
 	#endif
 }
 
-void TiXmlBase::EncodeString( const TIXML_STRING& str, TIXML_STRING* outString )
-{
+void TiXmlBase::EncodeString( const TIXML_STRING& str, TIXML_STRING* outString ) {
 	int i=0;
 
-	while( i<(int)str.length() )
-	{
+	while( i<(int)str.length() ) {
 		unsigned char c = (unsigned char) str[i];
 
 		if (    c == '&' 
@@ -57,7 +54,7 @@ void TiXmlBase::EncodeString( const TIXML_STRING& str, TIXML_STRING* outString )
 			 && str[i+1] == '#'
 			 && str[i+2] == 'x' )
 		{
-			// Hexadecimal character reference.
+			/* Hexadecimal character reference.
 			// Pass through unchanged.
 			// &#xA9;	-- copyright symbol, for example.
 			//
@@ -66,42 +63,36 @@ void TiXmlBase::EncodeString( const TIXML_STRING& str, TIXML_STRING* outString )
 			// There are actually 2 ways to exit this loop -
 			// while fails (error case) and break (semicolon found).
 			// However, there is no mechanism (currently) for
-			// this function to return an error.
-			while ( i<(int)str.length()-1 )
-			{
+			// this function to return an error. 
+			*/
+			while ( i<(int)str.length()-1 ) {
 				outString->append( str.c_str() + i, 1 );
 				++i;
 				if ( str[i] == ';' )
 					break;
 			}
 		}
-		else if ( c == '&' )
-		{
+		else if ( c == '&' ) {
 			outString->append( entity[0].str, entity[0].strLength );
 			++i;
 		}
-		else if ( c == '<' )
-		{
+		else if ( c == '<' ) {
 			outString->append( entity[1].str, entity[1].strLength );
 			++i;
 		}
-		else if ( c == '>' )
-		{
+		else if ( c == '>' ) {
 			outString->append( entity[2].str, entity[2].strLength );
 			++i;
 		}
-		else if ( c == '\"' )
-		{
+		else if ( c == '\"' ) {
 			outString->append( entity[3].str, entity[3].strLength );
 			++i;
 		}
-		else if ( c == '\'' )
-		{
+		else if ( c == '\'' ) {
 			outString->append( entity[4].str, entity[4].strLength );
 			++i;
 		}
-		else if ( c < 32 )
-		{
+		else if ( c < 32 ) {
 			// Easy pass at non-alpha/numeric/symbol
 			// Below 32 is symbolic.
 			char buf[ 32 ];
@@ -117,8 +108,7 @@ void TiXmlBase::EncodeString( const TIXML_STRING& str, TIXML_STRING* outString )
 			outString->append( buf, (int)strlen( buf ) );
 			++i;
 		}
-		else
-		{
+		else {
 			//char realc = (char) c;
 			//outString->append( &realc, 1 );
 			*outString += (char) c;	// somewhat more efficient function call.
@@ -128,8 +118,7 @@ void TiXmlBase::EncodeString( const TIXML_STRING& str, TIXML_STRING* outString )
 }
 
 
-TiXmlNode::TiXmlNode( NodeType _type ) : TiXmlBase()
-{
+TiXmlNode::TiXmlNode( NodeType _type ) : TiXmlBase() {
 	parent = 0;
 	type = _type;
 	firstChild = 0;
@@ -139,13 +128,11 @@ TiXmlNode::TiXmlNode( NodeType _type ) : TiXmlBase()
 }
 
 
-TiXmlNode::~TiXmlNode()
-{
+TiXmlNode::~TiXmlNode() {
 	TiXmlNode* node = firstChild;
 	TiXmlNode* temp = 0;
 
-	while ( node )
-	{
+	while ( node ) {
 		temp = node;
 		node = node->next;
 		delete temp;
@@ -153,21 +140,18 @@ TiXmlNode::~TiXmlNode()
 }
 
 
-void TiXmlNode::CopyTo( TiXmlNode* target ) const
-{
+void TiXmlNode::CopyTo( TiXmlNode* target ) const {
 	target->SetValue (value.c_str() );
 	target->userData = userData; 
 	target->location = location;
 }
 
 
-void TiXmlNode::Clear()
-{
+void TiXmlNode::Clear() {
 	TiXmlNode* node = firstChild;
 	TiXmlNode* temp = 0;
 
-	while ( node )
-	{
+	while ( node ) {
 		temp = node;
 		node = node->next;
 		delete temp;
@@ -178,13 +162,11 @@ void TiXmlNode::Clear()
 }
 
 
-TiXmlNode* TiXmlNode::LinkEndChild( TiXmlNode* node )
-{
+TiXmlNode* TiXmlNode::LinkEndChild( TiXmlNode* node ) {
 	assert( node->parent == 0 || node->parent == this );
 	assert( node->GetDocument() == 0 || node->GetDocument() == this->GetDocument() );
 
-	if ( node->Type() == TiXmlNode::TINYXML_DOCUMENT )
-	{
+	if ( node->Type() == TiXmlNode::TINYXML_DOCUMENT ) {
 		delete node;
 		if ( GetDocument() ) 
 			GetDocument()->SetError( TIXML_ERROR_DOCUMENT_TOP_ONLY, 0, 0, TIXML_ENCODING_UNKNOWN );
@@ -205,11 +187,8 @@ TiXmlNode* TiXmlNode::LinkEndChild( TiXmlNode* node )
 	return node;
 }
 
-
-TiXmlNode* TiXmlNode::InsertEndChild( const TiXmlNode& addThis )
-{
-	if ( addThis.Type() == TiXmlNode::TINYXML_DOCUMENT )
-	{
+TiXmlNode* TiXmlNode::InsertEndChild( const TiXmlNode& addThis ) {
+	if ( addThis.Type() == TiXmlNode::TINYXML_DOCUMENT ) {
 		if ( GetDocument() ) 
 			GetDocument()->SetError( TIXML_ERROR_DOCUMENT_TOP_ONLY, 0, 0, TIXML_ENCODING_UNKNOWN );
 		return 0;
@@ -222,13 +201,11 @@ TiXmlNode* TiXmlNode::InsertEndChild( const TiXmlNode& addThis )
 }
 
 
-TiXmlNode* TiXmlNode::InsertBeforeChild( TiXmlNode* beforeThis, const TiXmlNode& addThis )
-{	
+TiXmlNode* TiXmlNode::InsertBeforeChild( TiXmlNode* beforeThis, const TiXmlNode& addThis ) {	
 	if ( !beforeThis || beforeThis->parent != this ) {
 		return 0;
 	}
-	if ( addThis.Type() == TiXmlNode::TINYXML_DOCUMENT )
-	{
+	if ( addThis.Type() == TiXmlNode::TINYXML_DOCUMENT ) {
 		if ( GetDocument() ) 
 			GetDocument()->SetError( TIXML_ERROR_DOCUMENT_TOP_ONLY, 0, 0, TIXML_ENCODING_UNKNOWN );
 		return 0;
@@ -241,12 +218,10 @@ TiXmlNode* TiXmlNode::InsertBeforeChild( TiXmlNode* beforeThis, const TiXmlNode&
 
 	node->next = beforeThis;
 	node->prev = beforeThis->prev;
-	if ( beforeThis->prev )
-	{
+	if ( beforeThis->prev ) {
 		beforeThis->prev->next = node;
 	}
-	else
-	{
+	else {
 		assert( firstChild == beforeThis );
 		firstChild = node;
 	}
@@ -255,13 +230,11 @@ TiXmlNode* TiXmlNode::InsertBeforeChild( TiXmlNode* beforeThis, const TiXmlNode&
 }
 
 
-TiXmlNode* TiXmlNode::InsertAfterChild( TiXmlNode* afterThis, const TiXmlNode& addThis )
-{
+TiXmlNode* TiXmlNode::InsertAfterChild( TiXmlNode* afterThis, const TiXmlNode& addThis ) {
 	if ( !afterThis || afterThis->parent != this ) {
 		return 0;
 	}
-	if ( addThis.Type() == TiXmlNode::TINYXML_DOCUMENT )
-	{
+	if ( addThis.Type() == TiXmlNode::TINYXML_DOCUMENT ) {
 		if ( GetDocument() ) 
 			GetDocument()->SetError( TIXML_ERROR_DOCUMENT_TOP_ONLY, 0, 0, TIXML_ENCODING_UNKNOWN );
 		return 0;

@@ -12,8 +12,7 @@
 #include <SDL.h>
 #include "GameObject.h"
 
-class ShooterObject : public GameObject
-{
+class ShooterObject : public GameObject {
 public:
     
     virtual ~ShooterObject() {}
