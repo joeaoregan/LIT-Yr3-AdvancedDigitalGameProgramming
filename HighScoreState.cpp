@@ -39,7 +39,7 @@ void HighScoreState::render() {
 		}
 	}
 
-	Texture::Instance()->draw("scoreTitle", (SCREEN_WIDTH - 354 ) / 2, 20, 354, 64, Game::Instance()->getRenderer());
+	Texture::Instance()->draw("scoreTitle", (SCREEN_WIDTH - 410 ) / 2, 20, 410, 64, TheGame::Instance()->getRenderer());
 	
 	Texture::Instance()->drawText("highScoresID", 65, 100, TheGame::Instance()->getRenderer());
 
@@ -48,7 +48,7 @@ void HighScoreState::render() {
 }
 
 bool HighScoreState::onEnter() {
-	Texture::Instance()->load("assets/HighScoresLogo.png", "scoreTitle", TheGame::Instance()->getRenderer()); 
+	Texture::Instance()->load("assets/TitleHighScores.png", "scoreTitle", TheGame::Instance()->getRenderer());
 	
 	Texture::Instance()->loadHighScoresText(TheGame::Instance()->getRenderer());
 	//TheTextureManager::Instance()->drawText("highScoresID", 150, 100, TheGame::Instance()->getRenderer());

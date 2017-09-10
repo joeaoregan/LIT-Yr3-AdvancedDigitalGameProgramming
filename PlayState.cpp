@@ -123,10 +123,10 @@ SDL_Event e;
 
 void PlayState::render() {
 	if (!nameEntered) {
-		SDL_SetRenderDrawColor(TheGame::Instance()->getRenderer(), 0x00, 0x00, 0x00, 0xFF);								// Clear background
-		Texture::Instance()->draw("enterNameID", 50, 100, 400, 20, TheGame::Instance()->getRenderer());		// Display enter name message
-		Texture::Instance()->loadInputText(inputText, TheGame::Instance()->getRenderer());
-		Texture::Instance()->drawText("inputTextID", 50, 150, TheGame::Instance()->getRenderer());
+		SDL_SetRenderDrawColor(Game::Instance()->getRenderer(), 0x00, 0x00, 0x00, 0xFF);					// Clear background
+		Texture::Instance()->draw("enterNameID", 50, 100, 400, 20, Game::Instance()->getRenderer());		// Display enter name message
+		Texture::Instance()->loadInputText(inputText, Game::Instance()->getRenderer());
+		Texture::Instance()->drawText("inputTextID", 50, 150, Game::Instance()->getRenderer());
 
 		renderText = false;		// flag that keeps track of whether we need to update the texture
 		
@@ -203,7 +203,7 @@ void PlayState::render() {
 					renderText = true;		// Set the text update flag
 				}
 				else if (e.key.keysym.sym == SDLK_RETURN) {
-					TheGame::Instance()->setName(inputText);
+					Game::Instance()->setName(inputText);
 					nameEntered = true;
 				}
 			}
@@ -226,13 +226,13 @@ void PlayState::render() {
 			if (inputText != "") {
 				//Render new text
 				//gInputTextTexture.loadFromRenderedText(inputText.c_str(), textColor);
-				Texture::Instance()->loadInputText(inputText, TheGame::Instance()->getRenderer());
+				Texture::Instance()->loadInputText(inputText, Game::Instance()->getRenderer());
 			}
 			//Text is empty
 			else {
 				//Render space texture
 				//gInputTextTexture.loadFromRenderedText(" ", textColor);	// Can't render an empty string, so has to be space
-				Texture::Instance()->loadInputText(" ", TheGame::Instance()->getRenderer());
+				Texture::Instance()->loadInputText(" ", Game::Instance()->getRenderer());
 			}
 		}
 	}
@@ -244,23 +244,23 @@ void PlayState::render() {
 
 			// Display ready message for 2.5 seconds
 			if (SDL_GetTicks() < readyTextTimer + 2500) {
-				Texture::Instance()->loadReadyText("Get Ready " + inputText, TheGame::Instance()->getRenderer());
-				Texture::Instance()->drawText("readyID", 210, 190, TheGame::Instance()->getRenderer());
+				Texture::Instance()->loadReadyText("Get Ready " + inputText, Game::Instance()->getRenderer());
+				Texture::Instance()->drawText("readyID", 210, 190, Game::Instance()->getRenderer());
 			}
 
 			gameTimer();	// Calculate and display the game timer
 
 			//TheTextureManager::Instance()->loadFromRenderedText("Level 1", "testxxx", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), TheGame::Instance()->getRenderer());		// Lives in top left corner
 
-			Texture::Instance()->loadLevelText("Level 1", TheGame::Instance()->getRenderer());
-			Texture::Instance()->drawText("levelID", 150, 0, TheGame::Instance()->getRenderer());
+			Texture::Instance()->loadLevelText("Level 1", Game::Instance()->getRenderer());
+			Texture::Instance()->drawText("levelID", 150, 0, Game::Instance()->getRenderer());
 
 			for (int i = 0; i < TheGame::Instance()->getPlayerLives(); i++) {
-				TheTextureManager::Instance()->draw("lives", i * 30, 0, 32, 30, TheGame::Instance()->getRenderer());
+				TheTextureManager::Instance()->drawFrame("lives", i * 30, 0, 32, 30, 0, 0, Game::Instance()->getRenderer(), 0.0, 255);
 			}
 
 			// id, x, y, width, height, currentRow, currentFrame, pRenderer, angle, alpha, flip
-			Texture::Instance()->draw("timerID", 400, 0, 150, 30, TheGame::Instance()->getRenderer());
+			Texture::Instance()->draw("timerID", 400, 0, 150, 30, Game::Instance()->getRenderer());
 			//TheTextureManager::Instance()->drawText("testxxx", 100, 100, TheGame::Instance()->getRenderer());
 
 			TheBulletHandler::Instance()->drawBullets();
@@ -278,11 +278,12 @@ bool PlayState::onEnter() {
 	nameEntered = false;	// Input a name
 
 	TheTextureManager::Instance()->loadEnterNameText("Please Enter Your Name:", TheGame::Instance()->getRenderer());
-	    
+
+    
     TheTextureManager::Instance()->load("assets/bullet1.png", "bullet1", TheGame::Instance()->getRenderer());
     TheTextureManager::Instance()->load("assets/bullet2.png", "bullet2", TheGame::Instance()->getRenderer());
 	TheTextureManager::Instance()->load("assets/bullet3.png", "bullet3", TheGame::Instance()->getRenderer());
-	TheTextureManager::Instance()->load("assets/bullet4.png", "bullet4", TheGame::Instance()->getRenderer());	// 2017/03/14 Angry glider bullet
+	Texture::Instance()->load("assets/bullet4.png", "bullet4", Game::Instance()->getRenderer());	// 2017/03/14 Angry glider bullet
 	TheTextureManager::Instance()->load("assets/lives.png", "lives", TheGame::Instance()->getRenderer());		// Lives in top left corner
 	//bool loadFromRenderedText(std::string textureText, SDL_Color textColor, TTF_Font* font, SDL_Renderer* rend, bool textWrapped = false);
 	//TheTextureManager::Instance()->load("assets/lives.png", "test", TheGame::Instance()->getRenderer());		// Lives in top left corner
@@ -322,10 +323,10 @@ void PlayState::gameTimer() {
 		std::cout << "Timer: " << countdownTimer << std::endl;
 	}
 
-	Game::Instance()->setScore(countdownTimer);
+	TheGame::Instance()->setScore(countdownTimer);
 
 	timeText << "Time: " << countdownTimer;	// Set the game timer
 
-	Texture::Instance()->loadScoreText(timeText.str().c_str(), TheGame::Instance()->getRenderer());	// Player Score
+	Texture::Instance()->loadScoreText(timeText.str().c_str(), Game::Instance()->getRenderer());	// Player Score
 	//TheTextureManager::Instance()->loadFromRenderedText(timeText.str().c_str(), "timer", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), TheGame::Instance()->getRenderer());		// Lives in top left corner
 }

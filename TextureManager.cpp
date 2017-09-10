@@ -199,7 +199,7 @@ void TextureManager::draw(std::string id, int x, int y, int width, int height, S
 void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer *pRenderer, double angle, int alpha, SDL_RendererFlip flip) {
     SDL_Rect srcRect;
     SDL_Rect destRect;
-    srcRect.x = width * currentFrame;
+    srcRect.x = width * currentFrame;	// Starts at 0 if currentFrame is 0
     srcRect.y = height * currentRow;
     srcRect.w = destRect.w = width;
     srcRect.h = destRect.h = height;
