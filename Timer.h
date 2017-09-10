@@ -42,7 +42,6 @@ public:
 	virtual void load(std::unique_ptr<LoaderParams> const &pParams) {};
 
 	// Update the timer
-	//virtual void move(int x = 0, int y = 0) {								// 2017/04/12
 	virtual void update() {													// 2017/04/16
 		timeText.str("");
 
@@ -59,7 +58,7 @@ public:
 			gameTimer++;													// Increment the timer
 		}
 
-		Game::Instance()->setScore(gameTimer);
+		Game::Instance()->setTime(gameTimer);
 
 		timeText << "Time: " << gameTimer;									// Set the game timer
 		
@@ -67,7 +66,6 @@ public:
 	};
 
 	// Draw the timer
-	//void render() {
 	virtual void draw() {													// 2017/04/16
 		if (currentTime > lastTime + 1000) {								// Decrement countdown timer
 			std::cout << "Test Timer: " << gameTimer << " lastTime: " << lastTime << " currentTime: " << currentTime << std::endl;	// display timer in console window

@@ -61,7 +61,7 @@ void Texture::turretsKilledText(std::string input) {
 void Texture::loadLevelText(std::string currentLevel) {
 	free(level);
 	//loadFromRenderedText(level, currentLevel, "levelID", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), rend);								// Current Level
-	createText(level, currentLevel, "levelID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), Game::Instance()->getRenderer());						// Current Level
+	createText(level, currentLevel, "levelID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), Game::Instance()->getRenderer());						// Current Level
 }
 void Texture::loadReturnToMenuText(std::string input) {
 	free(tx2);

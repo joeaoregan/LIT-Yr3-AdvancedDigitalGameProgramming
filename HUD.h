@@ -14,6 +14,8 @@
 #include "ShooterObject.h"
 #include "GameObjectFactory.h"
 #include "TextureManager.h"		// Draw lives
+//#include <sstream>					// For changing text
+//#include <string>
 
 class HUD : public ShooterObject {
 public:
@@ -31,10 +33,30 @@ public:
 		//Texture::Instance()->loadLevelText("Level " + std::to_string(Game::Instance()->getCurrentLevel()));	// 2017/04/22 Changed to show current level number
 	}
 
-	virtual void update() {}
-
+	// Don't render the text every frame
+	int prevTurrets = -1;
+	int prevScore = -1;
 	SDL_Texture* tx1 = 0;
-	int prevTurrets = -1;	// Don't render the text every frame
+	SDL_Texture* tx2 = 0;
+	std::stringstream turretsText;
+	std::stringstream scoreText;
+
+	virtual void update() {
+		
+		turretsText << "Turrets: " + std::to_string(Game::Instance()->turretKills) + "/7";
+		scoreText << "Score: " + std::to_string(Game::Instance()->getScore());
+
+		if (prevTurrets != Game::Instance()->turretKills) {
+			Texture::Instance()->createText(tx1, turretsText.str().c_str(), "turretsKilledID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 10), Game::Instance()->getRenderer());	// Get ready to start message
+			prevTurrets = Game::Instance()->turretKills;// Set previous turrets destroyed
+		}
+		if (prevScore != Game::Instance()->getScore()) {
+			Texture::Instance()->createText(tx2, scoreText.str().c_str(), "scoreTextID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 10), Game::Instance()->getRenderer());	// Get ready to start message
+			prevScore = Game::Instance()->getScore();	// Set previous score
+		}
+		
+	}
+
 
 	virtual void draw() {
 		SDL_RenderSetViewport(Game::Instance()->getRenderer(), &hudViewport);								// 2017/04/22 Set the viewport to Game Screen// Draw Lives
@@ -47,17 +69,14 @@ public:
 		Texture::Instance()->drawText("levelID", 120, 0, Game::Instance()->getRenderer());
 
 		// Display number of turrets destroyed
-		//Texture::Instance()->turretsKilledText("");														// Render the number of turrets destroyed
-
-		if (prevTurrets != Game::Instance()->turretKills) {
-			std::string turrets = "Turrets: " + std::to_string(Game::Instance()->turretKills);
-			Texture::Instance()->createText(tx1, turrets + "/7", "turretsKilledID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), Game::Instance()->getRenderer(), true);		// Get ready to start message
-		}
+		Texture::Instance()->turretsKilledText("");														// Render the number of turrets destroyed
 
 		Texture::Instance()->drawText("turretsKilledID", 120, 50, Game::Instance()->getRenderer());
+		Texture::Instance()->drawText("scoreTextID", 600, 0, Game::Instance()->getRenderer());
 
 		SDL_RenderSetViewport(Game::Instance()->getRenderer(), NULL);										// 2017/04/23 Clear the viewport
 	}
+
 	virtual void collision() {}																				// Can't collide, as not in game screen
 	virtual void clean() {}
 

@@ -82,7 +82,7 @@ void PlayState::update() {
         
         if(TheGame::Instance()->getPlayerLives() == 0) {
 			//nameEntered = false;
-			highScoreUpdate(TheGame::Instance()->getPlayerName(), Game::Instance()->getScore());
+			highScoreUpdate(TheGame::Instance()->getPlayerName(), Game::Instance()->getTime());
             TheGame::Instance()->getStateMachine()->changeState(new GameOverState());
         }
         
@@ -363,7 +363,7 @@ void PlayState::render() {
 
 bool PlayState::onEnter() {
 	//Texture::Instance()->loadReadyText("Get Ready " + Game::Instance()->getPlayerName());	// DOESN'T DISPLAY FULL SIZE OF TEXT
-
+	Game::Instance()->setScore(0);
 	Game::Instance()->totalScrolledDistance = 0.0;	// 2017/04/23 reset the scroll distance for the minimap
 	Game::Instance()->setEnterTextState(false);		// 2017/04/22 
 

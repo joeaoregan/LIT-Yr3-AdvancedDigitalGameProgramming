@@ -88,7 +88,8 @@ protected:
 		m_angle(0),
 		m_alpha(255),
 		m_time(0),
-		m_health(100)			// 2017/04/22 Set the health to 100
+		m_health(100),			// 2017/04/22 Set the health to 100
+		m_score(5)
     {
     }
 

@@ -27,9 +27,9 @@ public:
 		//m_bulletFiringSpeed = 50;
 	}
 
-	virtual void collision() {
+	//virtual void collision() {
 		//m_health -= 1;
-	}
+	//}
 	
 	virtual void update() {
 		if (!m_bDying) {
