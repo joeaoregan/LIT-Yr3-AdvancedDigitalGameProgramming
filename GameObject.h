@@ -57,18 +57,19 @@ public:
         
 protected:    
     // constructor with default initialisation list
-    GameObject() :  m_position(0,0),
-                    m_velocity(0,0),
-                    m_acceleration(0,0),
-                    m_width(0),
-                    m_height(0),
-                    m_currentRow(0),
-                    m_currentFrame(0),
-                    m_bUpdating(false),
-                    m_bDead(false),
-                    m_bDying(false),
-                    m_angle(0),
-                    m_alpha(255)
+	GameObject() : m_position(0, 0),
+		m_velocity(0, 0),
+		m_acceleration(0, 0),
+		m_width(0),
+		m_height(0),
+		m_currentRow(0),
+		m_currentFrame(0),
+		m_bUpdating(false),
+		m_bDead(false),
+		m_bDying(false),
+		m_angle(0),
+		m_alpha(255),
+		m_time(0)
     {
     }
 
@@ -97,6 +98,8 @@ protected:
     double m_angle;	// rotation
         
     int m_alpha;	// blending
+
+	unsigned int m_time;
 };	
 
 #endif

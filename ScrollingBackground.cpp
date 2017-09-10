@@ -1,10 +1,10 @@
-//
+/*
 //  ScrollingBackground.cpp
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 26/03/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #include "ScrollingBackground.h"
 #include "TextureManager.h"
@@ -44,7 +44,6 @@ void ScrollingBackground::draw() {
     
     // draw second rect
     SDL_RenderCopyEx(TheGame::Instance()->getRenderer(), TheTextureManager::Instance()->getTextureMap()[m_textureID], &m_srcRect2, &m_destRect2, 0, 0, SDL_FLIP_NONE);
-    
 }
 
 void ScrollingBackground::update() {

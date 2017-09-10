@@ -4,6 +4,8 @@
 //
 */
 #include "Game.h"
+#include <SDL_image.h>
+#include <SDL_ttf.h>	// 16/02/2017 Add font
 #include "TextureManager.h"
 #include "InputHandler.h"
 #include "MainMenuState.h"
@@ -54,9 +56,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     m_gameWidth = width;
     m_gameHeight = height;
     
-    if(fullscreen) {
-        flags = SDL_WINDOW_FULLSCREEN;
-    }
+    if(fullscreen) { flags = SDL_WINDOW_FULLSCREEN; }
     
     // attempt to initialise SDL
     if(SDL_Init(SDL_INIT_EVERYTHING) == 0)  {
@@ -64,15 +64,25 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
         // init the window
         m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
         
-        if(m_pWindow != 0) // window init success
-        {
+        if(m_pWindow != 0) { // window init success
             cout << "window creation success\n";
             m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED);
             
-            if(m_pRenderer != 0) // renderer init success
-            {
+            if(m_pRenderer != 0) { // renderer init success
                 cout << "renderer creation success\n";
                 SDL_SetRenderDrawColor(m_pRenderer, 0,0,0,255);
+				
+				int imgFlags = IMG_INIT_PNG;																	// Initialize PNG loading
+				if (!(IMG_Init(imgFlags) & imgFlags)) {
+					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+					//success = false;
+				}
+				//Initialize SDL_ttf
+				if (TTF_Init() == -1) {
+					printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+					return false;
+				}
+				
             }
             else {
                 cout << "renderer init fail\n";
@@ -88,6 +98,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
         cout << "SDL init fail\n";
         return false; // SDL init fail
     }
+
     
     // add some sound effects - TODO move to better place
     TheSoundManager::Instance()->load("assets/DST_ElectroRock.ogg", "music1", SOUND_MUSIC);
@@ -113,7 +124,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     // start the menu state
     m_pGameStateMachine = new GameStateMachine();
     m_pGameStateMachine->changeState(new MainMenuState());
-    
+
     m_bRunning = true; // everything inited successfully, start the main loop
     return true;
 }
@@ -155,4 +166,5 @@ void Game::clean() {
     SDL_DestroyWindow(m_pWindow);
     SDL_DestroyRenderer(m_pRenderer);
     SDL_Quit();
+	IMG_Quit();
 }

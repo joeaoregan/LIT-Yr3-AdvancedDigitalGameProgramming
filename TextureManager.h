@@ -13,6 +13,8 @@
 #include <string>
 #include <map>
 #include "SDL.h"
+#include <SDL_image.h>
+#include <SDL_ttf.h>	// 16/02/2017 Add font
 
 class TextureManager {
 public:    
@@ -24,7 +26,14 @@ public:
        
         return s_pInstance;
     }
-    
+
+#ifdef _SDL_TTF_H
+	//Creates image from font string
+	bool loadFromRenderedText(std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, SDL_Renderer* rend, bool textWrapped = false);
+#endif
+
+	void free();												// Deallocates texture
+
     bool load(std::string fileName, std::string id, SDL_Renderer* pRenderer);
     
     void clearTextureMap();
@@ -47,6 +56,12 @@ private:
     std::map<std::string, SDL_Texture*> m_textureMap;
     
     static TextureManager* s_pInstance;
+
+	// 16/02/2017
+	SDL_Texture* mTexture;	// The actual hardware texture
+
+	int mWidth;
+	int mHeight;
 };
 
 typedef TextureManager TheTextureManager;

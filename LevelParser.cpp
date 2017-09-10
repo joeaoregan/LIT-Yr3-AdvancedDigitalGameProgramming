@@ -1,10 +1,10 @@
-//
+/*
 //  LevelParser.cpp
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 10/03/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #include <string>
 #include "LevelParser.h"
@@ -17,8 +17,7 @@
 #include "zlib.h"
 #include "Level.h"
 
-Level* LevelParser::parseLevel(const char *levelFile)
-{
+Level* LevelParser::parseLevel(const char *levelFile) {
     // create a tinyXML document and load the map xml
     TiXmlDocument levelDocument;
     levelDocument.LoadFile(levelFile);
@@ -35,36 +34,28 @@ Level* LevelParser::parseLevel(const char *levelFile)
     
     pRoot->Attribute("tilewidth", &m_tileSize);
     pRoot->Attribute("width", &m_width);
-    pRoot->Attribute("height", &m_height);
+    pRoot->Attribute("height", &m_height);    
     
-    //we know that properties is the first child of the root
-    TiXmlElement* pProperties = pRoot->FirstChildElement();
+    TiXmlElement* pProperties = pRoot->FirstChildElement();	// we know that properties is the first child of the root
     
     // we must parse the textures needed for this level, which have been added to properties
-    for(TiXmlElement* e = pProperties->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
-    {
-        if(e->Value() == std::string("property"))
-        {
+    for(TiXmlElement* e = pProperties->FirstChildElement(); e != NULL; e = e->NextSiblingElement()) {
+        if(e->Value() == std::string("property")) {
             parseTextures(e);
         }
     }
     
     // we must now parse the tilesets
-    for(TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
-    {
-        if(e->Value() == std::string("tileset"))
-        {
+    for(TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement()) {
+        if(e->Value() == std::string("tileset")) {
             parseTilesets(e, pLevel->getTilesets());
         }
     }
     
     // parse any object layers
-    for(TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
-    {
-        if(e->Value() == std::string("objectgroup") || e->Value() == std::string("layer"))
-        {
-            if(e->FirstChildElement()->Value() == std::string("object"))
-            {
+    for(TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement()) {
+        if(e->Value() == std::string("objectgroup") || e->Value() == std::string("layer")) {
+            if(e->FirstChildElement()->Value() == std::string("object")) {
                 parseObjectLayer(e, pLevel->getLayers(), pLevel);
             }
             else if(e->FirstChildElement()->Value() == std::string("data") ||
@@ -79,14 +70,12 @@ Level* LevelParser::parseLevel(const char *levelFile)
 }
 
 
-void LevelParser::parseTextures(TiXmlElement* pTextureRoot)
-{
+void LevelParser::parseTextures(TiXmlElement* pTextureRoot) {
     std::cout << "adding texture " << pTextureRoot->Attribute("value") << " with ID " << pTextureRoot->Attribute("name") << std::endl;
     TheTextureManager::Instance()->load(pTextureRoot->Attribute("value"), pTextureRoot->Attribute("name"), TheGame::Instance()->getRenderer());
 }
 
-void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets)
-{
+void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets) {
 	std::string assetsTag = "assets/";
     // first add the tileset to texture manager
     std::cout << "adding texture " << pTilesetRoot->FirstChildElement()->Attribute("source") << " with ID " << pTilesetRoot->Attribute("name") << std::endl;
@@ -108,15 +97,12 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>
     pTilesets->push_back(tileset);
 }
 
-void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Layer*> *pLayers, Level* pLevel)
-{
+void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Layer*> *pLayers, Level* pLevel) {
     // create an object layer
     ObjectLayer* pObjectLayer = new ObjectLayer();
     
-    for(TiXmlElement* e = pObjectElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
-    {
-        if(e->Value() == std::string("object"))
-        {
+    for(TiXmlElement* e = pObjectElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement()) {
+        if(e->Value() == std::string("object")) {
             int x, y, width, height, numFrames, callbackID = 0, animSpeed = 0;
             std::string textureID;
             std::string type;

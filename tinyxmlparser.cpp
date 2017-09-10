@@ -126,8 +126,7 @@ void TiXmlBase::ConvertUTF32ToUTF8( unsigned long input, char* output, int* leng
 }
 
 
-/*static*/ int TiXmlBase::IsAlpha( unsigned char anyByte, TiXmlEncoding /*encoding*/ )
-{
+/*static*/ int TiXmlBase::IsAlpha( unsigned char anyByte, TiXmlEncoding /*encoding*/ ) {
 	// This will only work for low-ascii, everything else is assumed to be a valid
 	// letter. I'm not sure this is the best approach, but it is quite tricky trying
 	// to figure out alhabetical vs. not across encoding. So take a very 
@@ -147,8 +146,7 @@ void TiXmlBase::ConvertUTF32ToUTF8( unsigned long input, char* output, int* leng
 }
 
 
-/*static*/ int TiXmlBase::IsAlphaNum( unsigned char anyByte, TiXmlEncoding /*encoding*/ )
-{
+/*static*/ int TiXmlBase::IsAlphaNum( unsigned char anyByte, TiXmlEncoding /*encoding*/ ) {
 	// This will only work for low-ascii, everything else is assumed to be a valid
 	// letter. I'm not sure this is the best approach, but it is quite tricky trying
 	// to figure out alhabetical vs. not across encoding. So take a very 
@@ -193,8 +191,7 @@ class TiXmlParsingData
 };
 
 
-void TiXmlParsingData::Stamp( const char* now, TiXmlEncoding encoding )
-{
+void TiXmlParsingData::Stamp( const char* now, TiXmlEncoding encoding ) {
 	assert( now );
 
 	// Do nothing if the tabsize is 0.
@@ -283,8 +280,7 @@ void TiXmlParsingData::Stamp( const char* now, TiXmlEncoding encoding )
 				break;
 
 			default:
-				if ( encoding == TIXML_ENCODING_UTF8 )
-				{
+				if ( encoding == TIXML_ENCODING_UTF8 ) {
 					// Eat the 1 to 4 byte utf8 character.
 					int step = TiXmlBase::utf8ByteTable[*((const unsigned char*)p)];
 					if ( step == 0 )
