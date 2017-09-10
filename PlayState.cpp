@@ -1,9 +1,18 @@
 /*
-//  PlayState.cpp
-//  SDL Game Programming Book
-//
-//  Created by shaun mitchell on 09/02/2013.
-//  Copyright (c) 2013 shaun mitchell. All rights reserved.
+    PlayState.cpp
+    SDL Game Programming Book
+  
+    Created by shaun mitchell on 09/02/2013.
+    Copyright (c) 2013 shaun mitchell. All rights reserved.
+	
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/		Added High Scores update function to store the name and score at the end of the game to an
+					external file holding a list of 10 names and scores scores.txt
+		2017/02/07	Added game timer function in PlayState, to keep track of the seconds passed since the game / level started
+					using SDL_GetTicks() to get time and loadFromRenderedtext in TextureManager to render text to texture
 */
 
 #include <iostream>
@@ -48,20 +57,29 @@ void PlayState::update() {
     }
 }
 
+/*
+	HighScoreUpdate()
 
+	This function takes a name and score, adds it to the maximum 10 names and scores stored in an external text file
+	The function reads the scores.txt file and stores up to 10 player names and scores in a struct PlayerScores
+	All 11 names and scores are added to an array of structs scoresTable first reading in the 10 stored then
+	adding the name and score passed to the function at the end of the array
+	The scores are then sorted and the best 10 are wrote back to the scores file
+
+*/
 void PlayState::highScoreUpdate(std::string name, int score) {
-	std::cout << name << " " << score << std::endl;
+	std::cout << name << " " << score << std::endl;				// Output name and score passed to function to console window
 
-	const int numScores = 10;	// Number of players names & scores to store
+	const int numScores = 10;									// Number of players names & scores to store
 	int eachScore = 0;
 	std::string scoreString;
 
-	std::ifstream infile;
+	std::ifstream infile;	
 	infile.open("scores.txt");
 
 	std::cout << "Reading high scores from file" << std::endl;
 
-	struct PlayerScores {
+	struct PlayerScores {		// Structure to hold High Scores deetails
 		std::string name;		// Players name
 		int score;				// Player score
 	};
@@ -95,7 +113,7 @@ void PlayState::highScoreUpdate(std::string name, int score) {
 
 	// Sort the structure
 	for (int i = 1; i < eachScore + 1; i++) {
-		for (int j = 0; j < eachScore +1 - i; j++) {
+		for (int j = 0; j < eachScore + 1 - i; j++) {
 			if (scoreTable[j].score < scoreTable[j + 1].score) { // Sort Largest Score To Smallest in the struct
 				temp = scoreTable[j];
 				scoreTable[j] = scoreTable[j + 1];
@@ -106,12 +124,12 @@ void PlayState::highScoreUpdate(std::string name, int score) {
 
 	if (eachScore < 10) eachScore++; // display extra score if less than 10
 
-	// Write to scores file
-	std::ofstream outfile;
-	outfile.open("scores.txt");
+	// Write back to scores file
+	std::ofstream outfile;			// Create stream to write to file
+	outfile.open("scores.txt");		// Open file to write to
 
 	for (int i = 0; i < eachScore; i++) {
-		outfile << scoreTable[i].name << std::endl << scoreTable[i].score << std::endl;
+		outfile << scoreTable[i].name << std::endl << scoreTable[i].score << std::endl;	// Write the Names and Scores to file
 	}
 }
 
@@ -123,10 +141,10 @@ SDL_Event e;
 
 void PlayState::render() {
 	if (!nameEntered) {
-		SDL_SetRenderDrawColor(Game::Instance()->getRenderer(), 0x00, 0x00, 0x00, 0xFF);					// Clear background
-		Texture::Instance()->draw("enterNameID", 50, 100, 400, 20, Game::Instance()->getRenderer());		// Display enter name message
-		Texture::Instance()->loadInputText(inputText, Game::Instance()->getRenderer());
-		Texture::Instance()->drawText("inputTextID", 50, 150, Game::Instance()->getRenderer());
+		SDL_SetRenderDrawColor(TheGame::Instance()->getRenderer(), 0x00, 0x00, 0x00, 0xFF);								// Clear background
+		TheTextureManager::Instance()->draw("enterNameID", 50, 100, 400, 20, TheGame::Instance()->getRenderer());		// Display enter name message
+		TheTextureManager::Instance()->loadInputText(inputText, TheGame::Instance()->getRenderer());
+		TheTextureManager::Instance()->drawText("inputTextID", 50, 150, TheGame::Instance()->getRenderer());
 
 		renderText = false;		// flag that keeps track of whether we need to update the texture
 		
@@ -203,7 +221,7 @@ void PlayState::render() {
 					renderText = true;		// Set the text update flag
 				}
 				else if (e.key.keysym.sym == SDLK_RETURN) {
-					Game::Instance()->setName(inputText);
+					TheGame::Instance()->setName(inputText);
 					nameEntered = true;
 				}
 			}
@@ -226,13 +244,13 @@ void PlayState::render() {
 			if (inputText != "") {
 				//Render new text
 				//gInputTextTexture.loadFromRenderedText(inputText.c_str(), textColor);
-				Texture::Instance()->loadInputText(inputText, Game::Instance()->getRenderer());
+				TheTextureManager::Instance()->loadInputText(inputText, TheGame::Instance()->getRenderer());
 			}
 			//Text is empty
 			else {
 				//Render space texture
 				//gInputTextTexture.loadFromRenderedText(" ", textColor);	// Can't render an empty string, so has to be space
-				Texture::Instance()->loadInputText(" ", Game::Instance()->getRenderer());
+				TheTextureManager::Instance()->loadInputText(" ", TheGame::Instance()->getRenderer());
 			}
 		}
 	}
@@ -244,23 +262,23 @@ void PlayState::render() {
 
 			// Display ready message for 2.5 seconds
 			if (SDL_GetTicks() < readyTextTimer + 2500) {
-				Texture::Instance()->loadReadyText("Get Ready " + inputText, Game::Instance()->getRenderer());
-				Texture::Instance()->drawText("readyID", 210, 190, Game::Instance()->getRenderer());
+				TheTextureManager::Instance()->loadReadyText("Get Ready " + inputText, TheGame::Instance()->getRenderer());
+				TheTextureManager::Instance()->drawText("readyID", 210, 190, TheGame::Instance()->getRenderer());
 			}
 
 			gameTimer();	// Calculate and display the game timer
 
 			//TheTextureManager::Instance()->loadFromRenderedText("Level 1", "testxxx", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), TheGame::Instance()->getRenderer());		// Lives in top left corner
 
-			Texture::Instance()->loadLevelText("Level 1", Game::Instance()->getRenderer());
-			Texture::Instance()->drawText("levelID", 150, 0, Game::Instance()->getRenderer());
+			TheTextureManager::Instance()->loadLevelText("Level 1", TheGame::Instance()->getRenderer());
+			TheTextureManager::Instance()->drawText("levelID", 150, 0, TheGame::Instance()->getRenderer());
 
 			for (int i = 0; i < TheGame::Instance()->getPlayerLives(); i++) {
-				TheTextureManager::Instance()->drawFrame("lives", i * 30, 0, 32, 30, 0, 0, Game::Instance()->getRenderer(), 0.0, 255);
+				TheTextureManager::Instance()->drawFrame("lives", i * 30, 0, 32, 30, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
 			}
 
 			// id, x, y, width, height, currentRow, currentFrame, pRenderer, angle, alpha, flip
-			Texture::Instance()->draw("timerID", 400, 0, 150, 30, Game::Instance()->getRenderer());
+			TheTextureManager::Instance()->drawFrame("timerID", 400, 0, 150, 30, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
 			//TheTextureManager::Instance()->drawText("testxxx", 100, 100, TheGame::Instance()->getRenderer());
 
 			TheBulletHandler::Instance()->drawBullets();
@@ -283,7 +301,7 @@ bool PlayState::onEnter() {
     TheTextureManager::Instance()->load("assets/bullet1.png", "bullet1", TheGame::Instance()->getRenderer());
     TheTextureManager::Instance()->load("assets/bullet2.png", "bullet2", TheGame::Instance()->getRenderer());
 	TheTextureManager::Instance()->load("assets/bullet3.png", "bullet3", TheGame::Instance()->getRenderer());
-	Texture::Instance()->load("assets/bullet4.png", "bullet4", Game::Instance()->getRenderer());	// 2017/03/14 Angry glider bullet
+	TheTextureManager::Instance()->load("assets/bullet4.png", "bullet4", TheGame::Instance()->getRenderer());	// 2017/03/14 Angry glider bullet
 	TheTextureManager::Instance()->load("assets/lives.png", "lives", TheGame::Instance()->getRenderer());		// Lives in top left corner
 	//bool loadFromRenderedText(std::string textureText, SDL_Color textColor, TTF_Font* font, SDL_Renderer* rend, bool textWrapped = false);
 	//TheTextureManager::Instance()->load("assets/lives.png", "test", TheGame::Instance()->getRenderer());		// Lives in top left corner
@@ -309,7 +327,12 @@ bool PlayState::onExit() {
     return true;
 }
 
+/*
+	gameTimer()
 
+	This function calculates and renders to texture the time in seconds using SDL_GetTicks() to get time
+	and loadFromRenderedtext in TextureManager to render text to texture
+*/
 void PlayState::gameTimer() {
 	timeText.str("");						// Clear the timer
 
@@ -327,6 +350,6 @@ void PlayState::gameTimer() {
 
 	timeText << "Time: " << countdownTimer;	// Set the game timer
 
-	Texture::Instance()->loadScoreText(timeText.str().c_str(), Game::Instance()->getRenderer());	// Player Score
+	TheTextureManager::Instance()->loadScoreText(timeText.str().c_str(), TheGame::Instance()->getRenderer());	// Player Score
 	//TheTextureManager::Instance()->loadFromRenderedText(timeText.str().c_str(), "timer", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), TheGame::Instance()->getRenderer());		// Lives in top left corner
 }

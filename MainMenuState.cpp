@@ -1,9 +1,15 @@
 /*
-//  MenuState.cpp
-//  SDL Game Programming Book
-//
-//  Created by shaun mitchell on 09/02/2013.
-//  Copyright (c) 2013 shaun mitchell. All rights reserved.
+	MenuState.cpp
+	SDL Game Programming Book
+
+	Created by shaun mitchell on 09/02/2013.
+	Copyright (c) 2013 shaun mitchell. All rights reserved.
+	
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/03/16	Added Settings menu
 */
 #include <iostream>
 #include "MainMenuState.h"

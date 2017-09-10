@@ -1,9 +1,15 @@
 /*
-//  GameObject.h
-//  SDL Game Programming Book
-//
-//  Created by shaun mitchell on 06/01/2013.
-//  Copyright (c) 2013 shaun mitchell. All rights reserved.
+	GameObject.h
+	SDL Game Programming Book
+
+	Created by shaun mitchell on 09/02/2013.
+    Copyright (c) 2013 shaun mitchell. All rights reserved.
+	
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/04/16 Added name field to identify Game Objects
 */
 
 #ifndef SDL_Game_Programming_Book_GameObject_h

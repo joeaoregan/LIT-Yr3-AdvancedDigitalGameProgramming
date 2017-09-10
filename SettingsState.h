@@ -1,5 +1,11 @@
 /*
-	2017/03/16 Settings state
+	SettingsState.h
+
+	Created by:		Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/03/16	Created settings menu, with option to turn on off music and make game view Full Screen / Windowed
 */
 
 #ifndef SETTINGS_H

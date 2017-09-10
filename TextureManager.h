@@ -1,9 +1,15 @@
 /*
-//  TextureManager.h
-//  SDL Game Programming Book
-//
-//  Created by shaun mitchell on 31/12/2012.
-//  Copyright (c) 2012 shaun mitchell. All rights reserved.
+    TextureManager.h
+    SDL Game Programming Book
+  
+    Created by shaun mitchell on 31/12/2012.
+    Copyright (c) 2012 shaun mitchell. All rights reserved.
+	
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/03/16	Added SDL_ttf to render text to textures
 */
 
 #ifndef __TextureManager__

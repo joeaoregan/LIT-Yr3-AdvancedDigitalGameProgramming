@@ -1,9 +1,15 @@
 /*
-//  Player.cpp
-//  SDL Game Programming Book
-//
-//  Created by shaun mitchell on 12/01/2013.
-//  Copyright (c) 2013 shaun mitchell. All rights reserved.
+	Player.cpp
+	SDL Game Programming Book
+
+	Created by shaun mitchell on 12/01/2013.
+	Copyright (c) 2013 shaun mitchell. All rights reserved.
+
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/03/16	Pressing the M button in game turns Music On / Off
 */
 
 #include "Player.h"
@@ -152,11 +158,19 @@ void Player::clean() {
 }
 
 void Player::handleInput() {
+	/* 
+		If button F11 is pressed change the game between Full Screen and Windowed
+		This option can also be selected from the settings menu of the game
+	
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_F11)) {
+		Game::Instance()->fullScreenOrWindowed();
+	}
+	*/
     if(!m_bDead) {
         // handle keys
-        if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) && m_position.getY() > 0) {
-            m_velocity.setY(-m_moveSpeed);
-        }
+		if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) && m_position.getY() > 0) {
+			m_velocity.setY(-m_moveSpeed);
+		}
         else if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN) && (m_position.getY() + m_height) < TheGame::Instance()->getGameHeight() - 10) {
             m_velocity.setY(m_moveSpeed);
         }

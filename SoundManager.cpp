@@ -1,9 +1,17 @@
 /*
-//  SoundManager.cpp
-//  SDL Game Programming Book
-//
-//  Created by shaun mitchell on 26/03/2013.
-//  Copyright (c) 2013 shaun mitchell. All rights reserved.
+    SoundManager.cpp
+    SDL Game Programming Book
+  
+    Created by shaun mitchell on 26/03/2013.
+    Copyright (c) 2013 shaun mitchell. All rights reserved.
+	
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/03/16	Added pausePlayMusic() function to pause the original music in the game
+					by pressing the m key. Music can also be turned on / off in the settings menu
+					Added playMusic() function to play the music selecting a random song from a list of songs
 */
 
 #include "SoundManager.h"
@@ -47,6 +55,7 @@ bool SoundManager::load(std::string fileName, std::string id, sound_type type) {
 void SoundManager::playMusic(std::string id, int loop) {
 	Mix_PlayMusic(m_music[id], loop);
 }
+
 void SoundManager::playMusic(int song) {
 	//if (song == 0) song = rand() % NUMBER_OF_SONGS + 1;		// random number between 1 and 3
 	if (song == 0) currentSong = rand() % 3 + 1; // random number between 1 and 3

@@ -1,7 +1,23 @@
 /*
-//  Game.cpp
-//  SDL Game Programming Book
-//
+	Game.cpp
+	SDL Game Programming Book
+
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/03/23	Pressing F11 or the Full Screen button in the settings menu Toggles between Full Screen and Windowed view of the game
+					Added function to change between Full Screen and Windowed view
+		2017/03/16	The music button in the Settings Menu turns the music On / Off
+					Added some original songs to the game
+					Added function to play a random song !!!!!!FIX THIS!!!!!!
+		2017/03/14	Added AngryGlider enemy based on the Glider enemy to the XML file
+		2017/02/25	Added a name variable for Player for use with High Scores table
+					fstream added to read in high scores from file to render to screen using loadFromRenderedText() in TextureManager class
+		2017/02/16	Added SDL_ttf library to render text in the game
+					Pressing the M button in game turns Music On / Off
+		2017/02/07	Added game timer function in PlayState, to keep track of the seconds passed since the game / level started
+
 */
 #include "Game.h"
 #include <SDL_image.h>
@@ -50,21 +66,20 @@ Game::~Game() {
 }
 
 
-bool Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {
-    int flags = 0;
-    
+bool Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {    
     // store the game width and height
     m_gameWidth = width;
     m_gameHeight = height;
 
-	if (fullscreen) { flags = SDL_WINDOW_FULLSCREEN; }
-	//flags = SDL_WINDOW_FULLSCREEN;
+	if (fullscreen) { windowFlag = SDL_WINDOW_FULLSCREEN; }
+	//windowFlag = SDL_WINDOW_FULLSCREEN;	// Sets the game as full screen SDL_WINDOW_SHOWN
+	windowFlag = SDL_WINDOW_SHOWN;			// Sets the game as Windowed 
     
     // attempt to initialise SDL
     if(SDL_Init(SDL_INIT_EVERYTHING) == 0)  {
         cout << "SDL init success\n";
         // init the window
-        m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
+        m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, windowFlag);
         
         if(m_pWindow != 0) { // window init success
             cout << "window creation success\n";
@@ -104,13 +119,13 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     
     // add some sound effects - TODO move to better place
 	TheSoundManager::Instance()->load("assets/DST_ElectroRock.ogg", "music1", SOUND_MUSIC);
-	TheSoundManager::Instance()->load("OriginalMusic/song1.mp3", "music2", SOUND_MUSIC);	// 2017/03/16 Added song
-	TheSoundManager::Instance()->load("OriginalMusic/song2.mp3", "music3", SOUND_MUSIC);	// 2017/03/16 Added song
+	TheSoundManager::Instance()->load("OriginalMusic/song1.mp3", "music2", SOUND_MUSIC);			// 2017/03/16 Added song
+	TheSoundManager::Instance()->load("OriginalMusic/song2.mp3", "music3", SOUND_MUSIC);			// 2017/03/16 Added song
     TheSoundManager::Instance()->load("assets/boom.wav", "explode", SOUND_SFX);
     TheSoundManager::Instance()->load("assets/phaser.wav", "shoot", SOUND_SFX);
 
 	//TheSoundManager::Instance()->playMusic("music1", -1);
-	TheSoundManager::Instance()->playMusic(rand() % 3 + 1);												// 2017/03/16 Play random song
+	TheSoundManager::Instance()->playMusic(rand() % 3 + 1);											// 2017/03/16 Play random song
     
     //TheInputHandler::Instance()->initialiseJoysticks();
     
@@ -154,6 +169,14 @@ void Game::update(){
 }
 
 void Game::handleEvents() {
+	/*
+		If button F11 is pressed change the game between Full Screen and Windowed
+		This option can also be selected from the settings menu of the game
+	
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_F11)) {
+		Game::Instance()->fullScreenOrWindowed();
+	}
+	*/
 		TheInputHandler::Instance()->update();
 }
 
@@ -173,4 +196,16 @@ void Game::clean() {
     SDL_DestroyRenderer(m_pRenderer);
     SDL_Quit();
 	IMG_Quit();
+}
+
+/*
+	2017/03/23 Function to change between Fullscreen and Windowed view
+*/
+void Game::fullScreenOrWindowed() {
+	if (windowFlag == SDL_WINDOW_FULLSCREEN)
+		windowFlag = SDL_WINDOW_SHOWN;
+	else
+		windowFlag = SDL_WINDOW_FULLSCREEN;
+
+	SDL_SetWindowFullscreen(m_pWindow, windowFlag);
 }

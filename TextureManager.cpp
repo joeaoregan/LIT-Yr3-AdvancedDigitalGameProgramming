@@ -1,16 +1,22 @@
 /*
-//  TextureManager.cpp
-//  SDL Game Programming Book
-//
-//  Created by shaun mitchell on 31/12/2012.
-//  Copyright (c) 2012 shaun mitchell. All rights reserved.
+	TextureManager.cpp
+	SDL Game Programming Book
+
+	Created by shaun mitchell on 31/12/2012.
+	Copyright (c) 2012 shaun mitchell. All rights reserved.
+
+	Modified by:	Joe O'Regan 
+	Student Number:	K00203642
+
+	Done:
+		2017/02/25 fstream added to read in high scores from file to render to screen using loadFromRenderedText() in TextureManager class
 */
 #include "TextureManager.h"
 #include "SDL_image.h"
 #include "SDL.h"
 #include <iomanip>
-#include <sstream>					// For timer
-#include <fstream>	// 2017/02/25 Read high scores from file
+#include <sstream>		// For timer
+#include <fstream>		// 2017/02/25 Read high scores from file
 
 //#include <SDL_ttf.h>	// 16/02/2017 Add font
 
@@ -199,7 +205,7 @@ void TextureManager::draw(std::string id, int x, int y, int width, int height, S
 void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer *pRenderer, double angle, int alpha, SDL_RendererFlip flip) {
     SDL_Rect srcRect;
     SDL_Rect destRect;
-    srcRect.x = width * currentFrame;	// Starts at 0 if currentFrame is 0
+    srcRect.x = width * currentFrame;
     srcRect.y = height * currentRow;
     srcRect.w = destRect.w = width;
     srcRect.h = destRect.h = height;

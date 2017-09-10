@@ -1,7 +1,14 @@
 /*
-//  Game.h
-//  SDL Game Programming Book
-//
+	Game.h
+	SDL Game Programming Book
+	
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/03/23	Moved window flag to Game.h to keep track of window Full Screen/Windowed mode
+		2017/02/25	Added a name variable for Player for use with High Scores table
+
 */
 
 #ifndef __SDL_Game_Programming_Book__Game__
@@ -36,7 +43,11 @@ public:
     SDL_Renderer* getRenderer() const { return m_pRenderer; }
     SDL_Window* getWindow() const { return m_pWindow; }
     GameStateMachine* getStateMachine() { return m_pGameStateMachine; }
-    
+
+    /* 2017/03/23 Change between Full Screen / Windowed */
+	int windowFlag = 0;
+	void fullScreenOrWindowed();
+
     void setPlayerLives(int lives) { m_playerLives = lives; }
     int getPlayerLives() { return m_playerLives; }
     

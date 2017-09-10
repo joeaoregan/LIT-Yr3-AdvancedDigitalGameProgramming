@@ -1,5 +1,14 @@
 /*
-	2017/03/16 HighScoreState.cpp.
+	SettingsState.cpp
+
+	Created by:		Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		
+		2017/03/23	Pressing F11 or the Full Screen button in the settings menu Toggles between Full Screen and Windowed view of the game
+		2017/03/16	The music button in the Settings Menu turns the music On / Off
+					Added Settings menu with buttons for altering game settings
 */
 
 #include <iostream>
@@ -27,7 +36,11 @@ void SettingsState::s_musicOnOff() {
 }
 /* 2017/03/16 Turn full screen on / off */
 void SettingsState::s_fullScreen() {
-	Game::Instance()->getStateMachine()->changeState(new MainMenuState());
+	/*
+		If button F11 is pressed change the game between Full Screen and Windowed
+		This option can also be selected from the settings menu of the game
+	*/
+		Game::Instance()->fullScreenOrWindowed();
 }
 
 void SettingsState::update() {
@@ -49,7 +62,7 @@ void SettingsState::render() {
 		}
 	}
 
-	TheTextureManager::Instance()->drawFrame("settingsTitle", (SCREEN_WIDTH - 280) / 2, 20, 280, 64, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
+	TheTextureManager::Instance()->drawFrame("settingsTitle", (SCREEN_WIDTH - 280) / 2, 20, 280, 64, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);	// Display title at top of settings menu
 
 	// 2017/03/16 Added buttons for settings
 	//Texture::Instance()->drawFrame("musicButton", (SCREEN_WIDTH - 199) / 2, 100, 199, 43, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
@@ -62,20 +75,18 @@ void SettingsState::render() {
 }
 
 bool SettingsState::onEnter() {
-	TheTextureManager::Instance()->load("assets/TitleSettings.png", "settingsTitle", TheGame::Instance()->getRenderer());
+	TheTextureManager::Instance()->load("assets/TitleSettings.png", "settingsTitle", TheGame::Instance()->getRenderer());	// Load title at top of settings menu
 	//TheTextureManager::Instance()->load("assets/buttonMusic.png", "musicButton", TheGame::Instance()->getRenderer());
 	//TheTextureManager::Instance()->load("assets/buttonFullScreen.png", "fullscreenButton", TheGame::Instance()->getRenderer());
 
-	TheTextureManager::Instance()->loadHighScoresText(TheGame::Instance()->getRenderer());
-	//TheTextureManager::Instance()->drawText("highScoresID", 150, 100, TheGame::Instance()->getRenderer());
 
 	StateParser stateParser;
 	stateParser.parseState("assets/attack.xml", s_SettingsID, &m_gameObjects, &m_textureIDList);
 
 	m_callbacks.push_back(0);
-	m_callbacks.push_back(s_settingsToMain);	// CallbackID = 1
-	m_callbacks.push_back(s_musicOnOff);		// CallbackID = 2
-	m_callbacks.push_back(s_fullScreen);		// CallbackID = 3
+	m_callbacks.push_back(s_settingsToMain);	// CallbackID = 1	Return to main menu
+	m_callbacks.push_back(s_musicOnOff);		// CallbackID = 2	Turn the music on or off
+	m_callbacks.push_back(s_fullScreen);		// CallbackID = 3	Make the game Full Screen or windowed
 
 	setCallbacks(m_callbacks);
 
