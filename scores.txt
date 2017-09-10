@@ -1,3 +1,11 @@
+Player
+80
+Playerfgjgfh
+69
+Player
+61
+Name
+50
 joe
 44
 test
@@ -9,12 +17,4 @@ Name
 Joe3
 30
 Name
-25
-Name
-22
-Balls
-21
-blah
-20
-Joe
-20
+26

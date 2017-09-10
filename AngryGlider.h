@@ -1,5 +1,6 @@
 /*
-	AngryGlider.h
+	
+	.h
 
 	Created by:		Joe O'Regan
 	Student Number:	K00203642
@@ -11,7 +12,7 @@
 #ifndef ANGRY_GLIDER_H
 #define ANGRY_GLIDER_H
 
-#include "AngryGlider.h"
+#include "Glider.h"
 
 class AngryGlider : public Glider {
 public:
