@@ -1,14 +1,13 @@
-//
+/*
 //  BulletHandler.cpp
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 28/03/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #include "BulletHandler.h"
 #include "Game.h"
-
 
 BulletHandler* BulletHandler::s_pInstance = new BulletHandler();
 
@@ -50,8 +49,7 @@ void BulletHandler::updateBullets() {
     
     for (std::vector<EnemyBullet*>::iterator e_it = m_enemyBullets.begin(); e_it != m_enemyBullets.end();) {
         if((*e_it)->getPosition().getX() < 0 || (*e_it)->getPosition().getX() > TheGame::Instance()->getGameWidth()
-           || (*e_it)->getPosition().getY() < 0 || (*e_it)->getPosition().getY() > TheGame::Instance()->getGameHeight() || (*e_it)->dead())
-        {
+           || (*e_it)->getPosition().getY() < 0 || (*e_it)->getPosition().getY() > TheGame::Instance()->getGameHeight() || (*e_it)->dead()) {
             delete * e_it;
             e_it = m_enemyBullets.erase(e_it);
         }

@@ -17,8 +17,7 @@
 #include "Enemy.h"
 
 class Glider : public Enemy {
-public:
-    
+public:    
     Glider() : Enemy() {
         m_dyingTime = 25;
         m_health = 1;
@@ -41,10 +40,8 @@ public:
     virtual void collision() {
         m_health -= 1;
         
-        if(m_health == 0)
-        {
-            if(!m_bPlayedDeathSound)
-            {
+        if(m_health == 0) {
+            if(!m_bPlayedDeathSound)  {
                 TheSoundManager::Instance()->playSound("explode", 0);
                 
                 m_textureID = "explosion";
@@ -76,8 +73,7 @@ public:
         
     }
     
-private:
-    
+private:    
     int m_maxHeight;
     int m_minHeight;
     int m_gap;

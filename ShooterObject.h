@@ -1,10 +1,10 @@
-//
+/*
 //  SDLGameObject.h
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 19/01/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #ifndef __SDL_Game_Programming_Book__SDLGameObject__
 #define __SDL_Game_Programming_Book__SDLGameObject__
@@ -13,8 +13,7 @@
 #include "GameObject.h"
 
 class ShooterObject : public GameObject {
-public:
-    
+public:    
     virtual ~ShooterObject() {}
 
     virtual void load(std::unique_ptr<LoaderParams> const &pParams);
@@ -27,8 +26,7 @@ public:
     
     virtual std::string type() { return "SDLGameObject"; }
     
-protected:
-    
+protected:    
     ShooterObject();
     
     void doDyingAnimation();

@@ -13,8 +13,7 @@
 #include <vector>
 
 class GameState {
-public:
-    
+public:    
     virtual ~GameState() {}
     
     virtual void update() = 0;
@@ -27,11 +26,8 @@ public:
     
     virtual std::string getStateID() const = 0;
     
-protected:
-    
-    GameState() : m_loadingComplete(false), m_exiting(false) {
-        
-    }
+protected:    
+    GameState() : m_loadingComplete(false), m_exiting(false) { }
     
     bool m_loadingComplete;
     bool m_exiting;

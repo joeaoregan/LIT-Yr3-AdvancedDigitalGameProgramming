@@ -15,10 +15,8 @@
 #include "Level.h"
 #include "Vector2D.h"
 
-class TileLayer : public Layer
-{
-public:
-    
+class TileLayer : public Layer {
+public:    
     TileLayer(int tileSize, const std::vector<Tileset>& tilesets);
     
     virtual ~TileLayer() {}
@@ -38,8 +36,7 @@ public:
     
     const Vector2D getPosition() { return m_position; }
     
-private:
-    
+private:    
     int m_numColumns;
     int m_numRows;
     int m_tileSize;

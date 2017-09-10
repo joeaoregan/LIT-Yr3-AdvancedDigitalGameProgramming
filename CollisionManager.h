@@ -16,8 +16,7 @@ class Player;
 class GameObject;
 class TileLayer;
 
-class CollisionManager
-{
+class CollisionManager {
 public:
     
     void checkPlayerEnemyBulletCollision(Player* pPlayer);

@@ -1,10 +1,10 @@
-//
+/*
 //  GameOverState.h
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 17/02/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #ifndef __SDL_Game_Programming_Book__GameOverState__
 #define __SDL_Game_Programming_Book__GameOverState__
@@ -15,10 +15,8 @@
 
 class GameObject;
 
-class GameOverState : public MenuState
-{
+class GameOverState : public MenuState {
 public:
-    
     virtual ~GameOverState() {}
     
     virtual void update();
@@ -31,8 +29,7 @@ public:
     
     virtual void setCallbacks(const std::vector<Callback>& callbacks);
     
-private:
-    
+private:    
     static void s_gameOverToMain();
     static void s_restartPlay();
     

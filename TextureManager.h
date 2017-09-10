@@ -15,8 +15,7 @@
 #include "SDL.h"
 
 class TextureManager {
-public:
-    
+public:    
     static TextureManager* Instance() {
         if(s_pInstance == 0) {
             s_pInstance = new TextureManager();

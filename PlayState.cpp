@@ -55,6 +55,8 @@ void PlayState::render() {
     }
 }
 
+int timer;
+
 bool PlayState::onEnter() {
     TheGame::Instance()->setPlayerLives(3);
     
@@ -64,7 +66,7 @@ bool PlayState::onEnter() {
     TheTextureManager::Instance()->load("assets/bullet1.png", "bullet1", TheGame::Instance()->getRenderer());
     TheTextureManager::Instance()->load("assets/bullet2.png", "bullet2", TheGame::Instance()->getRenderer());
     TheTextureManager::Instance()->load("assets/bullet3.png", "bullet3", TheGame::Instance()->getRenderer());
-    TheTextureManager::Instance()->load("assets/lives.png", "lives", TheGame::Instance()->getRenderer());
+    TheTextureManager::Instance()->load("assets/lives.png", "lives", TheGame::Instance()->getRenderer());		// Lives in top left corner
     
     if(pLevel != 0) {
         m_loadingComplete = true;

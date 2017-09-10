@@ -13,7 +13,6 @@ class Level;
 
 class Layer {
 public:
-
     virtual ~Layer() {}
     
     virtual void render() = 0;

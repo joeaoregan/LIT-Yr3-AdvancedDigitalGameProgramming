@@ -1,10 +1,10 @@
-//
+/*
 //  GameObjectFactory.h
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 24/02/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #ifndef SDL_Game_Programming_Book_GameObjectFactory_h
 #define SDL_Game_Programming_Book_GameObjectFactory_h
@@ -14,35 +14,29 @@
 #include <iostream>
 #include "GameObject.h"
 
-class BaseCreator
-{
+class BaseCreator {
 public:
     
     virtual GameObject* createGameObject() const = 0;
     virtual ~BaseCreator() {}
 };
 
-class GameObjectFactory
-{
+class GameObjectFactory {
 public:
     
-    static GameObjectFactory* Instance()
-    {
-        if(pInstance == 0)
-        {
+    static GameObjectFactory* Instance() {
+        if(pInstance == 0)  {
             pInstance = new GameObjectFactory();
         }
         
         return pInstance;
     }
     
-    bool registerType(std::string typeID, BaseCreator* pCreator)
-    {
+    bool registerType(std::string typeID, BaseCreator* pCreator) {
         std::map<std::string, BaseCreator*>::iterator it = m_creators.find(typeID);
         
         // if the type is already registered, do nothing
-        if(it != m_creators.end())
-        {
+        if(it != m_creators.end()) {
             delete pCreator;
         }
         
@@ -51,12 +45,10 @@ public:
         return true;
     }
     
-    GameObject* create(std::string typeID)
-    {
+    GameObject* create(std::string typeID)  {
         std::map<std::string, BaseCreator*>::iterator it = m_creators.find(typeID);
         
-        if(it == m_creators.end())
-        {
+        if(it == m_creators.end()) {
             std::cout << "could not find type: " << typeID << "\n";
             return NULL;
         }
@@ -65,8 +57,7 @@ public:
         return pCreator->createGameObject();
     }
     
-private:
-    
+private:    
     GameObjectFactory() {}
     ~GameObjectFactory() {}
     

@@ -16,8 +16,7 @@
 class GameObject;
 
 class StateParser {
-public:
-    
+public:    
     StateParser() {}
     ~StateParser() {}
     

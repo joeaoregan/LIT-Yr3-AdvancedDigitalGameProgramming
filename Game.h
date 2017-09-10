@@ -6,7 +6,8 @@
 
 #ifndef __SDL_Game_Programming_Book__Game__
 #define __SDL_Game_Programming_Book__Game__
-#define SCREEN_WIDTH 640
+
+#define SCREEN_WIDTH 600
 #define SCREEN_HEIGHT 480
 
 #include "SDL.h"
@@ -14,21 +15,16 @@
 //#include "SDL_mixer.h"
 #include <vector>
 
-class Game
-{
-public:
-    
-    static Game* Instance()
-    {
-        if(s_pInstance == 0)
-        {
+class Game {
+public:    
+    static Game* Instance() {
+        if(s_pInstance == 0) {
             s_pInstance = new Game();
             return s_pInstance;
         }
         
         return s_pInstance;
     }
-
     
     bool init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
     
@@ -67,9 +63,7 @@ public:
     std::vector<std::string> getLevelFiles() { return m_levelFiles; }
     
 private:
-
-
-		bool m_bChangingState;
+	bool m_bChangingState;
     
     SDL_Window* m_pWindow;
     SDL_Renderer* m_pRenderer;

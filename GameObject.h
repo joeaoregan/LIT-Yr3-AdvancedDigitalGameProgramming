@@ -1,10 +1,10 @@
-//
+/*
 //  GameObject.h
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 06/01/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #ifndef SDL_Game_Programming_Book_GameObject_h
 #define SDL_Game_Programming_Book_GameObject_h
@@ -15,8 +15,7 @@
 #include <memory>
 
 class GameObject {
-public:   
-    
+public:       
     virtual ~GameObject() {}	// base class needs virtual destructor
     
     // load from file - int x, int y, int width, int height, std::string textureID, int numFrames, int callbackID = 0, int animSpeed = 0
@@ -56,8 +55,7 @@ public:
         
     void setUpdating(bool updating) { m_bUpdating = updating; }	// set whether to update the object or not
         
-protected:
-    
+protected:    
     // constructor with default initialisation list
     GameObject() :  m_position(0,0),
                     m_velocity(0,0),

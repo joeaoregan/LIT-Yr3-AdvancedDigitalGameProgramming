@@ -1,10 +1,10 @@
-//
+/*
 //  BulletHandler.h
 //  SDL Game Programming Book
 //
 //  Created by shaun mitchell on 28/03/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
-//
+*/
 
 #ifndef __SDL_Game_Programming_Book__BulletHandler__
 #define __SDL_Game_Programming_Book__BulletHandler__
@@ -13,14 +13,11 @@
 #include <vector>
 #include "Bullet.h"
 
-class BulletHandler
-{
+class BulletHandler {
 public:
     
-    static BulletHandler* Instance()
-    {
-        if(s_pInstance == 0)
-        {
+    static BulletHandler* Instance() {
+        if(s_pInstance == 0) {
             s_pInstance = new BulletHandler();
             return s_pInstance;
         }

@@ -47,8 +47,7 @@ distribution.
    The buffer allocation is made by a simplistic power of 2 like mechanism : if we increase
    a string and there's no more room, we allocate a buffer twice as big as we need.
 */
-class TiXmlString
-{
+class TiXmlString {
   public :
 	// The size type used
   	typedef size_t size_type;
@@ -63,8 +62,7 @@ class TiXmlString
 	}
 
 	// TiXmlString copy constructor
-	TiXmlString ( const TiXmlString & copy) : rep_(0)
-	{
+	TiXmlString ( const TiXmlString & copy) : rep_(0) {
 		init(copy.length());
 		memcpy(start(), copy.data(), length());
 	}

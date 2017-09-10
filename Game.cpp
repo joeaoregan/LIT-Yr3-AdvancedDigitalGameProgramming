@@ -132,13 +132,11 @@ void Game::render() {
     SDL_RenderPresent(m_pRenderer);
 }
 
-void Game::update(){
-	
+void Game::update(){	
 		m_pGameStateMachine->update();
 }
 
 void Game::handleEvents() {
-
 		TheInputHandler::Instance()->update();
 }
 
