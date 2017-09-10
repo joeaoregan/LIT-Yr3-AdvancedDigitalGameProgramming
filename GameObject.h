@@ -44,8 +44,6 @@ public:
     
     int getWidth() { return m_width; }
     int getHeight() { return m_height; }
-	//std::string getName() { return m_name; }
-	//void setName(std::string n) { m_name = n; }
     
     // scroll along with tile map
     void scroll(float scrollSpeed)  {
@@ -62,6 +60,16 @@ public:
     bool dying() { return m_bDying; }							// is the object doing a death animation?
         
     void setUpdating(bool updating) { m_bUpdating = updating; }	// set whether to update the object or not
+
+	//2017/02/05 Added getter setter methods for name variable 2017/04/16 Moved from Player class
+	std::string getName() { return m_name; }
+	void setName(std::string n) { m_name = n; }
+
+	// 2017/04/16 Added getter / setter methods for texture id
+	std::string getTextureID() { return m_textureID; }
+	void setTextureID(std::string id) { m_textureID = id; }
+
+
         
 protected:    
     // constructor with default initialisation list
@@ -88,6 +96,8 @@ protected:
     Vector2D m_velocity;
     Vector2D m_acceleration;
     
+	std::string m_name;				// 2017/02/25 Added name to identify Game Objects // 2017/04/16 Moved from Player class
+
     // size variables
     int m_width;
     int m_height;
@@ -96,7 +106,7 @@ protected:
     int m_currentRow;
     int m_currentFrame;
     int m_numFrames;
-    std::string m_textureID;
+    std::string m_textureID;		// ID for sprite texture
     
     // common boolean variables
     bool m_bUpdating;
@@ -108,8 +118,6 @@ protected:
     int m_alpha;	// blending
 
 	unsigned int m_time;
-
-	std::string m_name;
 };	
 
 #endif
