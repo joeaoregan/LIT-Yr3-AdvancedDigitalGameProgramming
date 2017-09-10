@@ -6,11 +6,8 @@
 #include <iostream>
 #include "HighScoreState.h"
 #include "MainMenuState.h"
-//#include "MenuState.h"
 #include "PlayState.h"
 #include "PauseState.h"
-
-//#include "GameOverState.h"
 #include "TextureManager.h"
 #include "Game.h"
 #include "MenuButton.h"
@@ -42,15 +39,19 @@ void HighScoreState::render() {
 		}
 	}
 
-
 	TheTextureManager::Instance()->drawFrame("scoreTitle", (SCREEN_WIDTH - 354 ) / 2, 20, 354, 64, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
+	
+	TheTextureManager::Instance()->drawText("highScoresID", 65, 100, TheGame::Instance()->getRenderer());
 
 	// Put high score screen output in here
 	//std::cout << "Rendering HighScoreState\n";			// will loop over and over
 }
 
 bool HighScoreState::onEnter() {
-	TheTextureManager::Instance()->load("assets/HighScoresLogo.png", "scoreTitle", TheGame::Instance()->getRenderer());
+	TheTextureManager::Instance()->load("assets/HighScoresLogo.png", "scoreTitle", TheGame::Instance()->getRenderer()); 
+	
+	TheTextureManager::Instance()->loadHighScoresText(TheGame::Instance()->getRenderer());
+	//TheTextureManager::Instance()->drawText("highScoresID", 150, 100, TheGame::Instance()->getRenderer());
 	
 	StateParser stateParser;
 	stateParser.parseState("assets/attack.xml", s_HighScoreID, &m_gameObjects, &m_textureIDList);

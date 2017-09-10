@@ -180,6 +180,9 @@ void InputHandler::update() {
             case SDL_KEYUP:
                 onKeyUp();
                 break;
+
+			case SDLK_BACKSPACE:
+				break;
                 
             default:
                 break;

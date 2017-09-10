@@ -38,6 +38,8 @@ public:
     
     int getWidth() { return m_width; }
     int getHeight() { return m_height; }
+	//std::string getName() { return m_name; }
+	//void setName(std::string n) { m_name = n; }
     
     // scroll along with tile map
     void scroll(float scrollSpeed)  {
@@ -100,6 +102,8 @@ protected:
     int m_alpha;	// blending
 
 	unsigned int m_time;
+
+	std::string m_name;
 };	
 
 #endif

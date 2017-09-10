@@ -24,6 +24,7 @@ public:
     virtual ~PlayState() { delete pLevel; }
 
 	void gameTimer(); // 16/02/2017
+	void highScoreUpdate(std::string name, int score);
     
     virtual void update();
     virtual void render();
