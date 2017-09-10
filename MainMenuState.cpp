@@ -29,8 +29,8 @@
 
 const std::string MainMenuState::s_menuID = "MENU";
 
-int currentBtn = 1;							// Current selected menu button for keyboard / gamepad
-
+/*
+// Moved to MenuState.h
 void setCurrentBtn(int a) {
 	if (a == 0) currentBtn--;
 	else if (a == 1) currentBtn++;
@@ -38,6 +38,7 @@ void setCurrentBtn(int a) {
 	if (currentBtn > 5) currentBtn = 1;
 	if (currentBtn < 1) currentBtn = 5;
 }
+*/
 
 // Callbacks
 void MainMenuState::s_menuToPlay() {
@@ -77,7 +78,7 @@ void MainMenuState::update() {
 	}
 	// If up key, or gamepad up pressed
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) || InputHandler::Instance()->getAxisY(0, 1) < 0) {
-		if (!pressed) setCurrentBtn(0);
+		if (!pressed) setCurrentBtn(BUTTON_UP);
 		pressed = true;
 		std::cout << "currentButton " << currentBtn << std::endl;
 	}
@@ -85,7 +86,7 @@ void MainMenuState::update() {
 
 	// If down key, or gamepad down pressed
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN) || InputHandler::Instance()->getAxisY(0, 1) > 0) {
-		if (!pressed) setCurrentBtn(1);
+		if (!pressed) setCurrentBtn(BUTTON_DOWN);
 		pressed = true;
 		std::cout << "currentButton " << currentBtn << std::endl;
 	}
@@ -93,8 +94,8 @@ void MainMenuState::update() {
 
 	// 2017/04/22 Leave 1/4 of a second before the button selector moves again
 	if (SDL_GetTicks() > btnTimer + 250) {
-		btnTimer = SDL_GetTicks();
-		pressed = false;
+		btnTimer = SDL_GetTicks();			// Reset time between button presses
+		pressed = false;					// Reset ability to press button
 	}	
 
     if(!m_gameObjects.empty()) {										// If the game object list isn't empty
@@ -118,6 +119,8 @@ void MainMenuState::render() {
 
 /* Add a new callback for each new button */
 bool MainMenuState::onEnter() {
+	numButtons = 5;																				// 2017/04/24 There are 5 buttons in the state
+	currentBtn = 1;																				// 2017/04/24 Moved currentBtn to MenuState.h
     // parse the state
     StateParser stateParser;																	// Create a new StateParser
     stateParser.parseState("assets/attack.xml", s_menuID, &m_gameObjects, &m_textureIDList);	// Load assets for "MENU" state from XML
@@ -135,7 +138,6 @@ bool MainMenuState::onEnter() {
     std::cout << "entering MenuState\n";
 
 	selectCurrentButton(m_callbacks);
-
 
     return true;
 }
@@ -177,7 +179,7 @@ void MainMenuState::setCallbacks(const std::vector<Callback>& callbacks) {
     }
 }
 
-
+// Original version of function -> Tidied up elsewhere
 void MainMenuState::selectCurrentButton(const std::vector<Callback>& callbacks) {
 	if (!m_gameObjects.empty()) {													// If its not empty
 		for (int i = 0; i < m_gameObjects.size(); i++) {							// Go through the game objects list

@@ -262,6 +262,8 @@ void Player::handleInput() {
 			2017/04/22	Uncommented - Fires more than 1 bullet at a time
 						Added separate bullet counter m_bullet3Counter to allow single bullet to fire at a time
 		*/
+
+		//if (SDL_NumJoysticks() > 0) {	// 2017/04/24 Check there is a gamepad
         if(TheInputHandler::Instance()->joysticksInitialised()) {
 			// Fire the first bullet type
 			//if (TheInputHandler::Instance()->getButtonState(0, 2)) {

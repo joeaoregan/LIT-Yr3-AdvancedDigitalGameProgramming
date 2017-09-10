@@ -24,8 +24,6 @@ SoundManager::SoundManager() {
 	//currentSong = rand() % NUMBER_OF_SONGS + 1;		// 2017/03/16 choose random song
 }
 
-
-
 SoundManager::~SoundManager() {
     Mix_CloseAudio();
 }

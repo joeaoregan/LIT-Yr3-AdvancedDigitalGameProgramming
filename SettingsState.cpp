@@ -45,12 +45,42 @@ void SettingsState::s_fullScreen() {
 }
 
 void SettingsState::update() {
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||			// Press Esc key to
+	// Handle button presses
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0, 0)) {
+		if (currentBtn == 1) s_musicOnOff();								// 1. Turn Music on or off
+		else if (currentBtn == 2) s_fullScreen();							// 2. Make the game full screen
+		else if (currentBtn == 3) s_settingsToMain();						// 3. Return to main menu
+	}
+	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||	// Press Esc key to
 		InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||		// 2017/04/23 or backspace
 		InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
-		Game::Instance()->getStateMachine()->pushState(new MainMenuState());
+		s_settingsToMain();													// Return to Main Menu
 	}
 
+	// If up key, or gamepad up pressed
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) || InputHandler::Instance()->getAxisY(0, 1) < 0) {
+		if (!pressed) setCurrentBtn(BUTTON_UP);
+		pressed = true;
+		std::cout << "currentButton " << currentBtn << std::endl;
+	}
+	//else pressed = false;
+
+	// If down key, or gamepad down pressed
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN) || InputHandler::Instance()->getAxisY(0, 1) > 0) {
+		if (!pressed) setCurrentBtn(BUTTON_DOWN);
+		pressed = true;
+		std::cout << "currentButton " << currentBtn << std::endl;
+	}
+
+	selectCurrentButton();
+
+	// 2017/04/22 Leave 1/4 of a second before the button selector moves again
+	if (SDL_GetTicks() > btnTimer + 250) {
+		btnTimer = SDL_GetTicks();			// Reset time between button presses
+		pressed = false;					// Reset ability to press button
+	}
+
+	//else pressed = false;
 	if (m_loadingComplete && !m_gameObjects.empty()) {
 		for (int i = 0; i < m_gameObjects.size(); i++) {
 			m_gameObjects[i]->update();
@@ -85,18 +115,23 @@ bool SettingsState::onEnter() {
 	Texture::Instance()->load("assets/buttonMusic.png", "musicButton", TheGame::Instance()->getRenderer());
 	Texture::Instance()->load("assets/buttonFullScreen.png", "fullscreenButton", TheGame::Instance()->getRenderer());
 	*/
+
+	numButtons = 3;								// 2017/04/24 There are 2 buttons in the state
+	currentBtn = 1;								// Set the current button
+
 	StateParser stateParser;
 	stateParser.parseState("assets/attack.xml", s_SettingsID, &m_gameObjects, &m_textureIDList);
 
 	m_callbacks.push_back(0);
-	m_callbacks.push_back(s_settingsToMain);	// CallbackID = 1	Return to main menu
-	m_callbacks.push_back(s_musicOnOff);		// CallbackID = 2	Turn the music on or off
-	m_callbacks.push_back(s_fullScreen);		// CallbackID = 3	Make the game Full Screen or windowed
+	m_callbacks.push_back(s_musicOnOff);		// CallbackID = 1	Turn the music on or off
+	m_callbacks.push_back(s_fullScreen);		// CallbackID = 2	Make the game Full Screen or windowed
+	m_callbacks.push_back(s_settingsToMain);	// CallbackID = 3	Return to main menu
 
 	setCallbacks(m_callbacks);
 
 	m_loadingComplete = true;
 
+	selectCurrentButton();
 	std::cout << "Entering Settings State\n";
 	return true;
 }
@@ -119,6 +154,19 @@ void SettingsState::setCallbacks(const std::vector<Callback>& callbacks) {
 			if (dynamic_cast<MenuButton*>(m_gameObjects[i])) {
 				MenuButton* pButton = dynamic_cast<MenuButton*>(m_gameObjects[i]);
 				pButton->setCallback(callbacks[pButton->getCallbackID()]);
+			}
+		}
+	}
+}
+
+void SettingsState::selectCurrentButton() {
+	if (!m_gameObjects.empty()) {													// If its not empty
+		for (int i = 0; i < m_gameObjects.size(); i++) {							// Go through the game objects list
+			if (dynamic_cast<MenuButton*>(m_gameObjects[i])) {						// if they are of type MenuButton then assign a callback based on the id passed in from the file
+				MenuButton* pButton = dynamic_cast<MenuButton*>(m_gameObjects[i]);
+
+				if (pButton->getCallbackID() == currentBtn) pButton->selected = true;
+				else pButton->selected = false;
 			}
 		}
 	}

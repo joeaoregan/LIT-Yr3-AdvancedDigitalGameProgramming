@@ -4,6 +4,12 @@
 //
 //  Created by shaun mitchell on 24/01/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
+
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/04/24	Added check to getButtonState() so game works without gamepad plugged in
 */
 
 #include "InputHandler.h"
@@ -133,9 +139,13 @@ int InputHandler::getAxisY(int joy, int stick) const {
     return 0;
 }
 
+// 2017/04/24	Added check so game works with out gamepad plugged in
 bool InputHandler::getButtonState(int joy, int buttonNumber) const {
 	//std::cout << "button number: " << buttonNumber << std::endl;
-    return m_buttonStates[joy][buttonNumber];
+	if (SDL_NumJoysticks() > 0)										// 2017/04/24 If there is a joystick plugged in
+		return m_buttonStates[joy][buttonNumber];					// Return it's state
+		
+	return false;													// Otherwise return false
 }
 
 bool InputHandler::getMouseButtonState(int buttonNumber) const {

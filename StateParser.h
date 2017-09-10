@@ -25,7 +25,10 @@ public:
 private:
     
     void parseObjects(TiXmlElement* pStateRoot, std::vector<GameObject*> *pObjects);
-    void parseTextures(TiXmlElement* pStateRoot, std::vector<std::string> *pTextureIDs);
+	void parseTextures(TiXmlElement* pStateRoot, std::vector<std::string> *pTextureIDs);
+	// Parse audio files from XML
+	//void parseSoundFX(TiXmlElement* pStateRoot, std::vector<std::string> *pSoundFXIDs) {};	// Not necessary, only used in PlayState
+	//void parseMusic(TiXmlElement* pStateRoot, std::vector<std::string> *pMusicIDs) {};
 };
 
 #endif /* defined(__SDL_Game_Programming_Book__StateParser__) */
