@@ -48,6 +48,19 @@ public:
 
 	void trackForwards();						// 2017/04/23	Skip the track forwards
 	void trackBackwards();						// 2017/04/23	Skip the track backwards
+
+	// Adjust volumes
+	void volumeUpMusic();
+	void volumeDownMusic();
+	void volumeUpEffects();
+	void volumeDownEffects();
+
+	int getVolumeMusic() { return volumeMusic; };			// 2017/04/25	Use volume for settings volume bar
+	void setVolumeMusic(int v) { volumeMusic = v; };		// 2017/04/25	Set the volume
+	int getVolumeEffects() { return volumeEffects; };		// 2017/04/25	Use volume for settings volume bar
+	void setVolumeEffects(int v) { volumeEffects = v; };	// 2017/04/25	Set the volume
+
+	void setFXvolumes(int v);								// Set the individual effects volumes
 	    	
 private:    
 
@@ -64,7 +77,8 @@ private:
     SoundManager(const SoundManager&);
 	SoundManager& operator=(const SoundManager&);
 
-
+	int volumeMusic;			// 2017/04/25 Max volume is 128
+	int volumeEffects;			// 2017/04/25 Max volume is 128
 };
 
 typedef SoundManager TheSoundManager;

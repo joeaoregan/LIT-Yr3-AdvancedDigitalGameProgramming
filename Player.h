@@ -22,9 +22,14 @@ enum collideTypes { BULLET, POWERUP };
 #include "ShooterObject.h"
 #include "GameObjectFactory.h"
 
+//#include "BoundaryStuff.h"
+#include "Subject.h"
+
 //#include "StatusBar.h"		// 2017/04/22 Draw a status bar for the player
 
-class Player : public ShooterObject {
+// Player is also the subject for the Observer
+class Player : public Subject, public ShooterObject {	
+//class Player : public ShooterObject {	// 2017/04/25 Player is also the subject for the BoundaryStuff Observer (Watcher)
 public:    
     Player();
     virtual ~Player() {}
@@ -42,6 +47,13 @@ public:
 	// 2017/04/22 Set the most recent collision for the player, to apply different collision functionality
 	int getRecentCollision() { return recentCollision; };
 	void setRecentCollision(int type) { recentCollision = type; };
+
+	void test() {
+		std::cout << "test test test test test test test test test test test test test test test test test test test test " << std::endl;
+		std::cout << "Player Player Player Player Player Player Player Player Player Player Player Player Player Player  " << std::endl;
+		std::cout << "test test test test test test test test test test test test test test test test test test test test " << std::endl;
+		std::cout << "Player Player Player Player Player Player Player Player Player Player Player Player Player Player  " << std::endl;
+	}
 
 private:
 

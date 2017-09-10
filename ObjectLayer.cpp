@@ -40,17 +40,18 @@ void ObjectLayer::update(Level* pLevel) {
     if(!m_gameObjects.empty()) {
         for(std::vector<GameObject*>::iterator it = m_gameObjects.begin(); it != m_gameObjects.end();)// < m_gameObjects.size(); i++)
         {
-            if((*it)->getPosition().getX() <= TheGame::Instance()->getGameWidth()) {
-                (*it)->setUpdating(true);
+            if((*it)->getPosition().getX() <= TheGame::Instance()->getGameWidth()) {	// When the GameObject arrives on screen update it
+                (*it)->setUpdating(true);													
                 (*it)->update();
             }
             else {
-                if((*it)->type() != std::string("Player")) {
-                    (*it)->setUpdating(false);
-                    (*it)->scroll(TheGame::Instance()->getScrollSpeed());
+                if((*it)->type() != std::string("Player")) {							// If the object is not the Player
+                    (*it)->setUpdating(false);											// Don't update its movment
+                    (*it)->scroll(TheGame::Instance()->getScrollSpeed());				// Scroll with background
+
                 }
                 else {
-                    (*it)->update();
+                    (*it)->update();	// Update the player
                 }
             }
             

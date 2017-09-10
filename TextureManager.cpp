@@ -33,8 +33,8 @@ void TextureManager::drawText(std::string id, int x, int y, SDL_Renderer* pRende
 
 	srcRect.x = 0;
 	srcRect.y = 0;
-	srcRect.w = destRect.w = mWidth;
-	srcRect.h = destRect.h = mHeight;
+	srcRect.w = destRect.w = m_Width;
+	srcRect.h = destRect.h = m_Height;
 	destRect.x = x;
 	destRect.y = y;
 
@@ -67,7 +67,15 @@ void Texture::loadLevelText(std::string currentLevel) {
 }
 void Texture::loadReadyText(std::string input) {
 	SDL_Texture* readyTexture = 0;																							// The actual hardware texture
-	createText(readyTexture, input, "readyID", { 255, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), true);				// Get ready to start message
+	createText(readyTexture, input, "readyID", { 255, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 24), true);				// Get ready to start message
+}
+void Texture::loadFinalScoreText(std::string input) {
+	SDL_Texture* readyTexture = 0;																							// The actual hardware texture
+	createText(readyTexture, input, "scoreID", { 255, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 24), true);				// Get ready to start message
+}
+void Texture::loadLevelTimeText(std::string input) {
+	SDL_Texture* readyTexture = 0;																							// The actual hardware texture
+	createText(readyTexture, input, "timeID", { 255, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 24), true);				// Get ready to start message
 }
 
 /* 
@@ -97,6 +105,24 @@ void Texture::loadScoreText(std::string currentScore) {
 }
 */
 
+void Texture::displayDifficulty(int level) {
+	/*
+	std::string difficultyLevel;
+
+	if (level == 0) {
+		difficultyLevel = "Easy";
+	}
+	else if (level == 1) {
+		difficultyLevel = "Medium";
+	}
+	else if (level == 2) {
+		difficultyLevel = "Hard";
+	}
+
+	SDL_Texture* score = 0;	// The actual hardware texture
+	createText(score, difficultyLevel, "difficultyID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), Game::Instance()->getRenderer());						// 2017/04/22 Score
+	*/
+	}
 /*
 	High Scores State text rendering function
 */
@@ -153,7 +179,7 @@ void TextureManager::loadHighScoresText() {
 	// Render the name and score to a texture
 	//std::string highScores = "Player 1:  10\nPlayer 2:  20\nPlayer 3:  30\nPlayer 4:  40\nPlayer 5:  50\nPlayer 6:  60\nPlayer 7:  70\nPlayer 8:  80\nPlayer 9:  90\nPlayer 10: 100";
 	SDL_Texture* highScore = 0;	// The actual hardware texture
-	createText(highScore, highScores.str().c_str(), "highScoresID", { 100, 100, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 24), true);
+	createText(highScore, highScores.str().c_str(), "highScoresID", { 50, 50, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 24), true);
 }
 
 bool TextureManager::createText(std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, bool textWrapped) {
@@ -165,16 +191,16 @@ bool TextureManager::createText(std::string textureText, std::string id, SDL_Col
 	if (textSurface != NULL) {
 		//Create texture from surface pixels
 		//mTexture = SDL_CreateTextureFromSurface(pRenderer, textSurface);
-		mTexture = SDL_CreateTextureFromSurface(Game::Instance()->getRenderer(), textSurface);
+		m_Texture = SDL_CreateTextureFromSurface(Game::Instance()->getRenderer(), textSurface);
 
 		//if (mTexture == NULL) {
-		if (mTexture == NULL) {
+		if (m_Texture == NULL) {
 			printf("Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError());
 		}
 		else {
 			//Get image dimensions
-			mWidth = textSurface->w;
-			mHeight = textSurface->h;
+			m_Width = textSurface->w;
+			m_Height = textSurface->h;
 		}
 
 		SDL_FreeSurface(textSurface);	//Get rid of old surface
@@ -186,9 +212,9 @@ bool TextureManager::createText(std::string textureText, std::string id, SDL_Col
 	//return mTexture != NULL;	// Return success
 
 	//if (mTexture != 0) {
-	if (mTexture != 0) {
+	if (m_Texture != 0) {
 		//m_textureMap[id] = mTexture;	// Add to texture map
-		m_textureMap[id] = mTexture;	// Add to texture map
+		m_textureMap[id] = m_Texture;	// Add to texture map
 		return true;
 	}
 
@@ -213,8 +239,8 @@ bool TextureManager::createText(SDL_Texture* text, std::string textureText, std:
 		}
 		else {
 			//Get image dimensions
-			mWidth = textSurface->w;
-			mHeight = textSurface->h;
+			m_Width = textSurface->w;
+			m_Height = textSurface->h;
 		}
 
 		SDL_FreeSurface(textSurface);	//Get rid of old surface
@@ -236,7 +262,7 @@ bool TextureManager::createText(SDL_Texture* text, std::string textureText, std:
 	return false;
 }
 
-bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer* pRenderer) {
+bool TextureManager::loadText(std::string fileName, std::string id) {
 	SDL_Surface* pTempSurface = IMG_Load(fileName.c_str());
 
 	if (pTempSurface == 0) {
@@ -244,7 +270,27 @@ bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer* pR
 		return false;
 	}
 
-	SDL_Texture* pTexture = SDL_CreateTextureFromSurface(pRenderer, pTempSurface);
+	SDL_Texture* pTexture = SDL_CreateTextureFromSurface(Game::Instance()->getRenderer(), pTempSurface);
+
+	SDL_FreeSurface(pTempSurface);
+
+	if (pTexture != 0) {
+		m_textureMap[id] = pTexture;
+		return true;
+	}
+
+	return false;
+}
+
+bool TextureManager::load(std::string fileName, std::string id) {
+	SDL_Surface* pTempSurface = IMG_Load(fileName.c_str());
+
+	if (pTempSurface == 0) {
+		std::cout << IMG_GetError();
+		return false;
+	}
+
+	SDL_Texture* pTexture = SDL_CreateTextureFromSurface(Game::Instance()->getRenderer(), pTempSurface);
 
 	SDL_FreeSurface(pTempSurface);
 
@@ -258,11 +304,11 @@ bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer* pR
 
 void TextureManager::free() {
 	// Free texture if it exists
-	if (mTexture != NULL) {
-		SDL_DestroyTexture(mTexture);
-		mTexture = NULL;
-		mWidth = 0;
-		mHeight = 0;
+	if (m_Texture != NULL) {
+		SDL_DestroyTexture(m_Texture);
+		m_Texture = NULL;
+		m_Width = 0;
+		m_Height = 0;
 	}
 }
 
@@ -270,9 +316,9 @@ void TextureManager::free(SDL_Texture *texture) {
 	// Free texture if it exists
 	if (texture != NULL) {
 		SDL_DestroyTexture(texture);
-		mTexture = NULL;
-		mWidth = 0;
-		mHeight = 0;
+		m_Texture = NULL;
+		m_Width = 0;
+		m_Height = 0;
 	}
 }
 
@@ -327,7 +373,7 @@ void TextureManager::clearFromTextureMap(std::string id) {
     m_textureMap.erase(id);
 }
 
-/*
+
 bool Texture::renderTextToTexture(std::string textureText, SDL_Color textColor, TTF_Font* font, std::string id, bool textWrapped) {
 	free();	//Get rid of preexisting texture
 
@@ -337,14 +383,14 @@ bool Texture::renderTextToTexture(std::string textureText, SDL_Color textColor, 
 		m_TextSurface = TTF_RenderText_Blended_Wrapped(font, textureText.c_str(), textColor, 1000);	// Render text surface with text wrapping
 
 	if (m_TextSurface != NULL) {
-		mTexture = SDL_CreateTextureFromSurface(Game::Instance()->getRenderer(), m_TextSurface);		// Create texture from surface pixels
+		m_Texture = SDL_CreateTextureFromSurface(Game::Instance()->getRenderer(), m_TextSurface);		// Create texture from surface pixels
 
-		if (mTexture == NULL) {
+		if (m_Texture == NULL) {
 			printf("Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError());
 		}
 		else {
-			mWidth = m_TextSurface->w;	// Get image dimensions
-			mHeight = m_TextSurface->h;
+			m_Width = m_TextSurface->w;	// Get image dimensions
+			m_Height = m_TextSurface->h;
 		}
 
 		SDL_FreeSurface(m_TextSurface);	// Get rid of old surface
@@ -352,15 +398,28 @@ bool Texture::renderTextToTexture(std::string textureText, SDL_Color textColor, 
 	else {
 		printf("loadFromRenderedText(): Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());	// Error message
 	}
-
+	/*
 	if (id != "") {
-		if (mTexture != 0) {
-			m_textureMap[id] = mTexture;	// Add to texture map
+		if (m_Texture != 0) {
+			m_textureMap[id] = m_Texture;	// Add to texture map
 
 			return true;
 		}
 	}
-
-	return mTexture != NULL;			// Return success
+	*/
+	return m_Texture != NULL;			// Return success
 }
+
+/*
+Render a texture
 */
+void Texture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip) {
+	SDL_Rect renderQuad = { x, y, m_Width, m_Height };	// Set rendering space and render to screen
+
+	if (clip != NULL) {									// Set clip rendering dimensions
+		renderQuad.w = clip->w;
+		renderQuad.h = clip->h;
+	}
+
+	SDL_RenderCopyEx(Game::Instance()->getRenderer(), m_Texture, clip, &renderQuad, angle, center, flip);	// Render to screen
+}

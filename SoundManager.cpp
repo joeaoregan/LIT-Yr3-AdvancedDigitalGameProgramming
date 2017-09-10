@@ -131,3 +131,36 @@ void SoundManager::pausePlayMusic() {
 void SoundManager::playSound(std::string id, int loop) {
     Mix_PlayChannel(-1, m_sfxs[id], loop);
 }
+
+void SoundManager::volumeDownMusic() {
+	volumeMusic -= 8;
+	if (volumeMusic <= 0) volumeMusic = 0;
+	Mix_VolumeMusic(volumeMusic);											// Set music volume down MIX_MAX_VOLUME = 128 BALANCES OUT THE VOLUMES A BIT BETTER
+}
+void SoundManager::volumeUpMusic() {
+	volumeMusic += 8;
+	if (volumeMusic >= MIX_MAX_VOLUME) volumeMusic = MIX_MAX_VOLUME;		// Volume goes up to 128
+	Mix_VolumeMusic(volumeMusic);											// Set music volume up
+}
+void SoundManager::volumeDownEffects() {
+	volumeEffects -= 8;
+	if (volumeEffects <= 0) volumeEffects = 0;
+	
+	setFXvolumes(volumeEffects);											// Volume has to be set for individual chunks
+}
+void SoundManager::volumeUpEffects() {
+	volumeEffects += 8;
+	if (volumeEffects >= MIX_MAX_VOLUME) volumeEffects = MIX_MAX_VOLUME;	// Volume goes up to 128
+	
+	setFXvolumes(volumeEffects);
+}
+
+// Volume has to be set for individual chunks
+void SoundManager::setFXvolumes(int v) {
+	Mix_VolumeChunk(m_sfxs["explode"], v);									// Set effects volume up
+	Mix_VolumeChunk(m_sfxs["shoot"], v);									// Set effects volume up
+	Mix_VolumeChunk(m_sfxs["fire"], v);										// Set effects volume up
+	Mix_VolumeChunk(m_sfxs["puFX"], v);										// Set effects volume up
+	Mix_VolumeChunk(m_sfxs["blastFX"], v);									// Set effects volume up
+	Mix_VolumeChunk(m_sfxs["buttonFX"], v);									// 2017/04/28 Set effects volume up - Menu effects could have separate volume controls
+}

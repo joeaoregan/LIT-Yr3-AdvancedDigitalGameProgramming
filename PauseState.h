@@ -30,7 +30,7 @@ public:
     
     virtual void setCallbacks(const std::vector<Callback>& callbacks); 
 	
-	void selectCurrentButton();		// keyboard/gamepad menu system support
+	//void selectCurrentButton();		// keyboard/gamepad menu system support
     
 private:
     

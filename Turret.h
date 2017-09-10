@@ -49,8 +49,11 @@ public:
                 m_width = 60;
                 m_height = 60;
                 m_bDying = true;
+				m_score = 20;
 
 				Game::Instance()->turretKills++;	// 2017/04/23 Increment the number of turrets destroyed by the player
+
+				Game::Instance()->setScore(Game::Instance()->getScore() + m_score);	// 2017/04/27 Update Score
             }            
         }
     }
@@ -70,6 +73,8 @@ public:
             m_bulletCounter++;
         }
         else {
+			//Game::Instance()->setScore(Game::Instance()->getScore() + m_score);	// 2017/04/27 Update Score CONSTANTLY UPDATES
+
             scroll(TheGame::Instance()->getScrollSpeed());
             doDyingAnimation();
         }

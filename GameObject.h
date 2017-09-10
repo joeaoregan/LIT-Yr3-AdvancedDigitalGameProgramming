@@ -9,7 +9,11 @@
 	Student Number:	K00203642
 
 	Done:
-		2017/04/16 Added name field to identify Game Objects
+		2017/04/25	Added m_type variable to distinguish types of game objects
+		2017/04/22	Added m_health variable to keep track of health, 
+					kill() function to set m_bDead to true, 
+					and m_currentFrame to get the current animation frame
+		2017/04/16	Added name field to identify Game Objects
 */
 
 #ifndef SDL_Game_Programming_Book_GameObject_h
@@ -20,9 +24,11 @@
 #include <string>
 #include <memory>
 
+enum gameObjectTypes { PLAYER, EVERYTHING_ELSE };	// 2017/04/25 set m_type for game objects
+
 class GameObject {
 public:       
-    virtual ~GameObject() {}	// base class needs virtual destructor
+    virtual ~GameObject() {}			// base class needs virtual destructor
     
     // load from file - int x, int y, int width, int height, std::string textureID, int numFrames, int callbackID = 0, int animSpeed = 0
     virtual void load(std::unique_ptr<LoaderParams> const &pParams)=0;
@@ -31,12 +37,12 @@ public:
         
     virtual void update()=0;			// do update stuff
     
-    virtual void clean()=0;				 // remove anything that needs to be deleted
+    virtual void clean()=0;				// remove anything that needs to be deleted
     
-    virtual void collision() = 0;		 // object has collided, handle accordingly
+    virtual void collision() = 0;		// object has collided, handle accordingly
     
 
-    virtual std::string type() = 0;    // get the type of the object
+    virtual std::string type() = 0;		// get the type of the object
     
     // getters for common variables
     Vector2D& getPosition() { return m_position; }
@@ -47,7 +53,7 @@ public:
     
     // scroll along with tile map
     void scroll(float scrollSpeed)  {
-        if(type() != std::string("Player")) // player is never scrolled
+        if(type() != std::string("Player"))						// player is never scrolled
         {
             m_position.setX(m_position.getX() - scrollSpeed);
         }
@@ -67,11 +73,14 @@ public:
 	void setName(std::string n) { m_name = n; }
 
 	// 2017/04/16 Added getter / setter methods for texture id
-	std::string getTextureID() { return m_textureID; }
-	void setTextureID(std::string id) { m_textureID = id; }
+	std::string getTextureID() { return m_textureID; }			// 2017/04/16 get the texture ID
+	void setTextureID(std::string id) { m_textureID = id; }		// 2017/04/16 set the texture ID
 
-	int getCurrentFrame() { return m_currentFrame; };		// 2017/04/22 Get the current frame
-	void setCurrentFrame(int cf) { m_currentFrame = cf; };	// 2017/04/22 Set the current frame
+	int getCurrentFrame() { return m_currentFrame; };			// 2017/04/22 Get the current frame
+	void setCurrentFrame(int cf) { m_currentFrame = cf; };		// 2017/04/22 Set the current frame
+		
+	int getType() { return m_type; };							// 2017/04/25 Get the type
+	void setType(int t) { m_type = t; };						// 2017/04/25 Set the type
         
 protected:    
     // constructor with default initialisation list
@@ -88,14 +97,17 @@ protected:
 		m_angle(0),
 		m_alpha(255),
 		m_time(0),
-		m_health(100),			// 2017/04/22 Set the health to 100
-		m_score(5)
+		m_health(100),				// 2017/04/22 Set the health to 100
+		m_score(5)					// Score for the object
+		//m_scoreSet(false)			// Is the score set
     {
     }
 
-	int m_health;		// 2017/04/22 Health value for an object // Already in Enemy
+	//bool m_scoreSet;				// 2017/04/27 Score constantly updates
 
-	int m_score;		// Score value for an object
+	int m_health;					// 2017/04/22 Health value for an object // Already in Enemy
+
+	int m_score;					// Score value for an object
 
     // movement variables
     Vector2D m_position;
@@ -103,6 +115,7 @@ protected:
     Vector2D m_acceleration;
     
 	std::string m_name;				// 2017/02/25 Added name to identify Game Objects // 2017/04/16 Moved from Player class
+	int m_type;						// 2017/02/25 distinguish between game objects
 
     // size variables
     int m_width;

@@ -26,6 +26,7 @@ public:
         m_health = 3;
         m_moveSpeed = 3;
         m_bulletFiringSpeed = 50;
+		m_score = 10;
     }
     
     virtual void collision() {
@@ -41,26 +42,28 @@ public:
                 m_width = 60;
                 m_height = 60;
                 m_bDying = true;
+
+				Game::Instance()->setScore(Game::Instance()->getScore() + m_score);	// 2017/04/27 Update Score
             }            
         }
     }
     
     virtual void update() {
         if(!m_bDying) {
-            scroll(TheGame::Instance()->getScrollSpeed());
-            m_velocity.setY(m_moveSpeed);
+            scroll(TheGame::Instance()->getScrollSpeed());	// scroll
+            m_velocity.setY(m_moveSpeed);					// Set velocity on Y axis
             
             if(m_bulletCounter == m_bulletFiringSpeed) {
-                TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY(), 16, 16, "bullet1", 1, Vector2D(-3, 0));
+                TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY(), 16, 16, "bullet1", 1, Vector2D(-3, 0));	// spawn bullet
                 TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY(), 16, 16, "bullet1", 1, Vector2D(3, 0));
                 m_bulletCounter = 0;
             }
             m_bulletCounter++;
             
         }
-        else {
-            m_velocity.setY(0);
-            doDyingAnimation();
+        else {																	// If dying
+            m_velocity.setY(0);													// stop moving
+            doDyingAnimation();													// change animation
         }
         
         ShooterObject::update();

@@ -87,6 +87,15 @@ public:
 	void eHeManBar(int x, int y, float Percent) {
 		createStatusBar(x, y - 10, 34, 5, Percent / 3, barGrey, bossBG, HORIZONTAL);							// 2017/04/22 Eskeletor Health Bar function with coordinate offsets
 	}
+	void musicVolumeBar(float Percent) {
+		createStatusBar(305, 255, 190, 40, Percent / 128, { 0,0,255,50 }, bossFG, HORIZONTAL, START_RIGHT);		// 2017/04/25 Music Volume bar (transparent colour doesnt work) - Range 1-128
+	}
+	void effectsVolumeBar(float Percent) {
+		createStatusBar(305, 305, 190, 40, Percent / 128, { 0,0,255,50 }, bossFG, HORIZONTAL, START_RIGHT);		// 2017/04/25 EFfects Volume bar - Range 1-128
+	}
+	void difficultyBar(float Percent) {
+		createStatusBar(305, 405, 190, 40, Percent / 2, { 0,0,255,50 }, bossFG, HORIZONTAL, START_RIGHT);		// 2017/04/25 Difficulty bar - Range 1-3 (0 easy, 1 med, 2 hard)
+	}
 };
 
 #endif

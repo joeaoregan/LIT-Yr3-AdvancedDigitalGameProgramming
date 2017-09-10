@@ -24,40 +24,32 @@ void InstructionsState::s_instructionsToMain() {
 	Game::Instance()->getStateMachine()->changeState(new MainMenuState());
 }
 
-bool displayGamepad = true;
+bool displayGamepad = true;														// Display gamepad layout OR keyboard layout image
 
 void InstructionsState::update() {
-	/*
-		If the Esc, Backspace or gamepad B button is pressed, return to main menu
-	*/
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||			// If Esc key
-		InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||		// 2017/04/23 or backspace
-		InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
-		Game::Instance()->getStateMachine()->pushState(new MainMenuState());// Return to main menu
-	}
+	if (!buttonPressed()) {
+		if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE) ||			// If Esc key
+			InputHandler::Instance()->isKeyDown(SDL_SCANCODE_BACKSPACE) ||		// 2017/04/23 or backspace
+			InputHandler::Instance()->getButtonState(0, 1)) {					// 2017/04/22 OR Gamepad button B
+			Game::Instance()->getStateMachine()->pushState(new MainMenuState());// Return to main menu
 
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) ||			// If left
-		InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT)	||			// Or right key is pressed
-		InputHandler::Instance()->getButtonState(0, 3)) {					// 2017/04/22 If Y button is pressed
-		if (!pressed) {
-			if (displayGamepad) {
-				displayGamepad = false;
-			}
-			else displayGamepad = true;
+			setButtonPressed();													// Disable ability to press button, and time before button can be pressed again
 		}
-		pressed = true;
+		else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) ||		// If left
+			InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT) ||			// Or right key is pressed
+			InputHandler::Instance()->getButtonState(0, 3)) {					// 2017/04/22 If Y button is pressed
+
+			if (displayGamepad) displayGamepad = false;
+			else displayGamepad = true;
+
+			setButtonPressed();													// Disable ability to press button, and time before button can be pressed again
+		}
 	}
 
 	if (m_loadingComplete && !m_gameObjects.empty()) {
 		for (int i = 0; i < m_gameObjects.size(); i++) {
 			m_gameObjects[i]->update();
 		}
-	}
-
-	// Leave 300ms before selecting next image
-	if (SDL_GetTicks() > btnTimer + 300) {
-		btnTimer = SDL_GetTicks();
-		pressed = false;
 	}
 }
 

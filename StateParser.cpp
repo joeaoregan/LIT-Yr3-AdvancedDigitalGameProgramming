@@ -69,7 +69,7 @@ void StateParser::parseTextures(TiXmlElement* pStateRoot, std::vector<std::strin
         
         pTextureIDs->push_back(idAttribute); // push the id into the list
         
-        TheTextureManager::Instance()->load(filenameAttribute, idAttribute, TheGame::Instance()->getRenderer());
+        TheTextureManager::Instance()->load(filenameAttribute, idAttribute);
     }
 }
 

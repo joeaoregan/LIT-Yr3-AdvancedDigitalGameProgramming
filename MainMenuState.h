@@ -33,15 +33,15 @@ public:
     virtual std::string getStateID() const { return s_menuID; }
     
 private:    
-	void selectCurrentButton(const std::vector<Callback>& callbacks);	// 2017/04/22 test
+	//void selectCurrentButton(const std::vector<Callback>& callbacks);	// 2017/04/22 test
 
     virtual void setCallbacks(const std::vector<Callback>& callbacks);
     
     // call back functions for menu items
     static void s_menuToPlay();
-	static void s_highScores();			// 2017/02/03 Added high scores call back
-	static void s_settings();			// 2017/03/16 Added settings call back
-	static void s_instructions();		// 2017/04/24 Added instructions call back
+	static void s_highScores();											// 2017/02/03 Added high scores call back
+	static void s_settings();											// 2017/03/16 Added settings call back
+	static void s_instructions();										// 2017/04/24 Added instructions call back
     static void s_exitFromMenu();
     
     static const std::string s_menuID;

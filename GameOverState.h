@@ -29,7 +29,7 @@ public:
     
     virtual void setCallbacks(const std::vector<Callback>& callbacks); 
 	
-	void selectCurrentButton();	// Select button with keyboard/gamepad
+	//void highlightCurrentButton();	// Select button with keyboard/gamepad
     
 private:    
     static void s_gameOverToMain();

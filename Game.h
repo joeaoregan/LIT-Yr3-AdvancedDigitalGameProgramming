@@ -28,6 +28,8 @@
 #include <ctime>			// 2017/04/22 For Random Numbers
 #include <vector>
 
+enum difficultyLevels {LIAM, NORMAL, NOT_LIAM};
+
 class Game {
 public:    
     static Game* Instance() {
@@ -101,6 +103,11 @@ public:
 	bool stillScrolling;										// MiniMap: is the game still scrolling. Stop when it gets to Boss
 
 	int turretKills;											// Number of turrets killed by the player
+
+	int getDifficulty() { return m_difficulty; };				// 2017/04/25 Get the game difficulty
+	void setDifficulty(int d) { m_difficulty = d; };			// 2017/04/25 Set the game difficulty
+
+	bool observerMessage;
 	
 private:
 		
@@ -137,8 +144,9 @@ private:
     Game(const Game&);
 	Game& operator=(const Game&);
 
-	int m_time;		// Time the game has been playing
-	int m_score;	// Score for the player
+	int m_time;			// Time the game has been playing
+	int m_score;		// Score for the player
+	int m_difficulty;	// 2017/04/25 Set the game difficulty
 };
 
 typedef Game TheGame;

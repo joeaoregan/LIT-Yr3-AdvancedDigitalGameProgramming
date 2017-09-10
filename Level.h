@@ -44,7 +44,7 @@ public:
     
     const std::vector<TileLayer*>& getCollidableLayers() { return m_collisionLayers; }
     
-    Player* getPlayer() { return m_pPlayer; }
+    Player* getPlayer() { return m_pPlayer; }	// Stops here for Observer pattern
     void setPlayer(Player* pPlayer) { m_pPlayer = pPlayer; }
     
 private:

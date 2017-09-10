@@ -9,6 +9,7 @@
 	Student Number:	K00203642
 
 	Done:
+		2017/04/26	Player (Subject) sends notifications to Message (Observer) for which Message displays the relevant message on screen
 		2017/04/23	Added check for collision between Player and Power Ups
 		2017/04/22	Added most recent object collided with variable to adjust collision functionality for health, and health bar
 					Added health bar, health resets when life is lost, and player is resurrected
@@ -25,7 +26,9 @@
 #include "BulletHandler.h"
 #include "SoundManager.h"
 
-using namespace std;
+//#include "BoundaryStuff.h"
+
+//BoundaryStuff* boundaryObserver = new BoundaryStuff();
 
 Player::Player() :  ShooterObject(),
 m_invulnerable(false),
@@ -71,6 +74,10 @@ void Player::load(std::unique_ptr<LoaderParams> const &pParams) {
     m_bulletCounter = m_bulletFiringSpeed;	// we want to be able to fire instantly
         
     m_dyingTime = 100;						// time it takes for death explosion
+
+	setType(PLAYER);						// 2017/04/25 Player has type PLAYER to distinguish from other game objects
+
+	//addObserver(boundaryObserver);
 }
 
 void Player::draw() {    
@@ -120,12 +127,12 @@ void Player::handleAnimation() {
 }
 
 void Player::update() {
-    if(TheGame::Instance()->getLevelComplete()) {
-        if(m_position.getX() >= TheGame::Instance()->getGameWidth()) {
-            TheGame::Instance()->setCurrentLevel(TheGame::Instance()->getCurrentLevel() + 1);
+    if(TheGame::Instance()->getLevelComplete()) {												// If the level is finishted
+        if(m_position.getX() >= TheGame::Instance()->getGameWidth()) {							// If the player hasn't moved off the screen
+            TheGame::Instance()->setCurrentLevel(TheGame::Instance()->getCurrentLevel() + 1);	// Increment the level number
         }
         else {
-            m_velocity.setY(0);
+            m_velocity.setY(0);																	// Move the Player off the screen
             m_velocity.setX(3);
             ShooterObject::update();
             handleAnimation();
@@ -143,6 +150,16 @@ void Player::update() {
             ShooterObject::update();	// do normal position += velocity update
                        
             handleAnimation();			// update the animation
+
+			// Send message to observer
+
+			if (m_position.getY() <= 375) {
+				notify(MESSAGE1);	// 2017/04/25 Send notification to observers on observer list
+			}
+			else if (m_position.getY() > 375) {
+				notify(MESSAGE2);	// 2017/04/25 Send notification to observers on observer list
+				//std::cout << "This one" << std::endl;
+			}
         }
         else // if the player is doing the death animation
         {

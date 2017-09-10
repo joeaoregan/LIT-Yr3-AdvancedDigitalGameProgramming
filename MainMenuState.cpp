@@ -65,19 +65,47 @@ void MainMenuState::s_exitFromMenu() {
 // end callbacks
 
 void MainMenuState::update() {
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) {			// If spacebar is pressed - start playing game
+	if (!buttonPressed()) {
+		MenuState::update();														// Up and down buttons
+
+		if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) {			// If spacebar is pressed - start playing game
+			s_menuToPlay();															// Advance to play game
+			setButtonPressed();														// Disable ability to press button, and time before button can be pressed again
+		}
+		else if ((InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) ||		// If return key pressed
+			InputHandler::Instance()->getButtonState(0, 0))) {						// Or gamepad button A - select current highlighted button
+			if (currentBtn == 1) s_menuToPlay();									// 1. Play Game
+			else if (currentBtn == 2) s_highScores();								// 2. High Scores
+			else if (currentBtn == 3) s_settings();									// 3. Settings
+			else if (currentBtn == 4) s_instructions();								// 4. Instructions
+			else if (currentBtn == 5) s_exitFromMenu();								// 5. Exit Game
+			setButtonPressed();														// Disable ability to press button, and time before button can be pressed again
+		}
+	}
+
+	if (!m_gameObjects.empty()) {										// If the game object list isn't empty
+		for (int i = 0; i < m_gameObjects.size(); i++) {
+			if (m_gameObjects[i] != 0) {
+				m_gameObjects[i]->update();								// Run update function for each object in m_gameObjects list
+			}
+		}
+	}
+	/*
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE) && pressed == false) {			// If spacebar is pressed - start playing game
 		s_menuToPlay();
+		pressed = true;
 	}
 	// 2017/04/22 If Return key is pressed OR gamepad button A - select current highlighted option
-	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0,0)) {
+	else if ((InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0,0)) && pressed == false) {
 		if (currentBtn == 1) s_menuToPlay();									// 1. Play Game
 		else if (currentBtn == 2) s_highScores();								// 2. High Scores
 		else if (currentBtn == 3) s_settings();									// 3. Settings
 		else if (currentBtn == 4) s_instructions();								// 4. Instructions
 		else if (currentBtn == 5) s_exitFromMenu();								// 5. Exit Game
+		pressed = true;
 	}
 	// If up key, or gamepad up pressed
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) || InputHandler::Instance()->getAxisY(0, 1) < 0) {
+	else if ((InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) || InputHandler::Instance()->getAxisY(0, 1) < 0) && pressed == false) {
 		if (!pressed) setCurrentBtn(BUTTON_UP);
 		pressed = true;
 		std::cout << "currentButton " << currentBtn << std::endl;
@@ -85,7 +113,7 @@ void MainMenuState::update() {
 	//else pressed = false;
 
 	// If down key, or gamepad down pressed
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN) || InputHandler::Instance()->getAxisY(0, 1) > 0) {
+	else if ((InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN) || InputHandler::Instance()->getAxisY(0, 1) > 0) && pressed == false) {
 		if (!pressed) setCurrentBtn(BUTTON_DOWN);
 		pressed = true;
 		std::cout << "currentButton " << currentBtn << std::endl;
@@ -105,8 +133,9 @@ void MainMenuState::update() {
 			}
 		}
     }
-
-	selectCurrentButton(m_callbacks);
+	*/
+	//selectCurrentButton(m_callbacks);												// Moved to MenuState
+	highlightCurrentButton(&m_gameObjects);											// Select the current button for keyboard / gamepad
 }
 
 void MainMenuState::render() {										
@@ -121,6 +150,8 @@ void MainMenuState::render() {
 bool MainMenuState::onEnter() {
 	numButtons = 5;																				// 2017/04/24 There are 5 buttons in the state
 	currentBtn = 1;																				// 2017/04/24 Moved currentBtn to MenuState.h
+	setButtonPressed();																			// Disable ability to press button, and time before button can be pressed again
+	
     // parse the state
     StateParser stateParser;																	// Create a new StateParser
     stateParser.parseState("assets/attack.xml", s_menuID, &m_gameObjects, &m_textureIDList);	// Load assets for "MENU" state from XML
@@ -137,7 +168,8 @@ bool MainMenuState::onEnter() {
     m_loadingComplete = true;
     std::cout << "entering MenuState\n";
 
-	selectCurrentButton(m_callbacks);
+	//selectCurrentButton(m_callbacks);															// 2017/04/27 Moved to MenuState.h
+	highlightCurrentButton(&m_gameObjects);														// Highlight the current button
 
     return true;
 }
@@ -178,6 +210,7 @@ void MainMenuState::setCallbacks(const std::vector<Callback>& callbacks) {
         }
     }
 }
+/*	// MOVED TO MenuState.h
 
 // Original version of function -> Tidied up elsewhere
 void MainMenuState::selectCurrentButton(const std::vector<Callback>& callbacks) {
@@ -202,3 +235,4 @@ void MainMenuState::selectCurrentButton(const std::vector<Callback>& callbacks) 
 		}
 	}
 }
+*/
