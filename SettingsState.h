@@ -13,10 +13,10 @@
 class GameObject;
 class SDLGameObject;
 
-class Settings : public MenuState {
+class SettingsState : public MenuState {
 public:
 
-	virtual ~Settings() { }
+	virtual ~SettingsState() { }
 
 	virtual void update();
 	virtual void render();
@@ -30,6 +30,8 @@ public:
 
 private:
 	static void s_settingsToMain();
+	static void s_musicOnOff();
+	static void s_fullScreen();
 
 	static const std::string s_SettingsID;
 

@@ -11,7 +11,8 @@
 #include "Game.h"
 #include "MenuButton.h"
 #include "PlayState.h"
-#include "HighScoreState.h"
+#include "HighScoreState.h"		// Include High Scores State header file
+#include "SettingsState.h"		// 2017/03/16 Include Settings State header file
 #include "InputHandler.h"
 #include "StateParser.h"
 #include <assert.h>
@@ -27,44 +28,51 @@ void MainMenuState::s_highScores() {
 	TheGame::Instance()->getStateMachine()->changeState(new HighScoreState());		// Go to high scores table
 }
 
+void MainMenuState::s_settings() {													// 2017-03-16 Added settings menu
+	TheGame::Instance()->getStateMachine()->changeState(new SettingsState());		// Go to high scores table
+}
+
 void MainMenuState::s_exitFromMenu() {
     TheGame::Instance()->quit();
 }
 
+
 // end callbacks
 
 void MainMenuState::update() {
-	if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) {
+	if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) {	// If spacebar is pressed - start playing game
 		s_menuToPlay();
 	}
-    if(!m_gameObjects.empty()) {
+    if(!m_gameObjects.empty()) {										// If the game object list isn't empty
 		for(int i = 0; i < m_gameObjects.size(); i++) {
 			if(m_gameObjects[i] != 0) {
-				m_gameObjects[i]->update();
+				m_gameObjects[i]->update();								// Run update function for each object in m_gameObjects list
 			}
 		}
     }
 }
 
-void MainMenuState::render() {
+void MainMenuState::render() {										
     if(m_loadingComplete && !m_gameObjects.empty()) {
         for(int i = 0; i < m_gameObjects.size(); i++) {
-            m_gameObjects[i]->draw();
+            m_gameObjects[i]->draw();									// Call draw function for each object in m_gameObjects list
         }
     }
 }
 
+/* Add a new callback for each new button */
 bool MainMenuState::onEnter() {
     // parse the state
-    StateParser stateParser;
-    stateParser.parseState("assets/attack.xml", s_menuID, &m_gameObjects, &m_textureIDList);
+    StateParser stateParser;																	// Create a new StateParser
+    stateParser.parseState("assets/attack.xml", s_menuID, &m_gameObjects, &m_textureIDList);	// Load assets for "MENU" state from XML
     
     m_callbacks.push_back(0);
-	m_callbacks.push_back(s_menuToPlay);
-	m_callbacks.push_back(s_highScores);
-    m_callbacks.push_back(s_exitFromMenu);
+	m_callbacks.push_back(s_menuToPlay);														// Play the game
+	m_callbacks.push_back(s_highScores);														// Go to high scores	
+	m_callbacks.push_back(s_settings);															// Go to settings	
+    m_callbacks.push_back(s_exitFromMenu);														// Exit the game
         
-    setCallbacks(m_callbacks);	// set the callbacks for menu items
+    setCallbacks(m_callbacks);																	// set the callbacks for menu items
     
     m_loadingComplete = true;
     std::cout << "entering MenuState\n";
@@ -72,15 +80,15 @@ bool MainMenuState::onEnter() {
 }
 
 bool MainMenuState::onExit() {
-    m_exiting = true;
+    m_exiting = true;											// Set exiting the menu to true
     
     // clean the game objects
     if(m_loadingComplete && !m_gameObjects.empty()) {
-		m_gameObjects.back()->clean();
+		m_gameObjects.back()->clean();							// Call clean function
 		m_gameObjects.pop_back();
     }
 
-	m_gameObjects.clear();
+	m_gameObjects.clear();										// Clear the m_gameObjects list
 	    
     /* clear the texture manager
     for(int i = 0; i < m_textureIDList.size(); i++)
@@ -89,15 +97,16 @@ bool MainMenuState::onExit() {
     }
 	*/
         
-    TheInputHandler::Instance()->reset();	// reset the input handler
+    TheInputHandler::Instance()->reset();						// reset the input handler
     
     std::cout << "exiting MenuState\n";
+
     return true;
 }
 
 void MainMenuState::setCallbacks(const std::vector<Callback>& callbacks) {
-    if(!m_gameObjects.empty()) {													// go through the game objects
-        for(int i = 0; i < m_gameObjects.size(); i++) {
+    if(!m_gameObjects.empty()) {													// If its not empty
+        for(int i = 0; i < m_gameObjects.size(); i++) {								// Go through the game objects list
             if(dynamic_cast<MenuButton*>(m_gameObjects[i])) {						// if they are of type MenuButton then assign a callback based on the id passed in from the file
                 MenuButton* pButton = dynamic_cast<MenuButton*>(m_gameObjects[i]);
                 pButton->setCallback(callbacks[pButton->getCallbackID()]);

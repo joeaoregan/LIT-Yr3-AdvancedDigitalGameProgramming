@@ -30,7 +30,8 @@ private:
     
     // call back functions for menu items
     static void s_menuToPlay();
-	static void s_highScores();
+	static void s_highScores();			// Added high scores call back
+	static void s_settings();			// 2017/03/16 Added settings call back
     static void s_exitFromMenu();
     
     static const std::string s_menuID;

@@ -13,7 +13,6 @@ SoundManager* SoundManager::s_pInstance;
 SoundManager::SoundManager() {
     Mix_OpenAudio(22050, AUDIO_S16, 2, (4096 / 2));
 
-
 	//currentSong = rand() % NUMBER_OF_SONGS + 1;		// 2017/03/16 choose random song
 }
 

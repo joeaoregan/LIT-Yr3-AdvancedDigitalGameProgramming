@@ -76,5 +76,6 @@ private:
 };
 
 typedef TextureManager TheTextureManager;
+typedef TextureManager Texture;
 
 #endif /* defined(__SDL_Game_Programming_Book__TextureManager__) */
