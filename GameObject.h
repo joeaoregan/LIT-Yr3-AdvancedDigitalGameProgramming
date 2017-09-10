@@ -85,9 +85,12 @@ protected:
 		m_bDying(false),
 		m_angle(0),
 		m_alpha(255),
-		m_time(0)
+		m_time(0),
+		m_health(100)			// 2017/04/22 Set the health to 100
     {
     }
+
+	int m_health;		// 2017/04/22 Health value for an object
 
 	int m_score;		// Score value for an object
 

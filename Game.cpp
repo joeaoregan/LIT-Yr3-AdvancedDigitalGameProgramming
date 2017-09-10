@@ -122,12 +122,13 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	TheSoundManager::Instance()->load("OriginalMusic/song1.mp3", "music2", SOUND_MUSIC);			// 2017/03/16 Added song
 	TheSoundManager::Instance()->load("OriginalMusic/song2.mp3", "music3", SOUND_MUSIC);			// 2017/03/16 Added song
     TheSoundManager::Instance()->load("assets/boom.wav", "explode", SOUND_SFX);
-    TheSoundManager::Instance()->load("assets/phaser.wav", "shoot", SOUND_SFX);
+	TheSoundManager::Instance()->load("assets/phaser.wav", "shoot", SOUND_SFX);
+	TheSoundManager::Instance()->load("assets/laser2.wav", "fire", SOUND_SFX);						// 2017/04/21 Added Fire effect for Player weapon
 
 	//TheSoundManager::Instance()->playMusic("music1", -1);
 	TheSoundManager::Instance()->playMusic(rand() % 3 + 1);											// 2017/03/16 Play random song
     
-    //TheInputHandler::Instance()->initialiseJoysticks();
+    TheInputHandler::Instance()->initialiseJoysticks();												// 2017/04/21 Needs to be uncommented for joystick to initialise
     
     // register the types for the game
     TheGameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());

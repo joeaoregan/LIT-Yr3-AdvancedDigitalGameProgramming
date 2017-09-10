@@ -4,6 +4,12 @@
 //
 //  Created by shaun mitchell on 28/03/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
+
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/04/22	Added most recent object collided with variable to adjust collision functionality for health, and health bar
 */
 
 #include "CollisionManager.h"
@@ -15,32 +21,35 @@
 
 void CollisionManager::checkPlayerEnemyBulletCollision(Player* pPlayer) {
     SDL_Rect* pRect1 = new SDL_Rect();
-    pRect1->x = pPlayer->getPosition().getX();
-    pRect1->y = pPlayer->getPosition().getY();
-    pRect1->w = pPlayer->getWidth();
-    pRect1->h = pPlayer->getHeight();
+    pRect1->x = pPlayer->getPosition().getX();	// Get Players x coord
+    pRect1->y = pPlayer->getPosition().getY();	// Get Players y coord
+    pRect1->w = pPlayer->getWidth();			// Get Players width
+    pRect1->h = pPlayer->getHeight();			// Get Players height
     
-    for(int i = 0; i < TheBulletHandler::Instance()->getEnemyBullets().size(); i++) {
-        EnemyBullet* pEnemyBullet = TheBulletHandler::Instance()->getEnemyBullets()[i];
+    for(int i = 0; i < BulletHandler::Instance()->getEnemyBullets().size(); i++) {
+        EnemyBullet* pEnemyBullet = BulletHandler::Instance()->getEnemyBullets()[i];
         
         SDL_Rect* pRect2 = new SDL_Rect();
-        pRect2->x = pEnemyBullet->getPosition().getX();
-        pRect2->y = pEnemyBullet->getPosition().getY();
+        pRect2->x = pEnemyBullet->getPosition().getX();	// Bullet x coord
+        pRect2->y = pEnemyBullet->getPosition().getY();	// Bullet y coord
         
-        pRect2->w = pEnemyBullet->getWidth();
-        pRect2->h = pEnemyBullet->getHeight();
+        pRect2->w = pEnemyBullet->getWidth();			// Bullet width
+        pRect2->h = pEnemyBullet->getHeight();			// Bullet height
         
         if(RectRect(pRect1, pRect2)) {
             if(!pPlayer->dying() && !pEnemyBullet->dying()) {
                 pEnemyBullet->collision();
-                pPlayer->collision();
+
+				pPlayer->setRecentCollision(BULLET);	// 2017/04/22 Set the most recent object collided with to bullet to perform relevant collision functionality
+
+                pPlayer->collision();					// Change this function to adjust health
             }
         }
         
-        delete pRect2;
+        delete pRect2;	// Clear the rectangle
     }
     
-    delete pRect1;
+    delete pRect1;		// Clear the rectangle
 }
 
 void CollisionManager::checkEnemyPlayerBulletCollision(const std::vector<GameObject *> &objects) {

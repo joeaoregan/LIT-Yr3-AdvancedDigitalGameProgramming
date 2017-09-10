@@ -42,6 +42,9 @@ void InputHandler::clean() {
     }
 }
 
+/*
+	2017/04/21	Uncommented in Game.cpp
+*/
 void InputHandler::initialiseJoysticks() {
     // if we haven't already initialised the joystick subystem, we will do it here
     if(SDL_WasInit(SDL_INIT_JOYSTICK) == 0) {
@@ -52,12 +55,13 @@ void InputHandler::initialiseJoysticks() {
     if(SDL_NumJoysticks() > 0) {
         for(int i = 0; i < SDL_NumJoysticks(); i++) {
             // create a new joystick
-            SDL_Joystick* joy = SDL_JoystickOpen(i);
+			//SDL_Joystick* joy = SDL_JoystickOpen(i);	// opens all joysticks
+			SDL_Joystick* joy = SDL_JoystickOpen(0);	// opens only one joystick
             
             // if the joystick opened correctly we need to populate our arrays
             if(SDL_JoystickOpen(i)) {
                 
-                m_joysticks.push_back(joy);	// push back into the array to be closed later
+                m_joysticks.push_back(joy);															// push back into the array to be closed later
                 
                 m_joystickValues.push_back(std::make_pair(new Vector2D(0,0),new Vector2D(0,0)));	// create a pair of values for the axes, a vector for each stick
                                 
@@ -131,6 +135,7 @@ int InputHandler::getAxisY(int joy, int stick) const {
 
 bool InputHandler::getButtonState(int joy, int buttonNumber) const {
     return m_buttonStates[joy][buttonNumber];
+	std::cout << "button number: " << buttonNumber << std::endl;
 }
 
 bool InputHandler::getMouseButtonState(int buttonNumber) const {
@@ -151,14 +156,17 @@ void InputHandler::update() {
                 
             case SDL_JOYAXISMOTION:
                 onJoystickAxisMove(event);
+				std::cout << "Axis move" << std::endl;		// 2017/04/22
                 break;
                 
             case SDL_JOYBUTTONDOWN:
                 onJoystickButtonDown(event);
+				std::cout << "Button down" << std::endl;	// 2017/04/22
                 break;
                 
             case SDL_JOYBUTTONUP:
                 onJoystickButtonUp(event);
+				std::cout << "Button up" << std::endl;		// 2017/04/22
                 break;
                 
             case SDL_MOUSEMOTION:
@@ -175,13 +183,16 @@ void InputHandler::update() {
                 
             case SDL_KEYDOWN:
                 onKeyDown();
+				std::cout << "Key down" << std::endl;	// 2017/04/22
                 break;
                 
             case SDL_KEYUP:
                 onKeyUp();
+				std::cout << "Key Up" << std::endl;		// 2017/04/22
                 break;
 
 			case SDLK_BACKSPACE:
+				std::cout << "Backspace" << std::endl;	// 2017/04/22
 				break;
                 
             default:
@@ -192,6 +203,7 @@ void InputHandler::update() {
 
 void InputHandler::onKeyDown() {
     m_keystates = SDL_GetKeyboardState(0);
+	std::cout << "Key down" << std::endl;	// 2017/04/22
 }
 
 void InputHandler::onKeyUp() {
@@ -238,9 +250,11 @@ void InputHandler::onJoystickAxisMove(SDL_Event &event) {
     if(event.jaxis.axis == 0) {
         if (event.jaxis.value > m_joystickDeadZone) {
             m_joystickValues[whichOne].first->setX(1);
+			std::cout << "Gamepad move right" << std::endl;
         }
         else if(event.jaxis.value < -m_joystickDeadZone) {
             m_joystickValues[whichOne].first->setX(-1);
+			std::cout << "Gamepad move left" << std::endl;
         }
         else {
             m_joystickValues[whichOne].first->setX(0);
@@ -251,9 +265,11 @@ void InputHandler::onJoystickAxisMove(SDL_Event &event) {
     if(event.jaxis.axis == 1) {
         if (event.jaxis.value > m_joystickDeadZone) {
             m_joystickValues[whichOne].first->setY(1);
+			std::cout << "Gamepad move down" << std::endl;
         }
         else if(event.jaxis.value < -m_joystickDeadZone) {
             m_joystickValues[whichOne].first->setY(-1);
+			std::cout << "Gamepad move up" << std::endl;
         }
         else {
             m_joystickValues[whichOne].first->setY(0);
@@ -291,10 +307,12 @@ void InputHandler::onJoystickButtonDown(SDL_Event &event) {
     int whichOne = event.jaxis.which;
     
     m_buttonStates[whichOne][event.jbutton.button] = true;
+	std::cout << "Gamepad button down: " << whichOne << std::endl;
 }
 
 void InputHandler::onJoystickButtonUp(SDL_Event &event) {
     int whichOne = event.jaxis.which;
     
     m_buttonStates[whichOne][event.jbutton.button] = false;
+	std::cout << "Gamepad button up: " << whichOne << std::endl;
 }

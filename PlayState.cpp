@@ -9,6 +9,8 @@
 	Student Number:	K00203642
 
 	Done:
+		2017/04/22	Pressing the Pause button on gamepad (button 7 on NVidia controller) pauses the game
+		2017/04/16	Added Timer class to handle the countdown clock, replacing the game timer function
 		2017/		Added High Scores update function to store the name and score at the end of the game to an
 					external file holding a list of 10 names and scores scores.txt
 		2017/02/07	Added game timer function in PlayState, to keep track of the seconds passed since the game / level started
@@ -41,11 +43,11 @@ void PlayState::update() {
             TheGame::Instance()->getStateMachine()->pushState(new PauseState());
         }
         
-/*        if(TheInputHandler::Instance()->getButtonState(0, 8))
-//        {
-//            TheGame::Instance()->getStateMachine()->pushState(new PauseState());
-/        }
-*/    
+        if(TheInputHandler::Instance()->getButtonState(0, 7))							// 2017/04/22	Uncommented. Button 7 is pause on NVidia controller
+        {
+            TheGame::Instance()->getStateMachine()->pushState(new PauseState());
+        }
+    
         TheBulletHandler::Instance()->updateBullets();
         
         if(TheGame::Instance()->getPlayerLives() == 0) {
@@ -140,14 +142,14 @@ std::string inputText = "Name";
 bool quit = false;
 unsigned int readyTextTimer;
 bool renderText;
-SDL_Event e;
+SDL_Event event;
 
 void PlayState::render() {
 	if (!nameEntered) {
-		SDL_SetRenderDrawColor(TheGame::Instance()->getRenderer(), 0x00, 0x00, 0x00, 0xFF);								// Clear background
-		TheTextureManager::Instance()->draw("enterNameID", 50, 100, 400, 20, TheGame::Instance()->getRenderer());		// Display enter name message
-		TheTextureManager::Instance()->loadInputText(inputText, TheGame::Instance()->getRenderer());
-		TheTextureManager::Instance()->drawText("inputTextID", 50, 150, TheGame::Instance()->getRenderer());
+		SDL_SetRenderDrawColor(Game::Instance()->getRenderer(), 0x00, 0x00, 0x00, 0xFF);					// Clear background
+		Texture::Instance()->draw("enterNameID", 50, 100, 400, 20, Game::Instance()->getRenderer());		// Display enter name message
+		Texture::Instance()->loadInputText(inputText, Game::Instance()->getRenderer());
+		Texture::Instance()->drawText("inputTextID", 50, 150, Game::Instance()->getRenderer());
 
 		renderText = false;		// flag that keeps track of whether we need to update the texture
 		
@@ -198,42 +200,43 @@ void PlayState::render() {
 			
 		//}
 		*/
-		while (SDL_PollEvent(&e) != 0) {
+		
+		while (SDL_PollEvent(&event) != 0) {
 			//User requests quit
-			if (e.type == SDL_QUIT) {
+			if (event.type == SDL_QUIT) {
 				quit = true;
 			}
 			//Special key input
-			else if (e.type == SDL_KEYDOWN) {
+			else if (event.type == SDL_KEYDOWN) {
 				//Handle backspace
-				if (e.key.keysym.sym == SDLK_BACKSPACE && inputText.length() > 0)	// backspace -> remove the last character from the string
+				if (event.key.keysym.sym == SDLK_BACKSPACE && inputText.length() > 0)	// backspace -> remove the last character from the string
 				{
 					//lop off character
 					inputText.pop_back();
 					renderText = true;		// Set the text update flag
 				}
 				//Handle copy
-				else if (e.key.keysym.sym == SDLK_c && SDL_GetModState() & KMOD_CTRL)	// Ctrl + c -> copy the text to the clip board
+				else if (event.key.keysym.sym == SDLK_c && SDL_GetModState() & KMOD_CTRL)	// Ctrl + c -> copy the text to the clip board
 				{
 					SDL_SetClipboardText(inputText.c_str());
 				}
 				//Handle paste
-				else if (e.key.keysym.sym == SDLK_v && SDL_GetModState() & KMOD_CTRL)	// Ctrl + v -> get the text from the clipboard
+				else if (event.key.keysym.sym == SDLK_v && SDL_GetModState() & KMOD_CTRL)	// Ctrl + v -> get the text from the clipboard
 				{
 					inputText = SDL_GetClipboardText();
 					renderText = true;		// Set the text update flag
 				}
-				else if (e.key.keysym.sym == SDLK_RETURN) {
+				else if (event.key.keysym.sym == SDLK_RETURN) {
 					TheGame::Instance()->setPlayerName(inputText);						// Set the Players name for high scores
 					nameEntered = true;
 				}
 			}
 			//Special text input event
-			else if (e.type == SDL_TEXTINPUT) {
+			else if (event.type == SDL_TEXTINPUT) {
 				//Not copy or pasting
-				if (!((e.text.text[0] == 'c' || e.text.text[0] == 'C') && (e.text.text[0] == 'v' || e.text.text[0] == 'V') && SDL_GetModState() & KMOD_CTRL)) {
+				if (!((event.text.text[0] == 'c' || event.text.text[0] == 'C') && (event.text.text[0] == 'v' || event.text.text[0] == 'V') && SDL_GetModState() & KMOD_CTRL)) {
 					//Append character
-					inputText += e.text.text;
+					inputText += event.text.text;
 					renderText = true;
 					readyTextTimer = SDL_GetTicks();
 				}
@@ -299,13 +302,13 @@ bool PlayState::onEnter() {
 	renderText = true;
 	nameEntered = false;	// Input a name
 
-	TheTextureManager::Instance()->loadEnterNameText("Please Enter Your Name:", TheGame::Instance()->getRenderer());
+	Texture::Instance()->loadEnterNameText("Please Enter Your Name:", Game::Instance()->getRenderer());			// Render message indicating to enter name
 
     
     TheTextureManager::Instance()->load("assets/bullet1.png", "bullet1", TheGame::Instance()->getRenderer());
     TheTextureManager::Instance()->load("assets/bullet2.png", "bullet2", TheGame::Instance()->getRenderer());
 	TheTextureManager::Instance()->load("assets/bullet3.png", "bullet3", TheGame::Instance()->getRenderer());
-	TheTextureManager::Instance()->load("assets/bullet4.png", "bullet4", TheGame::Instance()->getRenderer());	// 2017/03/14 Angry glider bullet
+	Texture::Instance()->load("assets/bullet4.png", "bullet4", Game::Instance()->getRenderer());				// 2017/03/14 Angry glider bullet
 	TheTextureManager::Instance()->load("assets/lives.png", "lives", TheGame::Instance()->getRenderer());		// Lives in top left corner
 	//bool loadFromRenderedText(std::string textureText, SDL_Color textColor, TTF_Font* font, SDL_Renderer* rend, bool textWrapped = false);
 	//TheTextureManager::Instance()->load("assets/lives.png", "test", TheGame::Instance()->getRenderer());		// Lives in top left corner

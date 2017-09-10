@@ -4,6 +4,13 @@
 //
 //  Created by shaun mitchell on 16/02/2013.
 //  Copyright (c) 2013 shaun mitchell. All rights reserved.
+
+	Modified by:	Joe O'Regan
+	Student Number:	K00203642
+
+	Done:
+		2017/04/22	Added function to handle B button on gamepad returning to Game 
+					Added message to indicate to player B button returns to Game 
 */
 
 #include "PauseState.h"
@@ -31,15 +38,22 @@ void PauseState::update() {
             m_gameObjects[i]->update();
         }
     }
+
+	// 2017/04/22 Pressing the B button returns to game
+	if (InputHandler::Instance()->getButtonState(0, 1))	{						// 2017/04/22	Uncommented. Button 1 is B on NVidia controller
+		Game::Instance()->getStateMachine()->popState();
+		std::cout << "Back Pressed" << std::endl;
+	}
 }
 
 void PauseState::render() {
-
     if(m_loadingComplete && !m_gameObjects.empty()) {
         for(int i = 0; i < m_gameObjects.size(); i++) {
             m_gameObjects[i]->draw();
         }
     }
+
+	Texture::Instance()->draw("return", 130, 450, 340, 20, Game::Instance()->getRenderer());		// 2017/04/22 Indicate to player that B button returns to game play
 }
 
 bool PauseState::onEnter() {
