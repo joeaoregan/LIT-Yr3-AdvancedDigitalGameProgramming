@@ -42,20 +42,22 @@ public:
 	std::stringstream scoreText;
 
 	virtual void update() {
+		turretsText.str("");
+		scoreText.str("");
 		
-		turretsText << "Turrets: " + std::to_string(Game::Instance()->turretKills) + "/7";
-		scoreText << "Score: " + std::to_string(Game::Instance()->getScore());
+		turretsText << "Turrets: " << std::to_string(Game::Instance()->turretKills) << "/7";
+		scoreText << "Score: " << std::to_string(Game::Instance()->getScore());
 
 		if (prevTurrets != Game::Instance()->turretKills) {
-			Texture::Instance()->createText(tx1, turretsText.str().c_str(), "turretsKilledID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 10), Game::Instance()->getRenderer());	// Get ready to start message
+			Texture::Instance()->createText(tx1, turretsText.str().c_str(), "turretsKilledID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12));	// Render the number of turrets destroyed
 			prevTurrets = Game::Instance()->turretKills;// Set previous turrets destroyed
 		}
 		if (prevScore != Game::Instance()->getScore()) {
-			Texture::Instance()->createText(tx2, scoreText.str().c_str(), "scoreTextID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 10), Game::Instance()->getRenderer());	// Get ready to start message
+			Texture::Instance()->createText(tx2, scoreText.str().c_str(), "scoreTextID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12));		// Render the players score
 			prevScore = Game::Instance()->getScore();	// Set previous score
 		}
-		
 	}
+
 
 
 	virtual void draw() {
@@ -69,10 +71,14 @@ public:
 		Texture::Instance()->drawText("levelID", 120, 0, Game::Instance()->getRenderer());
 
 		// Display number of turrets destroyed
-		Texture::Instance()->turretsKilledText("");														// Render the number of turrets destroyed
+//		Texture::Instance()->turretsKilledText("");														// Render the number of turrets destroyed
 
-		Texture::Instance()->drawText("turretsKilledID", 120, 50, Game::Instance()->getRenderer());
-		Texture::Instance()->drawText("scoreTextID", 600, 0, Game::Instance()->getRenderer());
+		//Texture::Instance()->drawText("turretsKilledID", 120, 50, Game::Instance()->getRenderer());
+		//Texture::Instance()->drawText("scoreTextID", 600, 0, Game::Instance()->getRenderer());
+		//Texture::Instance()->draw("turretsKilledID", 120, 50, 100, 20, Game::Instance()->getRenderer());
+		Texture::Instance()->drawFrame("turretsKilledID", 120, 50, 100, 20, 0, 0, Game::Instance()->getRenderer(), 0.0, 255);
+		//Texture::Instance()->draw("scoreTextID", 600, 0, 100, 20, Game::Instance()->getRenderer());
+		Texture::Instance()->drawFrame("scoreTextID", 600, 0, 100, 20, 0, 0, Game::Instance()->getRenderer(), 0.0, 255);
 
 		SDL_RenderSetViewport(Game::Instance()->getRenderer(), NULL);										// 2017/04/23 Clear the viewport
 	}

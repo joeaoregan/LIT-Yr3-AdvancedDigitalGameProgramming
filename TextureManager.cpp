@@ -29,7 +29,7 @@ SDL_Surface* textSurface;
 
 void TextureManager::drawText(std::string id, int x, int y, SDL_Renderer* pRenderer, SDL_RendererFlip flip) {
 	SDL_Rect srcRect;
-	SDL_Rect destRect;
+	SDL_Rect destRect;	
 
 	srcRect.x = 0;
 	srcRect.y = 0;
@@ -41,115 +41,122 @@ void TextureManager::drawText(std::string id, int x, int y, SDL_Renderer* pRende
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
 
-SDL_Texture* tx1 = 0;	// The actual hardware texture
-SDL_Texture* level = 0;	// The actual hardware texture
-SDL_Texture* tx2 = 0;	// The actual hardware texture
-SDL_Texture* readyTexture = 0;	// The actual hardware texture
-SDL_Texture* inputTextTexture = 0;	// The actual hardware texture
-SDL_Texture* enterNameTexture = 0;	// The actual hardware texture
-SDL_Texture* timeTexture = 0;	// The actual hardware texture
+/*
+	Enter Name State text functions
+*/
+void Texture::loadEnterNameText(std::string nameText) {
+	SDL_Texture* enterNameTexture = 0;	// The actual hardware texture
+	createText(enterNameTexture, nameText, "enterNameID", { 0, 0, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), true);	// Player Enter Name
+}
+void Texture::loadInputText(std::string input) {
+	free();
+	SDL_Texture* inputTextTexture = 0;																						// The actual hardware texture
+	createText(inputTextTexture, input, "inputTextID", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), true);	// Input text
+}
+void Texture::loadReturnToMenuText(std::string input) {
+	SDL_Texture* tx2 = 0;																									// The actual hardware texture
+	createText(tx2, input, "returnToMenuID", { 255, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), true);				// Get ready to start message
+}
+
+/*
+	Play State text rendering functions
+*/
+void Texture::loadLevelText(std::string currentLevel) {	
+	SDL_Texture* level = 0;																									// The actual hardware texture
+	createText(level, currentLevel, "levelID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12));						// Current Level
+}
+void Texture::loadReadyText(std::string input) {
+	SDL_Texture* readyTexture = 0;																							// The actual hardware texture
+	createText(readyTexture, input, "readyID", { 255, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), true);				// Get ready to start message
+}
+
+/* 
+	Timer text rendering function
+*/
+void Texture::loadTimerText(std::string currentTime) {
+	SDL_Texture* timerTexture = 0;
+	createText(timerTexture, currentTime, "timerID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20));				// Game Timer
+}
+
+/*
+	HUD text rendering functions
 
 int previousTurrets = -1;	// Don't render the text every frame
 void Texture::turretsKilledText(std::string input) {
 	if (previousTurrets != Game::Instance()->turretKills) {
+		free();
 		free(tx1);
 		std::string turrets = "Turrets: " + std::to_string(Game::Instance()->turretKills);
-		createText(tx1, turrets + "/7", "turretsKilledID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), Game::Instance()->getRenderer(), true);	// Get ready to start message
+		createText(tx1, turrets + "/7", "turretsKilledID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), true);	// Get ready to start message
 		previousTurrets = Game::Instance()->turretKills;	// update the number of turrets
 	}
 }
-void Texture::loadLevelText(std::string currentLevel) {
-	free(level);
-	//loadFromRenderedText(level, currentLevel, "levelID", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), rend);								// Current Level
-	createText(level, currentLevel, "levelID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), Game::Instance()->getRenderer());						// Current Level
-}
-void Texture::loadReturnToMenuText(std::string input) {
-	free(tx2);
-	createText(tx2, input, "returnToMenuID", { 255, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), Game::Instance()->getRenderer(), true);				// Get ready to start message
-}
-void Texture::loadReadyText(std::string input) {
-	free(readyTexture);
-	createText(readyTexture, input, "readyID", { 255, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), Game::Instance()->getRenderer(), true);				// Get ready to start message
-}
-void Texture::loadInputText(std::string input) {
-	free(inputTextTexture);
-	createText(inputTextTexture, input, "inputTextID", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), Game::Instance()->getRenderer(), true);	// Input text
-}
-void Texture::loadEnterNameText(std::string nameText) {
-	free(enterNameTexture);
-	createText(enterNameTexture, nameText, "enterNameID", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), Game::Instance()->getRenderer(), true);// Player Enter Name
-}
-void Texture::loadTimerText(std::string currentTime) {
-	free(timeTexture);
-	//loadFromRenderedText(score, currentScore, "timerID", { 255, 255, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), rend);								// Game Timer
-	createText(timeTexture, currentTime, "timerID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), Game::Instance()->getRenderer());				// Game Timer
-}
-/*
 void Texture::loadScoreText(std::string currentScore) {
 	SDL_Texture* score = 0;	// The actual hardware texture
 	createText(score, currentScore, "timerID", { 0, 0, 0, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 12), Game::Instance()->getRenderer());						// 2017/04/22 Score
 }
 */
+
+/*
+	High Scores State text rendering function
+*/
 void TextureManager::loadHighScoresText() {
-	std::string player;
-	std::stringstream highScores;
+	std::string player;																										// Players name
+	std::stringstream highScores;																							// Player score
 
-	std::ifstream infile;
-	infile.open("scores.txt");
+	std::ifstream infile;																									// file to read in
+	infile.open("scores.txt");																								// text file in assets folder
 
-	std::cout << "Reading high scores from file" << std::endl;
+	std::cout << "Reading high scores from file" << std::endl;												
 	
-	struct PlayerScores {
+	struct PlayerScores {																									// Structure to hold name and score
 		std::string name;
 		int score;
 	};
 
-	PlayerScores temp;
+	PlayerScores temp;																										// temporary stuct for swapping new score into correct position in list
+	PlayerScores scoreTable[11];																							// Array of 11 scores, 10 from file + new score to be sorted
+	const int numScores = 10;																								// Total number of scores to display
+	int eachScore = 0;																										// Iterator used to read in each score
 
-	const int numScores = 10;
-
-	PlayerScores scoreTable[11];
-
-	int eachScore = 0;
-
-	if (infile.is_open()) {
+	if (infile.is_open()) {																									// If the file is open
 		//for (int i = 0; i < 10; i++){
-		while(getline(infile, scoreTable[eachScore].name) && getline(infile, player) && eachScore <= numScores){
+		while(getline(infile, scoreTable[eachScore].name) && getline(infile, player) && eachScore <= numScores){			// While the iterator is less than the max number of lines to be read
 			//getline(infile, player);
 
-			scoreTable[eachScore].score = stoi(player);
-			++eachScore;
+			scoreTable[eachScore].score = stoi(player);																		// Add score to struct array
+			++eachScore;																									// increment the iterator
 		}
 		
-		infile.close();
+		infile.close();																										// Close the file when done
 	}
 
 	//for (int i = 1; i < eachScore + 1; i++) {
 	//	for (int j = 0; j < eachScore + 1 - i; j++) {
-	for (int i = 1; i < eachScore; i++) {
-		for (int j = 0; j < eachScore - i; j++) {
+	for (int i = 1; i < eachScore; i++) {																					// Sort the array of Player Score structs
+		for (int j = 0; j < eachScore - i; j++) {																			
 			//if (strcmp(scoreTable[j].plname, scoreTable[j + 1].plname) > 0)
-			if(scoreTable[j].score < scoreTable[j+1].score) { // Sort Largest Score To Smallest in the struct
+			if(scoreTable[j].score < scoreTable[j+1].score) {																// Sort Largest Score To Smallest in the struct
 				temp = scoreTable[j];
 				scoreTable[j] = scoreTable[j + 1];
 				scoreTable[j + 1] = temp;
 			}
 		}
 	}
-
-	for (int i = 0; i < eachScore; i++) {
+	
+	for (int i = 0; i < eachScore; i++) {																					// Format the output
 		highScores << std::setw(3) << std::to_string(i + 1) << ". " << std::left << std::setw(14) << std::setfill('.') << scoreTable[i].name << std::right << std::setw(8) << std::to_string(scoreTable[i].score) << std::setfill(' ') << "\n";
 	}
 
 	if (eachScore <= 0) highScores << "No High Scores Recorded Yet!";
 
-
+	// Render the name and score to a texture
 	//std::string highScores = "Player 1:  10\nPlayer 2:  20\nPlayer 3:  30\nPlayer 4:  40\nPlayer 5:  50\nPlayer 6:  60\nPlayer 7:  70\nPlayer 8:  80\nPlayer 9:  90\nPlayer 10: 100";
 	SDL_Texture* highScore = 0;	// The actual hardware texture
-	createText(highScore, highScores.str().c_str(), "highScoresID", { 100, 100, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 20), Game::Instance()->getRenderer(), true);
+	createText(highScore, highScores.str().c_str(), "highScoresID", { 100, 100, 255, 255 }, TTF_OpenFont("Fonts/Retro.ttf", 24), true);
 }
 
-bool TextureManager::createText(SDL_Texture* text, std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, SDL_Renderer* pRenderer, bool textWrapped) {
+bool TextureManager::createText(std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, bool textWrapped) {
 	free();	//Get rid of preexisting texture
 
 	if (!textWrapped) textSurface = TTF_RenderText_Solid(font, textureText.c_str(), textColor);	//Render text surface
@@ -158,7 +165,47 @@ bool TextureManager::createText(SDL_Texture* text, std::string textureText, std:
 	if (textSurface != NULL) {
 		//Create texture from surface pixels
 		//mTexture = SDL_CreateTextureFromSurface(pRenderer, textSurface);
-		text = SDL_CreateTextureFromSurface(pRenderer, textSurface);
+		mTexture = SDL_CreateTextureFromSurface(Game::Instance()->getRenderer(), textSurface);
+
+		//if (mTexture == NULL) {
+		if (mTexture == NULL) {
+			printf("Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError());
+		}
+		else {
+			//Get image dimensions
+			mWidth = textSurface->w;
+			mHeight = textSurface->h;
+		}
+
+		SDL_FreeSurface(textSurface);	//Get rid of old surface
+	}
+	else {
+		printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
+	}
+
+	//return mTexture != NULL;	// Return success
+
+	//if (mTexture != 0) {
+	if (mTexture != 0) {
+		//m_textureMap[id] = mTexture;	// Add to texture map
+		m_textureMap[id] = mTexture;	// Add to texture map
+		return true;
+	}
+
+	std::cout << "NOT WORKING" << std::endl;
+	return false;
+}
+
+bool TextureManager::createText(SDL_Texture* text, std::string textureText, std::string id, SDL_Color textColor, TTF_Font* font, bool textWrapped) {
+	free();	//Get rid of preexisting texture
+
+	if (!textWrapped) textSurface = TTF_RenderText_Solid(font, textureText.c_str(), textColor);	//Render text surface
+	else textSurface = TTF_RenderText_Blended_Wrapped(font, textureText.c_str(), textColor, 1000);
+
+	if (textSurface != NULL) {
+		//Create texture from surface pixels
+		//mTexture = SDL_CreateTextureFromSurface(pRenderer, textSurface);
+		text = SDL_CreateTextureFromSurface(Game::Instance()->getRenderer(), textSurface);
 
 		//if (mTexture == NULL) {
 		if (text == NULL) {
@@ -280,3 +327,40 @@ void TextureManager::clearFromTextureMap(std::string id) {
     m_textureMap.erase(id);
 }
 
+/*
+bool Texture::renderTextToTexture(std::string textureText, SDL_Color textColor, TTF_Font* font, std::string id, bool textWrapped) {
+	free();	//Get rid of preexisting texture
+
+	if (!textWrapped)
+		m_TextSurface = TTF_RenderText_Solid(font, textureText.c_str(), textColor);					// Render text surface
+	else
+		m_TextSurface = TTF_RenderText_Blended_Wrapped(font, textureText.c_str(), textColor, 1000);	// Render text surface with text wrapping
+
+	if (m_TextSurface != NULL) {
+		mTexture = SDL_CreateTextureFromSurface(Game::Instance()->getRenderer(), m_TextSurface);		// Create texture from surface pixels
+
+		if (mTexture == NULL) {
+			printf("Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError());
+		}
+		else {
+			mWidth = m_TextSurface->w;	// Get image dimensions
+			mHeight = m_TextSurface->h;
+		}
+
+		SDL_FreeSurface(m_TextSurface);	// Get rid of old surface
+	}
+	else {
+		printf("loadFromRenderedText(): Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());	// Error message
+	}
+
+	if (id != "") {
+		if (mTexture != 0) {
+			m_textureMap[id] = mTexture;	// Add to texture map
+
+			return true;
+		}
+	}
+
+	return mTexture != NULL;			// Return success
+}
+*/

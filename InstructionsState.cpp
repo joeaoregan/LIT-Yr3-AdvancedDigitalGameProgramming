@@ -1,17 +1,15 @@
 /*
-	HighScoreState.cpp
+	InstructionsState.cpp
 
 	Created by:		Joe O'Regan
 	Student Number:	K00203642
 
 	Done:
-		2017/04/23	Pressing Backspace also returns to Main Menu
-		2017/04/22	Pressing Esc or B button on gamepad, returns to Main Menu
-		2017/02/03	Created High Scores Table that reads to and writes from a text file
+		2017/04/24	Created Instructions State to view game controls
 */
 
 #include <iostream>
-#include "HighScoreState.h"
+#include "InstructionsState.h"
 #include "MainMenuState.h"
 #include "PlayState.h"
 #include "TextureManager.h"
@@ -20,13 +18,15 @@
 #include "InputHandler.h"
 #include "StateParser.h"
 
-const std::string HighScoreState::s_HighScoreID = "HIGHSCORES";
+const std::string InstructionsState::s_InstructionID = "INSTRUCTIONS";
 
-void HighScoreState::s_highscoresToMain() {
+void InstructionsState::s_instructionsToMain() {
 	Game::Instance()->getStateMachine()->changeState(new MainMenuState());
 }
 
-void HighScoreState::update() {
+bool displayGamepad = true;
+
+void InstructionsState::update() {
 	/*
 		If the Esc, Backspace or gamepad B button is pressed, return to main menu
 	*/
@@ -36,65 +36,70 @@ void HighScoreState::update() {
 		Game::Instance()->getStateMachine()->pushState(new MainMenuState());// Return to main menu
 	}
 
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) ||			// If left
+		InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT)	||			// Or right key is pressed
+		InputHandler::Instance()->getButtonState(0, 3)) {					// 2017/04/22 If Y button is pressed
+		if (!pressed) {
+			if (displayGamepad) {
+				displayGamepad = false;
+			}
+			else displayGamepad = true;
+		}
+		pressed = true;
+	}
+
 	if (m_loadingComplete && !m_gameObjects.empty()) {
 		for (int i = 0; i < m_gameObjects.size(); i++) {
 			m_gameObjects[i]->update();
 		}
 	}
+
+	// Leave 300ms before selecting next image
+	if (SDL_GetTicks() > btnTimer + 300) {
+		btnTimer = SDL_GetTicks();
+		pressed = false;
+	}
 }
 
-void HighScoreState::render() {
+void InstructionsState::render() {
 	if (m_loadingComplete && !m_gameObjects.empty()) {
 		for (int i = 0; i < m_gameObjects.size(); i++) {
 			m_gameObjects[i]->draw();
 		}
 	}
 
-	//Texture::Instance()->drawFrame("scoreTitle", (SCREEN_WIDTH - 410 ) / 2, 20, 410, 64, 0, 0, Game::Instance()->getRenderer(), 0.0, 255); // 2017/04/24 Moved to attack.xml
-	
-	Texture::Instance()->drawText("highScoresID", 100, 100, Game::Instance()->getRenderer());
-
-	// Put high score screen output in here
-	//std::cout << "Rendering HighScoreState\n";			// will loop over and over
+	// 2017/04/2016 Switch Image displayed with shoulder button
+	if (displayGamepad) Texture::Instance()->drawFrame("controlsG", 10, 100, 780, 386, 0, 0, Game::Instance()->getRenderer(), 0.0, 255);
+	else Texture::Instance()->drawFrame("controlsK", 10, 100, 780, 386, 0, 0, Game::Instance()->getRenderer(), 0.0, 255);
 }
 
-bool HighScoreState::onEnter() {
-	//Texture::Instance()->load("assets/TitleHighScores.png", "scoreTitle", Game::Instance()->getRenderer()); // 2017/04/24 Moved to attack.xml
-	
-	Texture::Instance()->loadHighScoresText();
-	//TheTextureManager::Instance()->drawText("highScoresID", 150, 100, TheGame::Instance()->getRenderer());
-	
+bool InstructionsState::onEnter() {		
 	StateParser stateParser;
-	stateParser.parseState("assets/attack.xml", s_HighScoreID, &m_gameObjects, &m_textureIDList);
+	stateParser.parseState("assets/attack.xml", s_InstructionID, &m_gameObjects, &m_textureIDList);
 
 	m_callbacks.push_back(0);
-	m_callbacks.push_back(s_highscoresToMain);
+	m_callbacks.push_back(s_instructionsToMain);
 
 	setCallbacks(m_callbacks);
 
 	m_loadingComplete = true;
 
-	std::cout << "Entering High Score State\n";
+	std::cout << "Entering Instructions State\n";
 	return true;
 }
 
-bool HighScoreState::onExit() {
+bool InstructionsState::onExit() {
 	m_exiting = true;
 
 	InputHandler::Instance()->reset();
 
-	// clear the texture manager
-	//for (int i = 0; i < m_textureIDList.size(); i++) {
-	//	Texture::Instance()->clearFromTextureMap(m_textureIDList[i]);
-	//}
-
 	m_textureIDList.clear();
 
-	std::cout << "exiting HighScoreState\n";
+	std::cout << "Exiting Instructions State\n";
 	return true;
 }
 
-void HighScoreState::setCallbacks(const std::vector<Callback>& callbacks) {
+void InstructionsState::setCallbacks(const std::vector<Callback>& callbacks) {
 	// go through the game objects
 	if (!m_gameObjects.empty()) {
 		for (int i = 0; i < m_gameObjects.size(); i++) {

@@ -22,6 +22,7 @@
 
 #include "HighScoreState.h"		// Include High Scores State header file
 #include "SettingsState.h"		// 2017/03/16 Include Settings State header file
+#include "InstructionsState.h"	// 2017/04/24 Instructions page header
 #include "InputHandler.h"
 #include "StateParser.h"
 #include <assert.h>
@@ -34,45 +35,45 @@ void setCurrentBtn(int a) {
 	if (a == 0) currentBtn--;
 	else if (a == 1) currentBtn++;
 
-	if (currentBtn > 4) currentBtn = 1;
-	if (currentBtn < 1) currentBtn = 4;
+	if (currentBtn > 5) currentBtn = 1;
+	if (currentBtn < 1) currentBtn = 5;
 }
 
 // Callbacks
 void MainMenuState::s_menuToPlay() {
-	//TheGame::Instance()->getStateMachine()->changeState(new PlayState());			// Start the game
-	Game::Instance()->getStateMachine()->changeState(new EnterNameState());			// Start the game
+	//TheGame::Instance()->getStateMachine()->changeState(new PlayState());		// Start the game
+	Game::Instance()->getStateMachine()->changeState(new EnterNameState());		// Start the game
 }
 
 void MainMenuState::s_highScores() {	
-	TheGame::Instance()->getStateMachine()->changeState(new HighScoreState());		// Go to high scores table
+	Game::Instance()->getStateMachine()->changeState(new HighScoreState());		// Go to high scores table
 }
 
-void MainMenuState::s_settings() {													// 2017-03-16 Added settings menu
-	TheGame::Instance()->getStateMachine()->changeState(new SettingsState());		// Go to high scores table
+void MainMenuState::s_settings() {												// 2017-03-16 Added settings menu
+	Game::Instance()->getStateMachine()->changeState(new SettingsState());		// Go to settings 
+}
+
+void MainMenuState::s_instructions() {											// 2017-04-24 Added instructions menu
+	Game::Instance()->getStateMachine()->changeState(new InstructionsState());	// Go to instructions
 }
 
 void MainMenuState::s_exitFromMenu() {
     TheGame::Instance()->quit();
 }
 
-
 // end callbacks
 
-unsigned int btnTimer = 0;
-
-bool pressed = false;
-
 void MainMenuState::update() {
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) {				// If spacebar is pressed - start playing game
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE)) {			// If spacebar is pressed - start playing game
 		s_menuToPlay();
 	}
 	// 2017/04/22 If Return key is pressed OR gamepad button A - select current highlighted option
 	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN) || InputHandler::Instance()->getButtonState(0,0)) {
-		if (currentBtn == 1) s_menuToPlay();										// 1. Play Game
-		else if (currentBtn == 2) s_highScores();									// 2. High Scores
-		else if (currentBtn == 3) s_settings();										// 3. Settings
-		else if (currentBtn == 4) s_exitFromMenu();									// 4. Exit Game
+		if (currentBtn == 1) s_menuToPlay();									// 1. Play Game
+		else if (currentBtn == 2) s_highScores();								// 2. High Scores
+		else if (currentBtn == 3) s_settings();									// 3. Settings
+		else if (currentBtn == 4) s_instructions();								// 4. Instructions
+		else if (currentBtn == 5) s_exitFromMenu();								// 5. Exit Game
 	}
 	// If up key, or gamepad up pressed
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) || InputHandler::Instance()->getAxisY(0, 1) < 0) {
@@ -125,6 +126,7 @@ bool MainMenuState::onEnter() {
 	m_callbacks.push_back(s_menuToPlay);														// Play the game
 	m_callbacks.push_back(s_highScores);														// Go to high scores	
 	m_callbacks.push_back(s_settings);															// Go to settings	
+	m_callbacks.push_back(s_instructions);														// Go to instructions	
     m_callbacks.push_back(s_exitFromMenu);														// Exit the game
         
     setCallbacks(m_callbacks);																	// set the callbacks for menu items

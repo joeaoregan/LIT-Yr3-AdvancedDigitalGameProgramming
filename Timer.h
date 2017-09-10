@@ -87,10 +87,9 @@ public:
 		//setCountDownTimer(GAME_TIMER);
 	};
 
-	virtual void collision() {}							// 2017/04/16 Needed for a Game Object
+	virtual void collision() {}													// 2017/04/16 Needed for a Game Object
 
-	virtual std::string type() { return "Timer"; }		// 2017/04/16 Needed for a Game Object
-
+	virtual std::string type() { return "Timer"; }								// 2017/04/16 Needed for a Game Object
 
 	unsigned int getCountdownTimer() { return gameTimer; }						// Returns the current game time
 	void setCountDownTimer(unsigned int t) { gameTimer = t; }					// 2017/04/13 Set bonus times etc

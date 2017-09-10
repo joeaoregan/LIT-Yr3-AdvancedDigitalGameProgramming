@@ -1,5 +1,5 @@
 /*
-	HighScoreState.h
+	StatusBar.h
 
 	Created by:		Joe O'Regan
 	Student Number:	K00203642

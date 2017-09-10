@@ -99,7 +99,8 @@ void EnterNameState::update() {
 			if (!((event1.text.text[0] == 'c' || event1.text.text[0] == 'C') &&			// If not copying
 				(event1.text.text[0] == 'v' || event1.text.text[0] == 'V') &&			// or pasting
 				SDL_GetModState() & KMOD_CTRL)) {
-				inputText1 += event1.text.text;											// Append character
+				if (inputText1.length() < 12)											// 2017/04/24 Limit the charcters entered to 12
+					inputText1 += event1.text.text;										// Append character
 				renderText1 = true;														// Set text has been entered
 			}
 		}
@@ -121,9 +122,9 @@ void EnterNameState::render() {
 	}
 
 	SDL_SetRenderDrawColor(Game::Instance()->getRenderer(), 0x00, 0x00, 0x00, 0xFF);					// Clear background
-	Texture::Instance()->draw("enterNameID", 50, 100, 400, 20, Game::Instance()->getRenderer());		// Display enter name message
+	Texture::Instance()->draw("enterNameID", 200, 100, 400, 20, Game::Instance()->getRenderer());		// Display enter name message
 	Texture::Instance()->loadInputText(inputText1);														// Render the input text to a texture
-	Texture::Instance()->drawText("inputTextID", 50, 150, Game::Instance()->getRenderer());				// Display the input text on screen
+	Texture::Instance()->drawText("inputTextID", 200, 150, Game::Instance()->getRenderer());			// Display the input text on screen
 	/*
 	if (renderText1) {																	// Rerender text if needed			
 		if (inputText1 != "") {															// If the input text is not empty				
@@ -142,7 +143,7 @@ void EnterNameState::render() {
 	*/
 	// CHANGE THIS TO RETURN TO MENU TEXT 
 	//Texture::Instance()->draw("return", 230, 450, 340, 20, Game::Instance()->getRenderer());			// 2017/04/22 Indicate to player that B button returns to game play
-	Texture::Instance()->draw("returnToMenuID", 230, 450, 340, 20, Game::Instance()->getRenderer());	// 2017/04/22 Indicate to player that B button returns to game play	
+	Texture::Instance()->draw("returnToMenuID", 215, 475, 370, 100, Game::Instance()->getRenderer());	// 2017/04/22 Indicate to player that B button returns to game play	
 																										
 	//std::cout << "Enter Name Render()" << std::endl;	
 }
@@ -162,7 +163,7 @@ bool EnterNameState::onEnter() {
 	//stateParser.parseState("assets/attack.xml", "ENTERNAME", &m_gameObjects, &m_textureIDList);
 
 	//Texture::Instance()->load("assets/return.png", "return", Game::Instance()->getRenderer());
-	Texture::Instance()->loadReturnToMenuText("Return To Main Menu");
+	Texture::Instance()->loadReturnToMenuText("To Return To Main Menu\nPress Esc or Backspace\nOn the gamepad press B\nPress Enter to proceed");	// *** NOT DISPLAYING ADDITIONAL LINES resize draw height parameter
 	
 	m_callbacks.push_back(0);
 	m_callbacks.push_back(s_enterNameToMain);			// 1. Return to the menu 
