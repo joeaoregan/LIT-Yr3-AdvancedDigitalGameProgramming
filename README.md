@@ -1,9 +1,18 @@
-# Yr3-Advanced-Digtial-Game-Programming-CA3-Game
+# Advanced Digital Game Programming
+## Joe O'Regan (K00203642)
+### BSc Computing (Games Design and Development)
+#### Limerick Institute of Technology, Year 3, Semester 6
+
+---
+
+## Alien Attack
 
 Continuous Assessment game for Advanced Digital Game Programming Module of Year 3.
 Modified Alien Attack game from [SDL Game Development by Shaun Mitchell](https://www.packtpub.com/game-development/sdl-game-development). 
 
 Using helpful SDL 2.0 tutorials from [Lazy Foo' Productions](http://lazyfoo.net/tutorials/SDL/index.php) for inspiration :smile: :grinning:
+
+* 10/09/2017 Started Editing Code To Work With Code::Blocks IDE
 
 ## Screenshots:
 
@@ -49,6 +58,7 @@ Using helpful SDL 2.0 tutorials from [Lazy Foo' Productions](http://lazyfoo.net/
 ![Alien Attack: Game Over](https://raw.githubusercontent.com/joeaoregan/LIT-Yr3-S6-AdvancedDigitalGameDesign/master/Screenshots/AlienAttack14GameOver.jpg "Alien Attack: Game Over")
 ###### When the game is over the score is displayed, and the player can choose to restart the game, or return to the main menu.
 
+---
 
 ## Links:
 
@@ -56,12 +66,19 @@ Using helpful SDL 2.0 tutorials from [Lazy Foo' Productions](http://lazyfoo.net/
 [![Game Trailer](https://raw.githubusercontent.com/joeaoregan/LIT-Yr3-S6-AdvancedDigitalGameDesign/master/Screenshots/YouTube.jpg)](https://youtu.be/JNEkne0aIOY)
 ###### YouTube: Trailer (as part of assignment spec)
 
+---
+
+## References:
+
 #### Lazy Foo' Productions SDL Tutorials
 [Lazy Foo' Productions](http://lazyfoo.net/tutorials/SDL/index.php)
 
+---
+
 ## Assignment Spec:
+
 ### Advanced Digital Game Programming
-### Assignment 3
+#### Assignment 3
 
 You are required to modify the exisiting Alien Attack Game which can be downloaded from the Moodle page
 
