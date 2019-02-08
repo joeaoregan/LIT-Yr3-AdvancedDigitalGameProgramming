@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="Player" color="#00ff00"/><!--test-->
+ <objecttype name="Turret" color="#0000ff"/>
+ <objecttype name="Glider" color="#ff0000"/>
+  <objecttype name="ShotGlider" color="#ff8000"/>
+  <objecttype name="AngryGlider" color="#ff8000"/><!--No Idea What This Does!!!-->
+  <objecttype name="PowerUp" color="#ff8000"/><!--2017/04/22-->
+ <objecttype name="RoofTurret" color="#0000ff"/>
+ <objecttype name="Eskeletor" color="#800080"/>
+  <objecttype name="Level1Boss" color="#000000"/>
+  <objecttype name="message" color="#000000"/>
+</objecttypes>
