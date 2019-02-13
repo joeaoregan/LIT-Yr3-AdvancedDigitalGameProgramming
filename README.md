@@ -1,7 +1,8 @@
 # Advanced Digital Game Programming
 ## Joe O'Regan (K00203642)
-### BSc Computing (Games Design and Development)
-#### Limerick Institute of Technology, Year 3, Semester 6
+### Year 3 (2016/17), Semester 6
+#### BSc Computing (Games Design and Development)
+##### Limerick Institute of Technology
 
 ---
 
@@ -70,8 +71,9 @@ Using helpful SDL 2.0 tutorials from [Lazy Foo' Productions](http://lazyfoo.net/
 
 ## References:
 
-#### Lazy Foo' Productions SDL Tutorials
 [Lazy Foo' Productions](http://lazyfoo.net/tutorials/SDL/index.php)
+
+[SDL Game Development, Shaun Mitchell](https://www.packtpub.com/game-development/sdl-game-development)
 
 ---
 
