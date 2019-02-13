@@ -1,9 +1,22 @@
-# Yr3-Advanced-Digtial-Game-Programming-CA3-Game
+# Advanced Digital Game Programming
+## Joe O'Regan (K00203642)
+### Year 3 (2016/17), Semester 6
+#### BSc Computing (Games Design and Development)
+##### Limerick Institute of Technology
+
+---
+
+## Alien Attack
 
 Continuous Assessment game for Advanced Digital Game Programming Module of Year 3.
 Modified Alien Attack game from [SDL Game Development by Shaun Mitchell](https://www.packtpub.com/game-development/sdl-game-development). 
 
 Using helpful SDL 2.0 tutorials from [Lazy Foo' Productions](http://lazyfoo.net/tutorials/SDL/index.php) for inspiration :smile: :grinning:
+
+**Features:**
+* Design Patterns (Factory Method, Singleton)
+* Object-Oriented
+* Inheritance
 
 ## Screenshots:
 
@@ -49,6 +62,7 @@ Using helpful SDL 2.0 tutorials from [Lazy Foo' Productions](http://lazyfoo.net/
 ![Alien Attack: Game Over](https://raw.githubusercontent.com/joeaoregan/LIT-Yr3-S6-AdvancedDigitalGameDesign/master/Screenshots/AlienAttack14GameOver.jpg "Alien Attack: Game Over")
 ###### When the game is over the score is displayed, and the player can choose to restart the game, or return to the main menu.
 
+---
 
 ## Links:
 
@@ -57,7 +71,14 @@ Using helpful SDL 2.0 tutorials from [Lazy Foo' Productions](http://lazyfoo.net/
 ###### YouTube: Trailer (as part of assignment spec)
 
 #### Lazy Foo' Productions SDL Tutorials
+
 [Lazy Foo' Productions](http://lazyfoo.net/tutorials/SDL/index.php)
+
+[SDL Game Development, Shaun Mitchell](https://www.packtpub.com/game-development/sdl-game-development)
+
+[Tiled Map Editor](https://www.mapeditor.org/)
+
+---
 
 ## Assignment Spec:
 ### Advanced Digital Game Programming
