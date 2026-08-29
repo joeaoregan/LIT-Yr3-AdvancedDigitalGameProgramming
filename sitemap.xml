@@ -9,6 +9,10 @@
          <lastmod>2026-08-29</lastmod>
     </url>
     <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/architecture/animated-graphics/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
          <loc>https://joeaoregan.github.io/Alien-Attack/architecture/bullet-handler/</loc>
          <lastmod>2026-08-29</lastmod>
     </url>
@@ -81,11 +85,55 @@
          <lastmod>2026-08-29</lastmod>
     </url>
     <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/game-objects/powerup/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/game-objects/roof-turret/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/game-objects/shooter/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
          <loc>https://joeaoregan.github.io/Alien-Attack/game-objects/shotglider/</loc>
          <lastmod>2026-08-29</lastmod>
     </url>
     <url>
          <loc>https://joeaoregan.github.io/Alien-Attack/sdl-setup/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/states/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/states/game-over/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/states/game/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/states/level-complete/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/states/main-menu/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/states/pause/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/states/play/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/states/settings/</loc>
          <lastmod>2026-08-29</lastmod>
     </url>
 </urlset>

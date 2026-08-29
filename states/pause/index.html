@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://joeaoregan.github.io/Alien-Attack/architecture/input-handler/">
+        <link rel="canonical" href="https://joeaoregan.github.io/Alien-Attack/states/pause/">
       
       
-        <link rel="prev" href="../collision-manager/">
+        <link rel="prev" href="../play/">
       
       
-        <link rel="next" href="../bullet-handler/">
+        <link rel="next" href="../level-complete/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Input Handler - LIT Year 3 - Advanced Digital Game Programming</title>
+        <title>Pause - LIT Year 3 - Advanced Digital Game Programming</title>
       
     
     
@@ -100,11 +100,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#inputhandler-architecture" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -136,7 +131,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Input Handler
+              Pause
             
           </span>
         </div>
@@ -278,13 +273,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../architecture/" class="md-tabs__link">
           
   
   
@@ -320,11 +313,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../states/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -504,31 +499,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -546,7 +536,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -564,7 +554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../architecture/" class="md-nav__link">
         
   
   
@@ -592,7 +582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../state-machine/" class="md-nav__link">
+      <a href="../../architecture/state-machine/" class="md-nav__link">
         
   
   
@@ -620,7 +610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../object-factory/" class="md-nav__link">
+      <a href="../../architecture/object-factory/" class="md-nav__link">
         
   
   
@@ -648,7 +638,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../level-parser/" class="md-nav__link">
+      <a href="../../architecture/level-parser/" class="md-nav__link">
         
   
   
@@ -676,7 +666,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../play-state/" class="md-nav__link">
+      <a href="../../architecture/play-state/" class="md-nav__link">
         
   
   
@@ -704,7 +694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../collision-manager/" class="md-nav__link">
+      <a href="../../architecture/collision-manager/" class="md-nav__link">
         
   
   
@@ -729,37 +719,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Input Handler
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../architecture/input-handler/" class="md-nav__link">
         
   
   
@@ -775,59 +738,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#core-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Components
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#input-processing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Input Processing
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#execution-and-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Execution and Usage
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -840,7 +750,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bullet-handler/" class="md-nav__link">
+      <a href="../../architecture/bullet-handler/" class="md-nav__link">
         
   
   
@@ -868,7 +778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hud/" class="md-nav__link">
+      <a href="../../architecture/hud/" class="md-nav__link">
         
   
   
@@ -896,7 +806,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mini-map/" class="md-nav__link">
+      <a href="../../architecture/mini-map/" class="md-nav__link">
         
   
   
@@ -924,7 +834,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../animated-graphics/" class="md-nav__link">
+      <a href="../../architecture/animated-graphics/" class="md-nav__link">
         
   
   
@@ -1379,26 +1289,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -1416,7 +1331,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1434,7 +1349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../states/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -1462,7 +1377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../states/main-menu/" class="md-nav__link">
+      <a href="../main-menu/" class="md-nav__link">
         
   
   
@@ -1490,7 +1405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../states/game/" class="md-nav__link">
+      <a href="../game/" class="md-nav__link">
         
   
   
@@ -1518,7 +1433,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../states/play/" class="md-nav__link">
+      <a href="../play/" class="md-nav__link">
         
   
   
@@ -1543,10 +1458,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../states/pause/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1562,6 +1484,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1574,7 +1497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../states/level-complete/" class="md-nav__link">
+      <a href="../level-complete/" class="md-nav__link">
         
   
   
@@ -1602,7 +1525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../states/game-over/" class="md-nav__link">
+      <a href="../game-over/" class="md-nav__link">
         
   
   
@@ -1630,7 +1553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../states/settings/" class="md-nav__link">
+      <a href="../settings/" class="md-nav__link">
         
   
   
@@ -1675,49 +1598,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#core-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Components
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#input-processing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Input Processing
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#execution-and-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Execution and Usage
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1763,7 +1643,7 @@
         <a href="../" class="md-path__link">
           
   <span class="md-ellipsis">
-    Architecture
+    States
   </span>
 
         </a>
@@ -1785,20 +1665,9 @@
   
 
 
-<h1 id="inputhandler-architecture">InputHandler Architecture</h1>
-<p>The <code>InputHandler</code> manages user input from the keyboard, mouse, and game controllers for the Alien Attack project. It operates as a singleton to provide global, unified access to input states across all active game states and entities.</p>
-<h2 id="core-components">Core Components</h2>
-<ul>
-<li><a href="https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/blob/master/1-AlienAttack/Alien%20Attack%20K00203642/InputHandler.h">InputHandler.h</a> &amp; <a href="https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/blob/master/1-AlienAttack/Alien%20Attack%20K00203642/InputHandler.cpp">InputHandler.cpp</a>: The central manager class responsible for polling SDL hardware events and storing the current state of all supported input devices.</li>
-</ul>
-<h2 id="input-processing">Input Processing</h2>
-<ul>
-<li><strong>Event Polling</strong>: The handler loops through <code>SDL_PollEvent</code> during the main game loop to capture hardware interrupts, updating its internal state arrays before game objects process their logic.</li>
-<li><strong>Keyboard State</strong>: Maintains a reference to the current keyboard state array, allowing entities to seamlessly check if specific keys are held down.</li>
-<li><strong>Mouse &amp; Joystick Management</strong>: Tracks mouse cursor coordinates, mouse button clicks, and gamepad axis or button states, exposing them through simple getter functions.</li>
-</ul>
-<h2 id="execution-and-usage">Execution and Usage</h2>
-<p>During the active phase, entities like the <a href="../../game-objects/player/">Player</a> query the <code>InputHandler</code> within their <code>update()</code> methods to dictate movement and actions. Instead of placing raw SDL event processing directly into individual entity classes, the <code>InputHandler</code> abstracts this complexity. This centralised approach makes certain that input logic remains clean, decoupled, and easy to maintain across the entire project.</p>
+  <h1>Pause</h1>
+
+
 
 
 
@@ -1834,7 +1703,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../collision-manager/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Collision Manager">
+          <a href="../play/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Play">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1844,20 +1713,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Collision Manager
+                Play
               </div>
             </div>
           </a>
         
         
           
-          <a href="../bullet-handler/" class="md-footer__link md-footer__link--next" aria-label="Next: Bullet Handler">
+          <a href="../level-complete/" class="md-footer__link md-footer__link--next" aria-label="Next: Level Complete">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Bullet Handler
+                Level Complete
               </div>
             </div>
             <div class="md-footer__button md-icon">

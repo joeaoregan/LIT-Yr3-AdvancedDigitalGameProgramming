@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://joeaoregan.github.io/Alien-Attack/architecture/input-handler/">
+        <link rel="canonical" href="https://joeaoregan.github.io/Alien-Attack/game-objects/shooter/">
       
       
-        <link rel="prev" href="../collision-manager/">
+        <link rel="prev" href="../roof-turret/">
       
       
-        <link rel="next" href="../bullet-handler/">
+        <link rel="next" href="../../states/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Input Handler - LIT Year 3 - Advanced Digital Game Programming</title>
+        <title>Shooter Object - LIT Year 3 - Advanced Digital Game Programming</title>
       
     
     
@@ -101,7 +101,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#inputhandler-architecture" class="md-skip">
+        <a href="#shooter-object" class="md-skip">
           Skip to content
         </a>
       
@@ -136,7 +136,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Input Handler
+              Shooter Object
             
           </span>
         </div>
@@ -278,13 +278,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../architecture/" class="md-tabs__link">
           
   
   
@@ -300,11 +298,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../game-objects/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -504,6 +504,373 @@
       
   
   
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/state-machine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/object-factory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Object Factory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/level-parser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level Parser
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/play-state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Play State
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/collision-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collision Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/input-handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input Handler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/bullet-handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bullet Handler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/hud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heads Up Display
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/mini-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mini Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/animated-graphics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animated Graphics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -525,17 +892,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    Architecture
+    Game Objects
   
 
     
@@ -546,12 +913,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Architecture
+    Game Objects
   
 
           </label>
@@ -592,14 +959,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../state-machine/" class="md-nav__link">
+      <a href="../player/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    State Machine
+    Player
   
 
     
@@ -620,14 +987,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../object-factory/" class="md-nav__link">
+      <a href="../enemy/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Object Factory
+    Enemy
   
 
     
@@ -648,14 +1015,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../level-parser/" class="md-nav__link">
+      <a href="../bullet/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Level Parser
+    Bullet
   
 
     
@@ -676,14 +1043,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../play-state/" class="md-nav__link">
+      <a href="../glider/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Play State
+    Glider
   
 
     
@@ -704,14 +1071,182 @@
   
   
     <li class="md-nav__item">
-      <a href="../collision-manager/" class="md-nav__link">
+      <a href="../shotglider/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Collision Manager
+    Shot Glider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../angryglider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Angry Glider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pounder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pounder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eskeletor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eskeletor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level1boss/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 1 Boss
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../powerup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roof-turret/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roof Turret
   
 
     
@@ -748,7 +1283,7 @@
   <span class="md-ellipsis">
     
   
-    Input Handler
+    Shooter Object
   
 
     
@@ -766,7 +1301,7 @@
   <span class="md-ellipsis">
     
   
-    Input Handler
+    Shooter Object
   
 
     
@@ -803,21 +1338,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#input-processing" class="md-nav__link">
+  <a href="#key-responsibilities" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Input Processing
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#execution-and-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Execution and Usage
+        Key Responsibilities
       
     </span>
   </a>
@@ -828,541 +1352,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../bullet-handler/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Bullet Handler
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../hud/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Heads Up Display
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../mini-map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Mini Map
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../animated-graphics/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Animated Graphics
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Game Objects
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Game Objects
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../game-objects/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../game-objects/player/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Player
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../game-objects/enemy/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Enemy
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../game-objects/bullet/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Bullet
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../game-objects/glider/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Glider
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../game-objects/shotglider/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Shot Glider
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../game-objects/angryglider/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Angry Glider
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../game-objects/pounder/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pounder
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../game-objects/eskeletor/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Eskeletor
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../game-objects/level1boss/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Level 1 Boss
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../game-objects/powerup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Power Up
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../game-objects/roof-turret/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Roof Turret
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../game-objects/shooter/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Shooter Object
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1696,21 +1685,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#input-processing" class="md-nav__link">
+  <a href="#key-responsibilities" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Input Processing
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#execution-and-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Execution and Usage
+        Key Responsibilities
       
     </span>
   </a>
@@ -1763,7 +1741,7 @@
         <a href="../" class="md-path__link">
           
   <span class="md-ellipsis">
-    Architecture
+    Game Objects
   </span>
 
         </a>
@@ -1785,20 +1763,18 @@
   
 
 
-<h1 id="inputhandler-architecture">InputHandler Architecture</h1>
-<p>The <code>InputHandler</code> manages user input from the keyboard, mouse, and game controllers for the Alien Attack project. It operates as a singleton to provide global, unified access to input states across all active game states and entities.</p>
+<h1 id="shooter-object">Shooter Object</h1>
+<p>The <code>ShooterObject</code> class serves as an intermediate base class for entities capable of firing projectiles within the Alien Attack project. Inheriting from the core <a href="../">GameObject</a> class, it extends base entity functionality by incorporating weapon handling logic and shooting attributes.</p>
 <h2 id="core-components">Core Components</h2>
 <ul>
-<li><a href="https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/blob/master/1-AlienAttack/Alien%20Attack%20K00203642/InputHandler.h">InputHandler.h</a> &amp; <a href="https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/blob/master/1-AlienAttack/Alien%20Attack%20K00203642/InputHandler.cpp">InputHandler.cpp</a>: The central manager class responsible for polling SDL hardware events and storing the current state of all supported input devices.</li>
+<li><a href="https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/blob/master/1-AlienAttack/Alien%20Attack%20K00203642/ShooterObject.h">ShooterObject.h</a> &amp; <a href="https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/blob/master/1-AlienAttack/Alien%20Attack%20K00203642/ShooterObject.cpp">ShooterObject.cpp</a>: The concrete implementation files that establish shared variables and functions for shooting entities, such as ammunition tracking, firing cooldowns, and projectile velocities.</li>
 </ul>
-<h2 id="input-processing">Input Processing</h2>
+<h2 id="key-responsibilities">Key Responsibilities</h2>
 <ul>
-<li><strong>Event Polling</strong>: The handler loops through <code>SDL_PollEvent</code> during the main game loop to capture hardware interrupts, updating its internal state arrays before game objects process their logic.</li>
-<li><strong>Keyboard State</strong>: Maintains a reference to the current keyboard state array, allowing entities to seamlessly check if specific keys are held down.</li>
-<li><strong>Mouse &amp; Joystick Management</strong>: Tracks mouse cursor coordinates, mouse button clicks, and gamepad axis or button states, exposing them through simple getter functions.</li>
+<li><strong>Projectile Spawning</strong>: The class provides foundational logic to interface with the <a href="../../architecture/bullet-handler/">BulletHandler</a>, allowing derived entities to spawn and project ammunition consistently into the game world.</li>
+<li><strong>State Management</strong>: It maintains timers and state flags to regulate fire rates, preventing entities from continuously firing without delay.</li>
+<li><strong>Inheritance Hierarchies</strong>: Acts as a bridge between the generic <a href="../">GameObject</a> base class and more complex armed entities like the <a href="../player/">Player</a> or specialized armed enemies, reducing code duplication across weapon-equipped objects.</li>
 </ul>
-<h2 id="execution-and-usage">Execution and Usage</h2>
-<p>During the active phase, entities like the <a href="../../game-objects/player/">Player</a> query the <code>InputHandler</code> within their <code>update()</code> methods to dictate movement and actions. Instead of placing raw SDL event processing directly into individual entity classes, the <code>InputHandler</code> abstracts this complexity. This centralised approach makes certain that input logic remains clean, decoupled, and easy to maintain across the entire project.</p>
 
 
 
@@ -1834,7 +1810,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../collision-manager/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Collision Manager">
+          <a href="../roof-turret/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Roof Turret">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1844,20 +1820,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Collision Manager
+                Roof Turret
               </div>
             </div>
           </a>
         
         
           
-          <a href="../bullet-handler/" class="md-footer__link md-footer__link--next" aria-label="Next: Bullet Handler">
+          <a href="../../states/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Bullet Handler
+                Overview
               </div>
             </div>
             <div class="md-footer__button md-icon">
