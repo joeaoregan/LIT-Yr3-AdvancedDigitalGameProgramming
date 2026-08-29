@@ -1451,11 +1451,13 @@
 <h1 id="quick-setup-sdl-20-and-extensions">Quick Setup: SDL 2.0 and Extensions</h1>
 <p>This guide outlines the setup required for SDL 2.0, SDL_image, SDL_mixer, and SDL_ttf for the Alien Attack project.</p>
 <h2 id="1-download-and-extract">1. Download and Extract</h2>
-<p>Download the Visual C++ development libraries for the following from the official SDL GitHub releases or website:
-* SDL2
-* SDL2_image
-* SDL2_mixer
-* SDL2_ttf</p>
+<p>Download the Visual C++ development libraries for the following from the official SDL GitHub releases or website:</p>
+<ul>
+<li>SDL2</li>
+<li>SDL2_image</li>
+<li>SDL2_mixer</li>
+<li>SDL2_ttf</li>
+</ul>
 <p>Extract all downloaded <code>.zip</code> files to a stable directory on your development machine (e.g., <code>C:\SDL2</code>).</p>
 <h2 id="2-visual-studio-properties-configuration">2. Visual Studio Properties Configuration</h2>
 <p>Open the <code>Alien Attack K00203642.vcxproj</code> project file in Visual Studio. Right-click the project name in the Solution Explorer, select <strong>Properties</strong>, and make certain the <strong>Configuration</strong> dropdown at the top is set to <strong>All Configurations</strong>.</p>
@@ -1464,19 +1466,23 @@
 <h3 id="library-directories">Library Directories</h3>
 <p>Navigate to <strong>Linker</strong> -&gt; <strong>General</strong> -&gt; <strong>Additional Library Directories</strong>. Add the paths to the <code>lib\x86</code> or <code>lib\x64</code> directories for all four libraries, depending on your target build architecture.</p>
 <h3 id="linker-dependencies">Linker Dependencies</h3>
-<p>Navigate to <strong>Linker</strong> -&gt; <strong>Input</strong> -&gt; <strong>Additional Dependencies</strong>. Add the following libraries to the list:
-* <code>SDL2.lib</code>
-* <code>SDL2main.lib</code>
-* <code>SDL2_image.lib</code>
-* <code>SDL2_mixer.lib</code>
-* <code>SDL2_ttf.lib</code></p>
+<p>Navigate to <strong>Linker</strong> -&gt; <strong>Input</strong> -&gt; <strong>Additional Dependencies</strong>. Add the following libraries to the list:</p>
+<ul>
+<li><code>SDL2.lib</code></li>
+<li><code>SDL2main.lib</code></li>
+<li><code>SDL2_image.lib</code></li>
+<li><code>SDL2_mixer.lib</code></li>
+<li><code>SDL2_ttf.lib</code></li>
+</ul>
 <h2 id="3-runtime-configuration">3. Runtime Configuration</h2>
-<p>Instead of modifying system environment variables, copy the corresponding <code>.dll</code> files directly into the project folder alongside your source files or into your build output directory. The following dynamic libraries are used at runtime:
-* <code>SDL2.dll</code>
-* <code>SDL2_image.dll</code>
-* <code>SDL2_mixer.dll</code>
-* <code>SDL2_ttf.dll</code>
-* Any dependent DLLs included in the extension packages (e.g., <code>libfreetype-6.dll</code>, <code>libjpeg-9.dll</code>, <code>libpng16-16.dll</code>).</p>
+<p>Instead of modifying system environment variables, copy the corresponding <code>.dll</code> files directly into the project folder alongside your source files or into your build output directory. The following dynamic libraries are used at runtime:</p>
+<ul>
+<li><code>SDL2.dll</code></li>
+<li><code>SDL2_image.dll</code></li>
+<li><code>SDL2_mixer.dll</code></li>
+<li><code>SDL2_ttf.dll</code></li>
+<li>Any dependent DLLs included in the extension packages (e.g., <code>libfreetype-6.dll</code>, <code>libjpeg-9.dll</code>, <code>libpng16-16.dll</code>).</li>
+</ul>
 
 
 
