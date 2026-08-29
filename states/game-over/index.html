@@ -100,6 +100,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#game-over-state" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1523,6 +1528,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Game Over
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -1540,6 +1565,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related States
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1561,6 +1638,118 @@
     
   
     Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../high-score/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    High Scores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instructions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enter-name/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enter Name
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-objective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level Objective
   
 
     
@@ -1598,6 +1787,49 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related States
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1665,9 +1897,24 @@
   
 
 
-  <h1>Game Over</h1>
-
-
+<h1 id="game-over-state">Game Over State</h1>
+<p>The <code>GameOverState</code> class represents the defeat screen interface displayed when the player loses all available lives within the Alien Attack project. Inheriting from the base <a href="../game/">GameState</a> class, it manages the layout and options presented to the player upon failing a level.</p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li><a href="https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/blob/master/1-AlienAttack/Alien%20Attack%20K00203642/GameOverState.h">GameOverState.h</a> &amp; <a href="https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/blob/master/1-AlienAttack/Alien%20Attack%20K00203642/GameOverState.cpp">GameOverState.cpp</a>: The concrete implementation files that define the appearance and user controls of the game over screen.</li>
+</ul>
+<h2 id="key-responsibilities">Key Responsibilities</h2>
+<ul>
+<li><strong>Menu Navigation</strong>: Instantiates interactive buttons that register player selections via the <a href="../../architecture/input-handler/">InputHandler</a> to restart the game or return to the main menu.</li>
+<li><strong>State Management</strong>: Communicates with the <a href="../../architecture/state-machine/">GameStateMachine</a> to handle transitions, allowing players to jump back to the <a href="../play/">Play State</a> or exit out to the <a href="../main-menu/">Main Menu State</a>.</li>
+<li><strong>Lifecycle Control</strong>: Executes <code>onEnter()</code> to load game over UI assets and <code>onExit()</code> to clear them out when transitioning away from the screen.</li>
+</ul>
+<h2 id="related-states">Related States</h2>
+<ul>
+<li><a href="../main-menu/">Main Menu State</a></li>
+<li><a href="../play/">Play State</a></li>
+<li><a href="../pause/">Pause State</a></li>
+</ul>
 
 
 

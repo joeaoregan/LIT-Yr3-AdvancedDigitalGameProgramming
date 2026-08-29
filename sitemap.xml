@@ -109,6 +109,10 @@
          <lastmod>2026-08-29</lastmod>
     </url>
     <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/states/enter-name/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
          <loc>https://joeaoregan.github.io/Alien-Attack/states/game-over/</loc>
          <lastmod>2026-08-29</lastmod>
     </url>
@@ -117,7 +121,19 @@
          <lastmod>2026-08-29</lastmod>
     </url>
     <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/states/high-score/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/states/instructions/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
          <loc>https://joeaoregan.github.io/Alien-Attack/states/level-complete/</loc>
+         <lastmod>2026-08-29</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/Alien-Attack/states/level-objective/</loc>
          <lastmod>2026-08-29</lastmod>
     </url>
     <url>
