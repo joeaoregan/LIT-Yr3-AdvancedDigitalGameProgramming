@@ -1,5 +1,31 @@
 # Play State
 
+```mermaid
+stateDiagram-v2
+    direction LR
+
+    LevelObjectiveState --> PlayState : Begin Level
+
+    state GameSection {
+        PlayState --> PauseState : Pause Game
+        PauseState --> PlayState : Resume Game
+
+        PlayState --> GameOverState : Player Loses
+        GameOverState --> PlayState : Restart Game
+        GameOverState --> EnterNameState : Record High Score
+        EnterNameState --> HighScoreState : Save Score
+
+        PlayState --> LevelCompleteState : Level Cleared
+        LevelCompleteState --> LevelObjectiveState : Next Level
+    }
+
+    PauseState --> MainMenuState : Quit to Menu
+    GameOverState --> MainMenuState : Return to Menu
+    LevelCompleteState --> MainMenuState : Return to Menu
+    EnterNameState --> MainMenuState : Skip / Return
+
+```
+
 The `PlayState` class represents the primary gameplay state within the Alien Attack project. Inheriting from the base [GameState](game.md) class, it manages the active game loop, rendering levels, updating active entities, and processing core game mechanics.
 
 ## Core Components
