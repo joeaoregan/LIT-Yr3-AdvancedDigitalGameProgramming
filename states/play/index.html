@@ -1898,6 +1898,29 @@
 
 
 <h1 id="play-state">Play State</h1>
+<pre class="mermaid"><code>stateDiagram-v2
+    direction LR
+
+    LevelObjectiveState --&gt; PlayState : Begin Level
+
+    state GameSection {
+        PlayState --&gt; PauseState : Pause Game
+        PauseState --&gt; PlayState : Resume Game
+
+        PlayState --&gt; GameOverState : Player Loses
+        GameOverState --&gt; PlayState : Restart Game
+        GameOverState --&gt; EnterNameState : Record High Score
+        EnterNameState --&gt; HighScoreState : Save Score
+
+        PlayState --&gt; LevelCompleteState : Level Cleared
+        LevelCompleteState --&gt; LevelObjectiveState : Next Level
+    }
+
+    PauseState --&gt; MainMenuState : Quit to Menu
+    GameOverState --&gt; MainMenuState : Return to Menu
+    LevelCompleteState --&gt; MainMenuState : Return to Menu
+    EnterNameState --&gt; MainMenuState : Skip / Return
+</code></pre>
 <p>The <code>PlayState</code> class represents the primary gameplay state within the Alien Attack project. Inheriting from the base <a href="../game/">GameState</a> class, it manages the active game loop, rendering levels, updating active entities, and processing core game mechanics.</p>
 <h2 id="core-components">Core Components</h2>
 <ul>
