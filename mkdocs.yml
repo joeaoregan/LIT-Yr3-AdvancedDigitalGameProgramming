@@ -51,6 +51,28 @@ nav:
   - Home: index.md
   - SDL Setup:
     - Overview: sdl-setup/index.md
+  - Architecture:
+    - Overview: architecture/index.md
+    - State Machine: architecture/state-machine.md
+    - Object Factory: architecture/object-factory.md
+    - Level Parser: architecture/level-parser.md
+    - Play State: architecture/play-state.md
+    - Collision Manager: architecture/collision-manager.md
+    - Input Handler: architecture/input-handler.md
+    - Bullet Handler: architecture/bullet-handler.md
+    - Heads Up Display: architecture/hud.md
+    - Mini Map: architecture/mini-map.md
+  - Game Objects:
+    - Overview: game-objects/index.md
+    - Player: game-objects/player.md
+    - Enemy: game-objects/enemy.md
+    - Bullet: game-objects/bullet.md
+    - Glider: game-objects/glider.md
+    - Shot Glider: game-objects/shotglider.md
+    - Angry Glider: game-objects/angryglider.md
+    - Pounder: game-objects/pounder.md
+    - Eskeletor: game-objects/eskeletor.md
+    - Level 1 Boss: game-objects/level1boss.md
 
 extra:
   social:
