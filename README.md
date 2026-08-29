@@ -34,7 +34,8 @@ Modified Alien Attack game from [SDL Game Development by Shaun Mitchell](https:/
 
 Using helpful SDL 2.0 tutorials from [Lazy Foo' Productions](http://lazyfoo.net/tutorials/SDL/index.php) for inspiration :smile: :grinning:
 
-###### 10/09/2017 Started Editing Code To Work With Code::Blocks IDE
+> [!NOTE]
+> 10/09/2017 Started Editing Code To Work With Code::Blocks IDE.
 
 **Features:**
 * Design Patterns (Factory Method, Singleton)
@@ -102,7 +103,10 @@ Using helpful SDL 2.0 tutorials from [Lazy Foo' Productions](http://lazyfoo.net/
 
 #### Game Trailer:
 [![Game Trailer](https://raw.githubusercontent.com/joeaoregan/LIT-Yr3-S6-AdvancedDigitalGameDesign/master/Screenshots/YouTube.jpg)](https://youtu.be/JNEkne0aIOY)
-###### YouTube: Trailer (as part of assignment spec)
+###### YouTube: Trailer
+
+> [!NOTE]
+> YouTube Trailer Created as part of Assignment Spec.
 
 [Lazy Foo' Productions](http://lazyfoo.net/tutorials/SDL/index.php)
 
