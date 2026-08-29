@@ -4,6 +4,14 @@
 ![Advanced Digital Game Programming](https://img.shields.io/badge/Module-Advanced%20Digital%20Game%20Programming-blue?style=flat-square)
 ![Design Patterns](https://img.shields.io/badge/Topic-Design%20Patterns-gold?style=flat-square)
 
+![C++](https://img.shields.io/badge/C%2B%2B-MSVC%20v140-00599C?style=flat-square)
+![SDL2](https://img.shields.io/badge/SDL-2.0.5-000000?style=flat-square)
+![SDL_mixer](https://img.shields.io/badge/SDL_mixer-2.0.1-000000?style=flat-square)
+![SDL_image](https://img.shields.io/badge/SDL_image-2.0.5-000000?style=flat-square)
+![SDL_ttf](https://img.shields.io/badge/SDL_ttf-2.0.5-000000?style=flat-square)
+![Code::Blocks](https://img.shields.io/badge/Code::Blocks-IDE-1C93C1?style=flat-square)
+![Tiled](https://img.shields.io/badge/Tiled-Map%20Editor-3D7E9C?style=flat-square)
+
 ![GitHub repo size](https://img.shields.io/github/repo-size/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming?style=flat-square\&color=orange)
 ![Last Commit](https://img.shields.io/github/last-commit/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming?style=flat-square\&color=blue)
 ![GitHub top language](https://img.shields.io/github/languages/top/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming)
