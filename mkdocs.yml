@@ -1,0 +1,58 @@
+site_name: LIT Year 3 - Advanced Digital Game Programming
+site_url: https://joeaoregan.github.io/Alien-Attack/
+
+docs_dir: docs
+site_dir: site
+
+repo_url: https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming
+repo_name: GitHub
+
+theme:
+  name: material
+  palette: 
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+        primary: 'blue'
+        accent: 'light blue'
+
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+  favicon: images/favicon.ico
+  icon:
+    admonition:
+      note: material/alpha-j
+      success: material/alpha-j
+      warning: material/alpha-j
+      danger: material/alpha-j
+  logo: images/logo.png
+
+        
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - navigation.tabs.sticky
+    - navigation.sections
+    - toc.follow
+    - navigation.footer
+    - navigation.instant.preview
+    - navigation.tracking
+    - navigation.path
+    - navigation.top
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - SDL Setup:
+    - Overview: sdl-setup/index.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming

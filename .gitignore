@@ -40,3 +40,7 @@ x86/
 # Optional: editor-generated metadata
 *.ncb
 *.aps
+
+# MkDocs
+venv/
+site/
