@@ -100,6 +100,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#level-complete-state" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1495,6 +1500,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level Complete
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -1512,6 +1537,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related States
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1710,6 +1787,49 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related States
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1777,9 +1897,24 @@
   
 
 
-  <h1>Level Complete</h1>
-
-
+<h1 id="level-complete-state">Level Complete State</h1>
+<p>The <code>LevelCompleteState</code> class represents the transition screen displayed when a player successfully clears a stage within the Alien Attack project. Inheriting from the base <a href="../game/">GameState</a> class, it manages the layout, user interactions, and options presented upon completing a level.</p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li><a href="https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/blob/master/1-AlienAttack/Alien%20Attack%20K00203642/LevelCompleteState.h">LevelCompleteState.h</a> &amp; <a href="https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/blob/master/1-AlienAttack/Alien%20Attack%20K00203642/LevelCompleteState.cpp">LevelCompleteState.cpp</a>: The concrete implementation files that define the appearance and behaviour of the level completion interface.</li>
+</ul>
+<h2 id="key-responsibilities">Key Responsibilities</h2>
+<ul>
+<li><strong>Button Interaction</strong>: Instantiates and tracks interactive menu options using the <a href="../../architecture/input-handler/">InputHandler</a> to allow players to progress or return to the main menu.</li>
+<li><strong>State Transitions</strong>: Communicates with the <a href="../../architecture/state-machine/">GameStateMachine</a> to handle user selections, transitioning forward to subsequent stages or back to the <a href="../main-menu/">Main Menu State</a>.</li>
+<li><strong>Lifecycle Management</strong>: Implements <code>onEnter()</code> and <code>onExit()</code> to load stage-specific completion UI resources and clean them up when switching states.</li>
+</ul>
+<h2 id="related-states">Related States</h2>
+<ul>
+<li><a href="../main-menu/">Main Menu State</a></li>
+<li><a href="../play/">Play State</a></li>
+<li><a href="../game-over/">Game Over State</a></li>
+</ul>
 
 
 
@@ -1895,6 +2030,10 @@
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascript/mermaid-init.js"></script>
       
     
   </body>

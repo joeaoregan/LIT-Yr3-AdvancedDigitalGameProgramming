@@ -1898,6 +1898,22 @@
 
 
 <h1 id="main-menu-state">Main Menu State</h1>
+<pre class="mermaid"><code>stateDiagram-v2
+    direction LR
+    [*] --&gt; MainMenuState
+
+    state MenuSection {
+        MainMenuState --&gt; SettingsState : Open Settings
+        SettingsState --&gt; MainMenuState : Save / Return
+
+        MainMenuState --&gt; HighScoreState : View High Scores
+        HighScoreState --&gt; MainMenuState : Return to Menu
+
+        MainMenuState --&gt; InstructionsState : View Instructions
+        InstructionsState --&gt; MainMenuState : Return to Menu
+    }
+
+    MainMenuState --&gt; LevelObjectiveState : Start Game</code></pre>
 <p>The <code>MainMenuState</code> class represents the primary entry point interface when launching the Alien Attack project. Inheriting from the base <a href="../game/">GameState</a> class, it manages the layout, user interactions, and menu buttons that allow the player to navigate through the game options.</p>
 <h2 id="core-components">Core Components</h2>
 <ul>
@@ -2031,6 +2047,10 @@
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascript/mermaid-init.js"></script>
       
     
   </body>
