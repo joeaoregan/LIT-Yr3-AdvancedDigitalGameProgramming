@@ -1,0 +1,42 @@
+# Root-level generated/build output
+build/
+out/
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+.vs/
+.vscode/
+
+# C/C++ compiler outputs
+*.obj
+*.o
+*.exe
+*.dll
+*.lib
+*.exp
+*.ilk
+*.pdb
+*.log
+*.tmp
+*.cache
+*.tlog
+*.pch
+
+# IDE/user files
+*.user
+*.suo
+*.sdf
+*.opensdf
+*.vcxproj.user
+
+# Local runtime artifacts
+*.local
+*.state
+*.tmp
+
+# Optional: editor-generated metadata
+*.ncb
+*.aps
