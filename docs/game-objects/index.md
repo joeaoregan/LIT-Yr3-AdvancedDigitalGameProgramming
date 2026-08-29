@@ -25,3 +25,6 @@ This base architecture is extended by concrete classes to define unique behaviou
 - [Level 1 Boss](level1boss.md)
 - [Pounder](pounder.md)
 - [Bullet](bullet.md)
+- [Power Up](powerup.md)
+- [Roof Turret](roof-turret.md)
+- [Shooter Object](shooter.md)

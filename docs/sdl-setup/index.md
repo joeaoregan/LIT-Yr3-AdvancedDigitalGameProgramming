@@ -4,6 +4,7 @@ This guide outlines the setup required for SDL 2.0, SDL_image, SDL_mixer, and SD
 
 ## 1. Download and Extract
 Download the Visual C++ development libraries for the following from the official SDL GitHub releases or website:
+
 * SDL2
 * SDL2_image
 * SDL2_mixer
@@ -22,6 +23,7 @@ Navigate to **Linker** -> **General** -> **Additional Library Directories**. Add
 
 ### Linker Dependencies
 Navigate to **Linker** -> **Input** -> **Additional Dependencies**. Add the following libraries to the list:
+
 * `SDL2.lib`
 * `SDL2main.lib`
 * `SDL2_image.lib`
@@ -30,6 +32,7 @@ Navigate to **Linker** -> **Input** -> **Additional Dependencies**. Add the foll
 
 ## 3. Runtime Configuration
 Instead of modifying system environment variables, copy the corresponding `.dll` files directly into the project folder alongside your source files or into your build output directory. The following dynamic libraries are used at runtime:
+
 * `SDL2.dll`
 * `SDL2_image.dll`
 * `SDL2_mixer.dll`

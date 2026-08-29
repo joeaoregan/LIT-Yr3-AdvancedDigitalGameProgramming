@@ -12,3 +12,7 @@
 
 - [Heads Up Display](hud.md)
 - [Mini Map](mini-map.md)
+
+- Graphics
+
+- [Animated Graphics](animated-graphics.md)

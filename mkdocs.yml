@@ -62,6 +62,7 @@ nav:
     - Bullet Handler: architecture/bullet-handler.md
     - Heads Up Display: architecture/hud.md
     - Mini Map: architecture/mini-map.md
+    - Animated Graphics: architecture/animated-graphics.md
   - Game Objects:
     - Overview: game-objects/index.md
     - Player: game-objects/player.md
@@ -73,8 +74,35 @@ nav:
     - Pounder: game-objects/pounder.md
     - Eskeletor: game-objects/eskeletor.md
     - Level 1 Boss: game-objects/level1boss.md
+    - Power Up: game-objects/powerup.md
+    - Roof Turret: game-objects/roof-turret.md
+    - Shooter Object: game-objects/shooter.md
+  - States:
+    - Overview: states/index.md
+    - Menu: states/main-menu.md
+    - Game: states/game.md
+    - Play: states/play.md
+    - Pause: states/pause.md
+    - Level Complete: states/level-complete.md
+    - Game Over: states/game-over.md
+    - Settings: states/settings.md
+    - High Scores: states/high-score.md
+    - Instructions: states/instructions.md
+    - Enter Name: states/enter-name.md
+    - Level Objective: states/level-objective.md
 
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - javascript/mermaid-init.js
