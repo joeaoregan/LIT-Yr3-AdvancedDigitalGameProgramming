@@ -46,18 +46,25 @@ export class InputHandler {
       this.pointer.down = false;
     });
 
-    // --- Touch Support for Mobile ---
+    // --- Touch Support for Mobile Drag & Directional Movement ---
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const dragThreshold = 15; // Minimum pixels moved to trigger directional movement
+
     canvas.addEventListener('touchstart', (event) => {
-      event.preventDefault(); // Prevents default scrolling/zooming behavior on mobile
+      event.preventDefault();
       if (event.touches.length > 0) {
         const touch = event.touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        
         const rect = canvas.getBoundingClientRect();
         this.pointer.x = ((touch.clientX - rect.left) / rect.width) * canvas.width;
         this.pointer.y = ((touch.clientY - rect.top) / rect.height) * canvas.height;
       }
       this.pointer.down = true;
       
-      // Also register a space press so existing menus listening for space/key events respond to a tap
+      // Tap behavior for menus (space bar simulation)
       const spaceKey = 'space';
       if (!this.keys.has(spaceKey)) {
         this.pressed.add(spaceKey);
@@ -65,12 +72,48 @@ export class InputHandler {
       this.keys.add(spaceKey);
     }, { passive: false });
 
+    canvas.addEventListener('touchmove', (event) => {
+      event.preventDefault();
+      if (event.touches.length === 0) return;
+
+      const touch = event.touches[0];
+      const deltaX = touch.clientX - touchStartX;
+      const deltaY = touch.clientY - touchStartY;
+
+      // Clear existing directional keys before re-evaluating vector drag
+      this.keys.delete('arrowleft');
+      this.keys.delete('arrowright');
+      this.keys.delete('arrowup');
+      this.keys.delete('arrowdown');
+
+      // Check horizontal threshold for diagonals / left / right
+      if (Math.abs(deltaX) > dragThreshold) {
+        if (deltaX < 0) this.keys.add('arrowleft');
+        else this.keys.add('arrowright');
+      }
+
+      // Check vertical threshold for diagonals / up / down
+      if (Math.abs(deltaY) > dragThreshold) {
+        if (deltaY < 0) this.keys.add('arrowup');
+        else this.keys.add('arrowdown');
+      }
+
+      // Update pointer position for any click bounds if needed
+      const rect = canvas.getBoundingClientRect();
+      this.pointer.x = ((touch.clientX - rect.left) / rect.width) * canvas.width;
+      this.pointer.y = ((touch.clientY - rect.top) / rect.height) * canvas.height;
+    }, { passive: false });
+
     canvas.addEventListener('touchend', (event) => {
       event.preventDefault();
       this.pointer.down = false;
       
-      const spaceKey = 'space';
-      this.keys.delete(spaceKey);
+      // Clear movement keys and menu tap keys on release
+      this.keys.delete('space');
+      this.keys.delete('arrowleft');
+      this.keys.delete('arrowright');
+      this.keys.delete('arrowup');
+      this.keys.delete('arrowdown');
     }, { passive: false });
   }
 
