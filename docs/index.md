@@ -2,6 +2,12 @@
 
 ## Alien Attack
 
+[Play the Game](https://joeaoregan.github.io/LIT-Yr3-AdvancedDigitalGameProgramming/play/)
+
+---
+
+### Contents
+
 - [SDL 2 Setup](sdl-setup/index.md)
 - [Game Architecture](architecture/index.md)
     - [Game State Machine](architecture/state-machine.md)

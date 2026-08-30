@@ -90,6 +90,7 @@ nav:
     - Instructions: states/instructions.md
     - Enter Name: states/enter-name.md
     - Level Objective: states/level-objective.md
+  - Play: https://joeaoregan.github.io/LIT-Yr3-AdvancedDigitalGameProgramming/play/
 
 extra:
   social:
