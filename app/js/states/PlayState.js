@@ -1,5 +1,5 @@
 import { BaseState } from './BaseState.js';
-import { stateNames, WIDTH, HEIGHT, HUD_HEIGHT, WORLD_HEIGHT } from '../config.js';
+import { stateNames, WIDTH, HEIGHT, HUD_HEIGHT, WORLD_HEIGHT, SCROLL_SPEED } from '../config.js';
 import { Player } from '../entities/Player.js';
 import { Glider, AngryGlider, ShotGlider, Turret, RoofTurret, Level1Boss, PowerUp } from '../entities/Enemies.js';
 import { TheTextureManager } from '../TextureManager.js';
@@ -19,9 +19,11 @@ export class PlayState extends BaseState {
     this.tileLayers = [];
     this.spawnTimer = 0;
     this.bossSpawned = false;
+    this.levelComplete = false;
     this.bgX = 0;
     this.scrollDistance = 0;
-    this.bgSpeed = 1.8;
+    this.bgSpeed = SCROLL_SPEED;
+    this.maxScroll = Infinity;
     this.levelParser = new LevelParser();
   }
 
@@ -32,14 +34,18 @@ export class PlayState extends BaseState {
     this.tileLayers = [];
     this.spawnTimer = 0;
     this.bossSpawned = false;
+    this.hasMapBoss = false;
+    this.levelComplete = false;
     this.bgX = 0;
     this.scrollDistance = 0;
+    this.maxScroll = Infinity;
     this.game.bulletHandler.clearBullets();
     TheSoundManager.playMusic('music1');
 
     // Load Level 1 map definition from TMX
     const mapData = await this.levelParser.parseLevel('1-AlienAttack/Alien Attack K00203642/assets/map1.tmx');
     if (mapData) {
+      this.maxScroll = Math.max(0, mapData.width * mapData.tileWidth - WIDTH);
       if (mapData.tileLayers && mapData.tileLayers.length > 0) {
         this.tileLayers = mapData.tileLayers;
       }
@@ -79,13 +85,27 @@ export class PlayState extends BaseState {
   update(dt) {
     const input = this.game.input;
 
-    if (input.isDown('escape') || input.isDown('p')) {
+    // Level beaten: fly the player out before handing over to the summary screen
+    if (this.levelComplete) {
+      this.player.update(dt, this.game);
+      this.game.bulletHandler.updateBullets(dt);
+      for (let i = this.enemies.length - 1; i >= 0; i--) {
+        this.enemies[i].updateFadeOut(dt);
+        if (this.enemies[i].bDead) this.enemies.splice(i, 1);
+      }
+      if (this.player.position.x >= WIDTH) {
+        this.game.changeState(stateNames.LEVEL_COMPLETE);
+      }
+      return;
+    }
+
+    if (input.consumeKey('escape', 'p')) {
       this.game.pushState(stateNames.PAUSE);
       return;
     }
 
     // Horizontal level scroll progress
-    this.scrollDistance += this.bgSpeed;
+    this.scrollDistance = Math.min(this.maxScroll, this.scrollDistance + this.bgSpeed);
     this.bgX -= this.bgSpeed;
     if (this.bgX <= -960) {
       this.bgX = 0;
@@ -100,6 +120,17 @@ export class PlayState extends BaseState {
       const enemy = this.pendingEnemies.shift();
       enemy.position.x = enemy.mapX - this.scrollDistance;
       this.enemies.push(enemy);
+
+      // The boss is the end of the level, so nothing else spawns alongside it
+      if (enemy.typeStr === 'Level1Boss') {
+        this.bossSpawned = true;
+        this.pendingEnemies = [];
+        this.enemies.forEach((other) => {
+          if (other !== enemy && !other.bDying) {
+            other.fading = true;
+          }
+        });
+      }
     }
 
 
@@ -136,6 +167,15 @@ export class PlayState extends BaseState {
 
     for (let i = this.enemies.length - 1; i >= 0; i--) {
       const enemy = this.enemies[i];
+
+      if (enemy.fading) {
+        enemy.updateFadeOut(dt);
+        if (enemy.bDead) {
+          this.enemies.splice(i, 1);
+        }
+        continue;
+      }
+
       enemy.update(dt, this.game);
 
       // Keep map-anchored objects locked to their tile position as the level scrolls
@@ -146,8 +186,10 @@ export class PlayState extends BaseState {
       if (enemy.bDead) {
         if (enemy.typeStr === 'Level1Boss') {
           this.game.score += 500;
-          this.game.changeState(stateNames.LEVEL_COMPLETE);
-          return;
+          this.levelComplete = true;
+          this.player.startLevelExit();
+          this.game.bulletHandler.clearBullets();
+          this.enemies.forEach((other) => { other.fading = true; });
         }
         this.enemies.splice(i, 1);
         continue;

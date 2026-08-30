@@ -1,6 +1,6 @@
 import { ShooterObject } from '../GameObject.js';
 import { Vector2D } from '../Vector2D.js';
-import { WORLD_HEIGHT } from '../config.js';
+import { WIDTH, WORLD_HEIGHT, SCROLL_SPEED } from '../config.js';
 import { TheTextureManager } from '../TextureManager.js';
 import { TheSoundManager } from '../SoundManager.js';
 
@@ -151,7 +151,7 @@ export class RoofTurret extends ShooterObject {
       return;
     }
     // Rotating 180 and mirroring horizontally gives SDL_FLIP_VERTICAL
-    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx, 180, 1.0, true);
+    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx, 180, this.alpha, true);
     this.drawHealthBar(ctx);
   }
 }
@@ -162,54 +162,59 @@ export class Level1Boss extends ShooterObject {
     this.typeStr = 'Level1Boss';
     this.textureID = 'boss';
     this.position = new Vector2D(x, y);
-    this.velocity = new Vector2D(0, 1.8);
-    this.width = 180;
-    this.height = 110;
+    // Walks itself in at scroll speed, so it still arrives once the map stops scrolling
+    this.velocity = new Vector2D(-SCROLL_SPEED, 0);
+    this.entered = false;
+    this.moveSpeed = 2;
+    this.width = 183;
+    this.height = 230;
     this.health = 400;
     this.maxHealth = 400;
     this.explosionID = 'bossexplosion';
     this.explosionSize = 180;
     this.dyingTime = 900;
     this.fireTimer = 0;
-    this.fireInterval = 850;
+    this.fireInterval = 1600;
+  }
+
+  // Only the central hull is vulnerable; the engine pods top and bottom are armoured.
+  // Full width, so shots arriving from the left connect at the leading edge.
+  getDamageBox() {
+    return {
+      x: this.position.x,
+      y: this.position.y + this.height * 0.27,
+      width: this.width,
+      height: this.height * 0.47
+    };
   }
 
   update(dt, game) {
+    if (!this.entered) {
+      super.update(dt);
+      if (this.position.x < WIDTH - (this.width + 20)) {
+        this.entered = true;
+        this.velocity.x = 0;
+        this.velocity.y = -this.moveSpeed;
+      }
+      return;
+    }
+
     super.update(dt);
     if (this.bDying) return;
 
-    if (this.position.y <= 0 || this.position.y >= WORLD_HEIGHT - this.height) {
-      this.velocity.y *= -1;
+    if (this.position.y + this.height >= WORLD_HEIGHT) {
+      this.velocity.y = -this.moveSpeed;
+    } else if (this.position.y <= 0) {
+      this.velocity.y = this.moveSpeed;
     }
 
     this.fireTimer += dt;
     if (this.fireTimer >= this.fireInterval) {
       this.fireTimer = 0;
       if (game?.bulletHandler) {
-        game.bulletHandler.addEnemyBullet(
-          this.position.x,
-          this.position.y + 20,
-          18,
-          8,
-          'bullet4',
-          new Vector2D(-9, -2)
-        );
-        game.bulletHandler.addEnemyBullet(
-          this.position.x,
-          this.position.y + this.height / 2,
-          18,
-          8,
-          'bullet4',
-          new Vector2D(-10, 0)
-        );
-        game.bulletHandler.addEnemyBullet(
-          this.position.x,
-          this.position.y + this.height - 28,
-          18,
-          8,
-          'bullet4',
-          new Vector2D(-9, 2)
-        );
+        for (const offset of [15, 25, 200, 215]) {
+          game.bulletHandler.addEnemyBullet(this.position.x, this.position.y + offset, 16, 16, 'bullet2', new Vector2D(-10, 0));
+        }
       }
     }
   }
@@ -219,7 +224,10 @@ export class Level1Boss extends ShooterObject {
       super.draw(ctx);
       return;
     }
-    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx);
+    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx, 0, this.alpha);
+    if (this.hitFlash > 0) {
+      this.drawHitFlash(ctx);
+    }
 
     // Boss top health bar
     ctx.fillStyle = 'rgba(0,0,0,0.7)';
@@ -245,8 +253,7 @@ export class PowerUp extends ShooterObject {
   }
 
   draw(ctx) {
-    if (this.bDying) return;
-    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx);
+    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx, 0, this.alpha);
   }
 }
 
@@ -287,8 +294,7 @@ export class Pounder extends ShooterObject {
   }
 
   draw(ctx) {
-    if (this.bDying) return;
-    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx);
+    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx, 0, this.alpha);
   }
 }
 
@@ -332,8 +338,7 @@ export class Squasher extends ShooterObject {
   }
 
   draw(ctx) {
-    if (this.bDying) return;
-    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx);
+    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx, 0, this.alpha);
   }
 }
 
@@ -383,7 +388,7 @@ export class Eskeletor extends ShooterObject {
       super.draw(ctx);
       return;
     }
-    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, this.currentFrame, ctx);
+    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, this.currentFrame, ctx, 0, this.alpha);
     this.drawHealthBar(ctx);
   }
 }

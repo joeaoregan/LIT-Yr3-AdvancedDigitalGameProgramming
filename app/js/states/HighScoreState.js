@@ -7,7 +7,7 @@ export class HighScoreState extends BaseState {
   }
 
   update(dt) {
-    if (this.game.input.isDown('escape') || this.game.input.isDown('enter')) {
+    if (this.game.input.consumeKey('escape', 'enter')) {
       this.game.changeState(stateNames.MAIN_MENU);
     }
   }

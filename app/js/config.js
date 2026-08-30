@@ -3,6 +3,7 @@ export const HEIGHT = 540;
 export const HUD_HEIGHT = 48;
 // The original renders the tile world into an 800x480 viewport with the HUD outside it
 export const WORLD_HEIGHT = HEIGHT - HUD_HEIGHT;
+export const SCROLL_SPEED = 1.8;
 export const FPS = 60;
 
 export const GAME_NAME = 'Alien Attack';

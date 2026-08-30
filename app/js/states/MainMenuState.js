@@ -12,7 +12,7 @@ export class MainMenuState extends BaseState {
     super();
     // Centered button bounds for 960x540 canvas
     this.buttons = [
-      { id: 'playbutton', label: 'Start Game', x: 310, y: 140, w: 340, h: 68, action: () => this.game.changeState(stateNames.LEVEL_OBJECTIVE) },
+      { id: 'playbutton', label: 'Start Game', x: 310, y: 140, w: 340, h: 68, action: () => { this.game.resetRun(); this.game.changeState(stateNames.LEVEL_OBJECTIVE); } },
       { id: 'scorebutton', label: 'High Scores', x: 310, y: 220, w: 340, h: 68, action: () => this.game.changeState(stateNames.HIGH_SCORE) },
       { id: 'settingsbutton', label: 'Settings', x: 310, y: 300, w: 340, h: 68, action: () => this.game.changeState(stateNames.SETTINGS) },
       { id: 'instructionsbutton', label: 'How to Play', x: 310, y: 380, w: 340, h: 68, action: () => this.game.changeState(stateNames.INSTRUCTIONS) }

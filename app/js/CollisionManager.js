@@ -2,12 +2,22 @@ import { COLLISION_BULLET, COLLISION_ENEMY, COLLISION_POWERUP } from './entities
 import { TheSoundManager } from './SoundManager.js';
 
 export class CollisionManager {
+  boxOf(obj) {
+    return obj.getHitBox ? obj.getHitBox() : { x: obj.position.x, y: obj.position.y, width: obj.width, height: obj.height };
+  }
+
   rectIntersect(a, b) {
+    const boxA = this.boxOf(a);
+    const boxB = this.boxOf(b);
+    return this.boxIntersect(boxA, boxB);
+  }
+
+  boxIntersect(a, b) {
     return (
-      a.position.x < b.position.x + b.width &&
-      a.position.x + a.width > b.position.x &&
-      a.position.y < b.position.y + b.height &&
-      a.position.y + a.height > b.position.y
+      a.x < b.x + b.width &&
+      a.x + a.width > b.x &&
+      a.y < b.y + b.height &&
+      a.y + a.height > b.y
     );
   }
 
@@ -29,7 +39,7 @@ export class CollisionManager {
 
     for (let i = enemies.length - 1; i >= 0; i--) {
       const enemy = enemies[i];
-      if (enemy.bDying || enemy.bDead) continue;
+      if (enemy.bDying || enemy.bDead || enemy.fading) continue;
 
       if (enemy.typeStr === 'PowerUp') {
         if (this.rectIntersect(player, enemy)) {
@@ -55,13 +65,16 @@ export class CollisionManager {
 
       for (let j = enemies.length - 1; j >= 0; j--) {
         const enemy = enemies[j];
-        if (enemy.bDying || enemy.bDead || enemy.typeStr === 'PowerUp') continue;
+        if (enemy.bDying || enemy.bDead || enemy.fading || enemy.typeStr === 'PowerUp') continue;
 
         if (this.rectIntersect(bullet, enemy)) {
           bullet.bDead = true;
           if (enemy.indestructible) break;
 
-          enemy.health -= 10;
+          // Armoured sections absorb the shot without taking damage
+          if (!this.boxIntersect(this.boxOf(bullet), enemy.getDamageBox())) break;
+
+          enemy.takeDamage(10);
           if (enemy.health <= 0) {
             game.score += enemy.maxHealth * 2;
             enemy.explode();

@@ -7,7 +7,7 @@ export class LevelCompleteState extends BaseState {
   }
 
   update(dt) {
-    if (this.game.input.isDown('enter') || this.game.input.isDown(' ') || this.game.input.isDown('space')) {
+    if (this.game.input.consumeKey('enter', 'space')) {
       this.game.level++;
       this.game.changeState(stateNames.LEVEL_OBJECTIVE);
     }

@@ -27,6 +27,7 @@ export class Player extends ShooterObject {
     this.currentFrame = 0;
     this.frameTimer = 0;
     this.angle = 0;
+    this.levelExiting = false;
   }
 
   resurrect() {
@@ -49,8 +50,18 @@ export class Player extends ShooterObject {
     this.alpha = 1.0;
   }
 
+  // Flies the helicopter out to the right once the level is beaten (Player::update)
+  startLevelExit() {
+    this.levelExiting = true;
+    this.invulnerable = true;
+    this.velocity.x = 3;
+    this.velocity.y = 0;
+    this.angle = 0;
+    this.alpha = 1.0;
+  }
+
   collision(type, game) {
-    if (this.invulnerable || this.bDying) return;
+    if (this.invulnerable || this.bDying || this.levelExiting) return;
 
     if (type === COLLISION_BULLET) {
       if (this.health > 10) {
@@ -83,6 +94,16 @@ export class Player extends ShooterObject {
   }
 
   update(dt, game) {
+    if (this.levelExiting) {
+      this.frameTimer += dt;
+      if (this.frameTimer > 80) {
+        this.frameTimer = 0;
+        this.currentFrame = (this.currentFrame + 1) % this.numFrames;
+      }
+      this.position.x += this.velocity.x;
+      return;
+    }
+
     if (this.bDying) {
       this.dyingCounter += dt;
       this.currentFrame = Math.floor((this.dyingCounter / this.dyingTime) * this.numFrames);

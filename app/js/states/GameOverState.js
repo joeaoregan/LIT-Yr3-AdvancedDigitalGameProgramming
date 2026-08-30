@@ -7,7 +7,7 @@ export class GameOverState extends BaseState {
   }
 
   update(dt) {
-    if (this.game.input.isDown('enter')) {
+    if (this.game.input.consumeKey('enter')) {
       this.game.resetRun();
       this.game.changeState(stateNames.MAIN_MENU);
     }

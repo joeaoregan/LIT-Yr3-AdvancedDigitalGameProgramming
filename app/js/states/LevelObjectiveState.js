@@ -12,7 +12,7 @@ export class LevelObjectiveState extends BaseState {
 
   update(dt) {
     this.timer -= dt;
-    if (this.timer <= 0 || this.game.input.isDown('enter') || this.game.input.isDown(' ') || this.game.input.isDown('space')) {
+    if (this.timer <= 0 || this.game.input.consumeKey('enter', 'space')) {
       this.game.changeState(stateNames.PLAY);
     }
   }

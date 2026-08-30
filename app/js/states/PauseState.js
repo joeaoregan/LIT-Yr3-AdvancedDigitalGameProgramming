@@ -8,7 +8,7 @@ export class PauseState extends BaseState {
 
   update(dt) {
     const input = this.game.input;
-    if (input.isDown('escape') || input.isDown('p')) {
+    if (input.consumeKey('escape', 'p')) {
       this.game.popState();
     }
   }

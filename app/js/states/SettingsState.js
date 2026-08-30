@@ -13,21 +13,21 @@ export class SettingsState extends BaseState {
 
   update(dt) {
     const input = this.game.input;
-    if (input.isDown('arrowright') || input.isDown('d')) {
+    if (input.consumeKey('arrowright', 'd')) {
       const idx = this.diffOptions.indexOf(this.game.difficulty);
       this.game.difficulty = this.diffOptions[(idx + 1) % this.diffOptions.length];
       input.keys.delete('arrowright');
       input.keys.delete('d');
     }
 
-    if (input.isDown('arrowleft') || input.isDown('a')) {
+    if (input.consumeKey('arrowleft', 'a')) {
       const idx = this.diffOptions.indexOf(this.game.difficulty);
       this.game.difficulty = this.diffOptions[(idx - 1 + this.diffOptions.length) % this.diffOptions.length];
       input.keys.delete('arrowleft');
       input.keys.delete('a');
     }
 
-    if (input.isDown('enter') || input.isDown('escape')) {
+    if (input.consumeKey('enter', 'escape')) {
       this.game.changeState(stateNames.MAIN_MENU);
     }
   }

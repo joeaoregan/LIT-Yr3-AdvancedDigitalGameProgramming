@@ -11,7 +11,7 @@ export class EnterNameState extends BaseState {
   }
 
   update(dt) {
-    if (this.game.input.isDown('enter')) {
+    if (this.game.input.consumeKey('enter')) {
       this.game.playerName = this.nameBuffer || 'PLAYER';
       this.game.addHighScore(this.game.playerName, this.game.score);
       this.game.changeState(stateNames.HIGH_SCORE);

@@ -45,6 +45,15 @@ export class GameObject {
   clean() {}
   collision() {}
   type() { return this.typeStr; }
+
+  getHitBox() {
+    return { x: this.position.x, y: this.position.y, width: this.width, height: this.height };
+  }
+
+  // Region that actually takes damage; armoured objects narrow this
+  getDamageBox() {
+    return this.getHitBox();
+  }
 }
 
 export class ShooterObject extends GameObject {
@@ -62,15 +71,33 @@ export class ShooterObject extends GameObject {
     this.explosionID = 'explosion';
     this.explosionSize = 40;
     this.explosionFrames = 9;
+    this.hitFlash = 0;
+    this.fading = false;
     this.typeStr = 'ShooterObject';
   }
 
   update(dt) {
+    if (this.hitFlash > 0) {
+      this.hitFlash -= dt;
+    }
     if (this.bDying) {
       this.doDyingAnimation(dt);
       return;
     }
     super.update(dt);
+  }
+
+  takeDamage(amount) {
+    this.health -= amount;
+    this.hitFlash = 110;
+  }
+
+  // Dissolve rather than explode, used to clear the field for the boss
+  updateFadeOut(dt) {
+    this.alpha = Math.max(0, this.alpha - dt / 500);
+    if (this.alpha <= 0) {
+      this.bDead = true;
+    }
   }
 
   explode() {
@@ -117,9 +144,35 @@ export class ShooterObject extends GameObject {
       this.angle,
       this.alpha
     );
+    if (this.hitFlash > 0) {
+      this.drawHitFlash(ctx);
+    }
     if (!this.bDying) {
       this.drawHealthBar(ctx);
     }
+  }
+
+  // Additive redraw clipped to the damage box, so only the vulnerable part lights up
+  drawHitFlash(ctx) {
+    const box = this.getDamageBox();
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(box.x, box.y, box.width, box.height);
+    ctx.clip();
+    ctx.globalCompositeOperation = 'lighter';
+    TheTextureManager.drawFrame(
+      this.textureID,
+      this.position.x,
+      this.position.y,
+      this.width,
+      this.height,
+      this.currentRow,
+      this.currentFrame,
+      ctx,
+      this.angle,
+      Math.min(1, this.hitFlash / 110)
+    );
+    ctx.restore();
   }
 
   drawHealthBar(ctx, offsetX = 0, offsetY = -10) {
