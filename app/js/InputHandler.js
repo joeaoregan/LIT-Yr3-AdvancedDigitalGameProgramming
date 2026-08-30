@@ -45,6 +45,33 @@ export class InputHandler {
     canvas.addEventListener('mouseup', () => {
       this.pointer.down = false;
     });
+
+    // --- Touch Support for Mobile ---
+    canvas.addEventListener('touchstart', (event) => {
+      event.preventDefault(); // Prevents default scrolling/zooming behavior on mobile
+      if (event.touches.length > 0) {
+        const touch = event.touches[0];
+        const rect = canvas.getBoundingClientRect();
+        this.pointer.x = ((touch.clientX - rect.left) / rect.width) * canvas.width;
+        this.pointer.y = ((touch.clientY - rect.top) / rect.height) * canvas.height;
+      }
+      this.pointer.down = true;
+      
+      // Also register a space press so existing menus listening for space/key events respond to a tap
+      const spaceKey = 'space';
+      if (!this.keys.has(spaceKey)) {
+        this.pressed.add(spaceKey);
+      }
+      this.keys.add(spaceKey);
+    }, { passive: false });
+
+    canvas.addEventListener('touchend', (event) => {
+      event.preventDefault();
+      this.pointer.down = false;
+      
+      const spaceKey = 'space';
+      this.keys.delete(spaceKey);
+    }, { passive: false });
   }
 
   isDown(key) {
