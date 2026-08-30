@@ -17,12 +17,6 @@ export class Glider extends ShooterObject {
     this.maxHealth = 20;
     this.numFrames = 1;
   }
-
-  draw(ctx) {
-    if (this.bDying) return;
-    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx);
-    this.drawHealthBar(ctx);
-  }
 }
 
 export class AngryGlider extends ShooterObject {
@@ -41,15 +35,10 @@ export class AngryGlider extends ShooterObject {
 
   update(dt, game) {
     super.update(dt);
+    if (this.bDying) return;
     if (this.position.y <= 0 || this.position.y >= WORLD_HEIGHT - this.height) {
       this.velocity.y *= -1;
     }
-  }
-
-  draw(ctx) {
-    if (this.bDying) return;
-    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx);
-    this.drawHealthBar(ctx);
   }
 }
 
@@ -70,10 +59,12 @@ export class ShotGlider extends ShooterObject {
 
   update(dt, game) {
     super.update(dt);
+    if (this.bDying) return;
+
     this.fireTimer += dt;
     if (this.fireTimer >= this.fireInterval) {
       this.fireTimer = 0;
-      if (game && game.bulletHandler) {
+      if (game?.bulletHandler) {
         game.bulletHandler.addEnemyBullet(
           this.position.x,
           this.position.y + this.height / 2 - 3,
@@ -84,12 +75,6 @@ export class ShotGlider extends ShooterObject {
         );
       }
     }
-  }
-
-  draw(ctx) {
-    if (this.bDying) return;
-    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx);
-    this.drawHealthBar(ctx);
   }
 }
 
@@ -105,12 +90,16 @@ export class Turret extends ShooterObject {
     this.height = 56;
     this.health = 40;
     this.maxHealth = 40;
+    this.explosionID = 'largeexplosion';
+    this.explosionSize = 60;
     this.fireTimer = 0;
     this.fireInterval = 830;
   }
 
   update(dt, game) {
     super.update(dt);
+    if (this.bDying) return;
+
     this.fireTimer += dt;
     if (this.fireTimer >= this.fireInterval) {
       this.fireTimer = 0;
@@ -121,12 +110,6 @@ export class Turret extends ShooterObject {
         game.bulletHandler.addEnemyBullet(this.position.x + 40, this.position.y, 16, 16, 'bullet2', new Vector2D(3, -3));
       }
     }
-  }
-
-  draw(ctx) {
-    if (this.bDying) return;
-    TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx);
-    this.drawHealthBar(ctx);
   }
 }
 
@@ -148,6 +131,8 @@ export class RoofTurret extends ShooterObject {
 
   update(dt, game) {
     super.update(dt);
+    if (this.bDying) return;
+
     this.fireTimer += dt;
     if (this.fireTimer >= this.fireInterval) {
       this.fireTimer = 0;
@@ -161,7 +146,10 @@ export class RoofTurret extends ShooterObject {
   }
 
   draw(ctx) {
-    if (this.bDying) return;
+    if (this.bDying) {
+      super.draw(ctx);
+      return;
+    }
     // Rotating 180 and mirroring horizontally gives SDL_FLIP_VERTICAL
     TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx, 180, 1.0, true);
     this.drawHealthBar(ctx);
@@ -179,12 +167,17 @@ export class Level1Boss extends ShooterObject {
     this.height = 110;
     this.health = 400;
     this.maxHealth = 400;
+    this.explosionID = 'bossexplosion';
+    this.explosionSize = 180;
+    this.dyingTime = 900;
     this.fireTimer = 0;
     this.fireInterval = 850;
   }
 
   update(dt, game) {
     super.update(dt);
+    if (this.bDying) return;
+
     if (this.position.y <= 0 || this.position.y >= WORLD_HEIGHT - this.height) {
       this.velocity.y *= -1;
     }
@@ -192,7 +185,7 @@ export class Level1Boss extends ShooterObject {
     this.fireTimer += dt;
     if (this.fireTimer >= this.fireInterval) {
       this.fireTimer = 0;
-      if (game && game.bulletHandler) {
+      if (game?.bulletHandler) {
         game.bulletHandler.addEnemyBullet(
           this.position.x,
           this.position.y + 20,
@@ -222,7 +215,10 @@ export class Level1Boss extends ShooterObject {
   }
 
   draw(ctx) {
-    if (this.bDying) return;
+    if (this.bDying) {
+      super.draw(ctx);
+      return;
+    }
     TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, 0, ctx);
 
     // Boss top health bar
@@ -354,6 +350,8 @@ export class Eskeletor extends ShooterObject {
     this.height = 35;
     this.health = 30;
     this.maxHealth = 30;
+    this.explosionID = 'largeexplosion';
+    this.explosionSize = 60;
     this.numFrames = 3;
     this.frameTimer = 0;
     this.fireTimer = 0;
@@ -381,7 +379,10 @@ export class Eskeletor extends ShooterObject {
   }
 
   draw(ctx) {
-    if (this.bDying) return;
+    if (this.bDying) {
+      super.draw(ctx);
+      return;
+    }
     TheTextureManager.drawFrame(this.textureID, this.position.x, this.position.y, this.width, this.height, 0, this.currentFrame, ctx);
     this.drawHealthBar(ctx);
   }

@@ -1,4 +1,5 @@
 import { Vector2D } from './Vector2D.js';
+import { TheTextureManager } from './TextureManager.js';
 
 export class GameObject {
   constructor() {
@@ -52,26 +53,72 @@ export class ShooterObject extends GameObject {
     this.bulletFiringSpeed = 0;
     this.bulletCounter = 0;
     this.moveSpeed = 0;
-    this.dyingTime = 30;
+    this.dyingTime = 450;
     this.dyingCounter = 0;
     this.bPlayedDeathSound = false;
     this.health = 100;
     this.maxHealth = 100;
+    // Explosion sheet swapped in on death, as the C++ collision() overrides do
+    this.explosionID = 'explosion';
+    this.explosionSize = 40;
+    this.explosionFrames = 9;
     this.typeStr = 'ShooterObject';
   }
 
   update(dt) {
     if (this.bDying) {
-      this.doDyingAnimation();
+      this.doDyingAnimation(dt);
       return;
     }
     super.update(dt);
   }
 
-  doDyingAnimation() {
-    this.dyingCounter++;
+  explode() {
+    if (this.bDying) return;
+
+    this.bDying = true;
+    this.dyingCounter = 0;
+    this.currentFrame = 0;
+    this.health = 0;
+    this.velocity.x = 0;
+    this.velocity.y = 0;
+
+    // Keep the blast centred on the sprite it replaces
+    this.position.x += (this.width - this.explosionSize) / 2;
+    this.position.y += (this.height - this.explosionSize) / 2;
+
+    this.textureID = this.explosionID;
+    this.numFrames = this.explosionFrames;
+    this.width = this.explosionSize;
+    this.height = this.explosionSize;
+  }
+
+  doDyingAnimation(dt) {
+    this.dyingCounter += dt;
+    this.currentFrame = Math.min(
+      this.numFrames - 1,
+      Math.floor((this.dyingCounter / this.dyingTime) * this.numFrames)
+    );
     if (this.dyingCounter >= this.dyingTime) {
       this.bDead = true;
+    }
+  }
+
+  draw(ctx) {
+    TheTextureManager.drawFrame(
+      this.textureID,
+      this.position.x,
+      this.position.y,
+      this.width,
+      this.height,
+      this.currentRow,
+      this.currentFrame,
+      ctx,
+      this.angle,
+      this.alpha
+    );
+    if (!this.bDying) {
+      this.drawHealthBar(ctx);
     }
   }
 

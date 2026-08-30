@@ -39,10 +39,9 @@ export class CollisionManager {
       } else {
         if (this.rectIntersect(player, enemy)) {
           if (!enemy.indestructible) {
-            enemy.health = 0;
-            enemy.bDying = true;
+            enemy.explode();
+            TheSoundManager.playSound('boom');
           }
-          TheSoundManager.playSound('boom');
           player.collision(COLLISION_ENEMY, game);
         }
       }
@@ -64,9 +63,9 @@ export class CollisionManager {
 
           enemy.health -= 10;
           if (enemy.health <= 0) {
-            enemy.bDying = true;
-            TheSoundManager.playSound('boom');
             game.score += enemy.maxHealth * 2;
+            enemy.explode();
+            TheSoundManager.playSound('boom');
           }
           break;
         }
