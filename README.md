@@ -29,6 +29,8 @@
 
 ## Alien Attack
 
+[Play the Game Online](https://joeaoregan.github.io/LIT-Yr3-AdvancedDigitalGameProgramming/play/)
+
 Continuous Assessment game for Advanced Digital Game Programming Module of Year 3.
 Modified Alien Attack game from [SDL Game Development by Shaun Mitchell](https://www.packtpub.com/game-development/sdl-game-development). 
 
