@@ -44,3 +44,6 @@ x86/
 # MkDocs
 venv/
 site/
+
+# Local dev
+dev/

@@ -29,6 +29,8 @@
 
 ## Alien Attack
 
+![Alien Attack](docs/images/alien_attack.png)
+
 [Play the Game Online](https://joeaoregan.github.io/LIT-Yr3-AdvancedDigitalGameProgramming/play/)
 
 Continuous Assessment game for Advanced Digital Game Programming Module of Year 3.
