@@ -1,0 +1,296 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" width="100%" height="100%" role="img" aria-label="Alien Attack Entity Inheritance &amp; Hierarchy Diagram">
+  <defs>
+    <style>
+      :root {
+        --eh-bg: rgba(15, 23, 42, 0.04);
+        --eh-header: rgba(37, 99, 235, 0.1);
+        --eh-stroke: #334155;
+        --eh-title: #0f172a;
+        --eh-text: #1e293b;
+        --eh-muted: #475569;
+        --eh-blue: #2563eb;
+        --eh-emerald: #059669;
+        --eh-amber: #d97706;
+        --eh-rose: #e11d48;
+        --eh-purple: #7c3aed;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --eh-bg: rgba(15, 23, 42, 0.70);
+          --eh-header: rgba(59, 130, 246, 0.18);
+          --eh-stroke: #475569;
+          --eh-title: #f8fafc;
+          --eh-text: #e2e8f0;
+          --eh-muted: #94a3b8;
+          --eh-blue: #60a5fa;
+          --eh-emerald: #34d399;
+          --eh-amber: #fbbf24;
+          --eh-rose: #fb7185;
+          --eh-purple: #a78bfa;
+        }
+      }
+
+      .box-card {
+        fill: var(--eh-bg);
+        stroke: var(--eh-stroke);
+        stroke-width: 2;
+        rx: 10px;
+      }
+
+      .box-header {
+        fill: var(--eh-header);
+        stroke: var(--eh-stroke);
+        stroke-width: 1.5;
+        rx: 10px;
+      }
+
+      .box-title {
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 13.5px;
+        fill: var(--eh-title);
+        text-anchor: middle;
+        dominant-baseline: central;
+      }
+
+      .box-item {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-weight: 500;
+        font-size: 11.5px;
+        fill: var(--eh-text);
+      }
+
+      .edge-label {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-weight: 700;
+        font-size: 10px;
+        fill: var(--eh-muted);
+        text-anchor: middle;
+      }
+
+      /* Flow animation lines */
+      .flow-blue {
+        fill: none;
+        stroke: var(--eh-blue);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+
+      .flow-emerald {
+        fill: none;
+        stroke: var(--eh-emerald);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+
+      .flow-amber {
+        fill: none;
+        stroke: var(--eh-amber);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+
+      .flow-rose {
+        fill: none;
+        stroke: var(--eh-rose);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+
+      .flow-purple {
+        fill: none;
+        stroke: var(--eh-purple);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+
+      @keyframes dashFlow {
+        to {
+          stroke-dashoffset: -20;
+        }
+      }
+
+      /* Pulse animations */
+      @keyframes pulseDownShort {
+        0% { transform: translateY(0px); opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { transform: translateY(38px); opacity: 0; }
+      }
+
+      @keyframes pulseDownMid {
+        0% { transform: translateY(0px); opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { transform: translateY(54px); opacity: 0; }
+      }
+
+      .dot-blue-d {
+        fill: var(--eh-blue);
+        animation: pulseDownShort 1.6s ease-in-out infinite;
+      }
+
+      .dot-rose-d {
+        fill: var(--eh-rose);
+        animation: pulseDownMid 1.8s ease-in-out infinite;
+      }
+
+      .dot-emerald-d {
+        fill: var(--eh-emerald);
+        animation: pulseDownMid 2s ease-in-out infinite;
+      }
+    </style>
+
+    <!-- Marker Arrowheads (Inheritance: Hollow triangle style or solid) -->
+    <marker id="eh-arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--eh-blue)"/>
+    </marker>
+    <marker id="eh-arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--eh-emerald)"/>
+    </marker>
+    <marker id="eh-arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--eh-amber)"/>
+    </marker>
+    <marker id="eh-arrow-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--eh-rose)"/>
+    </marker>
+    <marker id="eh-arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--eh-purple)"/>
+    </marker>
+  </defs>
+
+  <!-- ==================== LEVEL 1: Root Base Class (GameObject) ==================== -->
+  <g id="box-gameobject">
+    <rect x="290" y="20" width="380" height="114" class="box-card" />
+    <rect x="290" y="20" width="380" height="32" class="box-header" />
+    <text x="480" y="36" class="box-title">GameObject (Abstract Root Base)</text>
+
+    <text x="306" y="70" class="box-item" style="fill: var(--eh-blue); font-weight: 700;">[Lifecycle Contract]</text>
+    <text x="306" y="88" class="box-item">• load(pParams) | draw() | update() | clean()</text>
+    <text x="306" y="106" class="box-item">• collision() | type() | scroll(speed)</text>
+    <text x="306" y="124" class="box-item">• Vector2D: m_position, m_velocity, m_acceleration</text>
+  </g>
+
+  <!-- Connector: GameObject -> ShooterObject -->
+  <g id="flow-root-to-shooter">
+    <line x1="480" y1="134" x2="480" y2="168" class="flow-blue" marker-end="url(#eh-arrow-blue)" />
+    <circle cx="480" cy="138" r="3.5" class="dot-blue-d" />
+    <text x="518" y="154" class="edge-label">inherits</text>
+  </g>
+
+  <!-- ==================== LEVEL 2: Core 2D Kinematics (ShooterObject) ==================== -->
+  <g id="box-shooterobject">
+    <rect x="260" y="174" width="440" height="110" class="box-card" />
+    <rect x="260" y="174" width="440" height="32" class="box-header" />
+    <text x="480" y="190" class="box-title">ShooterObject : public GameObject</text>
+
+    <text x="276" y="222" class="box-item" style="fill: var(--eh-emerald); font-weight: 700;">[Weapon &amp; Status Subsystems]</text>
+    <text x="276" y="240" class="box-item">• StatusBar bar (Visual Health Bar overlay)</text>
+    <text x="276" y="258" class="box-item">• Bullet counters: m_bulletCounter, m_bullet2Counter</text>
+    <text x="276" y="276" class="box-item">• doDyingAnimation(), m_dyingTime, m_bPlayedDeathSound</text>
+  </g>
+
+  <!-- Fan-out connectors from ShooterObject to Level 3 -->
+  <!-- Left: Player & Weapons -->
+  <path d="M 370 284 L 370 316 L 155 316 L 155 342" class="flow-blue" marker-end="url(#eh-arrow-blue)" />
+  <!-- Center-Left: Projectiles & Pickups -->
+  <path d="M 440 284 L 440 316 L 395 316 L 395 342" class="flow-amber" marker-end="url(#eh-arrow-amber)" />
+  <!-- Center-Right: Enemy Base -->
+  <path d="M 520 284 L 520 316 L 575 316 L 575 342" class="flow-rose" marker-end="url(#eh-arrow-rose)" />
+  <!-- Right: UI & World Elements -->
+  <path d="M 590 284 L 590 316 L 815 316 L 815 342" class="flow-purple" marker-end="url(#eh-arrow-purple)" />
+
+  <!-- ==================== LEVEL 3: Primary Concrete Categories ==================== -->
+
+  <!-- Sub-branch 1: Player Entity -->
+  <g id="box-player">
+    <rect x="24" y="348" width="230" height="116" class="box-card" />
+    <rect x="24" y="348" width="230" height="30" class="box-header" />
+    <text x="139" y="363" class="box-title" style="fill: var(--eh-blue);">Player</text>
+
+    <text x="36" y="394" class="box-item">• Inherits Observer Subject</text>
+    <text x="36" y="412" class="box-item">• InputHandler integration</text>
+    <text x="36" y="430" class="box-item">• Primary &amp; secondary weapons</text>
+    <text x="36" y="448" class="box-item">• Screen boundary collision</text>
+  </g>
+
+  <!-- Sub-branch 2: Combat Projectiles & PowerUps -->
+  <g id="box-projectiles">
+    <rect x="270" y="348" width="215" height="116" class="box-card" />
+    <rect x="270" y="348" width="215" height="30" class="box-header" />
+    <text x="377" y="363" class="box-title" style="fill: var(--eh-amber);">Projectiles &amp; Pickups</text>
+
+    <text x="282" y="394" class="box-item">• PlayerBullet (Rapid / Heavy)</text>
+    <text x="282" y="412" class="box-item">• EnemyBullet (Hostile Pool)</text>
+    <text x="282" y="430" class="box-item">• PowerUp (Shields / Blasters)</text>
+    <text x="282" y="448" class="box-item">• Linear trajectory &amp; decay</text>
+  </g>
+
+  <!-- Sub-branch 3: Hostile Enemy Base -->
+  <g id="box-enemy">
+    <rect x="500" y="348" width="205" height="116" class="box-card" />
+    <rect x="500" y="348" width="205" height="30" class="box-header" />
+    <text x="602" y="363" class="box-title" style="fill: var(--eh-rose);">Enemy (Hostile Base)</text>
+
+    <text x="512" y="394" class="box-item">• m_health &amp; hit points</text>
+    <text x="512" y="412" class="box-item">• Score reward attribution</text>
+    <text x="512" y="430" class="box-item">• Bullet firing triggers</text>
+    <text x="512" y="448" class="box-item">• Custom movement patterns</text>
+  </g>
+
+  <!-- Sub-branch 4: UI & World Elements -->
+  <g id="box-ui-elements">
+    <rect x="720" y="348" width="216" height="116" class="box-card" />
+    <rect x="720" y="348" width="216" height="30" class="box-header" />
+    <text x="828" y="363" class="box-title" style="fill: var(--eh-purple);">UI &amp; FX Elements</text>
+
+    <text x="732" y="394" class="box-item">• AnimatedGraphic (Explosions)</text>
+    <text x="732" y="412" class="box-item">• HUD (Score &amp; Health icons)</text>
+    <text x="732" y="430" class="box-item">• MiniMap (Radar blips)</text>
+    <text x="732" y="448" class="box-item">• MenuButton &amp; Scroller</text>
+  </g>
+
+  <!-- Connector: Enemy Base -> Specialised Enemies (Level 4) -->
+  <g id="flow-enemy-to-roster">
+    <line x1="602" y1="464" x2="602" y2="494" class="flow-rose" marker-end="url(#eh-arrow-rose)" />
+    <circle cx="602" cy="468" r="3.5" class="dot-rose-d" />
+    <text x="638" y="482" class="edge-label">derives</text>
+  </g>
+
+  <!-- ==================== LEVEL 4: Specialised Enemy Roster ==================== -->
+  <g id="box-enemy-roster">
+    <rect x="180" y="500" width="756" height="106" class="box-card" style="fill: var(--eh-header); stroke: var(--eh-rose);" />
+    <rect x="180" y="500" width="756" height="28" class="box-header" />
+    <text x="558" y="514" class="box-title" style="fill: var(--eh-rose); font-size: 13px;">Specialised Enemy Hierarchy (Enemy Subclasses)</text>
+
+    <!-- Column 1: Gliders -->
+    <text x="196" y="546" class="box-item" style="font-weight: 700; fill: var(--eh-rose);">[Glider Family]</text>
+    <text x="196" y="566" class="box-item">• Glider (Wave path)</text>
+    <text x="196" y="586" class="box-item">  ├── ShotGlider (Fires)</text>
+    <text x="196" y="602" class="box-item">  └── AngryGlider (Homing)</text>
+
+    <!-- Column 2: Ground & Traps -->
+    <text x="390" y="546" class="box-item" style="font-weight: 700; fill: var(--eh-rose);">[Ground &amp; Traps]</text>
+    <text x="390" y="566" class="box-item">• Pounder (Vertical smasher)</text>
+    <text x="390" y="586" class="box-item">• Squasher (Crushing block)</text>
+    <text x="390" y="602" class="box-item">• Eskeletor (Walker unit)</text>
+
+    <!-- Column 3: Batteries -->
+    <text x="584" y="546" class="box-item" style="font-weight: 700; fill: var(--eh-rose);">[Emplacements]</text>
+    <text x="584" y="566" class="box-item">• Turret (Base battery)</text>
+    <text x="584" y="586" class="box-item">  └── RoofTurret (Ceiling)</text>
+    <text x="584" y="602" class="box-item">• 360° aiming vector</text>
+
+    <!-- Column 4: Boss -->
+    <text x="760" y="546" class="box-item" style="font-weight: 700; fill: var(--eh-rose);">[Stage Bosses]</text>
+    <text x="760" y="566" class="box-item">• Level1Boss (Multi-phase)</text>
+    <text x="760" y="586" class="box-item">• Escort waves &amp; shields</text>
+    <text x="760" y="602" class="box-item">• Victory trigger on kill</text>
+  </g>
+</svg>
+

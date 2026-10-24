@@ -58,6 +58,7 @@ Using helpful SDL 2.0 tutorials from [Lazy Foo' Productions](http://lazyfoo.net/
 
 - [Architecture docs](https://joeaoregan.github.io/LIT-Yr3-AdvancedDigitalGameProgramming/architecture/)
 - [State Machine docs](https://joeaoregan.github.io/LIT-Yr3-AdvancedDigitalGameProgramming/architecture/state-machine/)
+- [Game Objects docs](https://joeaoregan.github.io/LIT-Yr3-AdvancedDigitalGameProgramming/game-objects/)
 
 ## Screenshots:
 

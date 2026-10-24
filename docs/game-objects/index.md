@@ -1,30 +1,53 @@
 # Game Objects
 
-The `GameObject` acts as the fundamental abstract base class for all entities within the [Alien Attack project](https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/tree/master/1-AlienAttack/Alien%20Attack%20K00203642). It establishes a common interface and shared properties that all interactive elements must implement to function within the game loop.
+![Alien Attack Entity Inheritance &amp; Hierarchy](../images/svg/entity_hierarchy.svg)
 
-## Core Components
+The Alien Attack entity architecture is constructed around an object-oriented inheritance hierarchy rooted in the abstract `GameObject` base class. Rather than managing disparate collections for each entity type, the game loop and level layers process entities polymorphically through common lifecycle and transformation interfaces.
 
-* [GameObject.h](https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/blob/master/1-AlienAttack/Alien%20Attack%20K00203642/GameObject.h): The header file defining the abstract base class. It dictates the standard lifecycle functions that any derived entity is required to have.
+!!! tip "Polymorphic Hierarchy"  
+    * **Uniform Lifecycle**: Every interactive entity adheres to the standard `load()`, `update()`, `draw()`, `collision()`, and `clean()` virtual methods.
+    * **Kinematic Inheritance**: `ShooterObject` extends the root base class with 2D Newtonian velocity vectors (`Vector2D`), projectile weapon cooldown timers, death animation routines, and on-screen health bar (`StatusBar`) rendering.
+    * **Factory Integration**: Concrete entity classes register unique string identifiers with `GameObjectFactory`, allowing external Tiled level files to spawn diverse player, enemy, projectile, and pickup objects dynamically.
 
-## Interface and Lifecycle
+---
 
-* **Standardised Methods**: The class mandates core virtual functions such as `update()`, `draw()`, and `clean()`. The main game loop calls these functions on all active entities, allowing the engine to process and render them seamlessly.
-* **Shared Properties**: While the specific implementation is left to derived classes, the base interface is used to manage standard spatial attributes like X and Y coordinates, width, and height.
-* **Polymorphism**: Instead of managing separate lists for different entity types, the `PlayState` and `Level` classes can maintain a single collection of `GameObject` pointers. This design pattern is used to make certain the core engine remains clean and scalable, as it does not need to know the exact subclass of each object it processes.
+## Architecture Layers
 
-## Derived Entities
+* **[GameObject](https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/blob/master/1-AlienAttack/Alien%20Attack%20K00203642/GameObject.h)**  
+  The root abstract base class defining standard spatial coordinates, bounding box metrics, collision callbacks, and scrolling physics.
+* **[Shooter Object](shooter.md)**  
+  The primary intermediate subclass providing combat infrastructure, weapon fire cooldown counters, death sound triggers, and health bar overlays.
 
-This base architecture is extended by concrete classes to define unique behaviours. For detailed implementations, refer to the specific entity documentation:  
+---
 
-- [Player](player.md)
-- [Enemy](enemy.md)
-- [Glider](glider.md)
-- [Shot Glider](shotglider.md)
-- [Angry Glider](angryglider.md)
-- [Eskeletor](eskeletor.md)
-- [Level 1 Boss](level1boss.md)
-- [Pounder](pounder.md)
-- [Bullet](bullet.md)
-- [Power Up](powerup.md)
-- [Roof Turret](roof-turret.md)
-- [Shooter Object](shooter.md)
+## Entity Categories
+
+### Player & Weapon Systems
+Entities dedicated to player movement, weapon fire, and combat upgrades:
+
+* **[Player](player.md)**  
+  The user-controlled ship incorporating input abstraction, dual-weapon firing modes, and boundary observer tracking.
+* **[Bullet](bullet.md)**  
+  High-speed linear projectiles partitioned into friendly (`PlayerBullet`) and hostile (`EnemyBullet`) pools.
+* **[Power Up](powerup.md)**  
+  Collectible items dropped by downed enemies that replenish shields or upgrade weapon spread.
+
+### Hostile Enemy Roster
+Autonomous adversaries deriving from the common `Enemy` base class:
+
+* **[Enemy](enemy.md)**  
+  The base class for all hostile craft, managing hit point thresholds, point yields, and firing triggers.
+* **[Glider](glider.md)**  
+  Standard scouting vessel executing a smooth sinusoidal wave flight pattern.
+* **[Shot Glider](shotglider.md)**  
+  Armed variant of the Glider that unleashes targeted projectiles toward the player.
+* **[Angry Glider](angryglider.md)**  
+  Aggressive, high-velocity variant that charges directly toward player coordinates.
+* **[Pounder](pounder.md)**  
+  Heavy vertical hazard that crashes downward to crush passing ships.
+* **[Eskeletor](eskeletor.md)**  
+  Ground-walking mechanical unit navigating horizontal surface terrain.
+* **[Roof Turret](roof-turret.md)**  
+  Ceiling-mounted automated defense battery with 360-degree rotational tracking.
+* **[Level 1 Boss](level1boss.md)**  
+  Multi-stage capital ship featuring escort wave spawning, invulnerability shields, and phased attack patterns.
