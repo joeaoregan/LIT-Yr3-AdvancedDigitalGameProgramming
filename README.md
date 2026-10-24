@@ -33,7 +33,9 @@
 
 ## Alien Attack
 
-![Alien Attack](docs/images/alien_attack.png)
+<div align="center">
+<img src="docs/images/alien_attack.png" alt="Alien Attack Logo" />
+</div>
 
 [Play the Game Online](https://joeaoregan.github.io/LIT-Yr3-AdvancedDigitalGameProgramming/play/)
 
@@ -54,7 +56,8 @@ Using helpful SDL 2.0 tutorials from [Lazy Foo' Productions](http://lazyfoo.net/
 
 ![Architecture Diagram](docs/images/svg/game_architecture.svg)
 
-[Architecture docs](https://joeaoregan.github.io/LIT-Yr3-AdvancedDigitalGameProgramming/architecture/)
+- [Architecture docs](https://joeaoregan.github.io/LIT-Yr3-AdvancedDigitalGameProgramming/architecture/)
+- [State Machine docs](https://joeaoregan.github.io/LIT-Yr3-AdvancedDigitalGameProgramming/architecture/state-machine/)
 
 ## Screenshots:
 

@@ -1,0 +1,293 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="100%" height="100%" role="img" aria-label="Alien Attack State Machine and Lifecycle Diagram">
+  <defs>
+    <style>
+      :root {
+        --sm-bg: rgba(15, 23, 42, 0.04);
+        --sm-header: rgba(37, 99, 235, 0.1);
+        --sm-stroke: #334155;
+        --sm-title: #0f172a;
+        --sm-text: #1e293b;
+        --sm-muted: #475569;
+        --sm-blue: #2563eb;
+        --sm-emerald: #059669;
+        --sm-amber: #d97706;
+        --sm-rose: #e11d48;
+        --sm-purple: #7c3aed;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --sm-bg: rgba(15, 23, 42, 0.70);
+          --sm-header: rgba(59, 130, 246, 0.18);
+          --sm-stroke: #475569;
+          --sm-title: #f8fafc;
+          --sm-text: #e2e8f0;
+          --sm-muted: #94a3b8;
+          --sm-blue: #60a5fa;
+          --sm-emerald: #34d399;
+          --sm-amber: #fbbf24;
+          --sm-rose: #fb7185;
+          --sm-purple: #a78bfa;
+        }
+      }
+
+      .box-card {
+        fill: var(--sm-bg);
+        stroke: var(--sm-stroke);
+        stroke-width: 2;
+        rx: 10px;
+      }
+
+      .box-header {
+        fill: var(--sm-header);
+        stroke: var(--sm-stroke);
+        stroke-width: 1.5;
+        rx: 10px;
+      }
+
+      .box-title {
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        fill: var(--sm-title);
+        text-anchor: middle;
+        dominant-baseline: central;
+      }
+
+      .box-item {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-weight: 500;
+        font-size: 12px;
+        fill: var(--sm-text);
+      }
+
+      .edge-label {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-weight: 700;
+        font-size: 10.5px;
+        fill: var(--sm-muted);
+        text-anchor: middle;
+      }
+
+      /* Flow animation lines */
+      .flow-blue {
+        fill: none;
+        stroke: var(--sm-blue);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+
+      .flow-emerald {
+        fill: none;
+        stroke: var(--sm-emerald);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+
+      .flow-amber {
+        fill: none;
+        stroke: var(--sm-amber);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+
+      .flow-rose {
+        fill: none;
+        stroke: var(--sm-rose);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+
+      .flow-purple {
+        fill: none;
+        stroke: var(--sm-purple);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+
+      @keyframes dashFlow {
+        to {
+          stroke-dashoffset: -20;
+        }
+      }
+
+      /* Pulse animations */
+      @keyframes pulseRight {
+        0% { transform: translateX(0px); opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { transform: translateX(64px); opacity: 0; }
+      }
+
+      @keyframes pulseDown {
+        0% { transform: translateY(0px); opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { transform: translateY(64px); opacity: 0; }
+      }
+
+      @keyframes pulseUp {
+        0% { transform: translateY(0px); opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { transform: translateY(-64px); opacity: 0; }
+      }
+
+      .dot-blue-r {
+        fill: var(--sm-blue);
+        animation: pulseRight 1.8s ease-in-out infinite;
+      }
+
+      .dot-emerald-d {
+        fill: var(--sm-emerald);
+        animation: pulseDown 2s ease-in-out infinite;
+      }
+
+      .dot-purple-u {
+        fill: var(--sm-purple);
+        animation: pulseUp 2s ease-in-out infinite;
+      }
+
+      .dot-rose-d {
+        fill: var(--sm-rose);
+        animation: pulseDown 2.2s ease-in-out infinite;
+      }
+    </style>
+
+    <!-- Marker Arrowheads -->
+    <marker id="sm-arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sm-blue)"/>
+    </marker>
+    <marker id="sm-arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sm-emerald)"/>
+    </marker>
+    <marker id="sm-arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sm-amber)"/>
+    </marker>
+    <marker id="sm-arrow-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sm-rose)"/>
+    </marker>
+    <marker id="sm-arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--sm-purple)"/>
+    </marker>
+  </defs>
+
+  <!-- ==================== BOX 1: GameStateMachine Stack (Top-Left) ==================== -->
+  <g id="box-statemachine">
+    <rect x="24" y="24" width="310" height="236" class="box-card" />
+    <rect x="24" y="24" width="310" height="36" class="box-header" />
+    <text x="179" y="42" class="box-title">GameStateMachine (Stack Manager)</text>
+
+    <text x="40" y="82" class="box-item" style="fill: var(--sm-blue); font-weight: 700;">[Internal State Vector]</text>
+    <text x="40" y="104" class="box-item">• std::vector&lt;GameState*&gt; m_gameStates</text>
+    <text x="40" y="126" class="box-item">• m_gameStates.back() = Active State</text>
+
+    <text x="40" y="156" class="box-item" style="fill: var(--sm-emerald); font-weight: 700;">[Stack Manipulation Methods]</text>
+    <text x="40" y="178" class="box-item">• pushState(pState) → push &amp; onEnter()</text>
+    <text x="40" y="200" class="box-item">• popState() → onExit(), pop, resume()</text>
+    <text x="40" y="222" class="box-item">• changeState(pState) → swap state</text>
+    <text x="40" y="244" class="box-item">• clean() → clear stack &amp; free memory</text>
+  </g>
+
+  <!-- ==================== BOX 2: GameState Abstract Interface (Bottom-Left) ==================== -->
+  <g id="box-lifecycle">
+    <rect x="24" y="284" width="310" height="250" class="box-card" />
+    <rect x="24" y="284" width="310" height="36" class="box-header" />
+    <text x="179" y="302" class="box-title">GameState Interface &amp; Lifecycle</text>
+
+    <text x="40" y="342" class="box-item" style="fill: var(--sm-purple); font-weight: 700;">[Pure Virtual Contract]</text>
+    <text x="40" y="364" class="box-item">• virtual bool onEnter() = 0;</text>
+    <text x="56" y="384" class="box-item" style="fill: var(--sm-muted);">→ Load textures &amp; initialise entities</text>
+    <text x="40" y="406" class="box-item">• virtual void update() = 0;</text>
+    <text x="56" y="426" class="box-item" style="fill: var(--sm-muted);">→ Frame logic &amp; user input handling</text>
+    <text x="40" y="448" class="box-item">• virtual void render() = 0;</text>
+    <text x="56" y="468" class="box-item" style="fill: var(--sm-muted);">→ Render textures, layers &amp; HUD</text>
+    <text x="40" y="490" class="box-item">• virtual void resume() {}</text>
+    <text x="40" y="512" class="box-item">• virtual bool onExit() = 0;</text>
+    <text x="56" y="528" class="box-item" style="fill: var(--sm-muted);">→ Free memory &amp; clear texture IDs</text>
+  </g>
+
+  <!-- Flow: Stack Manager delegates frame calls to active state -->
+  <g id="flow-stack-to-interface">
+    <text x="208" y="272" class="edge-label">delegates update() / render()</text>
+    <line x1="179" y1="260" x2="179" y2="284" class="flow-emerald" marker-end="url(#sm-arrow-emerald)" />
+  </g>
+
+  <!-- ==================== BOX 3: Menu & Utility States (Top-Right) ==================== -->
+  <g id="box-menu-states">
+    <rect x="398" y="24" width="538" height="206" class="box-card" />
+    <rect x="398" y="24" width="538" height="36" class="box-header" />
+    <text x="667" y="42" class="box-title">Menu &amp; Configuration States</text>
+
+    <!-- Sub-Box A: Main Menu -->
+    <rect x="414" y="74" width="244" height="136" rx="8" style="fill: var(--sm-header); stroke: var(--sm-blue); stroke-width: 1.5;" />
+    <text x="536" y="96" class="box-title" style="font-size: 13px; fill: var(--sm-blue);">MainMenuState</text>
+    <text x="428" y="122" class="box-item">• "Play" → changeState(PlayState)</text>
+    <text x="428" y="144" class="box-item">• "Settings" → pushState(Settings)</text>
+    <text x="428" y="166" class="box-item">• "Scores" → pushState(Scores)</text>
+    <text x="428" y="188" class="box-item">• "Exit" → Game::quit()</text>
+
+    <!-- Sub-Box B: Utility Screens -->
+    <rect x="674" y="74" width="246" height="136" rx="8" style="fill: var(--sm-bg); stroke: var(--sm-stroke); stroke-width: 1.5;" />
+    <text x="797" y="96" class="box-title" style="font-size: 13px;">Utility &amp; Config Screens</text>
+    <text x="688" y="122" class="box-item">• SettingsState (Audio/Input)</text>
+    <text x="688" y="144" class="box-item">• InstructionsState (Key Bindings)</text>
+    <text x="688" y="166" class="box-item">• HighScoreState (Top 10 List)</text>
+    <text x="688" y="188" class="box-item">• EnterNameState (Score Input)</text>
+  </g>
+
+  <!-- Flow: Main Menu to PlayState -->
+  <g id="flow-menu-to-play">
+    <text x="615" y="260" class="edge-label">changeState(PlayState)</text>
+    <line x1="536" y1="210" x2="536" y2="284" class="flow-blue" marker-end="url(#sm-arrow-blue)" />
+    <circle cx="536" cy="214" r="3.5" class="dot-emerald-d" />
+  </g>
+
+  <!-- ==================== BOX 4: Gameplay States & Stack Overlays (Bottom-Right) ==================== -->
+  <g id="box-gameplay-states">
+    <rect x="398" y="284" width="538" height="250" class="box-card" />
+    <rect x="398" y="284" width="538" height="36" class="box-header" />
+    <text x="667" y="302" class="box-title">Gameplay Lifecycle &amp; Overlays</text>
+
+    <!-- PlayState Card -->
+    <rect x="414" y="334" width="244" height="182" rx="8" style="fill: var(--sm-header); stroke: var(--sm-emerald); stroke-width: 1.5;" />
+    <text x="536" y="356" class="box-title" style="font-size: 13px; fill: var(--sm-emerald);">PlayState (Active World)</text>
+    <text x="428" y="382" class="box-item">• onEnter(): Load stage &amp; spawn</text>
+    <text x="428" y="404" class="box-item">• update(): Entities &amp; Collisions</text>
+    <text x="428" y="426" class="box-item">• Esc key → pushState(PauseState)</text>
+    <text x="428" y="448" class="box-item">• Boss Dead → LevelCompleteState</text>
+    <text x="428" y="470" class="box-item">• Lives == 0 → GameOverState</text>
+    <text x="428" y="494" class="box-item">• onExit(): Free objects &amp; sound</text>
+
+    <!-- Overlays Column -->
+    <!-- Pause State -->
+    <rect x="674" y="334" width="246" height="74" rx="8" style="fill: var(--sm-bg); stroke: var(--sm-purple); stroke-width: 1.5;" />
+    <text x="797" y="352" class="box-title" style="font-size: 12.5px; fill: var(--sm-purple);">PauseState (Overlay)</text>
+    <text x="688" y="374" class="box-item">• pushState() preserves PlayState</text>
+    <text x="688" y="394" class="box-item">• "Resume" → popState() &amp; resume()</text>
+
+    <!-- Game Over / Level Complete -->
+    <rect x="674" y="420" width="246" height="96" rx="8" style="fill: var(--sm-bg); stroke: var(--sm-rose); stroke-width: 1.5;" />
+    <text x="797" y="438" class="box-title" style="font-size: 12.5px; fill: var(--sm-rose);">Terminal States</text>
+    <text x="688" y="460" class="box-item">• LevelCompleteState (Stage Clear)</text>
+    <text x="688" y="480" class="box-item">• GameOverState (Final Score)</text>
+    <text x="688" y="500" class="box-item">• changeState() → Reset or Menu</text>
+  </g>
+
+  <!-- Flow: PlayState <-> PauseState (Push / Pop) -->
+  <g id="flow-play-pause">
+    <!-- Push to pause (right) -->
+    <line x1="658" y1="362" x2="674" y2="362" class="flow-purple" marker-end="url(#sm-arrow-purple)" />
+    <!-- Pop back to play (left) -->
+    <line x1="674" y1="384" x2="658" y2="384" class="flow-emerald" marker-end="url(#sm-arrow-emerald)" />
+  </g>
+
+  <!-- Flow: PlayState -> Terminal States -->
+  <g id="flow-play-terminal">
+    <line x1="658" y1="468" x2="674" y2="468" class="flow-rose" marker-end="url(#sm-arrow-rose)" />
+  </g>
+</svg>

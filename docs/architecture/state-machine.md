@@ -1,5 +1,7 @@
 # Game State Machine Architecture
 
+![Game State Machine & Lifecycle Architecture](../images/svg/state_machine.svg)
+
 The `GameStateMachine` handles the flow of the Alien Attack application by transitioning between different interactive states, such as the main menu, active gameplay, and game over screens.
 
 ## Core Components
@@ -15,9 +17,11 @@ The state machine is used to control the active scene through three primary meth
 
 !!! note "Overlay States with `pushState()`"  
     Using `pushState()` retains the underlying `PlayState` in memory without executing its lifecycle updates, allowing the game to pause and resume seamlessly without losing gameplay state.
-* **`popState()`**: Removes the current state from the top of the stack, triggering its `onExit()` method, and resumes the previous state underneath it.
+
+* **`popState()`**: Removes the current state from the top of the stack, triggering its `onExit()` method, and resumes the previous state underneath it via `resume()`.
 * **`changeState(GameState* state)`**: Replaces the currently active state entirely. It calls `onExit()` on the outgoing state, removes it, and then calls `onEnter()` on the new incoming state.
 
 ## Execution Flow
 
-During the main application loop, the core `Game` class delegates logic and drawing responsibilities to the `GameStateMachine`. The machine then calls the `update()` and `render()` functions exclusively for the active state currently residing at the top of the stack.
+During the main application loop, the core `Game` class delegates logic and drawing responsibilities to the `GameStateMachine`. The machine then calls the `update()` and `render()` functions exclusively for the active state currently residing at the top of the stack (`m_gameStates.back()`).
+During the main application loop, the core `Game` class delegates logic and drawing responsibilities to the `GameStateMachine`. The machine then calls the `update()` and `render()` functions exclusively for the active state currently residing at the top of the stack (`m_gameStates.back()`).
