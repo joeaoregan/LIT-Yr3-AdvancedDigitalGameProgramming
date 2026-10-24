@@ -17,6 +17,10 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming)
 ![Stars](https://img.shields.io/github/stars/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming?style=social)
 
+<div align="center">
+<img src="docs/images/svg/alien_attack.svg" alt="Alien Attack Logo" width="400px" />
+</div>
+
 ## Limerick Institute of Technology
 ### Year 3 (2016/17), Semester 6
 
@@ -38,7 +42,7 @@ Modified Alien Attack game from [SDL Game Development by Shaun Mitchell](https:/
 
 Using helpful SDL 2.0 tutorials from [Lazy Foo' Productions](http://lazyfoo.net/tutorials/SDL/index.php) for inspiration :smile: :grinning:
 
-> [!NOTE]
+> [!NOTE]  
 > 10/09/2017 Started Editing Code To Work With Code::Blocks IDE.
 
 **Features:**
@@ -115,7 +119,7 @@ Using helpful SDL 2.0 tutorials from [Lazy Foo' Productions](http://lazyfoo.net/
 
 ###### YouTube: Trailer
 
-> [!NOTE]
+> [!NOTE]  
 > YouTube Trailer Created as part of Assignment Spec.
 
 [Lazy Foo' Productions](http://lazyfoo.net/tutorials/SDL/index.php)
