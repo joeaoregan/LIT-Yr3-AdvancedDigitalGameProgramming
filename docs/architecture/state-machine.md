@@ -12,6 +12,9 @@ The `GameStateMachine` handles the flow of the Alien Attack application by trans
 The state machine is used to control the active scene through three primary methods:
 
 * **`pushState(GameState* state)`**: Adds a new state to the top of the stack without destroying the previous state. This approach is ideal for overlay screens, such as adding a `PauseState` on top of the `PlayState`.
+
+!!! note "Overlay States with `pushState()`"  
+    Using `pushState()` retains the underlying `PlayState` in memory without executing its lifecycle updates, allowing the game to pause and resume seamlessly without losing gameplay state.
 * **`popState()`**: Removes the current state from the top of the stack, triggering its `onExit()` method, and resumes the previous state underneath it.
 * **`changeState(GameState* state)`**: Replaces the currently active state entirely. It calls `onExit()` on the outgoing state, removes it, and then calls `onEnter()` on the new incoming state.
 

@@ -16,5 +16,6 @@ The factory pattern operates in two main phases to make certain objects are gene
 
 ## Benefits
 
-* **Decoupling:** The level parsing logic does not need to know about every specific game object class. It only needs to interface with the base [GameObject](../game-objects/index.md) class and the [GameObjectFactory](object-factory.md).
-* **Extensibility:** Adding a new enemy or item type only requires creating the new class and registering its ID with the factory. The core level loading code remains completely unchanged.
+!!! tip "Extensibility through Factory Pattern"  
+    * **Decoupling**: The level parsing logic does not need to know about concrete game entity classes. It only interfaces with the base `GameObject` abstraction.
+    * **Extensibility**: Adding a new enemy, boss, or power-up requires zero changes to the level loader. Simply register the new class identifier string with the factory.

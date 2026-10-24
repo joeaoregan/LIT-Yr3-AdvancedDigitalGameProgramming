@@ -15,6 +15,9 @@ Extract all downloaded `.zip` files to a stable directory on your development ma
 ## 2. Visual Studio Properties Configuration
 Open the `Alien Attack K00203642.vcxproj` project file in Visual Studio. Right-click the project name in the Solution Explorer, select **Properties**, and make certain the **Configuration** dropdown at the top is set to **All Configurations**.
 
+!!! important "Target Architecture"  
+    Ensure your Visual Studio build target (e.g. `x86` vs `x64`) strictly matches the library subfolder referenced in Linker properties (`lib\x86` vs `lib\x64`). Architecture mismatches will produce `LNK2019` unresolved external symbols or `LNK1112` module machine type conflicts.
+
 ### Include Directories
 Navigate to **C/C++** -> **General** -> **Additional Include Directories**. Add the paths to the `include` directories for all four libraries.
 
@@ -31,7 +34,10 @@ Navigate to **Linker** -> **Input** -> **Additional Dependencies**. Add the foll
 * `SDL2_ttf.lib`
 
 ## 3. Runtime Configuration
-Instead of modifying system environment variables, copy the corresponding `.dll` files directly into the project folder alongside your source files or into your build output directory. The following dynamic libraries are used at runtime:
+!!! tip "Local DLL Deployment"  
+    Deploying the runtime `.dll` files directly adjacent to the compiled executable or project file keeps the development environment portable and avoids modifying global Windows `PATH` environment variables.
+
+The following dynamic libraries are required at runtime:
 
 * `SDL2.dll`
 * `SDL2_image.dll`

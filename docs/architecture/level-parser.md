@@ -2,6 +2,9 @@
 
 The `LevelParser` translates external map data files into a playable `Level` object within the Alien Attack game. Instead of hardcoding level layouts directly in C++, this architecture allows you to design stages using external map editors (such as Tiled) and load them dynamically at runtime.
 
+!!! note "Decoupled Stage Design"  
+    By decoupling tilemaps, collision boundaries, and entity placements from C++ source files, levels can be built and balanced in Tiled without recompiling the game executable.
+
 ## Core Components
 
 * [LevelParser.h](https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/blob/master/1-AlienAttack/Alien%20Attack%20K00203642/LevelParser.h) & [LevelParser.cpp](https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/blob/master/1-AlienAttack/Alien%20Attack%20K00203642/LevelParser.cpp): The primary parser that reads and decodes the level data (typically in XML or JSON format). It extracts tilesets, collision boundaries, and entity data to construct the level.
@@ -11,7 +14,7 @@ The `LevelParser` translates external map data files into a playable `Level` obj
 
 ## Parsing Process
 
-1. **Initialization:** The parser receives a file path, opens the map file, and creates a new `Level` instance.
+1. **Initialisation:** The parser receives a file path, opens the map file, and creates a new `Level` instance.
 2. **Tileset Extraction:** It reads tileset properties and image source paths to make certain the correct textures are loaded into memory and are ready for rendering.
 3. **Layer Construction:** It iterates through the map data, building the background, collision, and foreground layers. 
 4. **Entity Spawning:** For interactive object layers, the parser extracts the specific attributes of each entity (e.g., x/y coordinates, type, width, height) and uses the [GameObjectFactory](object-factory.md) to spawn them into the level.

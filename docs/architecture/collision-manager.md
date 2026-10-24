@@ -11,6 +11,9 @@ The `CollisionManager` handles the detection and resolution of physical interact
 
 * **Bounding Boxes**: The manager uses the positional data and dimensions (width and height) of objects like the [Player](../game-objects/player.md), [Enemy](../game-objects/enemy.md) subclasses, and [Bullet](../game-objects/bullet.md) instances to define active hit areas.
 * **Categorised Checking**: Instead of checking every object against every other object, the manager categorises collision checks by group (e.g., Player vs. Enemy Bullets, Player Bullets vs. Enemies) to optimise performance.
+
+!!! tip "Collision Broad-Phase Optimisation"  
+    Categorising active entities into dedicated interaction layers avoids an expensive all-pairs $O(n^2)$ check across the entire object hierarchy.
 * **Level Boundaries**: It interacts with map limits defined in [BoundaryStuff.h](https://github.com/joeaoregan/LIT-Yr3-AdvancedDigitalGameProgramming/blob/master/1-AlienAttack/Alien%20Attack%20K00203642/BoundaryStuff.h) to make certain entities do not move outside the playable screen area.
 
 ## Resolution

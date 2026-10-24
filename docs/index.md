@@ -1,12 +1,13 @@
 # Advanced Digital Game Programming
 
-## Alien Attack
+![Alien Attack Logo](images/svg/alien_attack.svg)
 
-[Play the Game](https://joeaoregan.github.io/LIT-Yr3-AdvancedDigitalGameProgramming/play/)
+!!! tip "Play Online"  
+    You can play Alien Attack directly in your browser: [Launch Web Game](https://joeaoregan.github.io/LIT-Yr3-AdvancedDigitalGameProgramming/play/).
 
 ---
 
-### Contents
+## Contents
 
 - [SDL 2 Setup](sdl-setup/index.md)
 - [Game Architecture](architecture/index.md)
