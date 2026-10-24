@@ -105,8 +105,14 @@ Using helpful SDL 2.0 tutorials from [Lazy Foo' Productions](http://lazyfoo.net/
 
 ## Links and References:
 
-#### Game Trailer:
-[![Game Trailer](https://raw.githubusercontent.com/joeaoregan/LIT-Yr3-S6-AdvancedDigitalGameDesign/master/Screenshots/YouTube.jpg)](https://youtu.be/JNEkne0aIOY)
+### Game Trailer:
+
+<div align="center">
+<a href="https://www.youtube.com/watch?feature=player_embedded&v=JNEkne0aIOY" alt="Space Quest Trailer Youtube" width="480">
+<img src="docs/images/svg/tv_logo.svg" alt="Animated TV SVG" width="240px" />
+</a>
+</div>
+
 ###### YouTube: Trailer
 
 > [!NOTE]
