@@ -1,0 +1,288 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="100%" height="100%" role="img" aria-label="Alien Attack Game Architecture Diagram">
+  <defs>
+    <style>
+      :root {
+        --ar-bg: rgba(15, 23, 42, 0.04);
+        --ar-header: rgba(37, 99, 235, 0.1);
+        --ar-stroke: #334155;
+        --ar-title: #0f172a;
+        --ar-text: #1e293b;
+        --ar-muted: #475569;
+        --ar-blue: #2563eb;
+        --ar-emerald: #059669;
+        --ar-amber: #d97706;
+        --ar-rose: #e11d48;
+        --ar-purple: #7c3aed;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --ar-bg: rgba(15, 23, 42, 0.70);
+          --ar-header: rgba(59, 130, 246, 0.18);
+          --ar-stroke: #475569;
+          --ar-title: #f8fafc;
+          --ar-text: #e2e8f0;
+          --ar-muted: #94a3b8;
+          --ar-blue: #60a5fa;
+          --ar-emerald: #34d399;
+          --ar-amber: #fbbf24;
+          --ar-rose: #fb7185;
+          --ar-purple: #a78bfa;
+        }
+      }
+
+      .box-card {
+        fill: var(--ar-bg);
+        stroke: var(--ar-stroke);
+        stroke-width: 2;
+        rx: 10px;
+      }
+
+      .box-header {
+        fill: var(--ar-header);
+        stroke: var(--ar-stroke);
+        stroke-width: 1.5;
+        rx: 10px;
+      }
+
+      .box-title {
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        fill: var(--ar-title);
+        text-anchor: middle;
+        dominant-baseline: central;
+      }
+
+      .box-item {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-weight: 500;
+        font-size: 12px;
+        fill: var(--ar-text);
+      }
+
+      .edge-label {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-weight: 700;
+        font-size: 10.5px;
+        fill: var(--ar-muted);
+        text-anchor: middle;
+      }
+
+      /* Flow animation lines */
+      .flow-blue {
+        fill: none;
+        stroke: var(--ar-blue);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+
+      .flow-emerald {
+        fill: none;
+        stroke: var(--ar-emerald);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+
+      .flow-amber {
+        fill: none;
+        stroke: var(--ar-amber);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+
+      .flow-rose {
+        fill: none;
+        stroke: var(--ar-rose);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+
+      .flow-purple {
+        fill: none;
+        stroke: var(--ar-purple);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+        animation: dashFlow 1.2s linear infinite;
+      }
+
+      @keyframes dashFlow {
+        to {
+          stroke-dashoffset: -20;
+        }
+      }
+
+      /* Particle animations */
+      @keyframes pulseRight {
+        0% { transform: translateX(0px); opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { transform: translateX(84px); opacity: 0; }
+      }
+
+      @keyframes pulseDown {
+        0% { transform: translateY(0px); opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { transform: translateY(68px); opacity: 0; }
+      }
+
+      @keyframes pulseDiag {
+        0% { transform: translate(0px, 0px); opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { transform: translate(72px, 72px); opacity: 0; }
+      }
+
+      .dot-blue-r {
+        fill: var(--ar-blue);
+        animation: pulseRight 1.8s ease-in-out infinite;
+      }
+
+      .dot-emerald-d {
+        fill: var(--ar-emerald);
+        animation: pulseDown 2s ease-in-out infinite;
+      }
+
+      .dot-amber-r {
+        fill: var(--ar-amber);
+        animation: pulseRight 2.2s ease-in-out infinite;
+      }
+
+      .dot-purple-r {
+        fill: var(--ar-purple);
+        animation: pulseRight 1.9s ease-in-out infinite;
+      }
+    </style>
+
+    <!-- Marker Arrowheads -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--ar-blue)"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--ar-emerald)"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--ar-amber)"/>
+    </marker>
+    <marker id="arrow-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--ar-rose)"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--ar-purple)"/>
+    </marker>
+  </defs>
+
+  <!-- ==================== BOX 1: Input & Event Pipeline (Top-Left) ==================== -->
+  <g id="box-input">
+    <rect x="24" y="24" width="260" height="184" class="box-card" />
+    <rect x="24" y="24" width="260" height="36" class="box-header" />
+    <text x="154" y="42" class="box-title">Input &amp; Event Layer</text>
+
+    <text x="40" y="82" class="box-item">• InputHandler (Singleton)</text>
+    <text x="40" y="106" class="box-item">• SDL_PollEvent &amp; Key States</text>
+    <text x="40" y="130" class="box-item">• Joystick / Gamepad Axes</text>
+    <text x="40" y="154" class="box-item">• Mouse Buttons &amp; Position</text>
+    <text x="40" y="178" class="box-item">• Action Vectors → Velocity</text>
+  </g>
+
+  <!-- Flow 1: Input -> Core State Machine (Horizontal) -->
+  <g id="flow-input-to-game">
+    <text x="334" y="98" class="edge-label">Poll Events</text>
+    <line x1="284" y1="108" x2="376" y2="108" class="flow-blue" marker-end="url(#arrow-blue)" />
+    <circle cx="290" cy="108" r="3.5" class="dot-blue-r" />
+  </g>
+
+  <!-- ==================== BOX 2: Core Engine & State Machine (Top-Center) ==================== -->
+  <g id="box-core">
+    <rect x="382" y="24" width="260" height="184" class="box-card" />
+    <rect x="382" y="24" width="260" height="36" class="box-header" />
+    <text x="512" y="42" class="box-title">Core Engine &amp; State Stack</text>
+
+    <text x="398" y="82" class="box-item">• Game::Instance() (Main Loop)</text>
+    <text x="398" y="106" class="box-item">• GameStateMachine Stack</text>
+    <text x="398" y="130" class="box-item">• pushState() / popState()</text>
+    <text x="398" y="154" class="box-item">• Active: PlayState (Gameplay)</text>
+    <text x="398" y="178" class="box-item">• Overlays: PauseState, Menu</text>
+  </g>
+
+  <!-- Flow 2: Core Engine -> Audio & Render (Horizontal) -->
+  <g id="flow-game-to-render">
+    <text x="690" y="98" class="edge-label">Frame Tick</text>
+    <line x1="642" y1="108" x2="734" y2="108" class="flow-purple" marker-end="url(#arrow-purple)" />
+    <circle cx="648" cy="108" r="3.5" class="dot-purple-r" />
+  </g>
+
+  <!-- ==================== BOX 3: Visual & Audio Systems (Top-Right) ==================== -->
+  <g id="box-output">
+    <rect x="740" y="24" width="196" height="184" class="box-card" />
+    <rect x="740" y="24" width="196" height="36" class="box-header" />
+    <text x="838" y="42" class="box-title">Audio &amp; Renderer</text>
+
+    <text x="754" y="82" class="box-item">• TextureManager</text>
+    <text x="754" y="106" class="box-item">• SDL_Renderer Pipeline</text>
+    <text x="754" y="130" class="box-item">• SoundManager (SDL_mixer)</text>
+    <text x="754" y="154" class="box-item">• HUD (Score, Health, Lives)</text>
+    <text x="754" y="178" class="box-item">• MiniMap &amp; Particles</text>
+  </g>
+
+  <!-- Flow 3: Core -> Entity Pipeline (Vertical) -->
+  <g id="flow-core-to-entities">
+    <text x="575" y="255" class="edge-label">update() / render()</text>
+    <line x1="512" y1="208" x2="512" y2="290" class="flow-emerald" marker-end="url(#arrow-emerald)" />
+    <circle cx="512" cy="214" r="3.5" class="dot-emerald-d" />
+  </g>
+
+  <!-- ==================== BOX 4: Level Parser & Factory (Bottom-Left) ==================== -->
+  <g id="box-level">
+    <rect x="24" y="296" width="260" height="236" class="box-card" />
+    <rect x="24" y="296" width="260" height="36" class="box-header" />
+    <text x="154" y="314" class="box-title">Level &amp; Factory Pipeline</text>
+
+    <text x="40" y="354" class="box-item">• Tiled Stage Maps (assets.xml)</text>
+    <text x="40" y="378" class="box-item">• LevelParser (Decodes Layers)</text>
+    <text x="40" y="402" class="box-item">• GameObjectFactory (Registry)</text>
+    <text x="40" y="426" class="box-item">• String ID → Type Creators</text>
+    <text x="40" y="450" class="box-item">• Constructs TileLayers</text>
+    <text x="40" y="474" class="box-item">• Spawns ObjectLayers</text>
+    <text x="40" y="498" class="box-item">• Decoupled Stage Data</text>
+  </g>
+
+  <!-- Flow 4: Level Parser -> Entity Engine (Horizontal) -->
+  <g id="flow-level-to-entities">
+    <text x="334" y="394" class="edge-label">Spawn Entities</text>
+    <line x1="284" y1="404" x2="376" y2="404" class="flow-amber" marker-end="url(#arrow-amber)" />
+    <circle cx="290" cy="404" r="3.5" class="dot-amber-r" />
+  </g>
+
+  <!-- ==================== BOX 5: Entity Hierarchy & Collision Engine (Bottom-Right) ==================== -->
+  <g id="box-entities">
+    <rect x="382" y="296" width="554" height="236" class="box-card" />
+    <rect x="382" y="296" width="554" height="36" class="box-header" />
+    <text x="659" y="314" class="box-title">Entity World &amp; Collision Management</text>
+
+    <!-- Column A: Entities -->
+    <text x="402" y="354" class="box-item" style="fill: var(--ar-blue); font-weight: 700;">[Player &amp; Weapons]</text>
+    <text x="402" y="376" class="box-item">• Player (Kinematic Kinematics)</text>
+    <text x="402" y="398" class="box-item">• BulletHandler (Player Pool)</text>
+    <text x="402" y="420" class="box-item">• PowerUp Buffs &amp; Shields</text>
+
+    <text x="402" y="452" class="box-item" style="fill: var(--ar-rose); font-weight: 700;">[Enemy Roster]</text>
+    <text x="402" y="474" class="box-item">• Glider, ShotGlider, AngryGlider</text>
+    <text x="402" y="496" class="box-item">• Pounder, Eskeletor, RoofTurret</text>
+    <text x="402" y="518" class="box-item">• Level1Boss AI &amp; Attack Waves</text>
+
+    <!-- Column B: Collision System -->
+    <text x="682" y="354" class="box-item" style="fill: var(--ar-emerald); font-weight: 700;">[CollisionManager Pipeline]</text>
+    <text x="682" y="376" class="box-item">• Axis-Aligned Bounding Box (AABB)</text>
+    <text x="682" y="398" class="box-item">• Categorised Interaction Layers:</text>
+    <text x="696" y="420" class="box-item">1. Player Bullets ↔ Enemies</text>
+    <text x="696" y="442" class="box-item">2. Enemy Bullets ↔ Player</text>
+    <text x="696" y="464" class="box-item">3. Player Body ↔ Enemy Bodies</text>
+    <text x="696" y="486" class="box-item">4. Tile Map Boundaries &amp; Roof</text>
+    <text x="682" y="514" class="box-item">• Resolves: Damage, Score, Explosions</text>
+  </g>
+</svg>

@@ -2,7 +2,7 @@
 
 ![Alien Attack Logo](images/svg/alien_attack.svg)
 
-!!! tip "Play Online"  
+!!! tip "Play Online"    
     You can play Alien Attack directly in your browser: [Launch Web Game](https://joeaoregan.github.io/LIT-Yr3-AdvancedDigitalGameProgramming/play/).
 
 ---

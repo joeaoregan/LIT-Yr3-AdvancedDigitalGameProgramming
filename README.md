@@ -50,6 +50,11 @@ Using helpful SDL 2.0 tutorials from [Lazy Foo' Productions](http://lazyfoo.net/
 * Object-Oriented Programming
 * Inheritance
 
+## Architecture
+
+![Architecture Diagram](docs/images/svg/game_architecture.svg)
+
+[Architecture docs](https://joeaoregan.github.io/LIT-Yr3-AdvancedDigitalGameProgramming/architecture/)
 
 ## Screenshots:
 
